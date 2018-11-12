@@ -1,0 +1,326 @@
+<?php /* Smarty version 2.6.31, created on 2018-09-29 20:03:07
+         compiled from appointments/add_appointment.tpl */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'appointments/add_appointment.tpl', 7, false),)), $this); ?>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+<div id="content">
+
+
+
+	<!-- <?php echo $_SERVER['REQUEST_URI']; ?>
+  -->
+	<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['doctor'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
+  -->
+	<!-- <?php echo $this->_tpl_vars['unavail']; ?>
+ -->
+
+	<!-- <?php if (isset ( $this->_tpl_vars['printslip'] ) && $this->_tpl_vars['printslip']): ?>
+
+
+
+	<?php else: ?> -->
+	<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="post">
+		<fieldset>
+			<legend>Appointments</legend>
+			<input type="text" name="" value="<?php echo $this->_tpl_vars['_GET']; ?>
+" id="">
+			<input type="text" name="" value="<?php echo $this->_tpl_vars['GET']['doc_adr']; ?>
+" id="">
+			<input type="text" name="" value="<?php echo $this->_tpl_vars['GET']['doc_phne']; ?>
+" id="">
+			<input type="hidden" name="u_id" value="<?php echo $this->_tpl_vars['id']; ?>
+" id="id"> 
+			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
+" id="unavail"> 
+			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['from']; ?>
+" id="from"> 
+			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
+" id="to">
+			<input type="hidden" name="ap_number" id="ap_number"> 
+			<input type="hidden" name="security_key" id="security_key">
+			<input type="hidden" name="" id="res_error" value="<?php echo $this->_tpl_vars['res_error']; ?>
+">
+			<div class="row">
+				<div class="col-sm-3 common-bottom">
+					<label for="name">Patient Name</label>
+					<input type="text" name="name" id="name" maxlength="50" class="form-control" onclick="generateRandomNumber()"/>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="gender">Gender</label>
+					<select name="gender" id="gender" class="form-control">
+						<option value="male" <?php if ($this->_tpl_vars['data']['gender'] == 'male'): ?> selected="selected" <?php endif; ?>>Male</option>
+						<option value="female" <?php if ($this->_tpl_vars['data']['gender'] == 'female'): ?> selected="selected" <?php endif; ?>>Female</option>
+						<option value="other" <?php if ($this->_tpl_vars['data']['gender'] == 'other'): ?> selected="selected" <?php endif; ?>>Other</option>
+					</select>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="dob">Date of Birth</label>
+					<input type="text" name="dob" id="dob" value="<?php echo $this->_tpl_vars['data']['dob']; ?>
+" autocomplete="off" class="form-control"/>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="marital_status">Marital Status</label>
+					<select name="marital_status" id="marital_status" class="form-control">
+						<option value=""  selected="" disabled="">Select Status</option>
+						<option value="married" <?php if ($this->_tpl_vars['data']['marital_status'] == 'married'): ?> selected="selected" <?php endif; ?>>Married</option>
+						<option value="unmarried" <?php if ($this->_tpl_vars['data']['marital_status'] == 'unmarried'): ?> selected="selected" <?php endif; ?>>Unmarried</option>
+						<option value="widow" <?php if ($this->_tpl_vars['data']['marital_status'] == 'widow'): ?> selected="selected" <?php endif; ?>>Widow</option>
+						<option value="divorced" <?php if ($this->_tpl_vars['data']['marital_status'] == 'divorced'): ?> selected="selected" <?php endif; ?>>Divorced</option>
+						<option value="seperated" <?php if ($this->_tpl_vars['data']['marital_status'] == 'seperated'): ?> selected="selected" <?php endif; ?>>Seperated</option>
+					</select> 
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3 common-bottom">
+					<label for="mobile">Mobile</label>
+					<input type="text" name="mobile" id="mobile" value="<?php echo $this->_tpl_vars['data']['mobile']; ?>
+" maxlength="50" class="form-control"/>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="city">City</label>
+					<select name="city" id="city" class="form-control">
+						<option value="">Select City</option>
+						<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+						<option <?php if ($this->_tpl_vars['data']['city_id'] == $this->_tpl_vars['city']['id']): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['city']['id']; ?>
+"><?php echo $this->_tpl_vars['city']['name']; ?>
+</option>
+						<?php endforeach; endif; unset($_from); ?>						
+					</select>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="address">Address</label>
+					<textarea  name="address" id="address" class="form-control"><?php echo $this->_tpl_vars['data']['address']; ?>
+</textarea>
+				</div>
+				<div class="col-sm-3 common-top">
+					<label for="email">Email Address</label>
+					<input type="email" name="email"
+					id="email" class="form-control">
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="dt" class="">Select Date</label>
+					<input type="text" name="dt" id="dt" class="dt form-control" />
+				</div>
+				<div class="col-sm-3 common-bottom ">
+					<div class="hideHr">
+						<label for="hour">Select Hour</label>
+						<input type="text" name="hour" id="hour" class="form-control"/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div style="margin-top: 24px;">
+						<input type="button" name="submit" id="submit" value="<?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?> Update<?php else: ?> Add<?php endif; ?>" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	<!-- <?php endif; ?> -->
+	</div><!-- #content -->
+
+
+	<?php echo '
+	<script type="text/javascript">
+		$(\'.hideHr\').hide();
+		$(document).ready(function()
+		{
+			if ($(\'#res_error\').val()) {
+				alert($(\'#res_error\').val());
+			}
+			$("#add_user").validate({
+				rules: {
+					hour: { required: true }
+				}
+			});
+			$(\'.docWrap\').remove();
+			var unavail=  $(\'#unavail\').val().split(\',\');
+			var fromDate=  $(\'#from\').val().split(\',\');
+			var toDate=  $(\'#to\').val().split(\',\');
+			var today = new Date();
+			var doc_id= $(\'#id\').val();
+			
+			var selected_Date="";
+			var count="";
+			$(\'#dt\').trigger(\'click\');
+
+
+			if (unavail[7]==="on") {
+
+				var check_in = [[fromDate[7], toDate[7]]];
+				$(\'.dt\').datepicker({
+					dateFormat: \'yy-mm-dd\',
+					changeMonth: true,
+					changeYear: true,
+					minDate: today,
+					beforeShowDay: function(date) {
+						var string = jQuery.datepicker.formatDate(\'yy-mm-dd\', date);
+						for (var i = 0; i < check_in.length; i++) {
+							if (Array.isArray(check_in[i])) {
+								var from = new Date(check_in[i][0]);
+								var to = new Date(check_in[i][1]);
+								var current = new Date(string);
+								if (current >= from && current <= to) return false;
+							}
+						}
+						return [check_in.indexOf(string) == -1]
+					}
+				});
+
+			}else{
+
+				var weekday=new Array(7);
+				weekday[0]="mon_on";
+				weekday[1]="Tue_on";
+				weekday[2]="Wed_on";
+				weekday[3]="Thu_on";
+				weekday[4]="Fri_on";
+				weekday[5]="Sat_on";
+				weekday[6]="Sun_on";
+				$( ".dt" ).datepicker({
+					dateFormat : "yy-mm-dd",
+					changeMonth: true,
+					changeYear: true,
+					minDate: today,
+					onSelect: function(dateText, inst) {
+						var date = $(this).datepicker(\'getDate\');
+						selected_Date=$(\'.dt\').val();
+						var dayOfWeek = weekday[date.getUTCDay()];
+  // dayOfWeek is then a string containing the day of the week
+  $.ajax({
+  	type: "POST",
+  	url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-appointment/add?ajax=y<?php echo '",
+  	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
+  	success: function(msg) 
+  	{
+  		$(\'#hour\').timepicker(\'remove\');
+  		var time_st="";
+  		var time_end="";
+  		if (msg!="") {
+  			$(\'.hideHr\').show();
+  			var res=JSON.parse(msg);
+  			time_st=res.start;
+  			time_end=res.end;
+  			count=res.count;
+  			console.log(count);
+  			$("#hour").timepicker({
+  				
+  				step: 60,
+  				timeFormat: \'g:i A\',
+  				dynamic: false,
+  				dropdown: true,
+  				scrollbar: true,
+  				minTime: time_st,
+  				maxTime:  time_end
+  			});
+
+  		}else{   
+  			$(\'.hideHr\').hide();
+  			alert("Doctor is not available on the selected date.");
+  		}
+  	}
+  });
+}
+});		
+
+			}
+
+			$(\'#hour\').on("change",function(){
+				var hr = $(\'#hour\').val();
+                  // debugger;
+                  $.ajax({ 
+                  	type: "POST",
+                  	url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-appointment/add?appoint=y<?php echo '",
+                  	data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
+                  	success: function(msg) 
+                  	{
+                  		$(\'#ap_number\').val(+msg + +1);
+
+                  		if (msg >= count) {
+           // debugger
+           alert(\'Kindly select other hour\');
+           $(\'#hour\').val(\'\');
+       }
+   }
+});
+
+              });
+
+			$( "#dob" ).datepicker({
+				yearRange: "-100:+0",
+				dateFormat : "yy-mm-dd",
+				changeMonth: true,
+				changeYear: true
+			});
+
+			$("#submit").on("click",function(){
+
+
+				if ($(\'#dt\').val()!="" && $(\'#hour\').val()=="") {
+
+					alert(\'Doctor is not available on the selected date\');
+					return;
+
+				}else if ($(\'#dt\').val()=="" && $(\'#hour\').val()=="") {
+
+					alert(\'Fill the required fields\');
+					return;
+
+				}
+
+				$.ajax({
+
+					type:"POST",
+					url:"'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-appointment/<?php echo '",
+					data:"name=" +$(\'#name\').val() +"&gender="+$(\'#gender\').val()+"&dob="+$(\'#dob\').val()+"&marital_status="+$(\'#marital_status\').val()+"&mobile="+$(\'#mobile\').val()+"&city="+$(\'#city\').val()+"&address="+$(\'#address\').val()+"&hour="+$(\'#hour\').val()+"&dt="+$(\'#dt\').val()+"&id="+doc_id+"&ap_number="+$(\'#ap_number\').val()+"&security_key="+$(\'#security_key\').val()+"&email="+$(\'#email\').val() ,
+					success: function(msg) 
+					{
+						debugger
+  		 // $(\'#ap_number\').val(msg+1);
+  		 
+  		 alert("Your Token No is : " + $(\'#ap_number\').val());
+
+  		 window.location.href="'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+<?php echo 'appointments";
+  		}
+  	})
+
+			})
+
+		});
+
+function generateRandomNumber(){
+
+	var d=new Date();
+	var n=d.getTime();
+	n = n.toString()
+	m=n.substring(9,14)
+	$(\'#security_key\').val(m);
+}
+
+
+</script>
+'; ?>
+
+
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>

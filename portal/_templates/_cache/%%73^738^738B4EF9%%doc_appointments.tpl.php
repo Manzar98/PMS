@@ -1,0 +1,512 @@
+<?php /* Smarty version 2.6.31, created on 2018-10-09 11:06:39
+         compiled from appointments/doc_appointments.tpl */ ?>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?> 
+
+<div id="content" class="clientWrap">
+	<input type="hidden" name="" value="<?php echo $this->_tpl_vars['exist_appoint']; ?>
+" id="exist_appoint">
+	<?php if (isset ( $this->_tpl_vars['printslip'] ) && $this->_tpl_vars['printslip']): ?>
+	<div class="appoint_Wrap"> 
+
+		<div class="common-bottom text-center" style="margin-bottom: 40px;">
+			<h4><b>APPOINTMENT CONFIRMATION</b></h4>
+		</div>
+		<div class="noprint btnW">
+			<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
+		</div>
+		<div class="row common-bottom">
+			<div class="col-sm-10">
+				<div class="ac">
+					<span><b>Patient Name : </b><span><?php echo $this->_tpl_vars['printslip']['name']; ?>
+</span></span>
+				</div>
+				<div class="ac">
+
+					<span><b>Patient Id : </b><span><?php echo $this->_tpl_vars['printslip']['pat_id']; ?>
+</span></span>
+					
+				</div>
+				<div class="ac">
+					<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+					<?php if ($this->_tpl_vars['printslip']['city_id'] == $this->_tpl_vars['city']['id']): ?>
+					<span><b>City : </b><span><?php echo $this->_tpl_vars['city']['name']; ?>
+</span></span>
+					<?php endif; ?>
+					<?php endforeach; endif; unset($_from); ?>
+				</div> 
+				<div class="ac">
+					<span><b>Address : </b><span><?php echo $this->_tpl_vars['printslip']['address']; ?>
+</span></span>
+				</div>
+				<div class="ac">
+					<span><b>Mobile No : </b><span><?php echo $this->_tpl_vars['printslip']['mobile']; ?>
+</span></span>
+				</div>
+				<div class="ac">
+					<span><b>Gender : </b><span><?php echo $this->_tpl_vars['printslip']['gender']; ?>
+</span></span>
+				</div>
+				<div class="ac"><span><b>Email : </b><span><?php echo $this->_tpl_vars['printslip']['email']; ?>
+</span></span></div>
+			</div>
+			<div class="col-sm-2">
+				<div width="100" height="100" style="border: 1px solid;"></div>
+			</div>
+		</div>
+		<div class="row common-bottom bor">
+			<div class="col-sm-8">
+				<div class="common-bottom common-top">
+					<span class="common-bottom"><b>Appointment No : </b><span><?php echo $this->_tpl_vars['printslip']['ap_number']; ?>
+</span></span>
+				</div>
+				<div class="common-bottom">
+					<span class="common-bottom"><b>Appointment Date : </b><span><?php echo $this->_tpl_vars['printslip']['ap_date']; ?>
+</span></span>
+				</div>
+				<div class="common-bottom">
+					<span class="common-bottom"><b>Appointment Time : </b><span><?php echo $this->_tpl_vars['printslip']['ap_time']; ?>
+</span></span>
+				</div>
+			</div>
+			<div class="col-sm-4 ">
+				<div class="docInfo">
+					<div class="common-bottom">
+						<span class="doci"><b>Doctor's Name : </b><span><?php echo $this->_tpl_vars['printslip']['doc_name']; ?>
+</span></span>
+					</div>
+					<div class="common-bottom">
+						<span class="doci"><b>Clinic Phone Number: </b><span><?php echo $this->_tpl_vars['printslip']['doc_phne']; ?>
+</span></span> 
+					</div>
+					<div class="common-bottom">
+						<span class="doci" ><b>Clinic Address : </b><span><?php echo $this->_tpl_vars['printslip']['doc_adr']; ?>
+</span></span>
+					</div>
+				</div> 
+			</div>
+		</div>
+		<div class="note" style=" " >
+			<p class="text-center common-bottom not_p">
+				Note: Please reach the clinic on time otherwise your appointment would be cancelled.
+			</p>
+			<p class="text-center doci">idoctor.pk</p>
+		</div>
+	</div>
+	<?php elseif (isset ( $this->_tpl_vars['record'] ) && record): ?>
+
+	<div class="alertWrap" title="Errors"></div>
+	<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="post">
+		<fieldset>
+			<legend>Appointments</legend>
+			<div>
+				<input type="hidden" name="doc_name" value="<?php echo $_GET['doc_name']; ?>
+" id="doc_name">
+				<input type="hidden" name="doc_adr" value="<?php echo $_GET['doc_adr']; ?>
+" id="doc_adr">
+				<input type="hidden" name="doc_phne" value="<?php echo $_GET['doc_phne']; ?>
+" id="doc_phne">
+				<input type="hidden" name="u_id" value="<?php echo $_GET['doc_id']; ?>
+" id="id"> 
+				<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
+" id="unavail"> 
+				<input type="hidden" name="p_id" value="" id="" placeholder="For Condition true(input for condition only)"> 
+				<input type="hidden" name="" value="<?php echo $this->_tpl_vars['from']; ?>
+" id="from"> 
+				<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
+" id="to">
+				<input type="hidden" name="ap_number" id="ap_number"> 
+				<input type="hidden" name="security_key" id="security_key" value="<?php echo $this->_tpl_vars['record']['security_key']; ?>
+">
+				<input type="hidden" name="" id="res_error" value="<?php echo $this->_tpl_vars['res_error']; ?>
+">
+				<input type="hidden" name="name" id="" value="<?php echo $this->_tpl_vars['record']['name']; ?>
+">
+				<input type="hidden" name="patient_Id" id="" value="<?php echo $this->_tpl_vars['record']['id']; ?>
+">
+				<input type="hidden" name="address" id="" value="<?php echo $this->_tpl_vars['record']['address']; ?>
+">
+				<input type="hidden" name="mobile" id="" value="<?php echo $this->_tpl_vars['record']['mobile']; ?>
+">
+				<input type="hidden" name="gender" id="" value="<?php echo $this->_tpl_vars['record']['gender']; ?>
+">
+				<input type="hidden" name="email" id="" value="<?php echo $this->_tpl_vars['record']['email']; ?>
+">
+				<input type="hidden" name="online_manual" id="online_manual" value="manual">
+				<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+				<?php if ($this->_tpl_vars['record']['city_id'] == $this->_tpl_vars['city']['id']): ?>
+				<input type="hidden" name="city" id="" value="<?php echo $this->_tpl_vars['city']['id']; ?>
+">
+				<?php endif; ?>
+				<?php endforeach; endif; unset($_from); ?>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="dt" class="">Select Date</label>
+					<input type="text" name="dt" id="dt" class="dt form-control" />
+				</div>
+				<div class="col-sm-3 common-bottom ">
+					<div class="hideHr">
+						<label for="hour">Select Hour</label>
+						<input type="text" name="hour" id="hour" class="form-control"/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div style="margin-top: 24px;">
+						<input type="submit" name="submit" id="submit" value="<?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?> Update<?php else: ?> Add<?php endif; ?>" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+	<?php elseif (isset ( $_GET['exist'] )): ?>
+
+	<input type="hidden" name="" value="<?php echo $this->_tpl_vars['erorMsg']; ?>
+" id="errorId">
+	<form id="check_patient" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="post">
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-6">
+				<input type="hidden" name="doc_id" id="doc_id" class="doc_id form-control" value="<?php echo $_GET['doc_id']; ?>
+"/>
+				<input type="hidden" name="doc_name" id="doc_name" class="doc_name form-control" value="<?php echo $_GET['doc_name']; ?>
+" />
+				<label for="dt" class="">Patient Id</label>
+				<input type="text" name="p_id" id="p_id" class="p_id form-control" />
+			</div>
+			<div class="col-sm-1" style="padding-top: 24px;">
+				<input type="submit" class="btn btn-primary" value="Search" />
+			</div>
+			<div class="" style="padding-top: 24px;">
+				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+doc-appointments/<?php echo $_GET['doc_id']; ?>
+?doc_name=<?php echo $_GET['doc_name']; ?>
+&doc_adr=<?php echo $_GET['doc_adr']; ?>
+&doc_phne=<?php echo $_GET['doc_phne']; ?>
+" class="btn btn-primary">New Patient</a>
+			</div>
+		</div>
+	</form>
+	<?php else: ?>
+
+	<div class="alertWrap" title="Errors"></div>
+	<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="post">
+		<fieldset>
+			<legend>Appointments</legend>
+			<input type="hidden" name="doc_name" value="<?php echo $_GET['doc_name']; ?>
+" id="doc_name">
+			<input type="hidden" name="doc_adr" value="<?php echo $_GET['doc_adr']; ?>
+" id="doc_adr">
+			<input type="hidden" name="doc_phne" value="<?php echo $_GET['doc_phne']; ?>
+" id="doc_phne">
+			<input type="hidden" name="u_id" value="<?php echo $this->_tpl_vars['id']; ?>
+" id="id"> 
+			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
+" id="unavail"> 
+			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['from']; ?>
+" id="from"> 
+			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
+" id="to">
+			<input type="hidden" name="ap_number" id="ap_number"> 
+			<input type="hidden" name="security_key" id="security_key">
+			<input type="hidden" name="" id="res_error" value="<?php echo $this->_tpl_vars['res_error']; ?>
+">
+			<input type="hidden" name="online_manual" id="online_manual" value="manual">
+			<div class="row">
+				<div class="col-sm-3 common-bottom">
+					<label for="name">Patient Name</label>
+					<input type="text" name="name" id="name" maxlength="50" class="form-control" onclick="generateRandomNumber()"/>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="gender">Gender</label>
+					<select name="gender" id="gender" class="form-control">
+						<option value="male" <?php if ($this->_tpl_vars['data']['gender'] == 'male'): ?> selected="selected" <?php endif; ?>>Male</option>
+						<option value="female" <?php if ($this->_tpl_vars['data']['gender'] == 'female'): ?> selected="selected" <?php endif; ?>>Female</option>
+						<option value="other" <?php if ($this->_tpl_vars['data']['gender'] == 'other'): ?> selected="selected" <?php endif; ?>>Other</option>
+					</select>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="dob">Date of Birth</label>
+					<input type="text" name="dob" id="dob" value="<?php echo $this->_tpl_vars['data']['dob']; ?>
+" autocomplete="off" class="form-control"/>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="marital_status">Marital Status</label>
+					<select name="marital_status" id="marital_status" class="form-control"><!-- 
+						<option value="-1"  selected="" disabled="">Select Status</option> -->
+						<option value="married">Married</option>
+						<option value="unmarried" >Unmarried</option>
+						<option value="widow">Widow</option>
+						<option value="divorced">Divorced</option>
+						<option value="seperated">Seperated</option>
+					</select> 
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3 common-bottom">
+					<label for="mobile">Mobile</label>
+					<input type="text" name="mobile" id="mobile" value="<?php echo $this->_tpl_vars['data']['mobile']; ?>
+" maxlength="50" class="form-control"/>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="city">City</label>
+					<select name="city" id="city" class="form-control">
+						<option value="">Select City</option>
+						<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+						<option <?php if ($this->_tpl_vars['data']['city_id'] == $this->_tpl_vars['city']['id']): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['city']['id']; ?>
+"><?php echo $this->_tpl_vars['city']['name']; ?>
+</option>
+						<?php endforeach; endif; unset($_from); ?>						
+					</select>
+				</div>
+				<div class="col-sm-3 common-bottom">
+					<label for="address">Address</label>
+					<textarea  name="address" id="address" class="form-control"><?php echo $this->_tpl_vars['data']['address']; ?>
+</textarea>
+				</div>
+				<div class="col-sm-3 common-top">
+					<label for="email">Email Address</label>
+					<input type="email" name="email"
+					id="email" class="form-control">
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="dt" class="">Select Date</label>
+					<input type="text" name="dt" id="dt" class="dt form-control" />
+				</div>
+				<div class="col-sm-3 common-bottom ">
+					<div class="hideHr">
+						<label for="hour">Select Hour</label>
+						<input type="text" name="hour" id="hour" class="form-control"/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div style="margin-top: 24px;">
+						<input type="submit" name="submit" id="submit" value="<?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?> Update<?php else: ?> Add<?php endif; ?>" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	<?php endif; ?> 
+</div><!-- #content -->
+
+<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+<?php echo '
+<script type="text/javascript">
+	$(\'.hideHr\').hide();
+	$(document).ready(function()
+	{
+		$("#check_patient").validate({
+			rules:{
+				p_id:{required: true},
+			}
+		});
+		if ($(\'#errorId\').val()) {
+			alert($(\'#errorId\').val());
+		}
+
+		if ($(\'#exist_appoint\').val()) {
+
+			alert($(\'#exist_appoint\').val());
+			$(\'#exist_appoint\').val(\'\');
+		}else{
+			
+		$(\'#exist_appoint\').val(\'\');
+}
+
+		$("#printPrescription").click(function(){
+			
+			window.print();
+		});
+
+		$("#dt").attr("readonly","readonly");
+
+		if ($(\'#res_error\').val()) {
+			debugger
+			var responseArray = "";
+			$.each($(\'#res_error\').val().split(\',\'),function(k,val){
+				debugger
+				responseArray += "<li style=\'color:red;\'><i class=\'fa fa-times errordialog_x\' aria-hidden=\'true\' style=\'padding-right:10px;\'></i>"+val+"</li>";
+			})
+			$(\'.alertWrap\').html("<ul class=\'responseDialog\' style=\'list-style: none;padding: 0px;font-size: 14px;\'>"+responseArray+"</ul>") ;    
+			$(\'.alertWrap\').dialog();
+
+			$(\'.alertWrap\').on(\'dialogclose\', function(event) {
+				history.go(-1); 
+			});
+		}
+		$("#add_user").validate({
+			rules: {
+				hour: { required: true },
+				dt: { required: true },
+			}
+		});
+		// $(\'.docWrap\').remove();
+		var unavail=  $(\'#unavail\').val().split(\',\');
+		var fromDate=  $(\'#from\').val().split(\',\');
+		var toDate=  $(\'#to\').val().split(\',\');
+		var today = new Date();
+		var doc_id= $(\'#id\').val();
+		debugger
+		var selected_Date="";
+		var count="";
+		$(\'#dt\').trigger(\'click\');
+
+
+		if (unavail[7]==="on") {
+
+			var check_in = [[fromDate[7], toDate[7]]];
+			$(\'.dt\').datepicker({
+				dateFormat: \'yy-mm-dd\',
+				changeMonth: true,
+				changeYear: true,
+				minDate: today,
+				beforeShowDay: function(date) {
+					var string = jQuery.datepicker.formatDate(\'yy-mm-dd\', date);
+					for (var i = 0; i < check_in.length; i++) {
+						if (Array.isArray(check_in[i])) {
+							var from = new Date(check_in[i][0]);
+							var to = new Date(check_in[i][1]);
+							var current = new Date(string);
+							if (current >= from && current <= to) return false;
+						}
+					}
+					return [check_in.indexOf(string) == -1]
+				}
+			});
+
+		}else{
+
+			var weekday=new Array(7);
+			weekday[0]="Sun_on";
+			weekday[1]="mon_on";
+			weekday[2]="Tue_on";
+			weekday[3]="Wed_on";
+			weekday[4]="Thu_on";
+			weekday[5]="Fri_on";
+			weekday[6]="Sat_on";
+			
+			$( ".dt" ).datepicker({
+				dateFormat : "yy-mm-dd",
+				changeMonth: true,
+				changeYear: true,
+				minDate: today,
+				onSelect: function(dateText, inst) {
+					var date = $(this).datepicker(\'getDate\');
+					selected_Date=$(\'.dt\').val();
+					var dayOfWeek = weekday[date.getUTCDay()];
+  // dayOfWeek is then a string containing the day of the week
+  $.ajax({
+  	type: "POST",
+  	url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+doc-appointments/add?ajax=y<?php echo '",
+  	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
+  	success: function(msg) 
+  	{
+  		debugger
+  		$(\'#hour\').timepicker(\'remove\');
+  		var time_st="";
+  		var time_end="";
+  		if (msg!="") {
+  			$(\'.hideHr\').show();
+  			var res=JSON.parse(msg);
+  			time_st=res.start;
+  			time_end=res.end;
+  			count=res.count;
+  			$("#hour").timepicker({
+  				
+  				step: 60,
+  				timeFormat: \'h:i A\',
+  				dynamic: false,
+  				dropdown: true,
+  				scrollbar: true,
+  				disableTextInput: true,
+  				minTime: time_st,
+  				maxTime:  time_end
+  			});
+
+  		}else{   
+  			$(\'.hideHr\').hide();
+  			alert("Doctor is not available on the selected date.");
+  			$(\'#dt\').val(\'\');
+  		}
+  	}
+  });
+}
+});		
+
+		}
+
+		$(\'#hour\').on("change",function(){
+			var hr = $(\'#hour\').val();
+                  // debugger;
+                  $.ajax({ 
+                  	type: "POST",
+                  	url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+doc-appointments/add?appoint=y<?php echo '",
+                  	data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
+                  	success: function(msg) 
+                  	{
+                  		debugger
+                  		$(\'#ap_number\').val(+msg + +1);
+
+                  		if (msg >count) {
+
+                  			$(\'#hour\').val(\'\');
+                  			$(\'#hour\').timepicker(\'hide\');
+                  			alert("The selected hour\'s slot if full, please choose another time.");
+
+                  		}
+                  	}
+                  });
+
+              });
+
+		$( "#dob" ).datepicker({
+			yearRange: "-100:+0",
+			dateFormat : "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true
+		});
+
+
+	});
+
+function generateRandomNumber(){
+
+	var d=new Date();
+	var n=d.getTime();
+	n = n.toString()
+	m=n.substring(9,14)
+	$(\'#security_key\').val(m);
+}
+
+
+</script>
+'; ?>
+
+
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>

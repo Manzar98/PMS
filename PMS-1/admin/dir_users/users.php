@@ -1,0 +1,86 @@
+<?php
+
+$users = new User;
+$user_list="";
+ // echo $id;
+ // echo $extra;
+if($id==="view" && $extra>0)
+{
+	$user_detail = $users->GetuserInfo($extra);
+
+    print_r($user_detail);
+    
+  $smarty->assign('data',@$user_detail);   
+	  
+}elseif ($id==="delete" && $extra>0) 
+{
+	
+}
+else {
+
+ 		$_GET = @escape($_GET);
+  		$q = $_GET['q'];
+  		$field = $_GET['field'];
+		$group_by='';
+ 		if (isset($_GET['group_by'])) {
+
+  			$group_by = $_GET['group_by'];
+  		}
+		
+		
+  		if($group_by=='')
+  		{
+  			$group_by = 'type';
+  		}
+  		$paginatorLink = BASE_URL . 'users/?q='.$q.'&field='.$field.'&group_by='.$group_by.'&' ;
+		
+ 		if($q!='')			
+  		{
+			
+  			$total_searched_users = $users->CountSearchedUsers($q,$field);
+	
+ 			$paginator = new Paginator($total_searched_users, PAGINATION, @$_REQUEST['p']);
+ 			$paginator->setLink($paginatorLink);
+  			$paginator->paginate();
+			
+  			$firstLimit = $paginator->getFirstLimit();
+ 			$lastLimit = $paginator->getLastLimit();
+				
+  			$user_list = $users->GetUserBySearch($q,$field,$firstLimit,PAGINATION);
+			
+ 		    $data["q"] = $q;
+  			$data["field"] = $field;
+  		}		
+ 		else {
+
+
+  			 $total_users = $users->CountUsers();
+  			 $paginator = new Paginator($total_users, PAGINATION, @$_REQUEST['p']);
+  			 $paginator->setLink($paginatorLink);
+  			 $paginator->paginate();
+			
+  			 $firstLimit = $paginator->getFirstLimit();
+  			 $lastLimit = $paginator->getLastLimit();
+				
+  			$user_list = $users->GetUser($firstLimit,PAGINATION);
+  		}
+		
+ 		   $grouped_users = array();
+  		 $grouped_users = group_by($user_list, $group_by);
+ 		
+  		 $smarty->assign('group_by',$group_by);		
+  		 $smarty->assign('grouped_users',$grouped_users);
+ 		   $smarty->assign('errors',@$errors);
+	//var_dump($all_prescriptions);
+}
+
+ // $smarty->assign('id',$id);
+
+	
+
+	 // $smarty->assign('data',@$data);
+ 
+$template = 'users/users.tpl';
+
+
+?>
