@@ -87,7 +87,7 @@
 				</div>
 				
 			</div>
-			<!-- {$grouped_prescriptions|print_r} -->
+
 			{if (!isset($grouped_prescriptions) && !$grouped_prescriptions)}
 			<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
 			{/if}
@@ -159,11 +159,8 @@
 		<div class="pagination">
 			{$pages}
 		</div>
-		
-		
-		
-		
-		{elseif (isset($data) && $data)}
+	
+	{elseif (isset($data) && $data)}
 
 		<div id="prescription_info">
 			<div class="row">
@@ -266,9 +263,6 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			
 			<p id="fee"> Fee Received : <strong>{$data.fee_received}</strong>    </p>
 			<p class="noprint">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
 		</div>
@@ -278,10 +272,8 @@
 	<br />
 	
 	<br />
-	
-	
-	
-	{else}
+
+{else}
 	
 	<p class="box-info">No Prescription on the List</p>
 	

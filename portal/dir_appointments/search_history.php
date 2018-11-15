@@ -10,7 +10,7 @@ $prescription_details = $prescription->GetPrescriptionInfo($extra);
 	$smarty->assign('data',@$prescription_details);
 }
 if ($_POST) {
-
+ 
  if ($res=$patient->isPatientExist($_POST['p_id'],$_POST['key'])) {
      
 	 $record=$prescription->GetPatientRecord($_POST['p_id']);

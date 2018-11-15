@@ -1,7 +1,6 @@
 {include file="header.tpl"}
 
 {literal}
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#field").change(function(){
@@ -40,7 +39,7 @@
 
 {if isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
 
-	<h2 class="noprint headingBottom">{if (isset($smarty.get.q) && $smarty.get.q neq '')} Search Result For "<b>{$smarty.get.q}</b>" {else}Users List{/if}</h2>
+	<h2 class="noprint headingBottom">{if (isset($smarty.get.q) && $smarty.get.q neq '')} Search Result For "<b>{$smarty.get.q}</b>" {else}Doctors List{/if}</h2>
 
 	<p class="noprint">		
 		<a href="{$BASE_URL_ADMIN}add-users/" title="Add a new User"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>	
@@ -103,10 +102,10 @@
 
 			{if $usr.is_delete=="on"}
 			<tr class="{cycle values='odd,even'}" style="background: #f1d2d2;">
-				<td class="bold" width="35">{$usr.id}</td>
-				<td width="200">{$usr.username}</td>
-				<td width="200">{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
-				<td width="65">
+				<td class="bold" width="">{$usr.id}</td>
+				<td width="">{$usr.username}</td>
+				<td width="">{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
+				<td width="">
 					<div class="icons">				
 						<a href="{$BASE_URL_ADMIN}users/view/{$usr.id}/" title="View this user"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
 						<a href="{$BASE_URL_ADMIN}edit-users/{$usr.id}/" title="Edit this user"><img src="{$BASE_URL_ADMIN}_templates/img/pencil.png" alt="Edit" /></a>
@@ -117,10 +116,10 @@
 			</tr>
 			{else}
 			<tr class="{cycle values='odd,even'}" >
-				<td class="bold" width="35">{$usr.id}</td>
-				<td width="200">{$usr.username}</td>
-				<td width="200">{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
-				<td width="65">
+				<td class="bold" width="">{$usr.id}</td>
+				<td width="">{$usr.username}</td>
+				<td width="">{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
+				<td width="">
 					<div class="icons">				
 						<a href="{$BASE_URL_ADMIN}users/view/{$usr.id}/" title="View this user"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
 						<a href="{$BASE_URL_ADMIN}edit-users/{$usr.id}/" title="Edit this user"><img src="{$BASE_URL_ADMIN}_templates/img/pencil.png" alt="Edit" /></a>

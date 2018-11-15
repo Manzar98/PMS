@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 12:54:36
+<?php /* Smarty version 2.6.31, created on 2018-11-15 14:17:54
          compiled from appointments/search_history.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/search_history.tpl', 20, false),array('modifier', 'default', 'appointments/search_history.tpl', 23, false),array('modifier', 'date_format', 'appointments/search_history.tpl', 24, false),)), $this); ?>
@@ -92,7 +92,6 @@ _templates/img/eye.png" alt="View" /></a>
 		<div class="row">
 			<div class="col-sm-6">
 				<h3>Instructions</h3>
-
 				<?php if ($this->_tpl_vars['data']['instructions']): ?>
 				<table class="table table-bordered table-striped instructions">
 					<caption>Instructions</caption>
@@ -199,7 +198,7 @@ _templates/img/eye.png" alt="View" /></a>
 	
 	<br />
 	<?php else: ?>
-	
+
 	<input type="hidden" name="" value="<?php echo $this->_tpl_vars['resp']; ?>
 " id="resp">
 	<form id="check_patient" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
@@ -226,13 +225,19 @@ _templates/img/eye.png" alt="View" /></a>
 
 <div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 <?php echo '
+<style type="text/css">
+	 .docWrap{
+	 	display: none;/*Hide Main heading For customers*/
+	 }
+</style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		
 		if ($(\'#resp\').val()) {
 			alert($(\'#resp\').val());
 		}
-		$(\'.docWrap\').hide();
+		
 
 		$("#print_fee").click(function()
 		{

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-09-13 15:36:50
+<?php /* Smarty version 2.6.31, created on 2018-11-15 14:47:23
          compiled from settings.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'settings.tpl', 14, false),array('modifier', 'print_r', 'settings.tpl', 71, false),array('modifier', 'escape', 'settings.tpl', 85, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'settings.tpl', 14, false),array('modifier', 'print_r', 'settings.tpl', 73, false),array('modifier', 'escape', 'settings.tpl', 87, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -78,6 +78,7 @@ settings/<?php echo $this->_tpl_vars['settings_categories'][$this->_sections['tm
 				</div>
 			</div>
 			<?php endfor; endif; ?>
+			<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] != 'S_admin'): ?>
 			<div class="setBolc">
 			<div class="col-sm-4 text-center ">
 				<div class="feeWrap">
@@ -91,6 +92,7 @@ work-settings/" title="">
 					</div>
 			</div>
 			</div>
+			<?php endif; ?>
 		</div>
 		<div style="margin-bottom: 20px;"></div>
 

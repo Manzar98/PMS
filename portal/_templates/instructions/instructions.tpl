@@ -13,7 +13,6 @@
 			{/foreach}
 		</div>
 		{/if}
-		<!-- {$smarty.server.REQUEST_URI|@print_r} -->
 		<form id="add_instructions" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 			<fieldset>
 				<legend>Add Instructions</legend>  

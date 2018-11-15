@@ -77,6 +77,8 @@ else if($_POST)
 		$smarty->assign('data',$data);
 	}
 	 
+}else{
+	$smarty->assign('cities', get_cities());
 }
 
 if (!isset($_GET['img'])) {

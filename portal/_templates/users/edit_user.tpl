@@ -3,7 +3,7 @@
 
 
 
-	<h2>Edit User</h2>
+	<h2>Edit Doctor</h2>
 
 	{if (isset($errors) && $errors)}
 	<div class="fail">
@@ -12,11 +12,10 @@
 		{/foreach}
 	</div>
 	{/if}
-	<!-- {$smarty.server.REQUEST_URI}  -->
-	<!-- {$data|print_r} -->
+
 	<form id="add_user" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 		<fieldset>
-			<legend>Edit User</legend>
+			<legend>Edit Doctor</legend>
 			<div class="row">
 				<div class="col-sm-3 common-bottom">
 					<label for="F_name">First Name</label>
@@ -49,8 +48,14 @@
 					<input type="text" name="expire" id="expire"class="form-control" {if (isset($data) && $data.expire)}value="{$data.expire}"{/if}/>
 				</div>
 				<div class="col-sm-3 common-bottom">
+					
 					<label for="city">Clinic City</label>
-					<input type="text" name="city" id="city"class="form-control" {if (isset($data) && $data.city)}value="{$data.city}"{/if}/>
+					<select name="city" id="city" class="form-control">
+						<option value="">Select City</option>
+						{foreach from=$cities item=city}
+						<option {if $data.city==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
+						{/foreach}						
+					</select>
 				</div>
 			</div>
 			<div class="row">
@@ -104,9 +109,18 @@
 
 
 {literal}
+<style type="text/css">
+	span.select2.select2-container.select2-container--default {
+    width: 247px !important;
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		$("#city").select2({
+                   // placeholder: "Select a State",
+                    allowClear: true
+                 });
 		$('#name').focus();
 
 		$("#add_user").validate({

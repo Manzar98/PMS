@@ -1,7 +1,5 @@
 {include file="header.tpl"}
 <div id="content" class="publicWrap">
-
-	{$record}
 	{if isset($record)}
 
 	<table class="table table-striped table-bordered" >
@@ -158,11 +156,11 @@
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<label for="dt" class="">Patient Id</label>
-				<input type="text" name="p_id" id="" class="form-control" />
+				<input type="text" name="p_id" id="" class="form-control" required="" />
 			</div>
 			<div class="col-sm-4">
 				<label for="dt" class="">Security Key</label>
-				<input type="text" name="key" id="" class="form-control" />
+				<input type="text" name="key" id="" class="form-control" required=""/>
 			</div>
 			<div class="col-sm-1" style="padding-top: 24px;">
 				<input type="submit" class="btn btn-primary" value="Search" />
@@ -176,13 +174,19 @@
 
 <div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 {literal}
+<style type="text/css">
+	 .docWrap{
+	 	display: none;/*Hide Main heading For customers*/
+	 }
+</style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		
 		if ($('#resp').val()) {
 			alert($('#resp').val());
 		}
-		$('.docWrap').hide();
+		
 
 		$("#print_fee").click(function()
 		{

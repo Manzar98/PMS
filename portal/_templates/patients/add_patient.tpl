@@ -83,7 +83,7 @@ basic.croppie('bind',{
 //         });
 // debugger;
          $('#croppieImg').on('click', function (ev) {
-         	debugger
+         	//debugger
         	basic.croppie('result', {
          		type: 'canvas',
          		size: 'viewport'
@@ -102,7 +102,7 @@ basic.croppie('bind',{
          				html = '<img src="' + resp + '" />';
          				$("#upload-demo-i").html(html);
          				$('#profile_img').val(data);
-                    debugger;
+                    //debugger;
          			}
          		});
          	});

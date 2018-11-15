@@ -34,6 +34,7 @@
 				</div>
 			</div>
 			{/section}
+			{if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}
 			<div class="setBolc">
 			<div class="col-sm-4 text-center ">
 				<div class="feeWrap">
@@ -46,6 +47,7 @@
 					</div>
 			</div>
 			</div>
+			{/if}
 		</div>
 		<div style="margin-bottom: 20px;"></div>
 
@@ -116,7 +118,7 @@
 							{else}
 							<input class="form-control settingsform_text_field{if $errors.$name != ''} error{/if}" type="text" name="{$name}" value="{$value|escape}" size="42" />
 							{/if}
-						</div>	<!-- {$description} -->
+						</div>
 					</div>
 					{/foreach}
 				</div>

@@ -2,11 +2,6 @@
 
 <div id="content" class="publicWrap">
 
-
-
-	<!-- {$smarty.server.REQUEST_URI}  -->
-	<!-- {$doctor|print_r}  -->
-	<!-- {$unavail} -->
 <input type="hidden" name="" value="{$exist_appoint}" id="exist_appoint">
 	{if isset($printslip) && $printslip}
 	<div class="appoint_Wrap"> 
@@ -284,7 +279,7 @@
 					<select name="city" id="city" class="form-control">
 						<option value="">Select City</option>
 						{foreach from=$cities item=city}
-						<option {if $data.city_id==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
+						<option {if $data.city==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
 						{/foreach}						
 					</select>
 				</div>
@@ -464,10 +459,10 @@ $(document).on('click', '.ui-datepicker-prev', function () {
 		$("#dt").attr("readonly","readonly");
 
 		if ($('#res_error').val()) {
-			debugger
+			//debugger
 			var responseArray = "";
 			$.each($('#res_error').val().split(','),function(k,val){
-				debugger
+				//debugger
 				responseArray += "<li style='color:red;'><i class='fa fa-times errordialog_x' aria-hidden='true' style='padding-right:10px;'></i>"+val+"</li>";
 			})
 			$('.alertWrap').html("<ul class='responseDialog' style='list-style: none;padding: 0px;font-size: 14px;'>"+responseArray+"</ul>") ;    
@@ -489,7 +484,7 @@ $(document).on('click', '.ui-datepicker-prev', function () {
 		var toDate=  $('#to').val().split(',');
 		var today = new Date();
 		var doc_id= $('#id').val();
-		debugger
+		//debugger
 		var selected_Date="";
 		var count="";
 		//$('#dt').trigger('click');
@@ -538,7 +533,7 @@ $(document).on('click', '.ui-datepicker-prev', function () {
 					selected_Date=$('.dt').val();
 					$('.dateInput').val(selected_Date);
 					var dayOfWeek = weekday[date.getUTCDay()];
-					debugger
+					//debugger
   // dayOfWeek is then a string containing the day of the week
   $.ajax({
   	type: "POST",
@@ -546,12 +541,12 @@ $(document).on('click', '.ui-datepicker-prev', function () {
   	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
   	success: function(msg) 
   	{
-  		debugger
+  		//debugger
   		$('#hour').timepicker('remove');
   		
   		$('#hour').hide();
   		var timDiv= $('.timeWrap').addClass('ShowTimingBlock')
-  		debugger
+  		//debugger
   		var time_st="";
   		var time_end="";
   		if (msg!="") {
@@ -594,7 +589,7 @@ $('#hour').trigger('click');
                   	data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
                   	success: function(msg) 
                   	{
-                  		debugger
+                  		//debugger
                   		$('#ap_number').val(+msg + +1);
 
                   		if (msg >count) {

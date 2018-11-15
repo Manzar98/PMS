@@ -77,7 +77,6 @@
 		</div>
 	</div>
 	{else}
-	 {$pat_detials|print_r}
 	<div class="row app_btns">
 		<div class="col-sm-10"></div>
 		<div class="col-sm-2 common-bottom" >

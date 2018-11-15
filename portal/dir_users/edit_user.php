@@ -83,6 +83,7 @@ elseif($id>0)
   }
    if (isset($user_details)) {
    	$smarty->assign('data',$user_details);
+   	$smarty->assign('cities', get_cities());
    }
 
   if (!isset($_GET['img'])) {

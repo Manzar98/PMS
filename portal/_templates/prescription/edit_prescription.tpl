@@ -79,7 +79,7 @@
 			data: "id=" + id,
 			success: function(msg) 
 			{
-				debugger;
+				// debugger;
 				if(msg=='1')
 				{
 					$(element).parents('tr').remove();
@@ -129,10 +129,10 @@
 			var instruction_name = $(".medicine_instruction :selected").text();
 
 			var custom_instruction = $("#custom_instruction").val();
-       debugger
+      // debugger
 			if(custom_instruction!="")
 			{
-debugger
+//debugger
 				$.ajax({
 					type: "POST",
 					url: "{/literal}{$BASE_URL_ADMIN}add-prescription/add-instruction/{literal}",
@@ -140,13 +140,14 @@ debugger
 					success: function(msg) 
 					{
 						console.log(msg);
-                       debugger
+                    //  debugger
 						if(parseInt(msg)>0)
 						{
 							instruction_id = msg;
 						}
 						var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
-						var instruction ='<tr> <td>' + medicine_name + '</td><td>' + custom_instruction + '</td> <td><span class="close">X</span></td>'+instruction_data+' </tr>';					debugger;
+						var instruction ='<tr> <td>' + medicine_name + '</td><td>' + custom_instruction + '</td> <td><span class="close">X</span></td>'+instruction_data+' </tr>';					
+
 						$("#instructions").show();
 						$("#instructions table").append(instruction);
 						$("#custom_instruction").val('');
@@ -286,8 +287,7 @@ $("#instructions").find('.close').on("click", function(){
 			{/foreach}
 		</div>
 		{/if}
-		<!-- {$edit|@print_r} -->
-
+		
 		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="get" enctype="multipart/form-data">
 			<fieldset >
 				<legend>Search Patient</legend>
@@ -337,7 +337,6 @@ $("#instructions").find('.close').on("click", function(){
 						<div class="col-sm-3 common-top">
 							<label for="mobile_number">Phone</label>
 							<input type="text" class="form-control" name="mobile_number" id="mobile_number" />
-							
 						</div>
 						<div class="col-sm-3 common-top">
 							<label for="city">City</label>
@@ -362,7 +361,6 @@ $("#instructions").find('.close').on("click", function(){
 			</fieldset>	
 
 			<div id="accordion">
-
 				<fieldset id="medicines">
 
 					<legend>Medicine</legend> 
@@ -403,7 +401,7 @@ $("#instructions").find('.close').on("click", function(){
 								<td></td>
 							</tr>
 							{foreach from=$data.instructions item=ins}
-                             {$ins.medicine_id}
+                            <!--  {$ins.medicine_id} -->
 							<tr>
 								<td>{$ins.name} ({$ins.formula})</td>
 								<td>{$ins.instruction}</td>

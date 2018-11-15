@@ -13,7 +13,7 @@
 			{/foreach}
 		</div>
 		{/if}
-		{$smarty.server.REQUEST_URI|@print_r}
+
 		<form id="add_test" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 
 			<fieldset>

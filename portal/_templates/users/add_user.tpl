@@ -1,9 +1,7 @@
 {include file="header.tpl"}
 		<div id="content">
-			
-			
-
-				<h2>Add User</h2>
+		
+				<h2>Add Doctor</h2>
 				
 				{if (isset($errors) && $errors)}
 					<div class="fail">
@@ -12,10 +10,9 @@
 						{/foreach}
 					</div>
 					{/if}
-			 {$smarty.server.REQUEST_URI} 
 			<form id="add_user" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 				<fieldset>
-					<legend>Add User</legend>
+					<legend>Add Doctor</legend>
 					<div class="row">
 						<div class="col-sm-3 common-bottom">
 							<label for="F_name">First Name</label>
@@ -49,7 +46,12 @@
 						</div>
 						<div class="col-sm-3 common-bottom">
 							<label for="city">Clinic City</label>
-							<input type="text" name="city" id="city"class="form-control"/>
+							<select name="city" id="city" class="form-control">
+								<option value="">Select City</option>
+								{foreach from=$cities item=city}
+								<option value="{$city.id}">{$city.name}</option>
+								{/foreach}						
+							</select>
 						</div>
 					</div>
 					<div class="row">
@@ -109,13 +111,18 @@
 		</div><!-- #content -->
 
 	{literal}
+	<style type="text/css">
+	span.select2.select2-container.select2-container--default {
+    width: 247px !important;
+}
+</style>
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
-				// $("#city").select2({
-    //                 // placeholder: "Select a State",
-    //                 allowClear: true
-    //             });
+			   $("#city").select2({
+                   // placeholder: "Select a State",
+                    allowClear: true
+                 });
 				$('#name').focus();
 				
 				$("#add_user").validate({
@@ -161,7 +168,7 @@
 
 
   $('#upload').on('change', function () { 
-  	debugger
+  	//debugger
   	$('#upload-demo').show();
   	$('#upload-demo-btn').show();
   	var reader = new FileReader();

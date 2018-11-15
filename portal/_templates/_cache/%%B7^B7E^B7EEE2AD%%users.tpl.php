@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-09-29 12:17:37
+<?php /* Smarty version 2.6.31, created on 2018-11-15 15:55:09
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 81, false),array('modifier', 'date_format', 'users/users.tpl', 86, false),array('function', 'cycle', 'users/users.tpl', 105, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 80, false),array('modifier', 'date_format', 'users/users.tpl', 85, false),array('function', 'cycle', 'users/users.tpl', 104, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -9,7 +9,6 @@ unset($_smarty_tpl_vars);
  ?>
 
 <?php echo '
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#field").change(function(){
@@ -53,7 +52,7 @@ unset($_smarty_tpl_vars);
 <?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] == 'S_admin'): ?>
 
 	<h2 class="noprint headingBottom"><?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?> Search Result For "<b><?php echo $_GET['q']; ?>
-</b>" <?php else: ?>Users List<?php endif; ?></h2>
+</b>" <?php else: ?>Doctors List<?php endif; ?></h2>
 
 	<p class="noprint">		
 		<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
@@ -141,13 +140,13 @@ users/?group_by=username&q=<?php echo $_GET['q']; ?>
 			<?php if ($this->_tpl_vars['usr']['is_delete'] == 'on'): ?>
 			<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 " style="background: #f1d2d2;">
-				<td class="bold" width="35"><?php echo $this->_tpl_vars['usr']['id']; ?>
+				<td class="bold" width=""><?php echo $this->_tpl_vars['usr']['id']; ?>
 </td>
-				<td width="200"><?php echo $this->_tpl_vars['usr']['username']; ?>
+				<td width=""><?php echo $this->_tpl_vars['usr']['username']; ?>
 </td>
-				<td width="200"><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+				<td width=""><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </td>
-				<td width="65">
+				<td width="">
 					<div class="icons">				
 						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/view/<?php echo $this->_tpl_vars['usr']['id']; ?>
@@ -168,13 +167,13 @@ _templates/img/bin.png" alt="Reactivate" /></a>
 			<?php else: ?>
 			<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 " >
-				<td class="bold" width="35"><?php echo $this->_tpl_vars['usr']['id']; ?>
+				<td class="bold" width=""><?php echo $this->_tpl_vars['usr']['id']; ?>
 </td>
-				<td width="200"><?php echo $this->_tpl_vars['usr']['username']; ?>
+				<td width=""><?php echo $this->_tpl_vars['usr']['username']; ?>
 </td>
-				<td width="200"><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+				<td width=""><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </td>
-				<td width="65">
+				<td width="">
 					<div class="icons">				
 						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/view/<?php echo $this->_tpl_vars['usr']['id']; ?>

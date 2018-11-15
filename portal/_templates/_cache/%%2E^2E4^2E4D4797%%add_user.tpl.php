@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 12:27:16
+<?php /* Smarty version 2.6.31, created on 2018-11-15 15:55:44
          compiled from users/add_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -6,10 +6,8 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 		<div id="content">
-			
-			
-
-				<h2>Add User</h2>
+		
+				<h2>Add Doctor</h2>
 				
 				<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
 					<div class="fail">
@@ -21,12 +19,10 @@ unset($_smarty_tpl_vars);
 						<?php endforeach; endif; unset($_from); ?>
 					</div>
 					<?php endif; ?>
-			 <?php echo $_SERVER['REQUEST_URI']; ?>
- 
 			<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
 				<fieldset>
-					<legend>Add User</legend>
+					<legend>Add Doctor</legend>
 					<div class="row">
 						<div class="col-sm-3 common-bottom">
 							<label for="F_name">First Name</label>
@@ -60,7 +56,16 @@ unset($_smarty_tpl_vars);
 						</div>
 						<div class="col-sm-3 common-bottom">
 							<label for="city">Clinic City</label>
-							<input type="text" name="city" id="city"class="form-control"/>
+							<select name="city" id="city" class="form-control">
+								<option value="">Select City</option>
+								<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+								<option value="<?php echo $this->_tpl_vars['city']['id']; ?>
+"><?php echo $this->_tpl_vars['city']['name']; ?>
+</option>
+								<?php endforeach; endif; unset($_from); ?>						
+							</select>
 						</div>
 					</div>
 					<div class="row">
@@ -120,13 +125,18 @@ unset($_smarty_tpl_vars);
 		</div><!-- #content -->
 
 	<?php echo '
+	<style type="text/css">
+	span.select2.select2-container.select2-container--default {
+    width: 247px !important;
+}
+</style>
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
-				// $("#city").select2({
-    //                 // placeholder: "Select a State",
-    //                 allowClear: true
-    //             });
+			   $("#city").select2({
+                   // placeholder: "Select a State",
+                    allowClear: true
+                 });
 				$(\'#name\').focus();
 				
 				$("#add_user").validate({
@@ -172,7 +182,7 @@ unset($_smarty_tpl_vars);
 
 
   $(\'#upload\').on(\'change\', function () { 
-  	debugger
+  	//debugger
   	$(\'#upload-demo\').show();
   	$(\'#upload-demo-btn\').show();
   	var reader = new FileReader();

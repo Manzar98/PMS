@@ -85,8 +85,8 @@
 
 	function SelectPatient(thisValue,thisName)
 	{
-		 console.log(thisValue);
-		debugger
+		 //console.log(thisValue);
+		//debugger
 		if(thisValue)
 		{
 			$("#patient_id").val(thisValue);
@@ -147,7 +147,7 @@
 							$("#custom_instruction").val('');
 
 							$("#instructions td .close").on("click", function(){
-						debugger
+						//debugger
 						$(this).parents('tr').remove();
 					});
 
@@ -164,7 +164,7 @@
 					$("#instructions tbody").append(instruction);
 					// debugger;
 					$("#instructions td .close").on("click", function(){
-						debugger
+						//debugger
 						$(this).parents('tr').remove();
 					});
 				}
@@ -236,7 +236,7 @@
 					url:"{/literal}{$BASE_URL_ADMIN}medicine/add?ajax=y{literal}",
 					data:"name="+medicine_name+"&formula="+medicine_formula+"&type="+medicine_type+"&dose="+medicine_dose+"&company="+medicine_company,
 					success:function(msg){
-						debugger
+						//debugger
 						var data =JSON.parse(msg);
 						
 						var dropdown = "";
@@ -244,7 +244,7 @@
 						$.each(data.id,function(k,v){
                              console.log(v);
 
-                             debugger
+                             //debugger
                              dropdown+='<option value="'+v+'">'+data.medi[k]+'</option>';   
                          })
 						
@@ -364,7 +364,7 @@
 					data: "name="+patient_name+"&mobile_number="+mobile_number+"&city_id="+city+"&security_key="+s_key+"&email="+email,
 					success: function(msg) 
 					{
-                          debugger
+                         // debugger
 						if(msg>0)
 						{
 							$('#patient_id').val(msg);
@@ -422,7 +422,6 @@ function generateRandomNumber(){
 			{/foreach}
 		</div>
 		{/if}
-		{$smarty.server.REQUEST_URI}
 		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="get" enctype="multipart/form-data">
 
 			<fieldset >
@@ -575,8 +574,6 @@ function generateRandomNumber(){
 						</div>
 					</div>
 				</div>
-
-
 				<table style="clear:both;display: none;" id="instructions" class="zebra">
 					<caption>Medicine Instructions</caption>
 					<thead>

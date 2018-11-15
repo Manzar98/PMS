@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 12:24:08
+<?php /* Smarty version 2.6.31, created on 2018-11-15 15:53:59
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 
@@ -297,7 +297,7 @@ password/">Change password</a>
 				</li>
 		<li>
 			<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'users'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-users/">Users <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+users/">Doctors <i class="fa fa-caret-down" aria-hidden="true"></i></a>
 			<ul>
 				<li>
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>

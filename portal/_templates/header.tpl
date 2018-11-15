@@ -190,7 +190,7 @@
 					<a {if $CURRENT_PAGE == 'password'}class="selected"{/if} href="{$BASE_URL_ADMIN}password/">Change password</a>
 				</li>
 		<li>
-			<a {if $CURRENT_PAGE == 'users'}class="selected"{/if} href="{$BASE_URL_ADMIN}users/">Users <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+			<a {if $CURRENT_PAGE == 'users'}class="selected"{/if} href="{$BASE_URL_ADMIN}users/">Doctors <i class="fa fa-caret-down" aria-hidden="true"></i></a>
 			<ul>
 				<li>
 					<a href="{$BASE_URL_ADMIN}add-users/">Add New</a>

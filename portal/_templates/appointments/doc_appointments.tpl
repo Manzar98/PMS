@@ -204,7 +204,7 @@
 					<select name="city" id="city" class="form-control">
 						<option value="">Select City</option>
 						{foreach from=$cities item=city}
-						<option {if $data.city_id==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
+						<option {if $data.city==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
 						{/foreach}						
 					</select>
 				</div>

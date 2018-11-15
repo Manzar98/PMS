@@ -254,7 +254,6 @@
 
 				{elseif isset($feerecord) && $feerecord}
 
-				<!-- {$feerecord|print_r} -->
 				<div id="charts" hidden="">
 					{$charts}
 				</div>
@@ -392,7 +391,7 @@ span.select2.select2-container.select2-container--default {
 
 		var charts=$( "#charts" ).html();
  //console.log(charts);
-debugger;
+//debugger;
  
  if (charts) {
 
@@ -538,7 +537,7 @@ FusionCharts.ready(function() {
 
 					var data =JSON.parse(msg);
 					console.log(data);
-					debugger
+					//debugger
 					var dropdown = "";
 					dropdown+='<option class="topOpt" value="" selected disabled>Select Test</option>';
 					$.each(data.ids,function(k,v){
