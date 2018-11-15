@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-09 17:01:52
+<?php /* Smarty version 2.6.31, created on 2018-11-14 17:45:11
          compiled from appointments/add_appointment.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'appointments/add_appointment.tpl', 8, false),)), $this); ?>
@@ -500,6 +500,9 @@ add-appointment/<?php echo $_GET['doc_id']; ?>
     background-color: #e0e0e0;
     color: #FFF;
 }
+span.select2.select2-container.select2-container--default {
+    width: 340px !important;
+}
 
  </style>
 <script type="text/javascript">
@@ -507,6 +510,11 @@ add-appointment/<?php echo $_GET['doc_id']; ?>
 	$(\'.docWrap\').remove();
 	$(document).ready(function()
 	{
+
+		  $("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
 		
 $(document).on(\'click\', \'.ui-datepicker-next\', function () {
   $(".ui-datepicker-title>span").hide().show(300);

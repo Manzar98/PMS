@@ -162,7 +162,10 @@
 					{/if}
 				</li>
 				{/section}
-				<li><a {if $CURRENT_PAGE == 'work-settings'} class="selected" {/if} href="{$BASE_URL_ADMIN}work-settings/">Time & Date</a></li>
+				{if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}
+				<li><a {if $CURRENT_PAGE == 'work-settings'} class="selected" {/if} href="{$BASE_URL_ADMIN}work-settings/">Time & Date</a>
+				</li>
+				{/if}
 			</ul>
 		</li>
 		{if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}

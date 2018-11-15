@@ -106,7 +106,12 @@ basic.croppie('bind',{
          			}
          		});
          	});
-         });   
+         });  
+
+                $("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
     });
 function generateRandomNumber(){
 

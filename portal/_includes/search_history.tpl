@@ -1,6 +1,5 @@
 {include file="header.tpl"}
 <div id="content" class="publicWrap">
-
 	{$record}
 	{if isset($record)}
 
@@ -52,6 +51,7 @@
 			</div> 
 		</div>
 
+
 		<hr style="border-top: dotted 1px #DEDEDE; " />
 		<div>
 			<ul class="patient_info list-inline">
@@ -66,6 +66,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<h3>Instructions</h3>
+
 				{if $data.instructions}
 				<table class="table table-bordered table-striped instructions">
 					<caption>Instructions</caption>
@@ -150,26 +151,6 @@
 	<br />
 	
 	<br />
-	{else}
-
-	<input type="hidden" name="" value="{$resp}" id="resp">
-	<form id="check_patient" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
-		<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-4">
-				<label for="dt" class="">Patient Id</label>
-				<input type="text" name="p_id" id="" class="form-control" />
-			</div>
-			<div class="col-sm-4">
-				<label for="dt" class="">Security Key</label>
-				<input type="text" name="key" id="" class="form-control" />
-			</div>
-			<div class="col-sm-1" style="padding-top: 24px;">
-				<input type="submit" class="btn btn-primary" value="Search" />
-			</div>
-		</div>
-	</form>
-
 	{/if}
 	<div style="margin-top: 30px;"></div>
 </div><!-- #content -->

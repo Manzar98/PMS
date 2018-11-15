@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-07 15:10:15
+<?php /* Smarty version 2.6.31, created on 2018-11-14 17:40:06
          compiled from prescription/edit_prescription.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 276, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 480, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 289, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 493, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -277,6 +277,19 @@ add-prescription/add-patient/<?php echo '",
 				alert("please Enter name and phone");
 			}
 		});
+
+				$("#medicine").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+		$("#test_name").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+		$("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
 
 	});
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-07 12:33:42
+<?php /* Smarty version 2.6.31, created on 2018-11-14 16:47:34
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -421,6 +421,10 @@ add-prescription/add-patient/<?php echo '",
                     allowClear: true
                 });
 		$("#test_name").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+		$("#city").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });

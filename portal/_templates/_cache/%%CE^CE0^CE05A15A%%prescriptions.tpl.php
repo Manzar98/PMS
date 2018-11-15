@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-08 11:35:55
+<?php /* Smarty version 2.6.31, created on 2018-11-13 12:53:05
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 72, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 115, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 137, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 134, false),)), $this); ?>
@@ -34,7 +34,7 @@ unset($_smarty_tpl_vars);
 		
 		$("#print_fee").click(function()
 		{
-			debugger;
+			//debugger;
 			if($("#print_fee").prop("checked") == true)
 			{
 				$("#fee").removeClass("noprint");

@@ -12,6 +12,7 @@ if (isset($_POST['days'])) {
     $Work_days->deleteWork($_SESSION['AdminId']);
   }
 
+//print_r($_POST['days']);
 if ( $_POST['days'][0]=='mon_on' || $_POST['days'][1]=='tue_on' || $_POST['days'][2]=='wed_on' || $_POST['days'][3]=='thu_on' || $_POST['days'][4]=='fri_on' || $_POST['days'][5]=='sat_on' || $_POST['days'][6]=='sun_on' || $_POST['days'][7]=='unavail_on') 
 {
   
@@ -28,8 +29,7 @@ else{
   $data= $Work_days->getWork($_SESSION['AdminId']);
 
    if (isset($data)) {
-      # code...
-    
+     
    $days= implode(',', array_column($data, 'days'));
    $from= implode(',', array_column($data, 'dt_from'));
    $to= implode(',', array_column($data, 'dt_to'));

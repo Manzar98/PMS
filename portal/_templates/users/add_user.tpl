@@ -112,6 +112,10 @@
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
+				// $("#city").select2({
+    //                 // placeholder: "Select a State",
+    //                 allowClear: true
+    //             });
 				$('#name').focus();
 				
 				$("#add_user").validate({

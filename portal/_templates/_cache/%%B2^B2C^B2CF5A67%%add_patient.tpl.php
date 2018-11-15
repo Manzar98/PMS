@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-10-11 23:19:13
+<?php /* Smarty version 2.6.31, created on 2018-11-14 17:42:06
          compiled from patients/add_patient.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -114,7 +114,12 @@ patients/add?img=y<?php echo '",
          			}
          		});
          	});
-         });   
+         });  
+
+                $("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
     });
 function generateRandomNumber(){
 

@@ -416,6 +416,9 @@
     background-color: #e0e0e0;
     color: #FFF;
 }
+span.select2.select2-container.select2-container--default {
+    width: 340px !important;
+}
 
  </style>
 <script type="text/javascript">
@@ -423,6 +426,11 @@
 	$('.docWrap').remove();
 	$(document).ready(function()
 	{
+
+		  $("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
 		
 $(document).on('click', '.ui-datepicker-next', function () {
   $(".ui-datepicker-title>span").hide().show(300);

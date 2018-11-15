@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-07 15:03:35
+<?php /* Smarty version 2.6.31, created on 2018-11-15 12:24:08
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 
@@ -261,8 +261,11 @@ settings/<?php echo $this->_tpl_vars['settings_categories'][$this->_sections['in
 					<?php endif; ?>
 				</li>
 				<?php endfor; endif; ?>
+				<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] != 'S_admin'): ?>
 				<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'work-settings'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-work-settings/">Time & Date</a></li>
+work-settings/">Time & Date</a>
+				</li>
+				<?php endif; ?>
 			</ul>
 		</li>
 		<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] != 'S_admin'): ?>

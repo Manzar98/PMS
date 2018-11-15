@@ -1,13 +1,14 @@
-<?php /* Smarty version 2.6.31, created on 2018-10-03 12:30:57
+<?php /* Smarty version 2.6.31, created on 2018-11-15 12:54:36
          compiled from appointments/search_history.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/search_history.tpl', 19, false),array('modifier', 'default', 'appointments/search_history.tpl', 22, false),array('modifier', 'date_format', 'appointments/search_history.tpl', 23, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/search_history.tpl', 20, false),array('modifier', 'default', 'appointments/search_history.tpl', 23, false),array('modifier', 'date_format', 'appointments/search_history.tpl', 24, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<div id="content">
+<div id="content" class="publicWrap">
+
 	<?php echo $this->_tpl_vars['record']; ?>
 
 	<?php if (isset ( $this->_tpl_vars['record'] )): ?>
@@ -71,7 +72,6 @@ _templates/img/eye.png" alt="View" /></a>
 				<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
 			</div> 
 		</div>
-
 
 		<hr style="border-top: dotted 1px #DEDEDE; " />
 		<div>
@@ -198,32 +198,33 @@ _templates/img/eye.png" alt="View" /></a>
 	<br />
 	
 	<br />
-
 	<?php else: ?>
-	<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
-" method="post">
-		<input type="hidden" name="" value="<?php echo $this->_tpl_vars['resp']; ?>
+	
+	<input type="hidden" name="" value="<?php echo $this->_tpl_vars['resp']; ?>
 " id="resp">
+	<form id="check_patient" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="post">
 		<div class="row">
 			<div class="col-sm-1"></div>
-			<div class="col-sm-4 common-bottom">
-				<label for="p_id" class="">Patient Id</label>
-				<input type="text" name="p_id" id="p_id" class="p_id form-control" />
+			<div class="col-sm-4">
+				<label for="dt" class="">Patient Id</label>
+				<input type="text" name="p_id" id="" class="form-control" />
 			</div>
 			<div class="col-sm-4">
-				<label for="key" class="">Secure Key</label>
-				<input type="text" name="key" id="key" class="key form-control" />
+				<label for="dt" class="">Security Key</label>
+				<input type="text" name="key" id="" class="form-control" />
 			</div>
-			<div class="col-sm-2" style="margin-top:25px; ">
-				<input type="submit" class="form-control btn btn-primary" value="Search" id="searchBtn" />
+			<div class="col-sm-1" style="padding-top: 24px;">
+				<input type="submit" class="btn btn-primary" value="Search" />
 			</div>
 		</div>
 	</form>
+
 	<?php endif; ?>
 	<div style="margin-top: 30px;"></div>
 </div><!-- #content -->
 
-
+<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 <?php echo '
 <script type="text/javascript">
 	$(document).ready(function()
