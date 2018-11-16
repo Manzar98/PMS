@@ -73,8 +73,8 @@
 		<div class="pagination">
 			{$pages}
 		</div>
-	</div><!-- #content -->
-</div>
+	</div>
+</div><!-- #content -->
 <div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 {literal}
 <script type="text/javascript">

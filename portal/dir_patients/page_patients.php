@@ -93,7 +93,7 @@ else if($_POST)
 // var_dump($patient->AddPatient($data));
 	if(empty($errors))
 	{
-		echo $id;
+		//echo $id;
 		if($id=='add')
 		{
 			if($patient->AddPatient($data))

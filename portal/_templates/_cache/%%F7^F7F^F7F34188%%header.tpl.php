@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 15:53:59
+<?php /* Smarty version 2.6.31, created on 2018-11-15 18:03:16
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 
@@ -309,8 +309,21 @@ users/">View All</a>
 				</li>
 			</ul>
 		</li>
+		<li>
+			<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'packages'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+packages/">Packages <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+			<ul>
+				<li>
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-package/">Add New</a>
+				</li>
+				<li>
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+packages/">View All</a>
+				</li>
+			</ul>
+		</li>
 		<?php endif; ?>
-      
       	<li class="pull-right"><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 logout/">Logout</a></li>
       	</ul>

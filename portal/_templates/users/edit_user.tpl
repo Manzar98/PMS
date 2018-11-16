@@ -1,8 +1,6 @@
 {include file="header.tpl"}
 <div id="content">
 
-
-
 	<h2>Edit Doctor</h2>
 
 	{if (isset($errors) && $errors)}

@@ -200,8 +200,18 @@
 				</li>
 			</ul>
 		</li>
+		<li>
+			<a {if $CURRENT_PAGE == 'packages'}class="selected"{/if} href="{$BASE_URL_ADMIN}packages/">Packages <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+			<ul>
+				<li>
+					<a href="{$BASE_URL_ADMIN}add-package/">Add New</a>
+				</li>
+				<li>
+					<a href="{$BASE_URL_ADMIN}packages/">View All</a>
+				</li>
+			</ul>
+		</li>
 		{/if}
-      
       	<li class="pull-right"><a href="{$BASE_URL_ADMIN}logout/">Logout</a></li>
       	</ul>
                 </div>

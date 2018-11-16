@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 15:55:09
+<?php /* Smarty version 2.6.31, created on 2018-11-16 15:03:18
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 80, false),array('modifier', 'date_format', 'users/users.tpl', 85, false),array('function', 'cycle', 'users/users.tpl', 104, false),)), $this); ?>
@@ -156,7 +156,6 @@ _templates/img/eye.png" alt="View" /></a>
 edit-users/<?php echo $this->_tpl_vars['usr']['id']; ?>
 /" title="Edit this user"><img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/img/pencil.png" alt="Edit" /></a>
-
 						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/reactivate/<?php echo $this->_tpl_vars['usr']['id']; ?>
 /" title="Reactivate this user" onclick="if(!confirm('Are you sure you want to reactivate this?'))return false;"><img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>

@@ -95,6 +95,7 @@ switch($page)
     $flag = 1;
     break;
 
+
     case 'history':
     require_once 'dir_appointments/search_history.php';
     $flag = 1;
@@ -273,9 +274,29 @@ switch($page)
 		exit;
 	}
 	require_once 'dir_users/users.php';
-
 	$flag = 1;
 	break;
+
+	case 'packages':
+	if(!isset($_SESSION['AdminId']))
+	{
+		redirect_to(BASE_URL);
+		exit;
+	}
+    require_once 'dir_packages/packages.php';
+    $flag = 1;
+    break;
+
+    case 'add-package':
+	if(!isset($_SESSION['AdminId']))
+	{
+		redirect_to(BASE_URL);
+		exit;
+	}
+    require_once 'dir_packages/add_package.php';
+    $flag = 1;
+    break;
+
 	case 'links':
 	if(!isset($_SESSION['AdminId']))
 	{

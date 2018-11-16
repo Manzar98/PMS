@@ -66,8 +66,8 @@ else if($_POST)
 		if($users->AddUser($data))
 		{
 
-			// redirect_to(BASE_URL);
-			echo "Inserted Manzaer";
+			redirect_to(BASE_URL.'users/');
+			//echo "Inserted";
 		}
 		
 

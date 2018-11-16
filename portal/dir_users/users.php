@@ -2,13 +2,13 @@
 
 $users = new User;
 $grouped_users="";
-  echo $id;
+  
  // echo $extra;
 if($id==="view" && $extra>0)
 {
 	$user_detail = $users->GetuserInfo($extra);
 
-    print_r($user_detail);
+    //print_r($user_detail);
     
   $smarty->assign('data',@$user_detail);   
 	  

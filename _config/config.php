@@ -52,6 +52,7 @@
 	require_once APP_PATH . '_includes/class.Work_days.php';
 	require_once APP_PATH . '_includes/class.Appointment.php';
 	require_once APP_PATH . '_includes/class.Report.php';
+	require_once APP_PATH . '_includes/class.Packages.php';
 	// Setup database connection
 	try 
 	{

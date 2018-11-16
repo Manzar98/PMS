@@ -109,7 +109,6 @@
 					<div class="icons">				
 						<a href="{$BASE_URL_ADMIN}users/view/{$usr.id}/" title="View this user"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
 						<a href="{$BASE_URL_ADMIN}edit-users/{$usr.id}/" title="Edit this user"><img src="{$BASE_URL_ADMIN}_templates/img/pencil.png" alt="Edit" /></a>
-
 						<a href="{$BASE_URL_ADMIN}users/reactivate/{$usr.id}/" title="Reactivate this user" onclick="if(!confirm('Are you sure you want to reactivate this?'))return false;"><img src="{$BASE_URL_ADMIN}_templates/img/bin.png" alt="Reactivate" /></a>
 					</div>
 				</td>
