@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 15:03:18
+<?php /* Smarty version 2.6.31, created on 2018-11-16 16:25:55
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 80, false),array('modifier', 'date_format', 'users/users.tpl', 85, false),array('function', 'cycle', 'users/users.tpl', 104, false),)), $this); ?>
@@ -140,13 +140,13 @@ users/?group_by=username&q=<?php echo $_GET['q']; ?>
 			<?php if ($this->_tpl_vars['usr']['is_delete'] == 'on'): ?>
 			<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 " style="background: #f1d2d2;">
-				<td class="bold" width=""><?php echo $this->_tpl_vars['usr']['id']; ?>
+				<td class="bold"><?php echo $this->_tpl_vars['usr']['id']; ?>
 </td>
-				<td width=""><?php echo $this->_tpl_vars['usr']['username']; ?>
+				<td><?php echo $this->_tpl_vars['usr']['username']; ?>
 </td>
-				<td width=""><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+				<td><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </td>
-				<td width="">
+				<td>
 					<div class="icons">				
 						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/view/<?php echo $this->_tpl_vars['usr']['id']; ?>
@@ -166,13 +166,13 @@ _templates/img/bin.png" alt="Reactivate" /></a>
 			<?php else: ?>
 			<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 " >
-				<td class="bold" width=""><?php echo $this->_tpl_vars['usr']['id']; ?>
+				<td class="bold"><?php echo $this->_tpl_vars['usr']['id']; ?>
 </td>
-				<td width=""><?php echo $this->_tpl_vars['usr']['username']; ?>
+				<td><?php echo $this->_tpl_vars['usr']['username']; ?>
 </td>
-				<td width=""><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+				<td><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </td>
-				<td width="">
+				<td>
 					<div class="icons">				
 						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/view/<?php echo $this->_tpl_vars['usr']['id']; ?>
@@ -189,7 +189,6 @@ _templates/img/bin.png" alt="Delete" /></a>
 					</div>
 				</td>
 			</tr>
-
 			<?php endif; ?>
 			<?php endforeach; else: ?>
 			<tr style="color:red;">

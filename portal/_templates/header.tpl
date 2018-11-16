@@ -86,140 +86,149 @@
 		<!-- {$CURRENT_PAGE} -->
 		{if $isAuthenticated == 1}
 
-   <header>
-    <div class="docWrap">
-    	 <nav class="navbar navbar-inverse" role="navigation" width="103%">
-        <div class="navbar-header">
-          <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-           <a href="{$BASE_URL_ADMIN}" class="navbar-brand scroll-top logo headerLogo"><b>{$SITE_NAME}</b></a>
+		<header>
+			<div class="docWrap">
+				<nav class="navbar navbar-inverse" role="navigation" width="103%">
+					<div class="navbar-header">
+						<button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="{$BASE_URL_ADMIN}" class="navbar-brand scroll-top logo headerLogo"><b>{$SITE_NAME}</b></a>
 
-        </div>
-        <!--/.navbar-header-->
-        <div id="main-nav" class="collapse navbar-collapse">
-          <ul>
-          <li><a {if $CURRENT_PAGE == ''}class="selected"{/if} href="{$BASE_URL_ADMIN}">Home</a></li>
-   {if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}
-	<li><a {if $CURRENT_PAGE == 'prescriptions'} class="selected" {/if} href="{$BASE_URL_ADMIN}prescriptions/">Prescriptions <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-		<ul>
-			<li>
-				<a href="{$BASE_URL_ADMIN}add-prescription/" >Add New</a>
-			</li>
-			<li>
-				<a href="{$BASE_URL_ADMIN}prescriptions/" >View All</a>
-			</li>
-		</ul>	
-	</li>
-	<li><a {if $CURRENT_PAGE == 'patients'} class="selected" {/if} href="{$BASE_URL_ADMIN}patients/">Patients <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-		<ul>
-			<li>
-				<a href="{$BASE_URL_ADMIN}patients/add/" >Add New</a>
-			</li>
-			<li>
-				<a href="{$BASE_URL_ADMIN}patients/" >View All</a>
-			</li>
-		</ul>	
-	</li>
-	<li><a {if $CURRENT_PAGE == 'medicine'} class="selected" {/if} href="{$BASE_URL_ADMIN}medicine/">Medicine <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-		<ul>
-			<li>
-				<a href="{$BASE_URL_ADMIN}medicine/add/" >Add New</a>
-			</li>
-			<li>
-				<a href="{$BASE_URL_ADMIN}medicine/" >View All</a>
-			</li>
-		</ul>	
-	</li>
-	<li>
-		<a {if $CURRENT_PAGE == 'tests'} class="selected" {/if} href="{$BASE_URL_ADMIN}tests/">Tests  <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-		<ul>
-			<li>
-				<a href="{$BASE_URL_ADMIN}tests/add/">Add New</a>
-			</li>
-			<li>
-				<a href="{$BASE_URL_ADMIN}tests/">View All</a>
-			</li>
-		</ul>
-	</li>
-	<li>
-		<a {if $CURRENT_PAGE == 'reports'} class="selected" {/if} href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}/">Reports</a>
-	</li>
-	<li>
-		<a {if $CURRENT_PAGE == 'instructions'} class="selected" {/if} href="{$BASE_URL_ADMIN}instructions/">Instructions</a>
-	</li> 
-	{/if} 
-	<li><a {if $CURRENT_PAGE == 'settings'}class="selected"{/if} href="{$BASE_URL_ADMIN}settings/">Settings <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-			<ul>
-				{section name=index loop=$settings_categories}
-				<li> {if $settings_categories[index].var_name== "main"}
-					<a href="{$BASE_URL_ADMIN}settings/{$settings_categories[index].var_name}?id={$smarty.session.AdminId}&c_id=1">{$settings_categories[index].name}</a>
-					{else}
-					<a href="{$BASE_URL_ADMIN}settings/{$settings_categories[index].var_name}?id={$smarty.session.AdminId}&c_id=2">{$settings_categories[index].name}</a>
-					{/if}
-				</li>
-				{/section}
-				{if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}
-				<li><a {if $CURRENT_PAGE == 'work-settings'} class="selected" {/if} href="{$BASE_URL_ADMIN}work-settings/">Time & Date</a>
-				</li>
-				{/if}
-			</ul>
-		</li>
-		{if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}
-		<li>
-			<a href="#">Profile <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-			<ul>
-				<li style="text-align: center;">
-					<a href="{$BASE_URL_ADMIN}edit-users/{$smarty.session.AdminId}/">Edit</a>
-				</li>
-				<li style="text-align: center;">
-					<a href="{$BASE_URL_ADMIN}users/view/{$smarty.session.AdminId}/">View</a>
-				</li>
-				<li>
-					<a {if $CURRENT_PAGE == 'password'}class="selected"{/if} href="{$BASE_URL_ADMIN}password/">Change password</a>
-				</li>
-			</ul>
-		</li>
+					</div>
+					<!--/.navbar-header-->
+					<div id="main-nav" class="collapse navbar-collapse">
+						<ul>
+							<li><a {if $CURRENT_PAGE == ''}class="selected"{/if} href="{$BASE_URL_ADMIN}">Home</a></li>
+							{if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}
+							<li><a {if $CURRENT_PAGE == 'prescriptions'} class="selected" {/if} href="{$BASE_URL_ADMIN}prescriptions/">Prescriptions <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li>
+										<a href="{$BASE_URL_ADMIN}add-prescription/" >Add New</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}prescriptions/" >View All</a>
+									</li>
+								</ul>	
+							</li>
+							<li><a {if $CURRENT_PAGE == 'patients'} class="selected" {/if} href="{$BASE_URL_ADMIN}patients/">Patients <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li>
+										<a href="{$BASE_URL_ADMIN}patients/add/" >Add New</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}patients/" >View All</a>
+									</li>
+								</ul>	
+							</li>
+							<li><a {if $CURRENT_PAGE == 'medicine'} class="selected" {/if} href="{$BASE_URL_ADMIN}medicine/">Medicine <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li>
+										<a href="{$BASE_URL_ADMIN}medicine/add/" >Add New</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}medicine/" >View All</a>
+									</li>
+								</ul>	
+							</li>
+							<li>
+								<a {if $CURRENT_PAGE == 'tests'} class="selected" {/if} href="{$BASE_URL_ADMIN}tests/">Tests  <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li>
+										<a href="{$BASE_URL_ADMIN}tests/add/">Add New</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}tests/">View All</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a {if $CURRENT_PAGE == 'reports'} class="selected" {/if} href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}/">Reports</a>
+							</li>
+							<li>
+								<a {if $CURRENT_PAGE == 'instructions'} class="selected" {/if} href="{$BASE_URL_ADMIN}instructions/">Instructions</a>
+							</li> 
+							<li><a {if $CURRENT_PAGE == 'settings'}class="selected"{/if} href="{$BASE_URL_ADMIN}settings/">Settings <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									{section name=index loop=$settings_categories}
+									<li> {if $settings_categories[index].var_name== "main"}
+										<a href="{$BASE_URL_ADMIN}settings/{$settings_categories[index].var_name}?id={$smarty.session.AdminId}&c_id=1">{$settings_categories[index].name}</a>
+										{else}
+										<a href="{$BASE_URL_ADMIN}settings/{$settings_categories[index].var_name}?id={$smarty.session.AdminId}&c_id=2">{$settings_categories[index].name}</a>
+										{/if}
+									</li>
+									{/section}
+									<li><a {if $CURRENT_PAGE == 'work-settings'} class="selected" {/if} href="{$BASE_URL_ADMIN}work-settings/">Time & Date</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Profile <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li style="text-align: center;">
+										<a href="{$BASE_URL_ADMIN}edit-users/{$smarty.session.AdminId}/">Edit</a>
+									</li>
+									<li style="text-align: center;">
+										<a href="{$BASE_URL_ADMIN}users/view/{$smarty.session.AdminId}/">View</a>
+									</li>
+									<li>
+										<a {if $CURRENT_PAGE == 'password'}class="selected"{/if} href="{$BASE_URL_ADMIN}password/">Change password</a>
+									</li>
+								</ul>
+							</li>
+							<li class="pull-right"><a href="{$BASE_URL_ADMIN}logout/">Logout</a></li>
+
+							{elseif isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
+							<li>
+								<a {if $CURRENT_PAGE == 'users'}class="selected"{/if} href="{$BASE_URL_ADMIN}users/">Doctors <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li>
+										<a href="{$BASE_URL_ADMIN}add-users/">Add New</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}users/">View All</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a {if $CURRENT_PAGE == 'packages'}class="selected"{/if} href="{$BASE_URL_ADMIN}packages/">Packages <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li>
+										<a href="{$BASE_URL_ADMIN}add-package/">Add New</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}packages/">View All</a>
+									</li>
+								</ul>
+							</li>
+							<li><a {if $CURRENT_PAGE == 'settings'}class="selected"{/if} href="{$BASE_URL_ADMIN}settings/">Settings <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									{section name=index loop=$settings_categories}
+									<li> {if $settings_categories[index].var_name== "main"}
+										<a href="{$BASE_URL_ADMIN}settings/{$settings_categories[index].var_name}?id={$smarty.session.AdminId}&c_id=1">{$settings_categories[index].name}</a>
+										{else}
+										<a href="{$BASE_URL_ADMIN}settings/{$settings_categories[index].var_name}?id={$smarty.session.AdminId}&c_id=2">{$settings_categories[index].name}</a>
+										{/if}
+									</li>
+									{/section}
+								</ul>
+							</li>
+							<li>
+								<a {if $CURRENT_PAGE == 'password'}class="selected"{/if} href="{$BASE_URL_ADMIN}password/">Change password</a>
+							</li>
+
+							<li class="pull-right"><a href="{$BASE_URL_ADMIN}logout/">Logout</a></li>
+							{/if}
+						</ul>
+					</div>
+					<!--/.navbar-collapse-->
+				</nav>
+			</div>
+		</header>
+
 		{/if}
-
-		{if isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
-		<li>
-					<a {if $CURRENT_PAGE == 'password'}class="selected"{/if} href="{$BASE_URL_ADMIN}password/">Change password</a>
-				</li>
-		<li>
-			<a {if $CURRENT_PAGE == 'users'}class="selected"{/if} href="{$BASE_URL_ADMIN}users/">Doctors <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-			<ul>
-				<li>
-					<a href="{$BASE_URL_ADMIN}add-users/">Add New</a>
-				</li>
-				<li>
-					<a href="{$BASE_URL_ADMIN}users/">View All</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a {if $CURRENT_PAGE == 'packages'}class="selected"{/if} href="{$BASE_URL_ADMIN}packages/">Packages <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-			<ul>
-				<li>
-					<a href="{$BASE_URL_ADMIN}add-package/">Add New</a>
-				</li>
-				<li>
-					<a href="{$BASE_URL_ADMIN}packages/">View All</a>
-				</li>
-			</ul>
-		</li>
-		{/if}
-      	<li class="pull-right"><a href="{$BASE_URL_ADMIN}logout/">Logout</a></li>
-      	</ul>
-                </div>
-                <!--/.navbar-collapse-->
-              </nav>
-    </div>
-  </header>
-
-	{/if}
-	<div class="clear" style="height: 4px;"></div>
-	
+		<div class="clear" style="height: 4px;"></div>
+		

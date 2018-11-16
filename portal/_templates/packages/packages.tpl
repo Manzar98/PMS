@@ -87,6 +87,15 @@
 			<span><b></b><span></span></span>
 		</div>
 	</div>
-		{/if}	
+	{else}
+      <h2>Packages List</h2>
+		<p class="common-top">
+			<a href="{$BASE_URL_ADMIN}/add-package/" title="Add a new"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
+		</p>
+		<div class="row">
+			<p>No Packages Created</p>
+		</div>
+	{/if}	
+
 	</div>
 </div><!-- #content -->

@@ -7,7 +7,7 @@ Class User
   {
   	global $db;
 	   $sql = 'INSERT INTO '.DB_PREFIX.'admin 
-	   		  (username,email,expire,F_name,L_name,city,c_address,quali,exprience,mobile,phone,profile_img,d_join,password,specialist) VALUES (
+	   		  (username,email,expire,F_name,L_name,city,c_address,quali,exprience,mobile,phone,profile_img,d_join,password,specialist,package_id) VALUES (
 			   "'.$data["name"].'",
 			   "'.$data["email"].'",
 			   "'.$data["expire"].'",
@@ -21,8 +21,10 @@ Class User
 			   "'.$data["phone"].'",
 			   "'.$data["profile_img"].'",
 			   NOW(),
-			   "'.md5($data["password"]).'"),
-			   "'.$data["specialist"].'" ';
+			   "'.md5($data["password"]).'",
+			   "'.$data["specialist"].'",
+			   "'.$data['package_id'].'" )';
+			   echo $sql;
 	   return $db->Execute($sql);
   }
 
@@ -98,7 +100,8 @@ Class User
 			phone="'.$data["phone"].'",
 			profile_img="'.$data['profile_img'].'",
 			specialist="'.$data['specialist'].'",
-			expire="'.$data['expire'].'"
+			package_id="'.$data['package_id'].'",
+			expire="'.$data['expire'].'",
 			WHERE id='.$data['id'];
 		}else{
 			$sql= 'UPDATE '.DB_PREFIX.'admin SET
@@ -113,6 +116,7 @@ Class User
 			mobile="'.$data["mobile"].'",
 			phone="'.$data["phone"].'",
 			specialist="'.$data['specialist'].'",
+			package_id="'.$data['package_id'].'",
 			expire="'.$data['expire'].'"
 			WHERE id='.$data['id'];
 		}

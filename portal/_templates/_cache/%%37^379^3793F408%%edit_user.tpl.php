@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 15:03:13
+<?php /* Smarty version 2.6.31, created on 2018-11-16 15:48:54
          compiled from users/edit_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -7,9 +7,7 @@ unset($_smarty_tpl_vars);
  ?>
 <div id="content">
 
-
-
-	<h2>Edit User</h2>
+	<h2>Edit Doctor</h2>
 
 	<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
 	<div class="fail">
@@ -25,7 +23,7 @@ unset($_smarty_tpl_vars);
 	<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
 		<fieldset>
-			<legend>Edit User</legend>
+			<legend>Edit Doctor</legend>
 			<div class="row">
 				<div class="col-sm-3 common-bottom">
 					<label for="F_name">First Name</label>
@@ -66,7 +64,7 @@ unset($_smarty_tpl_vars);
 				</div>
 				<div class="col-sm-3 common-bottom">
 					
-					<label for="city">City</label>
+					<label for="city">Clinic City</label>
 					<select name="city" id="city" class="form-control">
 						<option value="">Select City</option>
 						<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
@@ -99,6 +97,21 @@ unset($_smarty_tpl_vars);
 					<label for="specialist">Specialist</label>
 					<input type="text" name="specialist" id="specialist"class="form-control" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['specialist'] )): ?>value="<?php echo $this->_tpl_vars['data']['specialist']; ?>
 "<?php endif; ?> />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3 common-bottom">
+					<label for="package_id">Package</label>
+					<select name="package_id" id="package_id" class="form-control">
+						<option value="">Select Package</option>
+						<?php $_from = $this->_tpl_vars['packages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['package']):
+?>
+						<option<?php if ($this->_tpl_vars['data']['package_id'] == $this->_tpl_vars['package']['id']): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['package']['id']; ?>
+"><?php echo $this->_tpl_vars['package']['pkg_name']; ?>
+</option>
+						<?php endforeach; endif; unset($_from); ?>						
+					</select>
 				</div>
 			</div>
 			<input type="hidden" name="profile_img" id="profile_img">
@@ -162,6 +175,7 @@ unset($_smarty_tpl_vars);
 				city: { required: true },
 				c_address: { required: true },
 				expire: { required: true },
+				package_id: {required:true},
 			}
 		});
 

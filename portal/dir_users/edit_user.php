@@ -1,6 +1,7 @@
 <?php
  
   $users = new User;
+  $package = new Package;
   $user_list="";
 if (isset($_GET['img']) && $_GET['img']=='y') {
 	
@@ -34,6 +35,7 @@ else if($_POST)
 	$data['mobile'] = $_POST['mobile'];
 	$data['phone'] = $_POST['phone'];
 	$data['specialist'] = $_POST['specialist'];
+	$data['package_id']=$_POST['package_id'];
 	if (isset($_POST['profile_img'])) {
 
 		$data['profile_img'] = $_POST['profile_img'];
@@ -84,6 +86,7 @@ elseif($id>0)
    if (isset($user_details)) {
    	$smarty->assign('data',$user_details);
    	$smarty->assign('cities', get_cities());
+   	$smarty->assign('packages',$package->getAllPackages());
    }
 
   if (!isset($_GET['img'])) {

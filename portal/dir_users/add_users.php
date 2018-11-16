@@ -1,7 +1,7 @@
 <?php
 
 $users = new User;
-
+$package = new Package;
 // echo $id;
 // print_r($page);
 if (isset($_GET['img']) && $_GET['img']=='y') {
@@ -41,6 +41,8 @@ else if($_POST)
 	$data['phone'] = $_POST['phone'];
 	$data['specialist'] = $_POST['specialist'];
 	$data['profile_img'] = $_POST['profile_img'];
+	$data['package_id']=$_POST['package_id'];
+
 	if($data['name']=='')
 	{
 		$errors['name'] = 'Please Enter Name';
@@ -66,8 +68,8 @@ else if($_POST)
 		if($users->AddUser($data))
 		{
 
-			redirect_to(BASE_URL.'users/');
-			//echo "Inserted";
+			//redirect_to(BASE_URL.'users/');
+			echo "Inserted";
 		}
 		
 
@@ -79,6 +81,7 @@ else if($_POST)
 	 
 }else{
 	$smarty->assign('cities', get_cities());
+	$smarty->assign('packages',$package->getAllPackages());
 }
 
 if (!isset($_GET['img'])) {

@@ -102,10 +102,10 @@
 
 			{if $usr.is_delete=="on"}
 			<tr class="{cycle values='odd,even'}" style="background: #f1d2d2;">
-				<td class="bold" width="">{$usr.id}</td>
-				<td width="">{$usr.username}</td>
-				<td width="">{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
-				<td width="">
+				<td class="bold">{$usr.id}</td>
+				<td>{$usr.username}</td>
+				<td>{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
+				<td>
 					<div class="icons">				
 						<a href="{$BASE_URL_ADMIN}users/view/{$usr.id}/" title="View this user"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
 						<a href="{$BASE_URL_ADMIN}edit-users/{$usr.id}/" title="Edit this user"><img src="{$BASE_URL_ADMIN}_templates/img/pencil.png" alt="Edit" /></a>
@@ -115,10 +115,10 @@
 			</tr>
 			{else}
 			<tr class="{cycle values='odd,even'}" >
-				<td class="bold" width="">{$usr.id}</td>
-				<td width="">{$usr.username}</td>
-				<td width="">{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
-				<td width="">
+				<td class="bold">{$usr.id}</td>
+				<td>{$usr.username}</td>
+				<td>{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
+				<td>
 					<div class="icons">				
 						<a href="{$BASE_URL_ADMIN}users/view/{$usr.id}/" title="View this user"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
 						<a href="{$BASE_URL_ADMIN}edit-users/{$usr.id}/" title="Edit this user"><img src="{$BASE_URL_ADMIN}_templates/img/pencil.png" alt="Edit" /></a>
@@ -126,7 +126,6 @@
 					</div>
 				</td>
 			</tr>
-
 			{/if}
 			{foreachelse}
 			<tr style="color:red;">

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-09-07 12:09:19
+<?php /* Smarty version 2.6.31, created on 2018-11-16 16:21:41
          compiled from instructions/instructions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'instructions/instructions.tpl', 16, false),array('modifier', 'date_format', 'instructions/instructions.tpl', 86, false),array('function', 'cycle', 'instructions/instructions.tpl', 104, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 85, false),array('function', 'cycle', 'instructions/instructions.tpl', 103, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -24,8 +24,6 @@ unset($_smarty_tpl_vars);
 			<?php endforeach; endif; unset($_from); ?>
 		</div>
 		<?php endif; ?>
-		<!-- <?php echo print_r($_SERVER['REQUEST_URI']); ?>
- -->
 		<form id="add_instructions" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
 			<fieldset>

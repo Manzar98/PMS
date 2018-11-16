@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 15:00:12
+<?php /* Smarty version 2.6.31, created on 2018-11-16 16:21:59
          compiled from packages/packages.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 22, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 20, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -9,8 +9,6 @@ unset($_smarty_tpl_vars);
  ?>
 <div id="content">
 	<div class="container-fluid">
-		
-
        <?php if (isset ( $this->_tpl_vars['record'] ) && $this->_tpl_vars['record']): ?>  
        <h2>Packages List</h2>
 		<p class="common-top">
@@ -124,6 +122,16 @@ add-package/edit/<?php echo $this->_tpl_vars['singleRecord']['id']; ?>
 			<span><b></b><span></span></span>
 		</div>
 	</div>
-		<?php endif; ?>	
+	<?php else: ?>
+      <h2>Packages List</h2>
+		<p class="common-top">
+			<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+/add-package/" title="Add a new"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
+		</p>
+		<div class="row">
+			<p>No Packages Created</p>
+		</div>
+	<?php endif; ?>	
+
 	</div>
 </div><!-- #content -->

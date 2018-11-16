@@ -143,8 +143,29 @@
 			</div>
 		</div>
 		{else}
-				<div class="row db-bottom" style="margin-top: 20px;">
-
+		<div class="row db-bottom" style="margin-top: 20px;">
+			<div class="col-sm-4 text-center">
+				<a {if $CURRENT_PAGE == 'users'} class="selected" {/if} href="{$BASE_URL_ADMIN}users/">
+					<div class="db-back-shadow">
+						<i class="fa fa-users" aria-hidden="true" style="color: #064f68;"></i><br>
+						<span>Doctors</span><br>
+						<div class="div-P">
+							<p style="">Add/Edit/View <br>Doctors</p>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-sm-4 text-center">
+				<a {if $CURRENT_PAGE == 'packages'} class="selected" {/if} href="{$BASE_URL_ADMIN}packages/">
+					<div class="db-back-shadow">
+						<i class="fa fa-list-alt" aria-hidden="true"></i><br>
+						<span>Packages</span><br>
+						<div class="div-P">
+							<p style="">Add/Edit/View <br>Packages</p>
+						</div>
+					</div>
+				</a>
+			</div>
 			<div class="col-sm-4 text-center">
 				<a {if $CURRENT_PAGE == 'settings'}class="selected"{/if} href="{$BASE_URL_ADMIN}settings/">
 					<div class="db-back-shadow">
@@ -156,6 +177,8 @@
 					</div>
 				</a>
 			</div>
+		</div>
+		<div class="row db-bottom">
 			<div class="col-sm-4 text-center">
 				<a {if $CURRENT_PAGE == 'password'}class="selected"{/if} href="{$BASE_URL_ADMIN}password/">
 					<div class="db-back-shadow">
@@ -167,20 +190,6 @@
 					</div>
 				</a>
 			</div>
-			
-			<div class="col-sm-4 text-center">
-				<a {if $CURRENT_PAGE == 'users'} class="selected" {/if} href="{$BASE_URL_ADMIN}users/">
-					<div class="db-back-shadow">
-						<i class="fa fa-users" aria-hidden="true" style="color: #064f68;"></i><br>
-						<span style="padding-left: 13px;">Users</span><br>
-						<div class="div-P">
-							<p style="">Add/Edit/View <br>Users</p>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-		<div class="row db-bottom">
 			<div class="col-sm-4 text-center">
 				<a href="{$BASE_URL_ADMIN}logout/">
 					<div class="db-back-shadow">

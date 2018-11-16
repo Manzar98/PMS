@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-07 12:30:46
+<?php /* Smarty version 2.6.31, created on 2018-11-16 16:25:22
          compiled from index.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -163,8 +163,31 @@ logout/">
 			</div>
 		</div>
 		<?php else: ?>
-				<div class="row db-bottom" style="margin-top: 20px;">
-
+		<div class="row db-bottom" style="margin-top: 20px;">
+			<div class="col-sm-4 text-center">
+				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'users'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+users/">
+					<div class="db-back-shadow">
+						<i class="fa fa-users" aria-hidden="true" style="color: #064f68;"></i><br>
+						<span>Doctors</span><br>
+						<div class="div-P">
+							<p style="">Add/Edit/View <br>Doctors</p>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-sm-4 text-center">
+				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'packages'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+packages/">
+					<div class="db-back-shadow">
+						<i class="fa fa-list-alt" aria-hidden="true"></i><br>
+						<span>Packages</span><br>
+						<div class="div-P">
+							<p style="">Add/Edit/View <br>Packages</p>
+						</div>
+					</div>
+				</a>
+			</div>
 			<div class="col-sm-4 text-center">
 				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'settings'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 settings/">
@@ -177,6 +200,8 @@ settings/">
 					</div>
 				</a>
 			</div>
+		</div>
+		<div class="row db-bottom">
 			<div class="col-sm-4 text-center">
 				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 password/">
@@ -189,21 +214,6 @@ password/">
 					</div>
 				</a>
 			</div>
-			
-			<div class="col-sm-4 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'users'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-users/">
-					<div class="db-back-shadow">
-						<i class="fa fa-users" aria-hidden="true" style="color: #064f68;"></i><br>
-						<span style="padding-left: 13px;">Users</span><br>
-						<div class="div-P">
-							<p style="">Add/Edit/View <br>Users</p>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-		<div class="row db-bottom">
 			<div class="col-sm-4 text-center">
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 logout/">

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 18:03:16
+<?php /* Smarty version 2.6.31, created on 2018-11-16 16:25:21
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 
@@ -135,94 +135,93 @@ _templates/img/bg.jpg) no-repeat">
  -->
 		<?php if ($this->_tpl_vars['isAuthenticated'] == 1): ?>
 
-   <header>
-    <div class="docWrap">
-    	 <nav class="navbar navbar-inverse" role="navigation" width="103%">
-        <div class="navbar-header">
-          <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-           <a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+		<header>
+			<div class="docWrap">
+				<nav class="navbar navbar-inverse" role="navigation" width="103%">
+					<div class="navbar-header">
+						<button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 " class="navbar-brand scroll-top logo headerLogo"><b><?php echo $this->_tpl_vars['SITE_NAME']; ?>
 </b></a>
 
-        </div>
-        <!--/.navbar-header-->
-        <div id="main-nav" class="collapse navbar-collapse">
-          <ul>
-          <li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == ''): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+					</div>
+					<!--/.navbar-header-->
+					<div id="main-nav" class="collapse navbar-collapse">
+						<ul>
+							<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == ''): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Home</a></li>
-   <?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] != 'S_admin'): ?>
-	<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'prescriptions'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+							<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] != 'S_admin'): ?>
+							<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'prescriptions'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/">Prescriptions <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-		<ul>
-			<li>
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+								<ul>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 add-prescription/" >Add New</a>
-			</li>
-			<li>
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/" >View All</a>
-			</li>
-		</ul>	
-	</li>
-	<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'patients'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+								</ul>	
+							</li>
+							<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'patients'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/">Patients <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-		<ul>
-			<li>
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+								<ul>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/add/" >Add New</a>
-			</li>
-			<li>
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/" >View All</a>
-			</li>
-		</ul>	
-	</li>
-	<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'medicine'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+								</ul>	
+							</li>
+							<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'medicine'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 medicine/">Medicine <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-		<ul>
-			<li>
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+								<ul>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 medicine/add/" >Add New</a>
-			</li>
-			<li>
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 medicine/" >View All</a>
-			</li>
-		</ul>	
-	</li>
-	<li>
-		<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'tests'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+								</ul>	
+							</li>
+							<li>
+								<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'tests'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 tests/">Tests  <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-		<ul>
-			<li>
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+								<ul>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 tests/add/">Add New</a>
-			</li>
-			<li>
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 tests/">View All</a>
-			</li>
-		</ul>
-	</li>
-	<li>
-		<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'reports'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'reports'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 reports/<?php echo $_SESSION['AdminId']; ?>
 /">Reports</a>
-	</li>
-	<li>
-		<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'instructions'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+							</li>
+							<li>
+								<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'instructions'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 instructions/">Instructions</a>
-	</li> 
-	<?php endif; ?> 
-	<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'settings'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+							</li> 
+							<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'settings'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 settings/">Settings <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-			<ul>
-				<?php unset($this->_sections['index']);
+								<ul>
+									<?php unset($this->_sections['index']);
 $this->_sections['index']['name'] = 'index';
 $this->_sections['index']['loop'] = is_array($_loop=$this->_tpl_vars['settings_categories']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
 $this->_sections['index']['show'] = true;
@@ -246,93 +245,136 @@ $this->_sections['index']['index_next'] = $this->_sections['index']['index'] + $
 $this->_sections['index']['first']      = ($this->_sections['index']['iteration'] == 1);
 $this->_sections['index']['last']       = ($this->_sections['index']['iteration'] == $this->_sections['index']['total']);
 ?>
-				<li> <?php if ($this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['var_name'] == 'main'): ?>
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									<li> <?php if ($this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['var_name'] == 'main'): ?>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 settings/<?php echo $this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['var_name']; ?>
 ?id=<?php echo $_SESSION['AdminId']; ?>
 &c_id=1"><?php echo $this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['name']; ?>
 </a>
-					<?php else: ?>
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+										<?php else: ?>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 settings/<?php echo $this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['var_name']; ?>
 ?id=<?php echo $_SESSION['AdminId']; ?>
 &c_id=2"><?php echo $this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['name']; ?>
 </a>
-					<?php endif; ?>
-				</li>
-				<?php endfor; endif; ?>
-				<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] != 'S_admin'): ?>
-				<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'work-settings'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+										<?php endif; ?>
+									</li>
+									<?php endfor; endif; ?>
+									<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'work-settings'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 work-settings/">Time & Date</a>
-				</li>
-				<?php endif; ?>
-			</ul>
-		</li>
-		<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] != 'S_admin'): ?>
-		<li>
-			<a href="#">Profile <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-			<ul>
-				<li style="text-align: center;">
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Profile <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li style="text-align: center;">
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 edit-users/<?php echo $_SESSION['AdminId']; ?>
 /">Edit</a>
-				</li>
-				<li style="text-align: center;">
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+									<li style="text-align: center;">
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/view/<?php echo $_SESSION['AdminId']; ?>
 /">View</a>
-				</li>
-				<li>
-					<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+									<li>
+										<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 password/">Change password</a>
-				</li>
-			</ul>
-		</li>
-		<?php endif; ?>
-
-		<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] == 'S_admin'): ?>
-		<li>
-					<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-password/">Change password</a>
-				</li>
-		<li>
-			<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'users'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-users/">Doctors <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-			<ul>
-				<li>
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-add-users/">Add New</a>
-				</li>
-				<li>
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-users/">View All</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'packages'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-packages/">Packages <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-			<ul>
-				<li>
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-add-package/">Add New</a>
-				</li>
-				<li>
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-packages/">View All</a>
-				</li>
-			</ul>
-		</li>
-		<?php endif; ?>
-      	<li class="pull-right"><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+									</li>
+								</ul>
+							</li>
+							<li class="pull-right"><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 logout/">Logout</a></li>
-      	</ul>
-                </div>
-                <!--/.navbar-collapse-->
-              </nav>
-    </div>
-  </header>
 
-	<?php endif; ?>
-	<div class="clear" style="height: 4px;"></div>
-	
+							<?php elseif (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] == 'S_admin'): ?>
+							<li>
+								<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'users'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+users/">Doctors <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-users/">Add New</a>
+									</li>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+users/">View All</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'packages'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+packages/">Packages <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-package/">Add New</a>
+									</li>
+									<li>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+packages/">View All</a>
+									</li>
+								</ul>
+							</li>
+							<li><a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'settings'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+settings/">Settings <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<ul>
+									<?php unset($this->_sections['index']);
+$this->_sections['index']['name'] = 'index';
+$this->_sections['index']['loop'] = is_array($_loop=$this->_tpl_vars['settings_categories']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$this->_sections['index']['show'] = true;
+$this->_sections['index']['max'] = $this->_sections['index']['loop'];
+$this->_sections['index']['step'] = 1;
+$this->_sections['index']['start'] = $this->_sections['index']['step'] > 0 ? 0 : $this->_sections['index']['loop']-1;
+if ($this->_sections['index']['show']) {
+    $this->_sections['index']['total'] = $this->_sections['index']['loop'];
+    if ($this->_sections['index']['total'] == 0)
+        $this->_sections['index']['show'] = false;
+} else
+    $this->_sections['index']['total'] = 0;
+if ($this->_sections['index']['show']):
+
+            for ($this->_sections['index']['index'] = $this->_sections['index']['start'], $this->_sections['index']['iteration'] = 1;
+                 $this->_sections['index']['iteration'] <= $this->_sections['index']['total'];
+                 $this->_sections['index']['index'] += $this->_sections['index']['step'], $this->_sections['index']['iteration']++):
+$this->_sections['index']['rownum'] = $this->_sections['index']['iteration'];
+$this->_sections['index']['index_prev'] = $this->_sections['index']['index'] - $this->_sections['index']['step'];
+$this->_sections['index']['index_next'] = $this->_sections['index']['index'] + $this->_sections['index']['step'];
+$this->_sections['index']['first']      = ($this->_sections['index']['iteration'] == 1);
+$this->_sections['index']['last']       = ($this->_sections['index']['iteration'] == $this->_sections['index']['total']);
+?>
+									<li> <?php if ($this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['var_name'] == 'main'): ?>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+settings/<?php echo $this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['var_name']; ?>
+?id=<?php echo $_SESSION['AdminId']; ?>
+&c_id=1"><?php echo $this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['name']; ?>
+</a>
+										<?php else: ?>
+										<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+settings/<?php echo $this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['var_name']; ?>
+?id=<?php echo $_SESSION['AdminId']; ?>
+&c_id=2"><?php echo $this->_tpl_vars['settings_categories'][$this->_sections['index']['index']]['name']; ?>
+</a>
+										<?php endif; ?>
+									</li>
+									<?php endfor; endif; ?>
+								</ul>
+							</li>
+							<li>
+								<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+password/">Change password</a>
+							</li>
+
+							<li class="pull-right"><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+logout/">Logout</a></li>
+							<?php endif; ?>
+						</ul>
+					</div>
+					<!--/.navbar-collapse-->
+				</nav>
+			</div>
+		</header>
+
+		<?php endif; ?>
+		<div class="clear" style="height: 4px;"></div>
+		
