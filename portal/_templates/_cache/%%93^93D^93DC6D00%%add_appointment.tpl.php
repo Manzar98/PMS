@@ -1,7 +1,5 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-14 17:45:11
+<?php /* Smarty version 2.6.31, created on 2018-11-20 15:48:37
          compiled from appointments/add_appointment.tpl */ ?>
-<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'appointments/add_appointment.tpl', 8, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -10,16 +8,10 @@ unset($_smarty_tpl_vars);
 
 <div id="content" class="publicWrap">
 
-
-
-	<!-- <?php echo $_SERVER['REQUEST_URI']; ?>
-  -->
-	<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['doctor'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
-  -->
-	<!-- <?php echo $this->_tpl_vars['unavail']; ?>
- -->
 <input type="hidden" name="" value="<?php echo $this->_tpl_vars['exist_appoint']; ?>
 " id="exist_appoint">
+<input type="hidden" name="" value="<?php echo $this->_tpl_vars['appointmentFull']; ?>
+" id="appointmentFull">
 	<?php if (isset ( $this->_tpl_vars['printslip'] ) && $this->_tpl_vars['printslip']): ?>
 	<div class="appoint_Wrap"> 
 
@@ -149,6 +141,8 @@ unset($_smarty_tpl_vars);
 " id="doc_phne">
 			<input type="hidden" name="u_id" value="<?php echo $_GET['doc_id']; ?>
 " id="id"> 
+			<input type="hidden" name="package_id" id="package_id" class="package_id form-control" value="<?php echo $_GET['pkgId']; ?>
+"/>
 			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
 " id="unavail"> 
 			<input type="hidden" name="p_id" value="" id="" placeholder="For Condition true(input for condition only)"> 
@@ -247,6 +241,7 @@ add-appointment/<?php echo $_GET['doc_id']; ?>
 &doc_phne=<?php echo $_GET['doc_phne']; ?>
 &img=<?php echo $_GET['img']; ?>
 &speciallist=<?php echo $_GET['speciallist']; ?>
+&pkgId=<?php echo $_GET['pkgId']; ?>
 " class="btn btn-primary">New Patient</a>
 			</div>
 		</div>
@@ -280,6 +275,8 @@ add-appointment/<?php echo $_GET['doc_id']; ?>
 " id="doc_adr">
 			<input type="hidden" name="doc_phne" value="<?php echo $_GET['doc_phne']; ?>
 " id="doc_phne">
+			<input type="hidden" name="package_id" value="<?php echo $_GET['pkgId']; ?>
+" id="package_id">
 			<input type="hidden" name="u_id" value="<?php echo $this->_tpl_vars['id']; ?>
 " id="id"> 
 			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
@@ -365,7 +362,7 @@ add-appointment/<?php echo $_GET['doc_id']; ?>
 						<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['city']):
 ?>
-						<option <?php if ($this->_tpl_vars['data']['city_id'] == $this->_tpl_vars['city']['id']): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['city']['id']; ?>
+						<option <?php if ($this->_tpl_vars['data']['city'] == $this->_tpl_vars['city']['id']): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['city']['id']; ?>
 "><?php echo $this->_tpl_vars['city']['name']; ?>
 </option>
 						<?php endforeach; endif; unset($_from); ?>						
@@ -538,6 +535,17 @@ $(document).on(\'click\', \'.ui-datepicker-prev\', function () {
 		if ($(\'#exist_appoint\').val()) {
 			
 			alert($(\'#exist_appoint\').val());
+		}else{
+
+			$(\'#exist_appoint\').val(\'\');
+		}
+
+		if ($(\'#appointmentFull\').val()) {
+			
+			alert($(\'#appointmentFull\').val());
+		}else{
+			
+			$(\'#appointmentFull\').val(\'\');
 		}
 
 		$("#printPrescription").click(function(){
@@ -548,10 +556,10 @@ $(document).on(\'click\', \'.ui-datepicker-prev\', function () {
 		$("#dt").attr("readonly","readonly");
 
 		if ($(\'#res_error\').val()) {
-			debugger
+			//debugger
 			var responseArray = "";
 			$.each($(\'#res_error\').val().split(\',\'),function(k,val){
-				debugger
+				//debugger
 				responseArray += "<li style=\'color:red;\'><i class=\'fa fa-times errordialog_x\' aria-hidden=\'true\' style=\'padding-right:10px;\'></i>"+val+"</li>";
 			})
 			$(\'.alertWrap\').html("<ul class=\'responseDialog\' style=\'list-style: none;padding: 0px;font-size: 14px;\'>"+responseArray+"</ul>") ;    
@@ -573,7 +581,7 @@ $(document).on(\'click\', \'.ui-datepicker-prev\', function () {
 		var toDate=  $(\'#to\').val().split(\',\');
 		var today = new Date();
 		var doc_id= $(\'#id\').val();
-		debugger
+		//debugger
 		var selected_Date="";
 		var count="";
 		//$(\'#dt\').trigger(\'click\');
@@ -622,7 +630,7 @@ $(document).on(\'click\', \'.ui-datepicker-prev\', function () {
 					selected_Date=$(\'.dt\').val();
 					$(\'.dateInput\').val(selected_Date);
 					var dayOfWeek = weekday[date.getUTCDay()];
-					debugger
+					//debugger
   // dayOfWeek is then a string containing the day of the week
   $.ajax({
   	type: "POST",
@@ -632,12 +640,12 @@ add-appointment/add?ajax=y<?php echo '",
   	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
   	success: function(msg) 
   	{
-  		debugger
+  		//debugger
   		$(\'#hour\').timepicker(\'remove\');
   		
   		$(\'#hour\').hide();
   		var timDiv= $(\'.timeWrap\').addClass(\'ShowTimingBlock\')
-  		debugger
+  		//debugger
   		var time_st="";
   		var time_end="";
   		if (msg!="") {
@@ -682,7 +690,7 @@ add-appointment/add?appoint=y<?php echo '",
                   	data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
                   	success: function(msg) 
                   	{
-                  		debugger
+                  		//debugger
                   		$(\'#ap_number\').val(+msg + +1);
 
                   		if (msg >count) {

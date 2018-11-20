@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-10-16 00:38:14
+<?php /* Smarty version 2.6.31, created on 2018-11-20 15:39:18
          compiled from appointments/list_appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'appointments/list_appointments.tpl', 80, false),array('function', 'cycle', 'appointments/list_appointments.tpl', 104, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/list_appointments.tpl', 103, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -102,8 +102,6 @@ unset($_smarty_tpl_vars);
 		</div>
 	</div>
 	<?php else: ?>
-	 <?php echo ((is_array($_tmp=$this->_tpl_vars['pat_detials'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
-
 	<div class="row app_btns">
 		<div class="col-sm-10"></div>
 		<div class="col-sm-2 common-bottom" >
@@ -113,6 +111,9 @@ doc-appointments/?doc_id=<?php echo $this->_tpl_vars['doc']['id']; ?>
  <?php echo $this->_tpl_vars['doc']['L_name']; ?>
  &doc_adr=<?php echo $this->_tpl_vars['doc']['c_address']; ?>
 &doc_phne=<?php echo $this->_tpl_vars['doc']['phone']; ?>
+&img=<?php echo $this->_tpl_vars['doc']['profile_img']; ?>
+&speciallist=<?php echo $this->_tpl_vars['doc']['specialist']; ?>
+&pkgId=<?php echo $this->_tpl_vars['doc']['package_id']; ?>
 &exist=patient" class="btn btn-primary">Get Appointment</a>
 		</div>
 	</div>

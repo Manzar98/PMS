@@ -3,6 +3,8 @@
 $appointment= new Appointment;
 $Work_days= new Work_days;
 $patient = new Patient;
+$users = new User;
+$package = new Package;
 if ($_POST && isset($_GET['ajax'])) {
 
 
@@ -158,21 +160,50 @@ $errorMsgs=implode(",",$responseArray);
 if ($is_check==true) {
 
   if (!$appointment->existAppointment($data)) {
-    
+
+   if($isExist = $users->checkDoctorConsumptionExist($data["id"])){
+
+     $existCount=$isExist['online_appointment_count'];
+
+     $count = $package->getColumnCount($_POST['package_id'],"no_of_online_appointments");
+     $onlineCount= $count['no_of_online_appointments'];
+
+     if ($existCount != $onlineCount) {
+
+      $users->updateColumnCount($data["id"],"online_appointment_count",$existCount+1);
+      $appointment->getAppoint($data,$data['pat_id']);
+  // redirect_to(BASE_URL.'appointments/');
+      $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$data['pat_id']);
+          //  $patient->sendPasswordInEmail($emailArray);
+      $smarty->assign('cities', get_cities());
+      $smarty->assign("printslip",@$data);
+
+    }else{
+
+      $smarty->assign('appointmentFull', "You Can't book the appointment. Because No of appointments is full against this Doctor.");
+      
+    }
+
+  }else{
+
+   $users->addColumnCount($data["id"],"online_appointment_count",'1');
+
    $appointment->getAppoint($data,$data['pat_id']);
-   
   // redirect_to(BASE_URL.'appointments/');
    $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$data['pat_id']);
-           // $patient->sendPasswordInEmail($emailArray);
+          //  $patient->sendPasswordInEmail($emailArray);
    $smarty->assign('cities', get_cities());
    $smarty->assign("printslip",@$data);
- }else{
+ }
+
+
+
+}else{
 
   $exist_appoint="Appointment is already exists against this patient";
   $smarty->assign("exist_appoint",@$exist_appoint);
 
 }
-
 
 }else{
   $smarty->assign("res_error",@$errorMsgs);
@@ -287,19 +318,54 @@ if (empty($_POST['email'])) {
 $errorMsgs=implode(",",$responseArray);
 
 if ($is_check==true) {
-     # code...
-  if ($patient->AddPatBasic($data)) {
-    $pat_id= $db->insert_id;
-    $appointment->getAppoint($data,$pat_id);
-    $data['pat_id'] = $pat_id;
+
+  if($isExist = $users->checkDoctorConsumptionExist($data["id"])){
+
+   $existCount=$isExist['online_appointment_count'];
+
+   $count = $package->getColumnCount($_POST['package_id'],"no_of_online_appointments");
+   $onlineCount= $count['no_of_online_appointments'];
+
+   if ($existCount != $onlineCount) {
+
+    $users->updateColumnCount($data["id"],"online_appointment_count",$existCount+1);
+    if ($patient->AddPatBasic($data)) {
+      $pat_id= $db->insert_id;
+      $appointment->getAppoint($data,$pat_id);
+      $data['pat_id'] = $pat_id;
                // redirect_to(BASE_URL.'appointments/');
-    $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
+      $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
           // $patient->sendPasswordInEmail($emailArray);
 
-    $smarty->assign("printslip",@$data);
-    $smarty->assign('cities', get_cities());
+      $smarty->assign("printslip",@$data);
+      $smarty->assign('cities', get_cities());
+
+    }
+
+  }else{
+
+    $smarty->assign('appointmentFull', "You Can't book the appointment. Because No of appointments is full against this Doctor.");
 
   }
+
+}else{
+
+ $users->addColumnCount($data["id"],"online_appointment_count",'1');
+
+ if ($patient->AddPatBasic($data)) {
+  $pat_id= $db->insert_id;
+  $appointment->getAppoint($data,$pat_id);
+  $data['pat_id'] = $pat_id;
+               // redirect_to(BASE_URL.'appointments/');
+  $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
+          // $patient->sendPasswordInEmail($emailArray);
+
+  $smarty->assign("printslip",@$data);
+  $smarty->assign('cities', get_cities());
+
+}
+
+}
 
 }else{
 

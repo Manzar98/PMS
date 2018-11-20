@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-14 17:42:06
+<?php /* Smarty version 2.6.31, created on 2018-11-16 19:55:14
          compiled from patients/add_patient.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -89,7 +89,7 @@ basic.croppie(\'bind\',{
 //         });
 // debugger;
          $(\'#croppieImg\').on(\'click\', function (ev) {
-         	debugger
+         	//debugger
         	basic.croppie(\'result\', {
          		type: \'canvas\',
          		size: \'viewport\'
@@ -110,7 +110,7 @@ patients/add?img=y<?php echo '",
          				html = \'<img src="\' + resp + \'" />\';
          				$("#upload-demo-i").html(html);
          				$(\'#profile_img\').val(data);
-                    debugger;
+                    //debugger;
          			}
          		});
          	});

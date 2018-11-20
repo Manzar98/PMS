@@ -3,6 +3,7 @@
 <div id="content" class="publicWrap">
 
 <input type="hidden" name="" value="{$exist_appoint}" id="exist_appoint">
+<input type="hidden" name="" value="{$appointmentFull}" id="appointmentFull">
 	{if isset($printslip) && $printslip}
 	<div class="appoint_Wrap"> 
 
@@ -106,6 +107,7 @@
 			<input type="hidden" name="doc_adr" value="{$smarty.get.doc_adr}" id="doc_adr">
 			<input type="hidden" name="doc_phne" value="{$smarty.get.doc_phne}" id="doc_phne">
 			<input type="hidden" name="u_id" value="{$smarty.get.doc_id}" id="id"> 
+			<input type="hidden" name="package_id" id="package_id" class="package_id form-control" value="{$smarty.get.pkgId}"/>
 			<input type="hidden" name="" value="{$unavail}" id="unavail"> 
 			<input type="hidden" name="p_id" value="" id="" placeholder="For Condition true(input for condition only)"> 
 			<input type="hidden" name="" value="{$from}" id="from"> 
@@ -179,7 +181,7 @@
 				<input type="submit" class="btn btn-primary" value="Search" />
 			</div>
 			<div class="" style="padding-top: 24px;">
-				<a href="{$BASE_URL_ADMIN}add-appointment/{$smarty.get.doc_id}?doc_name={$smarty.get.doc_name}&doc_adr={$smarty.get.doc_adr}&doc_phne={$smarty.get.doc_phne}&img={$smarty.get.img}&speciallist={$smarty.get.speciallist}" class="btn btn-primary">New Patient</a>
+				<a href="{$BASE_URL_ADMIN}add-appointment/{$smarty.get.doc_id}?doc_name={$smarty.get.doc_name}&doc_adr={$smarty.get.doc_adr}&doc_phne={$smarty.get.doc_phne}&img={$smarty.get.img}&speciallist={$smarty.get.speciallist}&pkgId={$smarty.get.pkgId}" class="btn btn-primary">New Patient</a>
 			</div>
 		</div>
 	</form>
@@ -203,6 +205,7 @@
 			<input type="hidden" name="doc_name" value="{$smarty.get.doc_name}" id="doc_name">
 			<input type="hidden" name="doc_adr" value="{$smarty.get.doc_adr}" id="doc_adr">
 			<input type="hidden" name="doc_phne" value="{$smarty.get.doc_phne}" id="doc_phne">
+			<input type="hidden" name="package_id" value="{$smarty.get.pkgId}" id="package_id">
 			<input type="hidden" name="u_id" value="{$id}" id="id"> 
 			<input type="hidden" name="" value="{$unavail}" id="unavail"> 
 			<input type="hidden" name="" value="{$from}" id="from"> 
@@ -449,6 +452,17 @@ $(document).on('click', '.ui-datepicker-prev', function () {
 		if ($('#exist_appoint').val()) {
 			
 			alert($('#exist_appoint').val());
+		}else{
+
+			$('#exist_appoint').val('');
+		}
+
+		if ($('#appointmentFull').val()) {
+			
+			alert($('#appointmentFull').val());
+		}else{
+			
+			$('#appointmentFull').val('');
 		}
 
 		$("#printPrescription").click(function(){

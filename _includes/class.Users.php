@@ -24,7 +24,7 @@ Class User
 			   "'.md5($data["password"]).'",
 			   "'.$data["specialist"].'",
 			   "'.$data['package_id'].'" )';
-			   echo $sql;
+			  // echo $sql;
 	   return $db->Execute($sql);
   }
 
@@ -142,6 +142,32 @@ function ReactivateUser($id)
 		$sql= 'UPDATE '.DB_PREFIX.'admin SET
 			is_delete="off"
 			WHERE id='.$id;
+
+			return $db->Execute($sql);
+	}
+
+	function checkDoctorConsumptionExist($user_id){
+
+		global $db;
+		$sql = 'SELECT * FROM '.DB_PREFIX.'doctor_consumption WHERE user_id='.$user_id;
+
+		return $db->QueryRow($sql);
+	}
+
+	function addColumnCount($user_id,$colName,$colVal){
+
+		global $db;
+		$sql = 'INSERT INTO '.DB_PREFIX.'doctor_consumption(user_id,'.$colName.')VALUES("'.$user_id.'","'.$colVal.'")';
+		//echo $sql;
+		return $db->Execute($sql);
+	}
+
+	function updateColumnCount($user_id,$colName,$colVal){
+
+       global $db;
+       $sql= 'UPDATE '.DB_PREFIX.'doctor_consumption SET
+			'.$colName.'="'.$colVal.'"
+			WHERE user_id='.$user_id;
 
 			return $db->Execute($sql);
 	}

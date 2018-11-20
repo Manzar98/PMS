@@ -80,7 +80,7 @@
 	<div class="row app_btns">
 		<div class="col-sm-10"></div>
 		<div class="col-sm-2 common-bottom" >
-			<a href="{$BASE_URL_ADMIN}doc-appointments/?doc_id={$doc.id}&doc_name={$doc.F_name} {$doc.L_name} &doc_adr={$doc.c_address}&doc_phne={$doc.phone}&exist=patient" class="btn btn-primary">Get Appointment</a>
+			<a href="{$BASE_URL_ADMIN}doc-appointments/?doc_id={$doc.id}&doc_name={$doc.F_name} {$doc.L_name} &doc_adr={$doc.c_address}&doc_phne={$doc.phone}&img={$doc.profile_img}&speciallist={$doc.specialist}&exist=patient" class="btn btn-primary">Get Appointment</a>
 		</div>
 	</div>
 

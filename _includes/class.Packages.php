@@ -55,5 +55,14 @@ Class Package
 		return $db->Execute($sql);
 	}
 
+	function getColumnCount($pkg_id,$col){
+
+		global $db;
+		$sql='SELECT '.$col.' FROM '.DB_PREFIX.'packages where id='.$pkg_id;
+		//echo $sql;
+		return $db->QueryRow($sql);
+
+	}
+
 }
 ?>
