@@ -15,7 +15,6 @@ if ($_POST) {
 	$data['no_of_prescriptions']= $_POST['no_of_prescriptions'];
 	$data['no_of_medicines']= $_POST['no_of_medicines'];
 	$data['no_of_tests']= $_POST['no_of_tests'];
-	$data['no_of_instructions']= $_POST['no_of_instructions'];
 	$data['no_of_online_appointments']= $_POST['no_of_online_appointments'];
 	$data['pkg_price']= $_POST['pkg_price'];
 

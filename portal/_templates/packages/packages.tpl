@@ -72,9 +72,6 @@
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4 common-bottom">
-			<span><b>No Of Instructions : </b><span>{$singleRecord.no_of_instructions}</span></span>
-		</div>
-		<div class="col-sm-4 common-bottom">
 			<span><b>No Of Online Appointments : </b><span>{$singleRecord.no_of_online_appointments}</span></span>
 		</div>
 	</div>

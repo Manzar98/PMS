@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 14:47:48
+<?php /* Smarty version 2.6.31, created on 2018-11-20 19:53:34
          compiled from packages/add_package.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -43,17 +43,12 @@ unset($_smarty_tpl_vars);
 "<?php endif; ?>/>
 				</div>
 				<div class="col-sm-4 common-bottom">
-					<label>Number Of Instructions</label>
-					<input type="number" name="no_of_instructions" id="no_of_instructions" class="form-control" <?php if (( isset ( $this->_tpl_vars['singleRecord'] ) && $this->_tpl_vars['singleRecord']['no_of_instructions'] )): ?>value="<?php echo $this->_tpl_vars['singleRecord']['no_of_instructions']; ?>
-"<?php endif; ?>/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 common-bottom">
 					<label>Number Of Online Appointments</label>
 					<input type="number" name="no_of_online_appointments" id="no_of_online_appointments" class="form-control" <?php if (( isset ( $this->_tpl_vars['singleRecord'] ) && $this->_tpl_vars['singleRecord']['no_of_online_appointments'] )): ?>value="<?php echo $this->_tpl_vars['singleRecord']['no_of_online_appointments']; ?>
 "<?php endif; ?>/>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-sm-4 common-bottom">
 					<label>Package Price</label>
 					<input type="text" name="pkg_price" id="pkg_price"class="form-control" <?php if (( isset ( $this->_tpl_vars['singleRecord'] ) && $this->_tpl_vars['singleRecord']['pkg_price'] )): ?>value="<?php echo $this->_tpl_vars['singleRecord']['pkg_price']; ?>

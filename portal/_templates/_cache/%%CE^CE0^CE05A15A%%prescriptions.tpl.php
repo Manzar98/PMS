@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-13 12:53:05
+<?php /* Smarty version 2.6.31, created on 2018-11-20 16:01:11
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 72, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 115, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 137, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 134, false),)), $this); ?>
@@ -104,8 +104,7 @@ prescriptions/" method="get" enctype="multipart/form-data">
 				</div>
 				
 			</div>
-			<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['grouped_prescriptions'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
- -->
+
 			<?php if (( ! isset ( $this->_tpl_vars['grouped_prescriptions'] ) && ! $this->_tpl_vars['grouped_prescriptions'] )): ?>
 			<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
 			<?php endif; ?>
@@ -217,11 +216,8 @@ _templates/img/bin.png" alt="Delete" /></a>
 			<?php echo $this->_tpl_vars['pages']; ?>
 
 		</div>
-		
-		
-		
-		
-		<?php elseif (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] )): ?>
+	
+	<?php elseif (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] )): ?>
 
 		<div id="prescription_info">
 			<div class="row">
@@ -350,9 +346,6 @@ _templates/img/bin.png" alt="Delete" /></a>
 					</div>
 				</div>
 			</div>
-			
-			
-			
 			<p id="fee"> Fee Received : <strong><?php echo $this->_tpl_vars['data']['fee_received']; ?>
 </strong>    </p>
 			<p class="noprint">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
@@ -363,10 +356,8 @@ _templates/img/bin.png" alt="Delete" /></a>
 	<br />
 	
 	<br />
-	
-	
-	
-	<?php else: ?>
+
+<?php else: ?>
 	
 	<p class="box-info">No Prescription on the List</p>
 	

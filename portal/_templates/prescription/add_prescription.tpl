@@ -302,7 +302,13 @@
 					success:function(msg){
 
 						var data =JSON.parse(msg);
-						
+						if (data==="You Can't create the test. Because No of tests is full.") {
+
+							alert(data);
+							$("#add_test_wrap").hide();
+							$("#add_test_wrap .empty-inpt").val('');
+						}else{
+
 						var dropdown = "";
 						dropdown+='<option class="topOpt" value="" selected disabled>Select Test</option>';
 						$.each(data.ids,function(k,v){
@@ -339,7 +345,7 @@
 						{
 							alert('Some Error Occured');
 						}
-
+                      }
 					}
 				})
 			}
@@ -399,6 +405,14 @@
                     allowClear: true
                 });
 
+		if ($('#prescriptionFull').val()) {
+           
+            alert($('#prescriptionFull').val());
+		}else{
+
+          $('#prescriptionFull').val('')
+		}
+
 	});
 function generateRandomNumber(){
 
@@ -422,6 +436,7 @@ function generateRandomNumber(){
 			{/foreach}
 		</div>
 		{/if}
+		<input type="hidden" name="" id="prescriptionFull" value="{$prescriptionFull}">
 		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="get" enctype="multipart/form-data">
 
 			<fieldset >

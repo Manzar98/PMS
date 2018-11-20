@@ -1,13 +1,18 @@
 <?php
-  
-  $patient = new Patient;
-  $instruction = new Instruction;
-  $test = new Test;
-  $medicine = new Medicine;
-  $prescription = new Prescription;
-  if($id==="suggest-patients")
-  {
-  	if($_POST)
+
+$patient = new Patient;
+$instruction = new Instruction;
+$test = new Test;
+$medicine = new Medicine;
+$prescripttestion = new Prescription;
+$users = new User;
+$package = new Package;
+
+// echo $_SESSION['SelectedPkgId'];
+
+if($id==="suggest-patients")
+{
+	if($_POST)
 	{
 		$data['q'] = $_POST['q'];
 		$data['field'] = $_POST['field'];
@@ -22,33 +27,33 @@
 		<table  class="table table-striped table-bordered">
 		<caption>Patient List</caption>
 		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Mobile</th>
-			</tr>
+		<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Mobile</th>
+		</tr>
 		</thead>
 		<tbody>';
 		foreach($patient_list as $p)
 		{
 			echo '	<tr class="{cycle values=\'odd,even\'}">
-						<td width="45">'.$p['patient_id'].'</td>
-						<td><a href="javascript:void(0)" onclick="SelectPatient(\''.$p['patient_id'].'\',\''.$p['patient_name'].'\')"> '.$p['patient_name'].' </a></td>
-						<td width="100">'.$p['mobile'].'</td>
-					</tr>';
-					
-				
+			<td width="45">'.$p['patient_id'].'</td>
+			<td><a href="javascript:void(0)" onclick="SelectPatient(\''.$p['patient_id'].'\',\''.$p['patient_name'].'\')"> '.$p['patient_name'].' </a></td>
+			<td width="100">'.$p['mobile'].'</td>
+			</tr>';
+
+
 		}
 		echo '</tbody></table>';
 		exit;
 
 	}
-  }
-  elseif ($id==="get-medicine-instructions") {
-      if($_POST)
-	  {
-	  	$_POST = escape($_POST);
-	  	$id = $_POST['medicine_id'];
+}
+elseif ($id==="get-medicine-instructions") {
+	if($_POST)
+	{
+		$_POST = escape($_POST);
+		$id = $_POST['medicine_id'];
 		if($id==="")
 		{
 			$instructions = $instruction->GetInstructionsWithoutMedicine(); 
@@ -62,13 +67,13 @@
 			echo '<option value="'.$ins["id"].'">'.$ins["instruction"].'</option>';
 		}		
 		exit;
-	  }
-  }
-  elseif ($id==="get-test-options") {
-      if($_POST)
-	  {
-	  	$_POST = escape($_POST);
-	  	$id = $_POST['test_id'];
+	}
+}
+elseif ($id==="get-test-options") {
+	if($_POST)
+	{
+		$_POST = escape($_POST);
+		$id = $_POST['test_id'];
 		$test_options = $test->GetTestOptions($id);
 		
 		foreach($test_options as $option)
@@ -76,8 +81,8 @@
 			echo '<option value="'.$option["id"].'">'.$option["name"].' ('.$option["measurement"].') Normal Range -> ('.$option["normal_range"].')</option>';
 		}		
 		exit;
-	  }
-  }
+	}
+}
 elseif($id==="add-instruction")
 {
 	if($_POST)
@@ -88,7 +93,7 @@ elseif($id==="add-instruction")
 		$data = escape($data);
 		if($instruction->AddInstruction($data))
 		{
-		    echo $db->insert_id;
+			echo $db->insert_id;
 		}
 		exit;
 	}
@@ -104,15 +109,15 @@ elseif($id==="add-patient")
 		$data['security_key'] = $_POST['security_key'];
 		$data['email'] = $_POST['email'];
 		$data['userId'] = $_SESSION['AdminId'];
-		
+		$data['package_id'] = $_SESSION['SelectedPkgId'];
 		$data = escape($data);
 		if($patient->AddPatientBasic($data))
 		{
-			 echo $db->insert_id;
-			 $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
+			echo $db->insert_id;
+			$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
 			 // print_r($emailArray);
-           $patient->sendPasswordInEmail($emailArray);
-           
+			$patient->sendPasswordInEmail($emailArray);
+
 		}
 		exit;
 	}
@@ -129,6 +134,7 @@ if($_POST)
 	$data['next_date'] = $_POST['next_date'];
 	$data['userId'] = $_SESSION['AdminId'];
 	$data['security_key'] = $_POST['security_key'];
+	$data['package_id'] = $_SESSION['SelectedPkgId'];
 	if(isset($_POST['instructions'])){
 		$data['instructions'] = $_POST['instructions'];
 	}
@@ -142,30 +148,70 @@ if($_POST)
 	
 	if(empty($errors))
 	{
-		if($prescription->AddPrescription($data))
-		{
-			$data['prescription_id'] = $db->insert_id;
-			
-			if($prescription->AddPrescriptionInstructions($data) || $prescription->AddPrescriptionTests($data))
-			{
-			 redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
+
+		if($isExist = $users->checkDoctorConsumptionExist($data["userId"])){
+
+			$existCount=$isExist['prescription_count'];
+			$count = $package->getColumnCount("5","no_of_prescriptions");
+			$onlineCount= $count['no_of_prescriptions'];
+
+			if ($existCount != $onlineCount) {
+
+				$users->updateColumnCount($data["userId"],"prescription_count",$existCount+1);
+
+				if($prescription->AddPrescription($data))
+				{
+					$data['prescription_id'] = $db->insert_id;
+
+					if($prescription->AddPrescriptionInstructions($data) || $prescription->AddPrescriptionTests($data))
+					{
+						redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
+					}else{
+
+						redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
+					}
+
+				}else {
+					$errors['error'] = "Some Error Occured";
+				}
+
 			}else{
 
-				redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
+				$smarty->assign('prescriptionFull', "You Can't create the prescription. Because No of prescriptions is full.");
+
 			}
-			
-		}else {
+
+		}else{
+
+			$users->addColumnCount($data["userId"],"prescription_count",'1');
+			if($prescription->AddPrescription($data))
+			{
+				$data['prescription_id'] = $db->insert_id;
+
+				if($prescription->AddPrescriptionInstructions($data) || $prescription->AddPrescriptionTests($data))
+				{
+					redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
+				}else{
+
+					redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
+				}
+
+			}else {
 				$errors['error'] = "Some Error Occured";
 			}
+
+		}
+
+
 	}
 	
 	
 }
-  
-  $smarty->assign("medicines",$medicine->GetMedicine());
-  $test_list = $test->GetTestsBasic();
-  $smarty->assign("test_list",$test_list);
-  $smarty->assign('cities', get_cities());
-  
-  $template = "prescription/add_prescription.tpl";
+
+$smarty->assign("medicines",$medicine->GetMedicine());
+$test_list = $test->GetTestsBasic();
+$smarty->assign("test_list",$test_list);
+$smarty->assign('cities', get_cities());
+
+$template = "prescription/add_prescription.tpl";
 ?>

@@ -30,15 +30,11 @@
 					<input type="number" name="no_of_tests" id="no_of_tests" class="form-control" {if (isset($singleRecord) && $singleRecord.no_of_tests)}value="{$singleRecord.no_of_tests}"{/if}/>
 				</div>
 				<div class="col-sm-4 common-bottom">
-					<label>Number Of Instructions</label>
-					<input type="number" name="no_of_instructions" id="no_of_instructions" class="form-control" {if (isset($singleRecord) && $singleRecord.no_of_instructions)}value="{$singleRecord.no_of_instructions}"{/if}/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 common-bottom">
 					<label>Number Of Online Appointments</label>
 					<input type="number" name="no_of_online_appointments" id="no_of_online_appointments" class="form-control" {if (isset($singleRecord) && $singleRecord.no_of_online_appointments)}value="{$singleRecord.no_of_online_appointments}"{/if}/>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-sm-4 common-bottom">
 					<label>Package Price</label>
 					<input type="text" name="pkg_price" id="pkg_price"class="form-control" {if (isset($singleRecord) && $singleRecord.pkg_price)}value="{$singleRecord.pkg_price}"{/if}/>

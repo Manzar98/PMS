@@ -13,13 +13,12 @@ Class Package
 			no_of_prescriptions="'.$data['no_of_prescriptions'].'",
 			no_of_medicines="'.$data['no_of_medicines'].'",
 			no_of_tests="'.$data['no_of_tests'].'",
-			no_of_instructions="'.$data['no_of_instructions'].'",
 			no_of_online_appointments="'.$data['no_of_online_appointments'].'",
 			pkg_price="'.$data['pkg_price'].'" WHERE id='.$data['id'];
 
 		}else{
 
-			$sql ='INSERT INTO '.DB_PREFIX.'packages(pkg_name,no_of_patients,no_of_prescriptions,no_of_medicines,no_of_tests,no_of_instructions,no_of_online_appointments,pkg_price,created_on)VALUES("'.$data['pkg_name'].'","'.$data['no_of_patients'].'","'.$data['no_of_prescriptions'].'","'.$data['no_of_medicines'].'","'.$data['no_of_tests'].'","'.$data['no_of_instructions'].'","'.$data['no_of_online_appointments'].'","'.$data['pkg_price'].'",NOW())';
+			$sql ='INSERT INTO '.DB_PREFIX.'packages(pkg_name,no_of_patients,no_of_prescriptions,no_of_medicines,no_of_tests,no_of_online_appointments,pkg_price,created_on)VALUES("'.$data['pkg_name'].'","'.$data['no_of_patients'].'","'.$data['no_of_prescriptions'].'","'.$data['no_of_medicines'].'","'.$data['no_of_tests'].'","'.$data['no_of_online_appointments'].'","'.$data['pkg_price'].'",NOW())';
 
 		}
   //echo $sql;

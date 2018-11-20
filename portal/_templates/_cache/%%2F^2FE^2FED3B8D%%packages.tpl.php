@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 16:21:59
+<?php /* Smarty version 2.6.31, created on 2018-11-20 19:54:42
          compiled from packages/packages.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 20, false),)), $this); ?>
@@ -104,10 +104,6 @@ add-package/edit/<?php echo $this->_tpl_vars['singleRecord']['id']; ?>
 	</div>
 	<div class="row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
-			<span><b>No Of Instructions : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_instructions']; ?>
-</span></span>
-		</div>
 		<div class="col-sm-4 common-bottom">
 			<span><b>No Of Online Appointments : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_online_appointments']; ?>
 </span></span>

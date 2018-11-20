@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-14 16:47:34
+<?php /* Smarty version 2.6.31, created on 2018-11-20 18:26:50
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -97,8 +97,8 @@ add-prescription/get-test-options/<?php echo '",
 
 	function SelectPatient(thisValue,thisName)
 	{
-		 console.log(thisValue);
-		debugger
+		 //console.log(thisValue);
+		//debugger
 		if(thisValue)
 		{
 			$("#patient_id").val(thisValue);
@@ -167,7 +167,7 @@ add-prescription/add-instruction/<?php echo '",
 							$("#custom_instruction").val(\'\');
 
 							$("#instructions td .close").on("click", function(){
-						debugger
+						//debugger
 						$(this).parents(\'tr\').remove();
 					});
 
@@ -184,7 +184,7 @@ add-prescription/add-instruction/<?php echo '",
 					$("#instructions tbody").append(instruction);
 					// debugger;
 					$("#instructions td .close").on("click", function(){
-						debugger
+						//debugger
 						$(this).parents(\'tr\').remove();
 					});
 				}
@@ -258,7 +258,7 @@ add-prescription/add-instruction/<?php echo '",
 medicine/add?ajax=y<?php echo '",
 					data:"name="+medicine_name+"&formula="+medicine_formula+"&type="+medicine_type+"&dose="+medicine_dose+"&company="+medicine_company,
 					success:function(msg){
-						debugger
+						//debugger
 						var data =JSON.parse(msg);
 						
 						var dropdown = "";
@@ -266,7 +266,7 @@ medicine/add?ajax=y<?php echo '",
 						$.each(data.id,function(k,v){
                              console.log(v);
 
-                             debugger
+                             //debugger
                              dropdown+=\'<option value="\'+v+\'">\'+data.medi[k]+\'</option>\';   
                          })
 						
@@ -328,7 +328,13 @@ tests/add/?ajax=y<?php echo '",
 					success:function(msg){
 
 						var data =JSON.parse(msg);
-						
+						if (data==="You Can\'t create the test. Because No of tests is full.") {
+
+							alert(data);
+							$("#add_test_wrap").hide();
+							$("#add_test_wrap .empty-inpt").val(\'\');
+						}else{
+
 						var dropdown = "";
 						dropdown+=\'<option class="topOpt" value="" selected disabled>Select Test</option>\';
 						$.each(data.ids,function(k,v){
@@ -367,7 +373,7 @@ test-options/add/"+data.insertedId+"?ajax=y<?php echo '",
 						{
 							alert(\'Some Error Occured\');
 						}
-
+                      }
 					}
 				})
 			}
@@ -394,7 +400,7 @@ add-prescription/add-patient/<?php echo '",
 					data: "name="+patient_name+"&mobile_number="+mobile_number+"&city_id="+city+"&security_key="+s_key+"&email="+email,
 					success: function(msg) 
 					{
-                          debugger
+                         // debugger
 						if(msg>0)
 						{
 							$(\'#patient_id\').val(msg);
@@ -429,6 +435,14 @@ add-prescription/add-patient/<?php echo '",
                     allowClear: true
                 });
 
+		if ($(\'#prescriptionFull\').val()) {
+           
+            alert($(\'#prescriptionFull\').val());
+		}else{
+
+          $(\'#prescriptionFull\').val(\'\')
+		}
+
 	});
 function generateRandomNumber(){
 
@@ -456,8 +470,8 @@ function generateRandomNumber(){
 			<?php endforeach; endif; unset($_from); ?>
 		</div>
 		<?php endif; ?>
-		<?php echo $_SERVER['REQUEST_URI']; ?>
-
+		<input type="hidden" name="" id="prescriptionFull" value="<?php echo $this->_tpl_vars['prescriptionFull']; ?>
+">
 		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="get" enctype="multipart/form-data">
 
@@ -624,8 +638,6 @@ function generateRandomNumber(){
 						</div>
 					</div>
 				</div>
-
-
 				<table style="clear:both;display: none;" id="instructions" class="zebra">
 					<caption>Medicine Instructions</caption>
 					<thead>

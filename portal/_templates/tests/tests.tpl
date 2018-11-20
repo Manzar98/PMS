@@ -13,7 +13,7 @@
 			{/foreach}
 		</div>
 		{/if}
-
+		<input type="hidden" name="" id="testsFull" value="{$testsFull}">
 		<form id="add_test" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 
 			<fieldset>
@@ -87,6 +87,13 @@
 				name: { required: true }
 			}
 		});
+
+		if ($('#testsFull').val()) {
+			
+			alert($('#testsFull').val());
+		}else{
+			$('#testsFull').val('');
+		}
 	});
 </script>
 {/literal}

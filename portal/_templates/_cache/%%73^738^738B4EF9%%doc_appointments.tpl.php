@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-20 15:55:54
+<?php /* Smarty version 2.6.31, created on 2018-11-20 18:55:17
          compiled from appointments/doc_appointments.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -233,7 +233,6 @@ doc-appointments/<?php echo $_GET['doc_id']; ?>
 		</div>
 	</form>
 	<?php else: ?>
-
 	<div class="alertWrap" title="Errors"></div>
 	<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">

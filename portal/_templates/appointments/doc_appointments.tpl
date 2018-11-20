@@ -176,7 +176,6 @@
 		</div>
 	</form>
 	{else}
-
 	<div class="alertWrap" title="Errors"></div>
 	<form id="add_user" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 		<fieldset>

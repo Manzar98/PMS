@@ -12,13 +12,14 @@
  		global $db;
 		$md5password = md5($password);
 		$sql = 'SELECT id,usertype,package_id FROM '.DB_PREFIX.'admin WHERE username="'.$username.'" AND password="'.$md5password.'"';
+		//echo $sql;
 		$result = $db->query($sql);
 		$row = $result->fetch_assoc();
 		if (!empty($row))
 		{
 			$this->userId = $row['id'];
 			$this->userType = $row['usertype'];
-			$this->selectedPackage = $row['package_id'];
+			$this->selectedPkgId = $row['package_id'];
 			return true;
 		}
 		return false;
@@ -34,7 +35,7 @@
  	}
  	public function getSelectedPkg()
  	{
- 		return $this->selectedPackage;
+ 		return $this->selectedPkgId;
  	}
  }
 ?>
