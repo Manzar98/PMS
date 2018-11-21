@@ -3,7 +3,7 @@
 $test = new Test;
 $users = new User;
 $package = new Package;
-
+// echo $_SESSION['selectedPkgId'];
 if($id==='edit')
 {
 	$smarty->assign('data',$test->GetTestBasicDetails($extra));
@@ -23,6 +23,7 @@ if ($_POST && isset($_GET['ajax'])) {
 	$data = array();
 	$data['name'] = $_POST['name'];
 	$data["userId"]= $_SESSION['AdminId'];
+	$data['package_id']= $_SESSION['selectedPkgId'];
 	if($data['name']=='')
 	{
 		$errors['name'] = 'Please Enter Name';
@@ -32,13 +33,13 @@ if ($_POST && isset($_GET['ajax'])) {
 	{
 		if($isExist = $users->checkDoctorConsumptionExist($data["userId"])){
 
-			$existCount=$isExist['test_count'];
-			$count = $package->getColumnCount("5","no_of_tests");
-			$onlineCount= $count['no_of_tests'];
+			$consumptionCount=$isExist['test_count'];
+			$count = $package->getColumnCount($data['package_id'],"no_of_tests");
+			$pkgCount= $count['no_of_tests'];
 
-			if ($existCount != $onlineCount) {
+			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
 
-				$users->updateColumnCount($data["userId"],"test_count",$existCount+1);
+				$users->updateColumnCount($data["userId"],"test_count",$consumptionCount+1);
 
 				if($id==='add' && $test->AddTest($data))
 				{
@@ -79,6 +80,7 @@ elseif($_POST)
 	$data = array();
 	$data['name'] = $_POST['name'];
 	$data["userId"]= $_SESSION['AdminId'];
+	$data['package_id']= $_SESSION['selectedPkgId'];
 	if($data['name']=='')
 	{
 		$errors['name'] = 'Please Enter Name';
@@ -88,11 +90,11 @@ elseif($_POST)
 	{
       		if($isExist = $users->checkDoctorConsumptionExist($data["userId"])){
 
-			$existCount=$isExist['test_count'];
-			$count = $package->getColumnCount("5","no_of_tests");
-			$onlineCount= $count['no_of_tests'];
+			$consumptionCount=$isExist['test_count'];
+			$count = $package->getColumnCount($data['package_id'],"no_of_tests");
+			$pkgCount= $count['no_of_tests'];
 
-			if ($existCount != $onlineCount) {
+			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
 
 				$users->updateColumnCount($data["userId"],"test_count",$existCount+1);
 

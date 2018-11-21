@@ -8,7 +8,7 @@ $prescripttestion = new Prescription;
 $users = new User;
 $package = new Package;
 
-// echo $_SESSION['SelectedPkgId'];
+ // echo $_SESSION['selectedPkgId'];
 
 if($id==="suggest-patients")
 {
@@ -109,7 +109,7 @@ elseif($id==="add-patient")
 		$data['security_key'] = $_POST['security_key'];
 		$data['email'] = $_POST['email'];
 		$data['userId'] = $_SESSION['AdminId'];
-		$data['package_id'] = $_SESSION['SelectedPkgId'];
+		$data['package_id'] = $_SESSION['selectedPkgId'];
 		$data = escape($data);
 		if($patient->AddPatientBasic($data))
 		{
@@ -134,7 +134,7 @@ if($_POST)
 	$data['next_date'] = $_POST['next_date'];
 	$data['userId'] = $_SESSION['AdminId'];
 	$data['security_key'] = $_POST['security_key'];
-	$data['package_id'] = $_SESSION['SelectedPkgId'];
+	$data['package_id'] = $_SESSION['selectedPkgId'];
 	if(isset($_POST['instructions'])){
 		$data['instructions'] = $_POST['instructions'];
 	}
@@ -151,11 +151,11 @@ if($_POST)
 
 		if($isExist = $users->checkDoctorConsumptionExist($data["userId"])){
 
-			$existCount=$isExist['prescription_count'];
-			$count = $package->getColumnCount("5","no_of_prescriptions");
-			$onlineCount= $count['no_of_prescriptions'];
+			$consumptionCount=$isExist['prescription_count'];
+			$count = $package->getColumnCount($data['package_id'],"no_of_prescriptions");
+			$pkgCount= $count['no_of_prescriptions'];
 
-			if ($existCount != $onlineCount) {
+			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
 
 				$users->updateColumnCount($data["userId"],"prescription_count",$existCount+1);
 
@@ -199,7 +199,6 @@ if($_POST)
 			}else {
 				$errors['error'] = "Some Error Occured";
 			}
-
 		}
 
 

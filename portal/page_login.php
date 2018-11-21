@@ -33,7 +33,7 @@
 				{
 					$_SESSION['AdminId'] = $admin->getId();
 					$_SESSION['UserType'] = $admin ->getType();
-				//	$_SESSION['selectedPkgId'] = $admin->getSelectedPkg();
+			        $_SESSION['selectedPkgId'] = $admin->getSelectedPkg();
 
 					 redirect_to(BASE_URL.'home/');
 					

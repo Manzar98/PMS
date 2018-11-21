@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-14 17:40:06
+<?php /* Smarty version 2.6.31, created on 2018-11-21 15:52:48
          compiled from prescription/edit_prescription.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 289, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 493, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 491, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -95,7 +95,7 @@ edit-prescription/remove-instruction/<?php echo '",
 			data: "id=" + id,
 			success: function(msg) 
 			{
-				debugger;
+				// debugger;
 				if(msg==\'1\')
 				{
 					$(element).parents(\'tr\').remove();
@@ -153,10 +153,10 @@ edit-prescription/remove-test-option/<?php echo '",
 			var instruction_name = $(".medicine_instruction :selected").text();
 
 			var custom_instruction = $("#custom_instruction").val();
-       debugger
+      // debugger
 			if(custom_instruction!="")
 			{
-debugger
+//debugger
 				$.ajax({
 					type: "POST",
 					url: "'; ?>
@@ -166,13 +166,14 @@ add-prescription/add-instruction/<?php echo '",
 					success: function(msg) 
 					{
 						console.log(msg);
-                       debugger
+                    //  debugger
 						if(parseInt(msg)>0)
 						{
 							instruction_id = msg;
 						}
 						var instruction_data = \'<input type="hidden" name="instructions[\'+medicine_count+\'][medicine_id]" value="\' + medicine_id + \'"/> <input type="hidden" name="instructions[\'+medicine_count+\'][instruction_id]" value="\'+ instruction_id+\'"  /><input type="hidden" name="instructions[\'+medicine_count+\'][is_instructionChange]" value="true"  /> \';
-						var instruction =\'<tr> <td>\' + medicine_name + \'</td><td>\' + custom_instruction + \'</td> <td><span class="close">X</span></td>\'+instruction_data+\' </tr>\';					debugger;
+						var instruction =\'<tr> <td>\' + medicine_name + \'</td><td>\' + custom_instruction + \'</td> <td><span class="close">X</span></td>\'+instruction_data+\' </tr>\';					
+
 						$("#instructions").show();
 						$("#instructions table").append(instruction);
 						$("#custom_instruction").val(\'\');
@@ -278,7 +279,7 @@ add-prescription/add-patient/<?php echo '",
 			}
 		});
 
-				$("#medicine").select2({
+	    $("#medicine").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
@@ -318,9 +319,7 @@ add-prescription/add-patient/<?php echo '",
 			<?php endforeach; endif; unset($_from); ?>
 		</div>
 		<?php endif; ?>
-		<!-- <?php echo print_r($this->_tpl_vars['edit']); ?>
- -->
-
+		
 		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="get" enctype="multipart/form-data">
 			<fieldset >
@@ -374,7 +373,6 @@ add-prescription/add-patient/<?php echo '",
 						<div class="col-sm-3 common-top">
 							<label for="mobile_number">Phone</label>
 							<input type="text" class="form-control" name="mobile_number" id="mobile_number" />
-							
 						</div>
 						<div class="col-sm-3 common-top">
 							<label for="city">City</label>
@@ -403,7 +401,6 @@ add-prescription/add-patient/<?php echo '",
 			</fieldset>	
 
 			<div id="accordion">
-
 				<fieldset id="medicines">
 
 					<legend>Medicine</legend> 
@@ -451,8 +448,8 @@ add-prescription/add-patient/<?php echo '",
 							<?php $_from = $this->_tpl_vars['data']['instructions']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['ins']):
 ?>
-                             <?php echo $this->_tpl_vars['ins']['medicine_id']; ?>
-
+                            <!--  <?php echo $this->_tpl_vars['ins']['medicine_id']; ?>
+ -->
 							<tr>
 								<td><?php echo $this->_tpl_vars['ins']['name']; ?>
  (<?php echo $this->_tpl_vars['ins']['formula']; ?>
