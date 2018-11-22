@@ -2,6 +2,7 @@
 
 <div id="content" class="clientWrap">
 	<input type="hidden" name="" value="{$exist_appoint}" id="exist_appoint">
+	<input type="hidden" name="" value="{$appointmentFull}" id="appointmentFull">
 	{if isset($printslip) && $printslip}
 	<div class="appoint_Wrap"> 
 
@@ -121,13 +122,13 @@
 
 			</div>
 			<div class="row">
-			    <div class="col-sm-2"></div>
+				<div class="col-sm-2"></div>
 				<div class="col-sm-4">	
 					<div class="calendar_block">
 						<input type="hidden" name="dt" id="" class="dateInput" />
 						<div class="text-center datetimeHeading"> 
-					<span>Select Date</span>
-					</div>
+							<span>Select Date</span>
+						</div>
 						<div class="dt">
 							
 						</div>
@@ -137,11 +138,11 @@
 					<div class="hideHr">
 						
 						<div class="timeWrap">
-						  <div class="text-center timeHeading">
+							<div class="text-center timeHeading">
 								<span>Select Hour</span>
 							</div>
 						</div>
-					 <input type="text" name="hour"  class="form-control" id="hour"/>
+						<input type="text" name="hour"  class="form-control" id="hour"/>
 					</div>
 				</div>
 			</div>
@@ -204,26 +205,26 @@
 			<input type="hidden" name="" id="res_error" value="{$res_error}">
 			<input type="hidden" name="online_manual" id="online_manual" value="manual">
 			<div class="row" style="margin-top: 40px; margin-bottom: 20px;">
-			    <div class="col-sm-2"></div>
+				<div class="col-sm-2"></div>
 				<div class="col-sm-4">	
 					<div class="calendar_block">
 						<input type="hidden" name="dt" id="" class="dateInput" />
 						<div class="text-center datetimeHeading"> 
-					<span>Select Date</span>
-					</div>
+							<span>Select Date</span>
+						</div>
 						<div class="dt">	
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-4 common-bottom ">
 					<div class="hideHr">
-						 <div class="text-center timeHeading">
-								<span>Select Hour</span>
-							</div>
+						<div class="text-center timeHeading">
+							<span>Select Hour</span>
+						</div>
 						<div class="timeWrap">
 							<input type="text" name="hour"  class="form-control" id="hour"/>
 						</div>
-					 
+
 					</div>
 				</div>
 			</div>
@@ -306,11 +307,11 @@
 {literal}
 <style type="text/css">
 .datetimeHeading{
-      margin-bottom: 10px;
-    border: 1px solid #e0e0e0;
-    padding: 6px;
-    background-color: #e0e0e0;
-    color: #FFF;
+	margin-bottom: 10px;
+	border: 1px solid #e0e0e0;
+	padding: 6px;
+	background-color: #e0e0e0;
+	color: #FFF;
 }
 .container.doctorStyleCard{
 	margin:0 auto;
@@ -324,107 +325,107 @@
 	font-size: 14px;
 }
 .calendar_block {
-    box-shadow: 0 0 5px 5px #dcdcdc;
-    background-color:#f9f8f8;
-    border-radius: 5px;
-    /*float: left;*/
+	box-shadow: 0 0 5px 5px #dcdcdc;
+	background-color:#f9f8f8;
+	border-radius: 5px;
+	/*float: left;*/
 }
 
 .dt {
-    padding:20px;
+	padding:20px;
 }
 
 .dt .ui-widget-header {
-    border:none;
-    background:none;
+	border:none;
+	background:none;
 }
 
 .dt .ui-datepicker {
-    border: 3px solid #FF8800;
-    /*padding:10px 10px 10px;*/
+	border: 3px solid #FF8800;
+	/*padding:10px 10px 10px;*/
 }
 
 .dt .ui-corner-all {
-    border-radius:10px;
+	border-radius:10px;
 }
 
 .dt .ui-widget-content {
-    background: none;
+	background: none;
 }
 
 .dt .ui-datepicker-calendar {
-   color: #FF8800;
+	color: #FF8800;
 }
 .ui-icon{
-	 background-color: #FF8800;
-    border-radius: 9px;
+	background-color: #FF8800;
+	border-radius: 9px;
 }
 .dt .ui-state-hover {
-   background-color: #FF8800 !important;
-   color: #FFF !important;
-  /*// border-radius: 15px;*/
+	background-color: #FF8800 !important;
+	color: #FFF !important;
+	/*// border-radius: 15px;*/
 
 }
 /*.ui-datepicker-next-hover{
    background-color:#FFF !important;
 	border: none !important;
 	color: #f9f8f8 !important;
-}*/
-.dt .ui-datepicker-month, .ui-datepicker-year{
-	background-color:#fff !important;
-	border: none !important;
-	color: #FF8800 !important;
-}
+	}*/
+	.dt .ui-datepicker-month, .ui-datepicker-year{
+		background-color:#fff !important;
+		border: none !important;
+		color: #FF8800 !important;
+	}
 
-.dt .ui-state-default {
-    text-align:center;
-    background: none;
-    color: #FF8800;
-    width:35px !important;
-    padding:10px 0 10px 0;
-    /*border: none !important;*/
-    
-}
-.timeWrap.ShowTimingBlock div {
-    display: block !important;
-    position: relative !important;
-    top: -7 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+	.dt .ui-state-default {
+		text-align:center;
+		background: none;
+		color: #FF8800;
+		width:35px !important;
+		padding:10px 0 10px 0;
+		/*border: none !important;*/
 
-}
-.timeHeading{
-	
-    box-shadow: 0px 0 5px 5px #dcdcdc;
-    border-radius: 5px;
-    border: 1px solid #e0e0e0;
-    padding: 6px;
-    background-color: #e0e0e0;
-    color: #FFF;
-}
-span.select2.select2-container.select2-container--default {
-    width: 340px !important;
-}
+	}
+	.timeWrap.ShowTimingBlock div {
+		display: block !important;
+		position: relative !important;
+		top: -7 !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
 
- </style>
+	}
+	.timeHeading{
+
+		box-shadow: 0px 0 5px 5px #dcdcdc;
+		border-radius: 5px;
+		border: 1px solid #e0e0e0;
+		padding: 6px;
+		background-color: #e0e0e0;
+		color: #FFF;
+	}
+	span.select2.select2-container.select2-container--default {
+		width: 340px !important;
+	}
+
+</style>
 <script type="text/javascript">
 	$('.hideHr').hide();
 	$(document).ready(function()
 	{
-		  $("#city").select2({
+		$("#city").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
-		  $(document).on('click', '.ui-datepicker-next', function () {
-  $(".ui-datepicker-title>span").hide().show(300);
-  $(".ui-datepicker-calendar").hide('slide', { direction: 'right' }, 300).show('slide', { direction: 'left' }, 300)
-})
+		$(document).on('click', '.ui-datepicker-next', function () {
+			$(".ui-datepicker-title>span").hide().show(300);
+			$(".ui-datepicker-calendar").hide('slide', { direction: 'right' }, 300).show('slide', { direction: 'left' }, 300)
+		})
 
-$(document).on('click', '.ui-datepicker-prev', function () {
-  $(".ui-datepicker-title>span").hide().show(300);
-  $(".ui-datepicker-calendar").hide('slide', { direction: 'left' }, 300).show('slide', { direction: 'right' }, 300)
- })
+		$(document).on('click', '.ui-datepicker-prev', function () {
+			$(".ui-datepicker-title>span").hide().show(300);
+			$(".ui-datepicker-calendar").hide('slide', { direction: 'left' }, 300).show('slide', { direction: 'right' }, 300)
+		})
 
 		$("#check_patient").validate({
 			rules:{
@@ -441,13 +442,13 @@ $(document).on('click', '.ui-datepicker-prev', function () {
 			$('#exist_appoint').val('');
 		}else{
 			
-		$('#exist_appoint').val('');
-        }
+			$('#exist_appoint').val('');
+		}
 
 		if ($('#appointmentFull').val()) {
-			
-			alert($('#appointmentFull').val());
-
+			if(!alert($('#appointmentFull').val())){window.history.go(-1);}
+			// alert();
+			// location.reload();
 		}else{
 			
 			$('#appointmentFull').val('');
@@ -567,7 +568,7 @@ $(document).on('click', '.ui-datepicker-prev', function () {
   				maxTime:  time_end,
   				appendTo: timDiv
   			});
-     $('#hour').trigger('click');
+  			$('#hour').trigger('click');
   		}else{   
   			$('.hideHr').hide();
   			alert("Doctor is not available on the selected date.");

@@ -168,7 +168,7 @@ if ($is_check==true) {
      $count = $package->getColumnCount($_POST['package_id'],"no_of_online_appointments");
      $onlineCount= $count['no_of_online_appointments'];
 
-     if ($existCount != $onlineCount) {
+     if ($existCount < $onlineCount) {
 
       $users->updateColumnCount($data["id"],"online_appointment_count",$existCount+1);
       $appointment->getAppoint($data,$data['pat_id']);
@@ -321,37 +321,56 @@ if ($is_check==true) {
 
   if($isExist = $users->checkDoctorConsumptionExist($data["id"])){
 
-   $existCount=$isExist['online_appointment_count'];
+   $consumptionOnlineCount=$isExist['online_appointment_count'];
 
-   $count = $package->getColumnCount($_POST['package_id'],"no_of_online_appointments");
-   $onlineCount= $count['no_of_online_appointments'];
+   $consumptionPatientCount=$isExist['patient_count'];
 
-   if ($existCount != $onlineCount) {
+   $onlineCount = $package->getColumnCount($_POST['package_id'],"no_of_online_appointments");
+   $patientCount = $package->getColumnCount($_POST['package_id'],"no_of_patients");
 
-    $users->updateColumnCount($data["id"],"online_appointment_count",$existCount+1);
+   $pkgOnlineCount= $onlineCount['no_of_online_appointments'];
+   $pkgPatientCount= $patientCount['no_of_patients'];
+   //echo "consume online count".$consumptionOnlineCount."</br>";
+  // echo "pakage online count".$pkgOnlineCount."</br>";
+  // echo "consume package count".$consumptionPatientCount."</br>";
+  // echo "package  patient count".$pkgPatientCount."</br>";
+   if ($consumptionOnlineCount < $pkgOnlineCount && $consumptionPatientCount < $pkgPatientCount) {
+
+    // echo "reached";
+    $users->updateColumnCount($data["id"],"online_appointment_count",$consumptionOnlineCount+1);
+    $users->updateColumnCount($data["id"],"patient_count",$consumptionPatientCount+1);
     if ($patient->AddPatBasic($data)) {
-      $pat_id= $db->insert_id;
-      $appointment->getAppoint($data,$pat_id);
-      $data['pat_id'] = $pat_id;
-               // redirect_to(BASE_URL.'appointments/');
-      $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
+     $pat_id= $db->insert_id;
+     $appointment->getAppoint($data,$pat_id);
+     $data['pat_id'] = $pat_id;
+                // redirect_to(BASE_URL.'appointments/');
+     $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
           // $patient->sendPasswordInEmail($emailArray);
 
-      $smarty->assign("printslip",@$data);
-      $smarty->assign('cities', get_cities());
+     $smarty->assign("printslip",@$data);
+     $smarty->assign('cities', get_cities());
 
-    }
+   }
 
-  }else{
+ }else{
+  if ($consumptionOnlineCount == $pkgOnlineCount && $consumptionPatientCount == $pkgPatientCount ) {
 
-    $smarty->assign('appointmentFull', "You Can't book the appointment. Because No of appointments is full against this Doctor.");
+   $smarty->assign('appointmentFull', "You Can't book the appointment. Because No of appointments and patients is full against this Doctor.");
 
-  }
+ }elseif ($consumptionPatientCount == $pkgPatientCount){
+
+  $smarty->assign('appointmentFull', "You Can't register your self. Because No of patients is full against this Doctor.");
+}else{
+
+  $smarty->assign('appointmentFull', "You Can't book the appointment. Because No of appointments is full against this Doctor.");
+}
+
+}
 
 }else{
 
  $users->addColumnCount($data["id"],"online_appointment_count",'1');
-
+ $users->updateColumnCount($data["id"],"patient_count",0+1);
  if ($patient->AddPatBasic($data)) {
   $pat_id= $db->insert_id;
   $appointment->getAppoint($data,$pat_id);

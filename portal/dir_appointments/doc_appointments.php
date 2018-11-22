@@ -3,6 +3,8 @@
 $appointment= new Appointment;
 $Work_days= new Work_days;
 $patient = new Patient;
+$users = new User;
+$package = new Package;
 if ($_POST && isset($_GET['ajax'])) {
 
   $result=$Work_days->getTime($_POST['d_Str'],$_POST['doc_id']);
@@ -35,7 +37,7 @@ if ($_POST && isset($_GET['ajax'])) {
     
 
     if (!empty($_POST['p_id'])) {
-      
+
       if ($record=$patient->checkPatient($data)) {
 
         $data =$Work_days->GetDoctorTime($data['doc_id']);
@@ -157,8 +159,8 @@ $errorMsgs=implode(",",$responseArray);
 
 if ($is_check==true) {
 
-   if (!$appointment->existAppointment($data)) {
-    
+ if (!$appointment->existAppointment($data)) {
+
    $appointment->getAppoint($data,$data['pat_id']);
    
   // redirect_to(BASE_URL.'appointments/');
@@ -166,7 +168,7 @@ if ($is_check==true) {
            // $patient->sendPasswordInEmail($emailArray);
    $smarty->assign('cities', get_cities());
    $smarty->assign("printslip",@$data);
-  }else{
+ }else{
 
    $exist_appoint="Appointment for this patient already exists on this date.";
    $smarty->assign("exist_appoint",@$exist_appoint);
@@ -287,7 +289,38 @@ if (empty($_POST['email'])) {
 $errorMsgs=implode(",",$responseArray);
 
 if ($is_check==true) {
-     # code...
+
+ if($isExist = $users->checkDoctorConsumptionExist($data["id"])){
+
+   $consumptionPatientCount=$isExist['patient_count'];
+
+   $patientCount = $package->getColumnCount($_SESSION['selectedPkgId'],"no_of_patients");
+
+   $pkgPatientCount= $patientCount['no_of_patients'];
+
+   if ($consumptionPatientCount < $pkgPatientCount) {
+
+    $users->updateColumnCount($data["id"],"patient_count",$consumptionPatientCount+1);
+    if ($patient->AddPatBasic($data)) {
+      $pat_id= $db->insert_id;
+      $appointment->getAppoint($data,$pat_id);
+      $data['pat_id'] = $pat_id;
+               // redirect_to(BASE_URL.'appointments/');
+      $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
+          // $patient->sendPasswordInEmail($emailArray);
+      $smarty->assign("printslip",@$data);
+      $smarty->assign('cities', get_cities());
+
+    }
+
+  }else{
+
+    $smarty->assign('appointmentFull', "You Can't book the appointment. Because No of patients is full.");
+  }
+
+}else{
+
+  $users->addColumnCount($data["id"],"patient_count",'1');
   if ($patient->AddPatBasic($data)) {
     $pat_id= $db->insert_id;
     $appointment->getAppoint($data,$pat_id);
@@ -295,11 +328,13 @@ if ($is_check==true) {
                // redirect_to(BASE_URL.'appointments/');
     $emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
           // $patient->sendPasswordInEmail($emailArray);
-
     $smarty->assign("printslip",@$data);
     $smarty->assign('cities', get_cities());
 
   }
+
+}
+
 
 }else{
 

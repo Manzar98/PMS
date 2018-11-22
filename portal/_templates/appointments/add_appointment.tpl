@@ -459,7 +459,7 @@ $(document).on('click', '.ui-datepicker-prev', function () {
 
 		if ($('#appointmentFull').val()) {
 			
-			alert($('#appointmentFull').val());
+			if(!alert($('#appointmentFull').val())){window.history.go(-1);}
 		}else{
 			
 			$('#appointmentFull').val('');
