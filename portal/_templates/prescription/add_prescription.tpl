@@ -238,6 +238,12 @@
 					success:function(msg){
 						//debugger
 						var data =JSON.parse(msg);
+						if (data==="You Can't add the medicine. Because No of medicine is full.") {
+
+							alert(data);
+							$("#add_medicine_wrap").hide();
+							$("#add_medicine_wrap .empty-inpt").val('');
+						}else{
 						
 						var dropdown = "";
 						dropdown+='<option class="topOpt" value="" selected disabled>Select Medicine First</option>';
@@ -280,7 +286,7 @@
 						{
 							alert('Some Error Occured');
 						}
-
+                       }
 					}
 				})
 			}

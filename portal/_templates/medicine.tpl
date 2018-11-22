@@ -17,6 +17,12 @@
 	 $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
+
+	 if ($('#medicineFull').val()) {
+          alert($('#medicineFull').val());
+	 }else{
+           $('#medicineFull').val('');
+	 }
 })
 </script>
 {/literal}
@@ -24,7 +30,7 @@
 	<div class="container-fluid">
 
 		{if isset($add)}
-		
+		<input type="hidden" name="" id="medicineFull" value="{$medicineFull}">
 		<form class="box" action="{$smarty.server.REQUEST_URI}" method="post" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Add Medicine</legend>

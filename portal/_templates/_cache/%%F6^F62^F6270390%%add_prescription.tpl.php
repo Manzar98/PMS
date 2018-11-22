@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-20 18:26:50
+<?php /* Smarty version 2.6.31, created on 2018-11-21 16:11:01
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -260,6 +260,12 @@ medicine/add?ajax=y<?php echo '",
 					success:function(msg){
 						//debugger
 						var data =JSON.parse(msg);
+						if (data==="You Can\'t add the medicine. Because No of medicine is full.") {
+
+							alert(data);
+							$("#add_medicine_wrap").hide();
+							$("#add_medicine_wrap .empty-inpt").val(\'\');
+						}else{
 						
 						var dropdown = "";
 						dropdown+=\'<option class="topOpt" value="" selected disabled>Select Medicine First</option>\';
@@ -304,7 +310,7 @@ instructions/add?ajax=y<?php echo '",
 						{
 							alert(\'Some Error Occured\');
 						}
-
+                       }
 					}
 				})
 			}

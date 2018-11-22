@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-09-14 15:14:37
+<?php /* Smarty version 2.6.31, created on 2018-11-21 16:11:41
          compiled from medicine.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 127, false),array('function', 'cycle', 'medicine.tpl', 147, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 133, false),array('function', 'cycle', 'medicine.tpl', 153, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -25,6 +25,12 @@ unset($_smarty_tpl_vars);
 	 $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent(\'div\').remove(); x--;
     })
+
+	 if ($(\'#medicineFull\').val()) {
+          alert($(\'#medicineFull\').val());
+	 }else{
+           $(\'#medicineFull\').val(\'\');
+	 }
 })
 </script>
 '; ?>
@@ -33,7 +39,8 @@ unset($_smarty_tpl_vars);
 	<div class="container-fluid">
 
 		<?php if (isset ( $this->_tpl_vars['add'] )): ?>
-		
+		<input type="hidden" name="" id="medicineFull" value="<?php echo $this->_tpl_vars['medicineFull']; ?>
+">
 		<form class="box" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post" enctype="multipart/form-data">
 			<fieldset>
