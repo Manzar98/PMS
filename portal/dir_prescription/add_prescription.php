@@ -117,7 +117,7 @@ elseif($id==="add-patient")
 			$count = $package->getColumnCount($data['package_id'],"no_of_patients");
 			$pkgCount= $count['no_of_patients'];
 
-			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
+			if ($consumptionCount < $pkgCount) {
 
 				$users->updateColumnCount($data["userId"],"patient_count",$existCount+1);
 
@@ -138,6 +138,7 @@ elseif($id==="add-patient")
 			exit;
 		}else{
 
+       $users->addColumnCount($data["userId"],"patient_count",'1');
 			if($patient->AddPatientBasic($data))
 			{
 				echo $db->insert_id;
@@ -183,7 +184,7 @@ if($_POST)
 			$count = $package->getColumnCount($data['package_id'],"no_of_prescriptions");
 			$pkgCount= $count['no_of_prescriptions'];
 
-			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
+			if ($consumptionCount < $pkgCount) {
 
 				$users->updateColumnCount($data["userId"],"prescription_count",$existCount+1);
 

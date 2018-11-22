@@ -37,7 +37,7 @@ if ($_POST && isset($_GET['ajax'])) {
 			$count = $package->getColumnCount($data['package_id'],"no_of_tests");
 			$pkgCount= $count['no_of_tests'];
 
-			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
+			if ($consumptionCount < $pkgCount) {
 
 				$users->updateColumnCount($data["userId"],"test_count",$consumptionCount+1);
 
@@ -88,42 +88,42 @@ elseif($_POST)
 	
 	if(empty($errors))
 	{
-      		if($isExist = $users->checkDoctorConsumptionExist($data["userId"])){
+		if($isExist = $users->checkDoctorConsumptionExist($data["userId"])){
 
 			$consumptionCount=$isExist['test_count'];
 			$count = $package->getColumnCount($data['package_id'],"no_of_tests");
 			$pkgCount= $count['no_of_tests'];
 
-			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
+			if ($consumptionCount < $pkgCount) {
 
 				$users->updateColumnCount($data["userId"],"test_count",$existCount+1);
 
-if($id==='add' && $test->AddTest($data))
-		{
-			redirect_to(BASE_URL.'test-options/'.$db->insert_id);
-		}
-		elseif($id==="edit" && $test->UpdateTest($data,$extra))
-		{
-			redirect_to(BASE_URL.'tests/');
-		}
+				if($id==='add' && $test->AddTest($data))
+				{
+					redirect_to(BASE_URL.'test-options/'.$db->insert_id);
+				}
+				elseif($id==="edit" && $test->UpdateTest($data,$extra))
+				{
+					redirect_to(BASE_URL.'tests/');
+				}
 
 			}else{
 
 				$smarty->assign('testsFull',"You Can't create the test. Because No of tests is full.");
-                   
+				
 			}
 
 		}else{
 
 			$users->addColumnCount($data["userId"],"test_count",'1');
 			if($id==='add' && $test->AddTest($data))
-		{
-			redirect_to(BASE_URL.'test-options/'.$db->insert_id);
-		}
-		elseif($id==="edit" && $test->UpdateTest($data,$extra))
-		{
-			redirect_to(BASE_URL.'tests/');
-		}
+			{
+				redirect_to(BASE_URL.'test-options/'.$db->insert_id);
+			}
+			elseif($id==="edit" && $test->UpdateTest($data,$extra))
+			{
+				redirect_to(BASE_URL.'tests/');
+			}
 
 		}
 

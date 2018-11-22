@@ -47,7 +47,7 @@ if ($_POST && isset($_GET['ajax']))
 			$count = $package->getColumnCount($data['package_id'],"no_of_medicines");
 			$pkgCount= $count['no_of_medicines'];
 
-			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
+			if ($consumptionCount < $pkgCount) {
 
 				$users->updateColumnCount($data["userId"],"medicine_count",$consumptionCount+1);
 
@@ -115,7 +115,7 @@ elseif($_POST)
 			$count = $package->getColumnCount($data['package_id'],"no_of_medicines");
 			$pkgCount= $count['no_of_medicines'];
 
-			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
+			if ($consumptionCount < $pkgCount) {
 
 				$users->updateColumnCount($data["userId"],"medicine_count",$consumptionCount+1);
 
