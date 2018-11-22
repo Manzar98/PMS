@@ -111,15 +111,43 @@ elseif($id==="add-patient")
 		$data['userId'] = $_SESSION['AdminId'];
 		$data['package_id'] = $_SESSION['selectedPkgId'];
 		$data = escape($data);
-		if($patient->AddPatientBasic($data))
-		{
-			echo $db->insert_id;
-			$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
-			 // print_r($emailArray);
-			$patient->sendPasswordInEmail($emailArray);
+		if($isExist = $users->checkDoctorConsumptionExist($data["userId"])){
 
+			$consumptionCount=$isExist['patient_count'];
+			$count = $package->getColumnCount($data['package_id'],"no_of_patients");
+			$pkgCount= $count['no_of_patients'];
+
+			if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
+
+				$users->updateColumnCount($data["userId"],"patient_count",$existCount+1);
+
+				if($patient->AddPatientBasic($data))
+				{
+					echo $db->insert_id;
+					$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
+			 // print_r($emailArray);
+			//$patient->sendPasswordInEmail($emailArray);
+
+				}
+				exit;
+
+			}else{
+
+				echo "You Can't add the patient. Because No of patients is full.";
+			}
+			exit;
+		}else{
+
+			if($patient->AddPatientBasic($data))
+			{
+				echo $db->insert_id;
+				$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
+			 // print_r($emailArray);
+			//$patient->sendPasswordInEmail($emailArray);
+
+			}
+			exit;
 		}
-		exit;
 	}
 }
 

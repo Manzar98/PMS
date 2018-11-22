@@ -112,6 +112,13 @@ basic.croppie('bind',{
                     // placeholder: "Select a State",
                     allowClear: true
                 });
+
+                if ($('#patientFull').val()) {
+                      alert($('#patientFull').val());
+                }else{
+
+                    $('#patientFull').val('');
+                }
     });
 function generateRandomNumber(){
 
@@ -136,7 +143,7 @@ function generateRandomNumber(){
 			{/foreach}
 		</div>
 		{/if}
-		
+	<input type="hidden" name="" id="patientFull" value="{$patientFull}">
 		<form id="add_patient" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 			<fieldset>
 				<legend>Add Patient Info</legend>

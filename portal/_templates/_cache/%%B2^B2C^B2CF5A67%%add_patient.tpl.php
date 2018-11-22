@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 19:55:14
+<?php /* Smarty version 2.6.31, created on 2018-11-22 12:40:11
          compiled from patients/add_patient.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -120,6 +120,13 @@ patients/add?img=y<?php echo '",
                     // placeholder: "Select a State",
                     allowClear: true
                 });
+
+                if ($(\'#patientFull\').val()) {
+                      alert($(\'#patientFull\').val());
+                }else{
+
+                    $(\'#patientFull\').val(\'\');
+                }
     });
 function generateRandomNumber(){
 
@@ -148,7 +155,8 @@ function generateRandomNumber(){
 			<?php endforeach; endif; unset($_from); ?>
 		</div>
 		<?php endif; ?>
-		
+	<input type="hidden" name="" id="patientFull" value="<?php echo $this->_tpl_vars['patientFull']; ?>
+">
 		<form id="add_patient" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
 			<fieldset>

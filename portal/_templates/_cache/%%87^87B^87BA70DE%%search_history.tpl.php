@@ -1,16 +1,13 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 14:17:54
+<?php /* Smarty version 2.6.31, created on 2018-11-22 13:02:18
          compiled from appointments/search_history.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/search_history.tpl', 20, false),array('modifier', 'default', 'appointments/search_history.tpl', 23, false),array('modifier', 'date_format', 'appointments/search_history.tpl', 24, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/search_history.tpl', 18, false),array('modifier', 'default', 'appointments/search_history.tpl', 21, false),array('modifier', 'date_format', 'appointments/search_history.tpl', 22, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 <div id="content" class="publicWrap">
-
-	<?php echo $this->_tpl_vars['record']; ?>
-
 	<?php if (isset ( $this->_tpl_vars['record'] )): ?>
 
 	<table class="table table-striped table-bordered" >
@@ -207,11 +204,11 @@ _templates/img/eye.png" alt="View" /></a>
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<label for="dt" class="">Patient Id</label>
-				<input type="text" name="p_id" id="" class="form-control" />
+				<input type="text" name="p_id" id="" class="form-control" required="" />
 			</div>
 			<div class="col-sm-4">
 				<label for="dt" class="">Security Key</label>
-				<input type="text" name="key" id="" class="form-control" />
+				<input type="text" name="key" id="" class="form-control" required=""/>
 			</div>
 			<div class="col-sm-1" style="padding-top: 24px;">
 				<input type="submit" class="btn btn-primary" value="Search" />

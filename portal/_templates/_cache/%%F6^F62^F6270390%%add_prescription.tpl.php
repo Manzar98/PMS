@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-21 16:11:01
+<?php /* Smarty version 2.6.31, created on 2018-11-22 12:58:45
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -406,8 +406,11 @@ add-prescription/add-patient/<?php echo '",
 					data: "name="+patient_name+"&mobile_number="+mobile_number+"&city_id="+city+"&security_key="+s_key+"&email="+email,
 					success: function(msg) 
 					{
-                         // debugger
-						if(msg>0)
+                        if (msg=="You Can\'t add the patient. Because No of patients is full.") {
+
+                        	alert(msg);
+
+                        }else if(msg>0)
 						{
 							$(\'#patient_id\').val(msg);
 							$(\'#patient_name\').val(patient_name);

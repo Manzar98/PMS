@@ -376,8 +376,11 @@
 					data: "name="+patient_name+"&mobile_number="+mobile_number+"&city_id="+city+"&security_key="+s_key+"&email="+email,
 					success: function(msg) 
 					{
-                         // debugger
-						if(msg>0)
+                        if (msg=="You Can't add the patient. Because No of patients is full.") {
+
+                        	alert(msg);
+
+                        }else if(msg>0)
 						{
 							$('#patient_id').val(msg);
 							$('#patient_name').val(patient_name);

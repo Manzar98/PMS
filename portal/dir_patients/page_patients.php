@@ -2,7 +2,8 @@
 
 $patient = new Patient;
 $prescription = new Prescription;
-
+$users = new User;
+$package = new Package;
 if($id==="delete")
 {
 	
@@ -82,6 +83,7 @@ else if($_POST)
 	$data["field2"] = $_POST["field2"];
 	$data["value2"] = $_POST["value2"];
 	$data["userId"] = $_SESSION['AdminId'];
+	$data["package_id"] = $_SESSION['selectedPkgId'];
 	$data['profile_img'] = $_POST['profile_img'];
 	
 	$data = escape($data);
@@ -96,16 +98,46 @@ else if($_POST)
 		//echo $id;
 		if($id=='add')
 		{
-			if($patient->AddPatient($data))
-			{
-				
-				$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
-				$patient->sendPasswordInEmail($emailArray);
-				redirect_to(BASE_URL.'patients/add');
+			if($isExist = $users->checkDoctorConsumptionExist($data["userId"])){
+
+				$consumptionCount=$isExist['patient_count'];
+				$count = $package->getColumnCount($data['package_id'],"no_of_patients");
+				$pkgCount= $count['no_of_patients'];
+
+				if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
+
+					$users->updateColumnCount($data["userId"],"patient_count",$existCount+1);
+
+					if($patient->AddPatient($data))
+					{
+						$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
+						$patient->sendPasswordInEmail($emailArray);
+						redirect_to(BASE_URL.'patients/add');
+					}
+					else {
+						$errors["error"] = "Some error occurred, Please Try again";
+					}
+
+				}else{
+
+					$smarty->assign('patientFull', "You Can't add the patient. Because No of patients is full.");
+
+				}
+
+			}else{
+
+				$users->addColumnCount($data["userId"],"patient_count",'1');
+				if($patient->AddPatient($data))
+				{
+					$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
+					$patient->sendPasswordInEmail($emailArray);
+					redirect_to(BASE_URL.'patients/add');
+				}
+				else {
+					$errors["error"] = "Some error occurred, Please Try again";
+				}
 			}
-			else {
-				$errors["error"] = "Some error occurred, Please Try again";
-			}
+
 		}
 		if($id=='edit')
 		{
