@@ -83,29 +83,7 @@ elseif($id==="add-instruction")
 		}
 		exit;
 	}
-}
-elseif($id==="add-patient")
-{
-	if($_POST)
-	{
-		
-		$data["name"] = $_POST['name'];
-		$data['mobile'] = $_POST['mobile_number'];
-		$data['city_id'] = $_POST['city_id'];
-		$data['security_key'] = $_POST['security_key'];
-		$data['email'] = $_POST['email'];
-		
-		$data = escape($data);
-		if($patient->AddPatientBasic($data))
-		{
-			echo $db->insert_id;
-			$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
-          $patient->sendPasswordInEmail($emailArray);
-		}
-		exit;
-	}
-}
-elseif($id==="remove-instruction")
+}elseif($id==="remove-instruction")
 {
 	if($_POST)
 	{

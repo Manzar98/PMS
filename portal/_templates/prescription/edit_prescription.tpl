@@ -209,48 +209,7 @@ $("#instructions").find('.close').on("click", function(){
 
 
 		});
-
-
-		$("#add_patient").click(function(){
-			$("#add_new_patient").toggle();
-		});
-
-
-		$("#submit_patient").click(function(){
-
-			patient_name = $("#name").val();
-			mobile_number = $("#mobile_number").val();
-			city = $("#city").val();
-			var	s_key = $("#security_key").val();
-			var	email = $("#email").val();
-
-
-			if(patient_name !="" && mobile_number !="")
-			{
-				$.ajax({
-					type: "POST",
-					url: "{/literal}{$BASE_URL_ADMIN}add-prescription/add-patient/{literal}",
-					data: "name="+patient_name+"&mobile_number="+mobile_number+"&city_id="+city+"&security_key="+s_key+"&email="+email,
-					success: function(msg) 
-					{
-						if(msg>0)
-						{
-							$('#patient_id').val(msg);
-							$("#add_new_patient").hide();
-						}
-						else
-						{
-							alert('Some Error Occured');
-						}
-					}
-				});
-			}
-			else
-			{
-				alert("please Enter name and phone");
-			}
-		});
-
+		
 	    $("#medicine").select2({
                     // placeholder: "Select a State",
                     allowClear: true
@@ -320,44 +279,8 @@ $("#instructions").find('.close').on("click", function(){
 						<label for="patient_id">Patient Id</label>
 						<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" {if (isset($data) && $data.patient_id)}value="{$data.patient_id}"{/if} />
 					</div>
-
-					<div class="col-sm-2 addNewBtn">
-						<a id="add_patient" href="javascript:void(0)">Add New Patient</a>
-					</div>
 				</div>
 
-				<div class="row">
-					<div id="add_new_patient" style="display: none; clear:both;">
-						<input type="hidden" name="security_key" id="security_key">
-						<div class="col-sm-3 common-top">
-							<label for="name">Name</label>
-							<input type="text" class="input-field form-control" id="name" name="name"/>
-							
-						</div>
-						<div class="col-sm-3 common-top">
-							<label for="mobile_number">Phone</label>
-							<input type="text" class="form-control" name="mobile_number" id="mobile_number" />
-						</div>
-						<div class="col-sm-3 common-top">
-							<label for="city">City</label>
-							<select name="city" id="city" class="form-control">
-								{foreach from=$cities item=city}
-
-								<option {if (isset($data) && $data.city_id==$city.id)} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
-
-								{/foreach}						
-							</select>
-						</div>
-						<div class="col-sm-2 common-top">
-							<label for="email">Email Address</label>
-							<input type="email" name="email"
-							id="email" class="form-control">
-						</div>
-						<div class="col-sm-1 addUp_btn">
-							<input type="button"  class="btn btn-primary" id="submit_patient" value="Add" />
-						</div>				
-					</div>
-				</div>
 			</fieldset>	
 
 			<div id="accordion">

@@ -35,7 +35,12 @@ else if($_POST)
 	$data['mobile'] = $_POST['mobile'];
 	$data['phone'] = $_POST['phone'];
 	$data['specialist'] = $_POST['specialist'];
-	$data['package_id']=$_POST['package_id'];
+
+	if (isset($_POST['package_id'])) {
+
+		$data['package_id']=$_POST['package_id'];
+	}
+	
 	if (isset($_POST['profile_img'])) {
 
 		$data['profile_img'] = $_POST['profile_img'];
@@ -64,17 +69,16 @@ else if($_POST)
 	{     
 		// echo "enter here";
 
-		if($users->updateUser($data))
-		{
 			// print_r($getId);
 			if (isset($_SESSION['UserType']) && $_SESSION['UserType']=='S_admin') {
+				$users->updateUser($data);
 				redirect_to(BASE_URL.'users/');
 			}else{
-
+                
+                $users->updateOwnProfile($data);
 				redirect_to(BASE_URL.'users/view/'.$_SESSION['AdminId'].'/');
-			 
 		}
-			}
+			
 	}	
 }
 elseif($id>0)

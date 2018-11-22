@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-21 15:52:48
+<?php /* Smarty version 2.6.31, created on 2018-11-22 17:08:53
          compiled from prescription/edit_prescription.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 491, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 414, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -235,50 +235,7 @@ $("#instructions").find(\'.close\').on("click", function(){
 
 
 		});
-
-
-		$("#add_patient").click(function(){
-			$("#add_new_patient").toggle();
-		});
-
-
-		$("#submit_patient").click(function(){
-
-			patient_name = $("#name").val();
-			mobile_number = $("#mobile_number").val();
-			city = $("#city").val();
-			var	s_key = $("#security_key").val();
-			var	email = $("#email").val();
-
-
-			if(patient_name !="" && mobile_number !="")
-			{
-				$.ajax({
-					type: "POST",
-					url: "'; ?>
-<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-add-prescription/add-patient/<?php echo '",
-					data: "name="+patient_name+"&mobile_number="+mobile_number+"&city_id="+city+"&security_key="+s_key+"&email="+email,
-					success: function(msg) 
-					{
-						if(msg>0)
-						{
-							$(\'#patient_id\').val(msg);
-							$("#add_new_patient").hide();
-						}
-						else
-						{
-							alert(\'Some Error Occured\');
-						}
-					}
-				});
-			}
-			else
-			{
-				alert("please Enter name and phone");
-			}
-		});
-
+		
 	    $("#medicine").select2({
                     // placeholder: "Select a State",
                     allowClear: true
@@ -356,48 +313,8 @@ add-prescription/add-patient/<?php echo '",
 						<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['patient_id'] )): ?>value="<?php echo $this->_tpl_vars['data']['patient_id']; ?>
 "<?php endif; ?> />
 					</div>
-
-					<div class="col-sm-2 addNewBtn">
-						<a id="add_patient" href="javascript:void(0)">Add New Patient</a>
-					</div>
 				</div>
 
-				<div class="row">
-					<div id="add_new_patient" style="display: none; clear:both;">
-						<input type="hidden" name="security_key" id="security_key">
-						<div class="col-sm-3 common-top">
-							<label for="name">Name</label>
-							<input type="text" class="input-field form-control" id="name" name="name"/>
-							
-						</div>
-						<div class="col-sm-3 common-top">
-							<label for="mobile_number">Phone</label>
-							<input type="text" class="form-control" name="mobile_number" id="mobile_number" />
-						</div>
-						<div class="col-sm-3 common-top">
-							<label for="city">City</label>
-							<select name="city" id="city" class="form-control">
-								<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['city']):
-?>
-
-								<option <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['city_id'] == $this->_tpl_vars['city']['id'] )): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['city']['id']; ?>
-"><?php echo $this->_tpl_vars['city']['name']; ?>
-</option>
-
-								<?php endforeach; endif; unset($_from); ?>						
-							</select>
-						</div>
-						<div class="col-sm-2 common-top">
-							<label for="email">Email Address</label>
-							<input type="email" name="email"
-							id="email" class="form-control">
-						</div>
-						<div class="col-sm-1 addUp_btn">
-							<input type="button"  class="btn btn-primary" id="submit_patient" value="Add" />
-						</div>				
-					</div>
-				</div>
 			</fieldset>	
 
 			<div id="accordion">

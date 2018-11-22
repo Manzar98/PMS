@@ -82,8 +82,6 @@ Class User
 
 	function updateUser($data)
 	{
-
-
 		global $db;
 
 		if (!empty($data['profile_img'])) {
@@ -117,6 +115,46 @@ Class User
 			phone="'.$data["phone"].'",
 			specialist="'.$data['specialist'].'",
 			package_id="'.$data['package_id'].'",
+			expire="'.$data['expire'].'"
+			WHERE id='.$data['id'];
+		}
+		
+        // echo $sql;
+			return $db->Execute($sql);
+	}
+		function updateOwnProfile($data)
+	{
+		global $db;
+
+		if (!empty($data['profile_img'])) {
+			$sql= 'UPDATE '.DB_PREFIX.'admin SET
+			username="'.$data['name'].'",
+			email="'.$data['email'].'",
+			F_name="'.$data["F_name"].'",
+			L_name="'.$data["L_name"].'",
+			city="'.$data["city"].'",
+			c_address="'.$data["c_address"].'",
+			quali="'.$data["quali"].'",
+			exprience="'.$data["exprience"].'",
+			mobile="'.$data["mobile"].'",
+			phone="'.$data["phone"].'",
+			profile_img="'.$data['profile_img'].'",
+			specialist="'.$data['specialist'].'",
+			expire="'.$data['expire'].'",
+			WHERE id='.$data['id'];
+		}else{
+			$sql= 'UPDATE '.DB_PREFIX.'admin SET
+			username="'.$data['name'].'",
+			email="'.$data['email'].'",
+			F_name="'.$data["F_name"].'",
+			L_name="'.$data["L_name"].'",
+			city="'.$data["city"].'",
+			c_address="'.$data["c_address"].'",
+			quali="'.$data["quali"].'",
+			exprience="'.$data["exprience"].'",
+			mobile="'.$data["mobile"].'",
+			phone="'.$data["phone"].'",
+			specialist="'.$data['specialist'].'",
 			expire="'.$data['expire'].'"
 			WHERE id='.$data['id'];
 		}

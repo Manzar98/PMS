@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 15:48:54
+<?php /* Smarty version 2.6.31, created on 2018-11-22 18:14:28
          compiled from users/edit_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -99,21 +99,25 @@ unset($_smarty_tpl_vars);
 "<?php endif; ?> />
 				</div>
 			</div>
+			<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] == 'S_admin'): ?>
 			<div class="row">
 				<div class="col-sm-3 common-bottom">
 					<label for="package_id">Package</label>
 					<select name="package_id" id="package_id" class="form-control">
+					
 						<option value="">Select Package</option>
+
 						<?php $_from = $this->_tpl_vars['packages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['package']):
 ?>
-						<option<?php if ($this->_tpl_vars['data']['package_id'] == $this->_tpl_vars['package']['id']): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['package']['id']; ?>
+                        <option <?php if ($this->_tpl_vars['data']['package_id'] == $this->_tpl_vars['package']['id']): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['package']['id']; ?>
 "><?php echo $this->_tpl_vars['package']['pkg_name']; ?>
 </option>
 						<?php endforeach; endif; unset($_from); ?>						
 					</select>
 				</div>
 			</div>
+			<?php endif; ?>
 			<input type="hidden" name="profile_img" id="profile_img">
 
 		</form>
@@ -175,7 +179,6 @@ unset($_smarty_tpl_vars);
 				city: { required: true },
 				c_address: { required: true },
 				expire: { required: true },
-				package_id: {required:true},
 			}
 		});
 

@@ -74,17 +74,21 @@
 					<input type="text" name="specialist" id="specialist"class="form-control" {if (isset($data) && $data.specialist)}value="{$data.specialist}"{/if} />
 				</div>
 			</div>
+			{if isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
 			<div class="row">
 				<div class="col-sm-3 common-bottom">
 					<label for="package_id">Package</label>
 					<select name="package_id" id="package_id" class="form-control">
+					
 						<option value="">Select Package</option>
+
 						{foreach from=$packages item=package}
-						<option{if $data.package_id==$package.id} selected="selected" {/if} value="{$package.id}">{$package.pkg_name}</option>
+                        <option {if $data.package_id == $package.id} selected="selected" {/if} value="{$package.id}">{$package.pkg_name}</option>
 						{/foreach}						
 					</select>
 				</div>
 			</div>
+			{/if}
 			<input type="hidden" name="profile_img" id="profile_img">
 
 		</form>
@@ -144,7 +148,6 @@
 				city: { required: true },
 				c_address: { required: true },
 				expire: { required: true },
-				package_id: {required:true},
 			}
 		});
 
