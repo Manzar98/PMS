@@ -376,6 +376,29 @@
   /*// border-radius: 15px;*/
 
 }
+
+.ui-timepicker-list .ui-timepicker-selected{
+background-color: #FF8800 !important;
+   color: #FFF !important;
+
+}
+.ui-timepicker-list .disabledFullhr{
+	
+    background: #6B6565 !important;
+    color: #FFF !important;
+    /*cursor: not-allowed;*/
+
+}
+.ui-timepicker-list .disabledFullhr:hover{
+	
+    background: #6B6565 !important;
+    color: #FFF !important;
+    cursor: not-allowed;
+
+}
+
+
+
 /*.ui-datepicker-next-hover{
    background-color:#FFF !important;
 	border: none !important;
@@ -569,6 +592,7 @@ $(document).on('click', '.ui-datepicker-prev', function () {
   			time_st=res.start;
   			time_end=res.end;
   			count=res.count;
+  			debugger
   			$("#hour").timepicker({
   				
   				step: 60,
@@ -594,9 +618,9 @@ $('#hour').trigger('click');
 
 		}
 
-		$('#hour').on("change",function(){
+		$('#hour').on("change",function(e,ui){
 			var hr = $('#hour').val();
-                  // debugger;
+                   debugger;
                   $.ajax({ 
                   	type: "POST",
                   	url: "{/literal}{$BASE_URL_ADMIN}add-appointment/add?appoint=y{literal}",
@@ -605,12 +629,14 @@ $('#hour').trigger('click');
                   	{
                   		//debugger
                   		$('#ap_number').val(+msg + +1);
-
-                  		if (msg >count) {
+                  		debugger
+                  		if (parseInt(count) == parseInt(msg)) {
 
                   			$('#hour').val('');
-                  			$('#hour').timepicker('hide');
-                  			alert("The selected hour's slot if full, please choose another time.");
+                  			$('.ui-timepicker-selected').addClass('disabledFullhr');
+                  			debugger
+                  			//$('#hour').timepicker('hide');
+                  			alert("The selected hour's slot is full, please choose another time.");
 
                   		}
                   	}

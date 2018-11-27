@@ -106,7 +106,7 @@ else if($_POST)
 
 				if ($pkgCount != $consumptionCount && $pkgCount > $consumptionCount) {
 
-					$users->updateColumnCount($data["userId"],"patient_count",$existCount+1);
+					$users->updateColumnCount($data["userId"],"patient_count",$consumptionCount+1);
 
 					if($patient->AddPatient($data))
 					{

@@ -96,7 +96,7 @@ elseif($_POST)
 
 			if ($consumptionCount < $pkgCount) {
 
-				$users->updateColumnCount($data["userId"],"test_count",$existCount+1);
+				$users->updateColumnCount($data["userId"],"test_count",$consumptionCount+1);
 
 				if($id==='add' && $test->AddTest($data))
 				{

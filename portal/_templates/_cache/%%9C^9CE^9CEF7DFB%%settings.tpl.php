@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 14:47:23
+<?php /* Smarty version 2.6.31, created on 2018-11-26 19:52:58
          compiled from settings.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'settings.tpl', 14, false),array('modifier', 'print_r', 'settings.tpl', 73, false),array('modifier', 'escape', 'settings.tpl', 87, false),)), $this); ?>
@@ -284,8 +284,7 @@ $this->_sections['tmp2']['last']       = ($this->_sections['tmp2']['iteration'] 
 " value="<?php echo ((is_array($_tmp=$this->_tpl_vars['value'])) ? $this->_run_mod_handler('escape', true, $_tmp) : smarty_modifier_escape($_tmp)); ?>
 " size="42" />
 							<?php endif; ?>
-						</div>	<!-- <?php echo $this->_tpl_vars['description']; ?>
- -->
+						</div>
 					</div>
 					<?php endforeach; endif; unset($_from); ?>
 				</div>

@@ -4,7 +4,7 @@ $patient = new Patient;
 $instruction = new Instruction;
 $test = new Test;
 $medicine = new Medicine;
-$prescripttestion = new Prescription;
+$prescription = new Prescription;
 $users = new User;
 $package = new Package;
 
@@ -119,7 +119,7 @@ elseif($id==="add-patient")
 
 			if ($consumptionCount < $pkgCount) {
 
-				$users->updateColumnCount($data["userId"],"patient_count",$existCount+1);
+				$users->updateColumnCount($data["userId"],"patient_count",$consumptionCount+1);
 
 				if($patient->AddPatientBasic($data))
 				{
@@ -186,10 +186,10 @@ if($_POST)
 
 			if ($consumptionCount < $pkgCount) {
 
-				$users->updateColumnCount($data["userId"],"prescription_count",$existCount+1);
+				$users->updateColumnCount($data["userId"],"prescription_count",$consumptionCount+1);
 
-				if($prescription->AddPrescription($data))
-				{
+				if($prescription->AddPrescription($data)){
+					
 					$data['prescription_id'] = $db->insert_id;
 
 					if($prescription->AddPrescriptionInstructions($data) || $prescription->AddPrescriptionTests($data))

@@ -4,7 +4,7 @@ $appointment= new Appointment;
 $users = new User;
   // echo $id;
   // echo $extra;
-
+$smarty->assign('cities', get_cities());
 if($id==="view" && $extra>0)
 {
 	$user_detail = $users->GetuserInfo($extra);

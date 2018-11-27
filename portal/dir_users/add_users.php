@@ -6,19 +6,19 @@ $package = new Package;
 // print_r($page);
 if (isset($_GET['img']) && $_GET['img']=='y') {
 	
-$data = $_POST['image'];
+	$data = $_POST['image'];
 
 // echo $data;
-list($type, $data) = explode(';', $data);
-list(, $data)      = explode(',', $data);
-$data = base64_decode($data);
-$imageName = time().'.png';
+	list($type, $data) = explode(';', $data);
+	list(, $data)      = explode(',', $data);
+	$data = base64_decode($data);
+	$imageName = time().'.png';
 // echo $imageName;
- 
- file_put_contents(APP_PATH . CURRENT_DIRECTORY.'/_templates/img/uploads/'.$imageName, $data);
- $storedimg='_templates/img/uploads/'.$imageName;
 
-echo $storedimg;
+	file_put_contents(APP_PATH . CURRENT_DIRECTORY.'/_templates/img/uploads/'.$imageName, $data);
+	$storedimg='_templates/img/uploads/'.$imageName;
+
+	echo $storedimg;
 
 
 }
@@ -67,18 +67,17 @@ else if($_POST)
 	{
 		if($users->AddUser($data))
 		{
-
 			//redirect_to(BASE_URL.'users/');
 			echo "Inserted";
+			$emailArray=array('email'=>$data['email'],'username'=>$data['name'],"user_id"=>$db->insert_id,"password"=>$data['password']);
+			$users->sendPasswordInEmail($emailArray);
 		}
-		
-
 	}
 	else {
 		$smarty->assign('errors',$errors);
 		$smarty->assign('data',$data);
 	}
-	 
+
 }else{
 	$smarty->assign('cities', get_cities());
 	$smarty->assign('packages',$package->getAllPackages());

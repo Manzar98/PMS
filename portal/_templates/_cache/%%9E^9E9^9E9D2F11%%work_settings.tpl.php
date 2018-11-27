@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-15 12:24:47
+<?php /* Smarty version 2.6.31, created on 2018-11-27 15:56:07
          compiled from work_settings.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -32,6 +32,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
 
     	  $(\'.mon_Div_Input\').show();
     	  $(\'.mondayHideInput\').val(\'mon_on\');
+    	  $(\'.m_lbl\').css(\'color\',\'green\');
           $(\'.mon_Div_Input input\').prop(\'required\',true);
          
         }else{
@@ -40,6 +41,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
           $(\'.mondayHideInput\').val(\'mon_off\');
           $(\'.mon_Div_Input input\').prop(\'required\',false);
           $(\'.mon_Div_Input input\').val(\'\');
+          $(\'.m_lbl\').css(\'color\',\'black\');
         }
     })
 
@@ -49,6 +51,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
 
     	  $(\'.tue_Div_Input\').show();
     	  $(\'.tuesdayHideInput\').val(\'tue_on\');
+    	  $(\'.tu_lbl\').css(\'color\',\'green\');
           $(\'.tue_Div_Input input\').prop(\'required\',true);
 
         }else{
@@ -57,6 +60,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
           $(\'.tuesdayHideInput\').val(\'tue_off\');
           $(\'.tue_Div_Input input\').prop(\'required\',false);
           $(\'.tue_Div_Input input\').val(\'\');
+          $(\'.tu_lbl\').css(\'color\',\'black\');
         }
     })
 
@@ -66,6 +70,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
 
     	  $(\'.wed_Div_Input\').show();
     	  $(\'.wednesdayHideInput\').val(\'wed_on\');
+    	  $(\'.w_lbl\').css(\'color\',\'green\');
           $(\'.wed_Div_Input input\').prop(\'required\',true);
 
         }else{
@@ -74,6 +79,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
           $(\'.wednesdayHideInput\').val(\'wed_off\');
           $(\'.wed_Div_Input input\').prop(\'required\',false);
           $(\'.wed_Div_Input input\').val(\'\');
+          $(\'.w_lbl\').css(\'color\',\'black\');
         }
     })
 
@@ -83,6 +89,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
 
     	  $(\'.thu_Div_Input\').show();
     	  $(\'.thursdayHideInput\').val(\'thu_on\');
+    	  $(\'.th_lbl\').css(\'color\',\'green\');
           $(\'.thu_Div_Input input\').prop(\'required\',true);
 
         }else{
@@ -91,6 +98,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
           $(\'.thursdayHideInput\').val(\'thu_off\');
           $(\'.thu_Div_Input input\').prop(\'required\',false);
           $(\'.thu_Div_Input input\').val(\'\');
+          $(\'.th_lbl\').css(\'color\',\'black\');
 
         }
     })
@@ -100,11 +108,13 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
        if ($(\'.fri\').prop(\'checked\')) {
 
     	  $(\'.fri_Div_Input\').show();
+    	  $(\'.f_lbl\').css(\'color\',\'green\');
           $(\'.fri_Div_Input input\').prop(\'required\',true);
 
         }else{
 
           $(\'.fri_Div_Input\').hide();
+          $(\'.f_lbl\').css(\'color\',\'black\');
           $(\'.fri_Div_Input input\').prop(\'required\',false);
           $(\'.fri_Div_Input input\').val(\'\');
         }
@@ -115,11 +125,13 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
        if ($(\'.sat\').prop(\'checked\')) {
 
     	  $(\'.sat_Div_Input\').show();
+    	  $(\'.st_lbl\').css(\'color\',\'green\');
           $(\'.sat_Div_Input input\').prop(\'required\',true);
 
         }else{
 
           $(\'.sat_Div_Input\').hide();
+          $(\'.st_lbl\').css(\'color\',\'black\');
           $(\'.sat_Div_Input input\').prop(\'required\',false);
           $(\'.sat_Div_Input input\').val(\'\');
         }
@@ -130,11 +142,13 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
        if ($(\'.sun\').prop(\'checked\')) {
 
     	  $(\'.sun_Div_Input\').show();
+    	  $(\'.su_lbl\').css(\'color\',\'green\');
           $(\'.sun_Div_Input input\').prop(\'required\',true);
 
         }else{
 
           $(\'.sun_Div_Input\').hide();
+          $(\'.su_lbl\').css(\'color\',\'black\');
           $(\'.sun_Div_Input input\').prop(\'required\',false);
           $(\'.sun_Div_Input input\').val(\'\');
         }
@@ -145,6 +159,8 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
        if ($(\'.unavail\').prop(\'checked\')) {
 
     	  $(\'.unavail_Div_Input\').show();
+    	  $(\'.un_lbl\').css(\'color\',\'green\');
+    	  $(\'.days_lbl\').css(\'color\',\'black\');
     	  $(\'.unavailHideInput\').val(\'unavail_on\');
           $(\'.unavail_Div_Input input\').prop(\'required\',true);
           $(\'.mon_Div_Input\').hide();
@@ -165,6 +181,7 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
 	      $(\'.sun_Div_Input input\').val(\'\');
          
         }else{
+          $(\'.un_lbl\').css(\'color\',\'black\');
 
           $(\'.unavail_Div_Input\').hide();
           $(\'.unavailHideInput\').val(\'unavail_off\');
@@ -217,6 +234,7 @@ var today = new Date();
  		$(\'.mon\').prop(\'checked\',true);
  		$(\'.mon_Div_Input\').show();
     	$(\'.mondayHideInput\').val(\'mon_on\');
+    	$(\'.m_lbl\').css(\'color\',\'green\');
     	$(\'.from1\').val(froms[i]);
     	$(\'.to1\').val(tos[i]);
     	$(\'.count1\').val(counts[i]);
@@ -226,6 +244,7 @@ var today = new Date();
        
         $(\'.tue\').prop(\'checked\',true);
  		$(\'.tue_Div_Input\').show();
+ 		$(\'.tu_lbl\').css(\'color\',\'green\');
     	$(\'.tuesdayHideInput\').val(\'tue_on\');
     	$(\'.from2\').val(froms[i]);
     	$(\'.to2\').val(tos[i]);
@@ -235,6 +254,7 @@ var today = new Date();
 
  		$(\'.wed\').prop(\'checked\',true);
  		$(\'.wed_Div_Input\').show();
+ 		$(\'.w_lbl\').css(\'color\',\'green\');
     	$(\'.wednesdayHideInput\').val(\'wed_on\');
     	$(\'.from3\').val(froms[i]);
     	$(\'.to3\').val(tos[i]);
@@ -245,6 +265,7 @@ var today = new Date();
         
         $(\'.thu\').prop(\'checked\',true);
  		$(\'.thu_Div_Input\').show();
+ 		$(\'.th_lbl\').css(\'color\',\'green\');
     	$(\'.thursdayHideInput\').val(\'thu_on\');
     	$(\'.from4\').val(froms[i]);
     	$(\'.to4\').val(tos[i]);
@@ -254,6 +275,7 @@ var today = new Date();
 
         $(\'.fri\').prop(\'checked\',true);
  		$(\'.fri_Div_Input\').show();
+ 		$(\'.f_lbl\').css(\'color\',\'green\');
     	$(\'.fridayHideInput\').val(\'fri_on\');
     	$(\'.from5\').val(froms[i]);
     	$(\'.to5\').val(tos[i]);
@@ -263,6 +285,7 @@ var today = new Date();
 
  		$(\'.sat\').prop(\'checked\',true);
  		$(\'.sat_Div_Input\').show();
+ 		$(\'.st_lbl\').css(\'color\',\'green\');
     	$(\'.saturdayHideInput\').val(\'sat_on\');
     	$(\'.from6\').val(froms[i]);
     	$(\'.to6\').val(tos[i]);
@@ -273,6 +296,7 @@ var today = new Date();
         
         $(\'.sun\').prop(\'checked\',true);
  		$(\'.sun_Div_Input\').show();
+ 		$(\'.su_lbl\').css(\'color\',\'green\');
     	$(\'.sundayHideInput\').val(\'sun_on\');
     	$(\'.from7\').val(froms[i]);
     	$(\'.to7\').val(tos[i]);
@@ -283,6 +307,7 @@ var today = new Date();
        
         $(\'.unavail\').prop(\'checked\',true);
  		$(\'.unavail_Div_Input\').show();
+ 		$(\'.un_lbl\').css(\'color\',\'green\');
     	$(\'.unavailHideInput\').val(\'unavail_on\');
     	$(\'.from8\').val(froms[i]);
     	$(\'.to8\').val(tos[i]);
@@ -325,7 +350,7 @@ input[type="checkbox"]{
 		<div class="daysWrap">
 			<div class="row common-bottom">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label>&nbsp;&nbsp;Monday</label>
+					<label class="m_lbl days_lbl">&nbsp;&nbsp;Monday</label>
 					<input type="checkbox" name="" class="center-block mon">
 					<input type="hidden" name="days[]" class="mondayHideInput" value="mon_off">
 				</div>
@@ -350,7 +375,7 @@ input[type="checkbox"]{
 				</div>
 				</div>
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label>Tuesday</label>
+					<label class="tu_lbl days_lbl">Tuesday</label>
 					<input type="checkbox" name="" class="center-block tue">
 					<input type="hidden" name="days[]"  value="tue_off" class="tuesdayHideInput">
 				</div>
@@ -377,7 +402,7 @@ input[type="checkbox"]{
 			</div>
 			<div class="row common-bottom">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label>Wednesday</label>
+					<label class="w_lbl days_lbl">Wednesday</label>
 					<input type="checkbox" name="" class="center-block wed">
 					<input type="hidden" name="days[]"  value="wed_off" class="wednesdayHideInput">
 				</div>
@@ -402,7 +427,7 @@ input[type="checkbox"]{
 				</div>
 				</div>
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label>Thursday</label>
+					<label class="th_lbl days_lbl">Thursday</label>
 					<input type="checkbox" name="" class="center-block thu">
 					<input type="hidden" name="days[]"  value="thu_off" class="thursdayHideInput">
 				</div>
@@ -429,7 +454,7 @@ input[type="checkbox"]{
 			</div>
 			<div class="row common-bottom">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label>&nbsp;&nbsp;&nbsp;Friday</label>
+					<label class="f_lbl days_lbl">&nbsp;&nbsp;&nbsp;Friday</label>
 					<input type="checkbox" name="" class="center-block fri">
 					<input type="hidden" name="days[]"  value="fri_off" class="fridayHideInput">
 				</div>
@@ -454,7 +479,7 @@ input[type="checkbox"]{
 				</div>
 				</div>
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label>Saturday</label>
+					<label class="st_lbl days_lbl">Saturday</label>
 					<input type="checkbox" name="" class="center-block sat">
 					<input type="hidden" name="days[]"  value="sat_off" class="saturdayHideInput">
 				</div>
@@ -481,7 +506,7 @@ input[type="checkbox"]{
 			</div>
 			<div class="row common-bottom">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label>&nbsp;&nbsp;Sunday</label>
+					<label class="su_lbl days_lbl">&nbsp;&nbsp;Sunday</label>
 					<input type="checkbox" name="" class="center-block sun">
 					<input type="hidden" name="days[]" value="sun_off" class="sundayHideInput">
 				</div>
@@ -509,7 +534,7 @@ input[type="checkbox"]{
 		</div>
 			<div class="row common-bottom">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label>Unavailable Days</label>
+					<label class="un_lbl">Unavailable Days</label>
 					<input type="checkbox" name="" class="center-block unavail" >
 					<input type="hidden" name="days[]" class="unavailHideInput" value="unavail_off">
 				</div>

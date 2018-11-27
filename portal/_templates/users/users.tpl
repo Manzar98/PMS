@@ -37,7 +37,7 @@
 	</div>
 	{/if}
 
-{if isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
+	{if isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
 
 	<h2 class="noprint headingBottom">{if (isset($smarty.get.q) && $smarty.get.q neq '')} Search Result For "<b>{$smarty.get.q}</b>" {else}Doctors List{/if}</h2>
 
@@ -62,7 +62,7 @@
 			</div>
 		</div>
 	</form>
-{/if}
+	{/if}
 	{if (isset($smarty.get.q) && $smarty.get.q neq '')}
 	<div style="padding: 20px 0;">
 		<p class="noprint"><a href="{$BASE_URL_ADMIN}users/">Back to all users List</a></p>
@@ -148,9 +148,9 @@
 		</div>
 		<div class="col-sm-2" style="padding-top: 25px;">
 			<span class="date">Join Date:<em>{$data.d_join|date_format:"%d/%m/%Y"}</em></span><br>
-            <div style="margin-top: 10px;">
-            	<a href="{$BASE_URL_ADMIN}edit-users/{$smarty.session.AdminId}/" class="btn btn-primary">Edit</a>
-            </div>
+			<div style="margin-top: 10px;">
+				<a href="{$BASE_URL_ADMIN}edit-users/{$smarty.session.AdminId}/" class="btn btn-primary">Edit</a>
+			</div>
 			
 		</div>
 	</div>
@@ -159,8 +159,8 @@
 	<div style="margin-top: 30px;"></div>
 	<div class="row" style="margin-bottom: 20px;">
 		<div class="text-center center-block"> <img src="{$BASE_URL_ADMIN}{$data.profile_img}" alt="" width="12%">
+		</div>
 	</div>
-</div>
 	<div class="row ">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4 common-bottom">
@@ -183,7 +183,11 @@
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4 common-bottom">
-			<span><b>City : </b><span class="capitalize">{$data.city}</span></span>
+			{foreach from=$cities item=city}
+			{if $data.city==$city.id}	
+			<span><b>City : </b><span class="capitalize">{$city.name}</span></span>
+			{/if}
+			{/foreach}
 		</div>
 		<div class="col-sm-4 common-bottom">
 			<span><b>Clinic Address : </b><span>{$data.c_address}</span></span>

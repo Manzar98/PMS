@@ -377,9 +377,10 @@
 					success: function(msg) 
 					{
                         if (msg=="You Can't add the patient. Because No of patients is full.") {
-
+							$("#add_new_patient").hide();
+							$("#add_new_patient .empty-inpt").val('');
                         	alert(msg);
-
+                            
                         }else if(msg>0)
 						{
 							$('#patient_id').val(msg);
@@ -517,7 +518,7 @@ function generateRandomNumber(){
 						<div class="col-sm-2 common-top">
                         <label for="email">Email Address</label>
                         <input type="email" name="email"
-                        id="email" class="form-control">
+                        id="email" class="form-control empty-inpt">
                     </div>
 						<div class="col-sm-1 addUp_btn">
 							<input type="button"  class="btn btn-primary" id="submit_patient" value="Add" />

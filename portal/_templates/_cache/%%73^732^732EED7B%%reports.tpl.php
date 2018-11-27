@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-08 17:06:08
+<?php /* Smarty version 2.6.31, created on 2018-11-26 11:04:29
          compiled from reports/reports.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'reports/reports.tpl', 49, false),array('modifier', 'print_r', 'reports/reports.tpl', 69, false),array('modifier', 'count', 'reports/reports.tpl', 80, false),)), $this); ?>
@@ -310,8 +310,6 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 
 				<?php elseif (isset ( $this->_tpl_vars['feerecord'] ) && $this->_tpl_vars['feerecord']): ?>
 
-				<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['feerecord'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
- -->
 				<div id="charts" hidden="">
 					<?php echo $this->_tpl_vars['charts']; ?>
 
@@ -486,7 +484,7 @@ span.select2.select2-container.select2-container--default {
 
 		var charts=$( "#charts" ).html();
  //console.log(charts);
-debugger;
+//debugger;
  
  if (charts) {
 
@@ -636,7 +634,7 @@ reports/add?testajax=y<?php echo '",
 
 					var data =JSON.parse(msg);
 					console.log(data);
-					debugger
+					//debugger
 					var dropdown = "";
 					dropdown+=\'<option class="topOpt" value="" selected disabled>Select Test</option>\';
 					$.each(data.ids,function(k,v){

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-22 17:09:45
+<?php /* Smarty version 2.6.31, created on 2018-11-27 14:23:46
          compiled from appointments/add_appointment.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -459,6 +459,29 @@ add-appointment/<?php echo $_GET['doc_id']; ?>
   /*// border-radius: 15px;*/
 
 }
+
+.ui-timepicker-list .ui-timepicker-selected{
+background-color: #FF8800 !important;
+   color: #FFF !important;
+
+}
+.ui-timepicker-list .disabledFullhr{
+	
+    background: #6B6565 !important;
+    color: #FFF !important;
+    /*cursor: not-allowed;*/
+
+}
+.ui-timepicker-list .disabledFullhr:hover{
+	
+    background: #6B6565 !important;
+    color: #FFF !important;
+    cursor: not-allowed;
+
+}
+
+
+
 /*.ui-datepicker-next-hover{
    background-color:#FFF !important;
 	border: none !important;
@@ -654,6 +677,7 @@ add-appointment/add?ajax=y<?php echo '",
   			time_st=res.start;
   			time_end=res.end;
   			count=res.count;
+  			debugger
   			$("#hour").timepicker({
   				
   				step: 60,
@@ -679,9 +703,9 @@ $(\'#hour\').trigger(\'click\');
 
 		}
 
-		$(\'#hour\').on("change",function(){
+		$(\'#hour\').on("change",function(e,ui){
 			var hr = $(\'#hour\').val();
-                  // debugger;
+                   debugger;
                   $.ajax({ 
                   	type: "POST",
                   	url: "'; ?>
@@ -692,12 +716,14 @@ add-appointment/add?appoint=y<?php echo '",
                   	{
                   		//debugger
                   		$(\'#ap_number\').val(+msg + +1);
-
-                  		if (msg >count) {
+                  		debugger
+                  		if (parseInt(count) == parseInt(msg)) {
 
                   			$(\'#hour\').val(\'\');
-                  			$(\'#hour\').timepicker(\'hide\');
-                  			alert("The selected hour\'s slot if full, please choose another time.");
+                  			$(\'.ui-timepicker-selected\').addClass(\'disabledFullhr\');
+                  			debugger
+                  			//$(\'#hour\').timepicker(\'hide\');
+                  			alert("The selected hour\'s slot is full, please choose another time.");
 
                   		}
                   	}

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-20 16:01:11
+<?php /* Smarty version 2.6.31, created on 2018-11-27 14:29:33
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 72, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 115, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 137, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 134, false),)), $this); ?>
@@ -325,20 +325,20 @@ _templates/img/bin.png" alt="Delete" /></a>
 					<div class="">
 						<h3>Details</h3>
 						<dl class="separator" style="margin-top: 23px;">
-							<dt>Description</dt>
+							<dt style="font-size: 13px;">Description</dt>
 							<dd><?php echo $this->_tpl_vars['data']['description']; ?>
 </dd>
-							<dt>Complain</dt>
+							<dt style="font-size: 13px;">Complain</dt>
 							<dd><strong><?php echo $this->_tpl_vars['data']['complain']; ?>
 </strong></dd>
 							<dd><?php echo $this->_tpl_vars['data']['complain_detail']; ?>
 </dd>
-							<dt>Next Plan</dt>
+							<dt style="font-size: 13px;">Next Plan</dt>
 							<dd><strong><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['next_date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </strong></dd>
 							<dd><?php echo $this->_tpl_vars['data']['next_plan']; ?>
 </dd>
-							<dt>Address</dt>
+							<dt style="font-size: 13px;">Address</dt>
 							<dd><?php echo $this->_tpl_vars['data']['patient']['address']; ?>
 </dd>
 

@@ -92,14 +92,16 @@
 					<div style="width: 42%;float: right;padding-left: 20px;margin-left: 20px;">
 						<h3>Details</h3>
 					<dl class="separator" style="margin-top: 23px;">
-						<dt>Description</dt>
+						<dt style="font-size: 13px;">Description</dt>
 						<dd>{$data.description}</dd>
-						<dt>Complain</dt>
+						<dt style="font-size: 13px;">Complain</dt>
 						<dd><strong>{$data.complain}</strong></dd>
 						<dd>{$data.complain_detail}</dd>
-						<dt>Next Plan</dt>
+						<dt style="font-size: 13px;">Next Plan</dt>
 						<dd><strong>{$data.next_date|date_format:"%A, %B %e, %Y"}</strong></dd>
 						<dd>{$data.next_plan}</dd>
+						<dt style="font-size: 13px;">Address</dt>
+						<dd>{$data.patient.address}</dd>
 					</dl>
 						</div>
 				

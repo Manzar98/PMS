@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 16:25:55
+<?php /* Smarty version 2.6.31, created on 2018-11-23 15:47:13
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 80, false),array('modifier', 'date_format', 'users/users.tpl', 85, false),array('function', 'cycle', 'users/users.tpl', 104, false),)), $this); ?>
@@ -49,7 +49,7 @@ unset($_smarty_tpl_vars);
 	</div>
 	<?php endif; ?>
 
-<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] == 'S_admin'): ?>
+	<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] == 'S_admin'): ?>
 
 	<h2 class="noprint headingBottom"><?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Doctors List<?php endif; ?></h2>
@@ -78,7 +78,7 @@ users/" method="get" enctype="multipart/form-data">
 			</div>
 		</div>
 	</form>
-<?php endif; ?>
+	<?php endif; ?>
 	<?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?>
 	<div style="padding: 20px 0;">
 		<p class="noprint"><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
@@ -213,11 +213,11 @@ _templates/img/bin.png" alt="Delete" /></a>
 		<div class="col-sm-2" style="padding-top: 25px;">
 			<span class="date">Join Date:<em><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['d_join'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
 </em></span><br>
-            <div style="margin-top: 10px;">
-            	<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div style="margin-top: 10px;">
+				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 edit-users/<?php echo $_SESSION['AdminId']; ?>
 /" class="btn btn-primary">Edit</a>
-            </div>
+			</div>
 			
 		</div>
 	</div>
@@ -228,8 +228,8 @@ edit-users/<?php echo $_SESSION['AdminId']; ?>
 		<div class="text-center center-block"> <img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 <?php echo $this->_tpl_vars['data']['profile_img']; ?>
 " alt="" width="12%">
+		</div>
 	</div>
-</div>
 	<div class="row ">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4 common-bottom">
@@ -257,8 +257,14 @@ edit-users/<?php echo $_SESSION['AdminId']; ?>
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4 common-bottom">
-			<span><b>City : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['city']; ?>
+			<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+			<?php if ($this->_tpl_vars['data']['city'] == $this->_tpl_vars['city']['id']): ?>	
+			<span><b>City : </b><span class="capitalize"><?php echo $this->_tpl_vars['city']['name']; ?>
 </span></span>
+			<?php endif; ?>
+			<?php endforeach; endif; unset($_from); ?>
 		</div>
 		<div class="col-sm-4 common-bottom">
 			<span><b>Clinic Address : </b><span><?php echo $this->_tpl_vars['data']['c_address']; ?>
