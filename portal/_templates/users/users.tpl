@@ -149,7 +149,7 @@
 		<div class="col-sm-2" style="padding-top: 25px;">
 			<span class="date">Join Date:<em>{$data.d_join|date_format:"%d/%m/%Y"}</em></span><br>
 			<div style="margin-top: 10px;">
-				<a href="{$BASE_URL_ADMIN}edit-users/{$smarty.session.AdminId}/" class="btn btn-primary">Edit</a>
+				<a href="{$BASE_URL_ADMIN}edit-users/{$data.id}/" class="btn btn-primary">Edit</a>
 			</div>
 			
 		</div>
@@ -215,6 +215,22 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4 common-bottom">
 			<span><b>Specialist : </b><span class="capitalize">{$data.specialist}</span></span>
+		</div>
+		<div class="col-sm-4 common-bottom">
+			{foreach from=$packages item=package}
+			{if $data.package_id == $package.id} 
+			<span><b>Package : </b><span class="capitalize">{$package.pkg_name}</span></span> 
+			{/if}
+			{/foreach}	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-4 common-bottom">
+			<span><b>Clinic Fee : </b><span class="capitalize">{$data.c_fee}</span></span>
+		</div>
+		<div class="col-sm-4 common-bottom">
+			<span><b>Clinic Name : </b><span class="capitalize">{$data.c_name}</span></span>
 		</div>
 	</div>
 	<div style="margin-bottom: 30px;"></div>

@@ -2,12 +2,14 @@
 
 $users = new User;
 $grouped_users="";
+$package = new Package;
   
  // echo $extra;
 if($id==="view" && $extra>0)
 {
 	$user_detail = $users->GetuserInfo($extra);
   $smarty->assign('cities', get_cities());
+  $smarty->assign('packages',$package->getAllPackages());
     //print_r($user_detail);
     
   $smarty->assign('data',@$user_detail);   

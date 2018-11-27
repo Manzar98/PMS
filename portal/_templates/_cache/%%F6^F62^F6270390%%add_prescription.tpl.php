@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-26 18:37:18
+<?php /* Smarty version 2.6.31, created on 2018-11-27 18:15:34
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -776,7 +776,8 @@ function generateRandomNumber(){
 				<legend>Fee</legend>
 				<div class="col-sm-3">
 					<label for="fee_received">Fee Received</label>
-					<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" />
+					<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="<?php echo $_SESSION['c_fee']; ?>
+" />
 				</div>
 			</fieldset>	
 

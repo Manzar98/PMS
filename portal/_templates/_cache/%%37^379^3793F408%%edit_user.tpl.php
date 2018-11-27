@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-22 18:14:28
+<?php /* Smarty version 2.6.31, created on 2018-11-27 17:42:15
          compiled from users/edit_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -99,8 +99,9 @@ unset($_smarty_tpl_vars);
 "<?php endif; ?> />
 				</div>
 			</div>
-			<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] == 'S_admin'): ?>
+			
 			<div class="row">
+				<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] == 'S_admin'): ?>
 				<div class="col-sm-3 common-bottom">
 					<label for="package_id">Package</label>
 					<select name="package_id" id="package_id" class="form-control">
@@ -116,8 +117,19 @@ unset($_smarty_tpl_vars);
 						<?php endforeach; endif; unset($_from); ?>						
 					</select>
 				</div>
+				<?php endif; ?>
+				<div class="col-md-3 common-bottom">
+					<label for="c_fee">Clinic Fee</label>
+					<input type="text" name="c_fee" id="c_fee"class="form-control" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['c_fee'] )): ?>value="<?php echo $this->_tpl_vars['data']['c_fee']; ?>
+"<?php endif; ?>/>
+				</div>
+				<div class="col-md-3 common-bottom">
+					<label for="c_name">Clinic Name</label>
+					<input type="text" name="c_name" id="c_name"class="form-control" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['c_name'] )): ?>value="<?php echo $this->_tpl_vars['data']['c_name']; ?>
+"<?php endif; ?>/>
+				</div>
 			</div>
-			<?php endif; ?>
+			
 			<input type="hidden" name="profile_img" id="profile_img">
 
 		</form>

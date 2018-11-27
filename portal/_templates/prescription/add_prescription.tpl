@@ -723,7 +723,7 @@ function generateRandomNumber(){
 				<legend>Fee</legend>
 				<div class="col-sm-3">
 					<label for="fee_received">Fee Received</label>
-					<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" />
+					<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="{$smarty.session.c_fee}" />
 				</div>
 			</fieldset>	
 

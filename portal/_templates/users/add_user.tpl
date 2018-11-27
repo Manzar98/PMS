@@ -86,6 +86,14 @@
 						{/foreach}						
 					</select>
 				</div>
+				<div class="col-md-3 common-bottom">
+					<label for="c_fee">Clinic Fee</label>
+					<input type="text" name="c_fee" id="c_fee"class="form-control"/>
+				</div>
+				<div class="col-md-3 common-bottom">
+					<label for="c_name">Clinic Name</label>
+					<input type="text" name="c_name" id="c_name"class="form-control"/>
+				</div>
 			</div>
 			<input type="hidden" name="profile_img" id="profile_img">
 

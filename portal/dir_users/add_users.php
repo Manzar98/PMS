@@ -42,6 +42,8 @@ else if($_POST)
 	$data['specialist'] = $_POST['specialist'];
 	$data['profile_img'] = $_POST['profile_img'];
 	$data['package_id']=$_POST['package_id'];
+	$data['c_fee']=$_POST['c_fee'];
+	$data['c_name']=$_POST['c_name'];
 
 	if($data['name']=='')
 	{
@@ -70,7 +72,7 @@ else if($_POST)
 			//redirect_to(BASE_URL.'users/');
 			echo "Inserted";
 			$emailArray=array('email'=>$data['email'],'username'=>$data['name'],"user_id"=>$db->insert_id,"password"=>$data['password']);
-			$users->sendPasswordInEmail($emailArray);
+			//$users->sendPasswordInEmail($emailArray);
 		}
 	}
 	else {

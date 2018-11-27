@@ -74,8 +74,9 @@
 					<input type="text" name="specialist" id="specialist"class="form-control" {if (isset($data) && $data.specialist)}value="{$data.specialist}"{/if} />
 				</div>
 			</div>
-			{if isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
+			
 			<div class="row">
+				{if isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
 				<div class="col-sm-3 common-bottom">
 					<label for="package_id">Package</label>
 					<select name="package_id" id="package_id" class="form-control">
@@ -87,8 +88,17 @@
 						{/foreach}						
 					</select>
 				</div>
+				{/if}
+				<div class="col-md-3 common-bottom">
+					<label for="c_fee">Clinic Fee</label>
+					<input type="text" name="c_fee" id="c_fee"class="form-control" {if (isset($data) && $data.c_fee)}value="{$data.c_fee}"{/if}/>
+				</div>
+				<div class="col-md-3 common-bottom">
+					<label for="c_name">Clinic Name</label>
+					<input type="text" name="c_name" id="c_name"class="form-control" {if (isset($data) && $data.c_name)}value="{$data.c_name}"{/if}/>
+				</div>
 			</div>
-			{/if}
+			
 			<input type="hidden" name="profile_img" id="profile_img">
 
 		</form>

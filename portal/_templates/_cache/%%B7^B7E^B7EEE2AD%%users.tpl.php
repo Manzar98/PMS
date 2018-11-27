@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-23 15:47:13
+<?php /* Smarty version 2.6.31, created on 2018-11-27 18:00:48
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 80, false),array('modifier', 'date_format', 'users/users.tpl', 85, false),array('function', 'cycle', 'users/users.tpl', 104, false),)), $this); ?>
@@ -215,7 +215,7 @@ _templates/img/bin.png" alt="Delete" /></a>
 </em></span><br>
 			<div style="margin-top: 10px;">
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-edit-users/<?php echo $_SESSION['AdminId']; ?>
+edit-users/<?php echo $this->_tpl_vars['data']['id']; ?>
 /" class="btn btn-primary">Edit</a>
 			</div>
 			
@@ -297,6 +297,27 @@ edit-users/<?php echo $_SESSION['AdminId']; ?>
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4 common-bottom">
 			<span><b>Specialist : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['specialist']; ?>
+</span></span>
+		</div>
+		<div class="col-sm-4 common-bottom">
+			<?php $_from = $this->_tpl_vars['packages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['package']):
+?>
+			<?php if ($this->_tpl_vars['data']['package_id'] == $this->_tpl_vars['package']['id']): ?> 
+			<span><b>Package : </b><span class="capitalize"><?php echo $this->_tpl_vars['package']['pkg_name']; ?>
+</span></span> 
+			<?php endif; ?>
+			<?php endforeach; endif; unset($_from); ?>	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-4 common-bottom">
+			<span><b>Clinic Fee : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['c_fee']; ?>
+</span></span>
+		</div>
+		<div class="col-sm-4 common-bottom">
+			<span><b>Clinic Name : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['c_name']; ?>
 </span></span>
 		</div>
 	</div>
