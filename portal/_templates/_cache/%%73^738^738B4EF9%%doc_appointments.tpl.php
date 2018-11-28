@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-22 16:51:58
+<?php /* Smarty version 2.6.31, created on 2018-11-28 14:50:48
          compiled from appointments/doc_appointments.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -109,221 +109,240 @@ unset($_smarty_tpl_vars);
 			<legend>Appointments</legend>
 			<div class="container doctorStyleCard">
 				<div class="row" style="padding: 10px;    padding-top: 20px;">
-					<div class="col-sm-4"> 
+					<div class="col-sm-2"> 
 						<img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 <?php echo $_GET['img']; ?>
 " alt=""  class="img-responsive">
 					</div>
-					<div class="col-sm-8 ">
-						<h4>Dr. <?php echo $_GET['doc_name']; ?>
+					<div class="col-sm-7 ">
+						<h4 style="margin-bottom: 30px;">Dr. <?php echo $_GET['doc_name']; ?>
 </h4>
-						<span class="text-center"><?php echo $_GET['speciallist']; ?>
-</span><br>
+						<div style="margin-bottom: 12px;">
+							<span class="text-center"><?php echo $_GET['speciallist']; ?>
+</span>
+						</div>
 						<span><?php echo $_GET['doc_adr']; ?>
 </span>
 					</div>
-				</div>
-			</div>
-			<div>
-				<input type="hidden" name="doc_name" value="<?php echo $_GET['doc_name']; ?>
+					<div class="col-sm-3 pull-right expri-div">
+						<div style="margin-bottom: 12px;">
+							<span class="text-center"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $_GET['exprience']; ?>
+ Years of Exprience</span></div>
+							<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Rs. <?php echo $_GET['fee']; ?>
+</span>
+						</div>
+					</div>
+				</div>	
+				<div>
+					<input type="hidden" name="doc_name" value="<?php echo $_GET['doc_name']; ?>
 " id="doc_name">
-				<input type="hidden" name="doc_adr" value="<?php echo $_GET['doc_adr']; ?>
+					<input type="hidden" name="doc_adr" value="<?php echo $_GET['doc_adr']; ?>
 " id="doc_adr">
-				<input type="hidden" name="doc_phne" value="<?php echo $_GET['doc_phne']; ?>
+					<input type="hidden" name="doc_phne" value="<?php echo $_GET['doc_phne']; ?>
 " id="doc_phne">
-				<input type="hidden" name="u_id" value="<?php echo $_GET['doc_id']; ?>
+					<input type="hidden" name="u_id" value="<?php echo $_GET['doc_id']; ?>
 " id="id"> 
-				<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
+					<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
 " id="unavail"> 
-				<input type="hidden" name="p_id" value="" id="" placeholder="For Condition true(input for condition only)"> 
-				<input type="hidden" name="" value="<?php echo $this->_tpl_vars['from']; ?>
+					<input type="hidden" name="p_id" value="" id="" placeholder="For Condition true(input for condition only)"> 
+					<input type="hidden" name="" value="<?php echo $this->_tpl_vars['from']; ?>
 " id="from"> 
-				<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
+					<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
 " id="to">
-				<input type="hidden" name="ap_number" id="ap_number"> 
-				<input type="hidden" name="security_key" id="security_key" value="<?php echo $this->_tpl_vars['record']['security_key']; ?>
+					<input type="hidden" name="ap_number" id="ap_number"> 
+					<input type="hidden" name="security_key" id="security_key" value="<?php echo $this->_tpl_vars['record']['security_key']; ?>
 ">
-				<input type="hidden" name="" id="res_error" value="<?php echo $this->_tpl_vars['res_error']; ?>
+					<input type="hidden" name="" id="res_error" value="<?php echo $this->_tpl_vars['res_error']; ?>
 ">
-				<input type="hidden" name="name" id="" value="<?php echo $this->_tpl_vars['record']['name']; ?>
+					<input type="hidden" name="name" id="" value="<?php echo $this->_tpl_vars['record']['name']; ?>
 ">
-				<input type="hidden" name="patient_Id" id="" value="<?php echo $this->_tpl_vars['record']['id']; ?>
+					<input type="hidden" name="patient_Id" id="" value="<?php echo $this->_tpl_vars['record']['id']; ?>
 ">
-				<input type="hidden" name="address" id="" value="<?php echo $this->_tpl_vars['record']['address']; ?>
+					<input type="hidden" name="address" id="" value="<?php echo $this->_tpl_vars['record']['address']; ?>
 ">
-				<input type="hidden" name="mobile" id="" value="<?php echo $this->_tpl_vars['record']['mobile']; ?>
+					<input type="hidden" name="mobile" id="" value="<?php echo $this->_tpl_vars['record']['mobile']; ?>
 ">
-				<input type="hidden" name="gender" id="" value="<?php echo $this->_tpl_vars['record']['gender']; ?>
+					<input type="hidden" name="gender" id="" value="<?php echo $this->_tpl_vars['record']['gender']; ?>
 ">
-				<input type="hidden" name="email" id="" value="<?php echo $this->_tpl_vars['record']['email']; ?>
+					<input type="hidden" name="email" id="" value="<?php echo $this->_tpl_vars['record']['email']; ?>
 ">
-				<input type="hidden" name="online_manual" id="online_manual" value="manual">
-				<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+					<input type="hidden" name="online_manual" id="online_manual" value="manual">
+					<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['city']):
 ?>
-				<?php if ($this->_tpl_vars['record']['city_id'] == $this->_tpl_vars['city']['id']): ?>
-				<input type="hidden" name="city" id="" value="<?php echo $this->_tpl_vars['city']['id']; ?>
+					<?php if ($this->_tpl_vars['record']['city_id'] == $this->_tpl_vars['city']['id']): ?>
+					<input type="hidden" name="city" id="" value="<?php echo $this->_tpl_vars['city']['id']; ?>
 ">
-				<?php endif; ?>
-				<?php endforeach; endif; unset($_from); ?>
+					<?php endif; ?>
+					<?php endforeach; endif; unset($_from); ?>
 
-			</div>
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-4">	
-					<div class="calendar_block">
-						<input type="hidden" name="dt" id="" class="dateInput" />
-						<div class="text-center datetimeHeading"> 
-							<span>Select Date</span>
-						</div>
-						<div class="dt">
-							
-						</div>
-					</div>
 				</div>
-				<div class="col-sm-4 common-bottom ">
-					<div class="hideHr">
-						
-						<div class="timeWrap">
-							<div class="text-center timeHeading">
-								<span>Select Hour</span>
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">	
+						<div class="calendar_block">
+							<input type="hidden" name="dt" id="" class="dateInput" />
+							<div class="text-center datetimeHeading"> 
+								<span>Select Date</span>
+							</div>
+							<div class="dt">
+								
 							</div>
 						</div>
-						<input type="text" name="hour"  class="form-control" id="hour"/>
+					</div>
+					<div class="col-sm-4 common-bottom ">
+						<div class="hideHr">
+							
+							<div class="timeWrap">
+								<div class="text-center timeHeading">
+									<span>Select Hour</span>
+								</div>
+							</div>
+							<input type="text" name="hour"  class="form-control" id="hour"/>
+						</div>
 					</div>
 				</div>
-			</div>
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8">
+						<div style="margin-top: 24px;">
+							<input type="submit" name="submit" id="submit" value="Book Appointment" class="btn btn-primary form-control" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<?php elseif (isset ( $_GET['exist'] )): ?>
+
+		<input type="hidden" name="" value="<?php echo $this->_tpl_vars['erorMsg']; ?>
+" id="errorId">
+		<form id="check_patient" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="post">
 			<div class="row">
 				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
-					<div style="margin-top: 24px;">
-						<input type="submit" name="submit" id="submit" value="Book Appointment" class="btn btn-primary form-control" />
-					</div>
-				</div>
-			</div>
-		</fieldset>
-	</form>
-	<?php elseif (isset ( $_GET['exist'] )): ?>
-
-	<input type="hidden" name="" value="<?php echo $this->_tpl_vars['erorMsg']; ?>
-" id="errorId">
-	<form id="check_patient" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
-" method="post">
-		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-6">
-				<input type="hidden" name="doc_id" id="doc_id" class="doc_id form-control" value="<?php echo $_GET['doc_id']; ?>
+				<div class="col-sm-6">
+					<input type="hidden" name="doc_id" id="doc_id" class="doc_id form-control" value="<?php echo $_GET['doc_id']; ?>
 "/>
-				<input type="hidden" name="doc_name" id="doc_name" class="doc_name form-control" value="<?php echo $_GET['doc_name']; ?>
+					<input type="hidden" name="doc_name" id="doc_name" class="doc_name form-control" value="<?php echo $_GET['doc_name']; ?>
 " />
-				<label for="dt" class="">Patient Id</label>
-				<input type="text" name="p_id" id="p_id" class="p_id form-control" />
-			</div>
-			<div class="col-sm-1" style="padding-top: 24px;">
-				<input type="submit" class="btn btn-primary" value="Search" />
-			</div>
-			<div class="" style="padding-top: 24px;">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+					<label for="dt" class="">Patient Id</label>
+					<input type="text" name="p_id" id="p_id" class="p_id form-control" />
+				</div>
+				<div class="col-sm-1" style="padding-top: 24px;">
+					<input type="submit" class="btn btn-primary" value="Search" />
+				</div>
+				<div class="" style="padding-top: 24px;">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 doc-appointments/<?php echo $_GET['doc_id']; ?>
 ?doc_name=<?php echo $_GET['doc_name']; ?>
 &doc_adr=<?php echo $_GET['doc_adr']; ?>
 &doc_phne=<?php echo $_GET['doc_phne']; ?>
 &img=<?php echo $_GET['img']; ?>
 &speciallist=<?php echo $_GET['speciallist']; ?>
+&exprience=<?php echo $_GET['exprience']; ?>
+&fee=<?php echo $_GET['fee']; ?>
 " class="btn btn-primary">New Patient</a>
+				</div>
 			</div>
-		</div>
-	</form>
-	<?php else: ?>
-	<div class="alertWrap" title="Errors"></div>
-	<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+		</form>
+		<?php else: ?>
+		<div class="alertWrap" title="Errors"></div>
+		<form id="add_user" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
-		<fieldset>
-			<legend>Appointments</legend>
-			<div class="container doctorStyleCard">
-				<div class="row" style="padding: 10px;    padding-top: 20px;">
-					<div class="col-sm-4"> 
-						<img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<fieldset>
+				<legend>Appointments</legend>
+				<div class="container doctorStyleCard">
+					<div class="row" style="padding: 10px;    padding-top: 20px;">
+						<div class="col-sm-2"> 
+							<img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 <?php echo $_GET['img']; ?>
 " alt=""  class="img-responsive">
-					</div>
-					<div class="col-sm-8 ">
-						<h4>Dr. <?php echo $_GET['doc_name']; ?>
+						</div>
+						<div class="col-sm-7 ">
+							<h4 style="margin-bottom: 30px;">Dr. <?php echo $_GET['doc_name']; ?>
 </h4>
-						<span class="text-center"><?php echo $_GET['speciallist']; ?>
-</span><br>
-						<span><?php echo $_GET['doc_adr']; ?>
+							<div style="margin-bottom: 12px;">
+								<span class="text-center"><?php echo $_GET['speciallist']; ?>
+</span></div>
+								<span><?php echo $_GET['doc_adr']; ?>
 </span>
-					</div>
-				</div>
-			</div>	
-			<input type="hidden" name="doc_name" value="<?php echo $_GET['doc_name']; ?>
+							</div>
+							<div class="col-sm-3 pull-right expri-div">
+								<div style="margin-bottom: 12px;">
+									<span class="text-center"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $_GET['exprience']; ?>
+ Years of Exprience</span></div>
+									<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Rs. <?php echo $_GET['fee']; ?>
+</span>
+								</div>
+							</div>
+						</div>		
+						<input type="hidden" name="doc_name" value="<?php echo $_GET['doc_name']; ?>
 " id="doc_name">
-			<input type="hidden" name="doc_adr" value="<?php echo $_GET['doc_adr']; ?>
+						<input type="hidden" name="doc_adr" value="<?php echo $_GET['doc_adr']; ?>
 " id="doc_adr">
-			<input type="hidden" name="doc_phne" value="<?php echo $_GET['doc_phne']; ?>
+						<input type="hidden" name="doc_phne" value="<?php echo $_GET['doc_phne']; ?>
 " id="doc_phne">
-			<input type="hidden" name="u_id" value="<?php echo $this->_tpl_vars['id']; ?>
+						<input type="hidden" name="u_id" value="<?php echo $this->_tpl_vars['id']; ?>
 " id="id"> 
-			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
+						<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
 " id="unavail"> 
-			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['from']; ?>
+						<input type="hidden" name="" value="<?php echo $this->_tpl_vars['from']; ?>
 " id="from"> 
-			<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
+						<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
 " id="to">
-			<input type="hidden" name="ap_number" id="ap_number"> 
-			<input type="hidden" name="security_key" id="security_key">
-			<input type="hidden" name="" id="res_error" value="<?php echo $this->_tpl_vars['res_error']; ?>
+						<input type="hidden" name="ap_number" id="ap_number"> 
+						<input type="hidden" name="security_key" id="security_key">
+						<input type="hidden" name="" id="res_error" value="<?php echo $this->_tpl_vars['res_error']; ?>
 ">
-			<input type="hidden" name="online_manual" id="online_manual" value="manual">
-			<div class="row" style="margin-top: 40px; margin-bottom: 20px;">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-4">	
-					<div class="calendar_block">
-						<input type="hidden" name="dt" id="" class="dateInput" />
-						<div class="text-center datetimeHeading"> 
-							<span>Select Date</span>
-						</div>
-						<div class="dt">	
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4 common-bottom ">
-					<div class="hideHr">
-						<div class="text-center timeHeading">
-							<span>Select Hour</span>
-						</div>
-						<div class="timeWrap">
-							<input type="text" name="hour"  class="form-control" id="hour"/>
-						</div>
+						<input type="hidden" name="online_manual" id="online_manual" value="manual">
+						<div class="row" style="margin-top: 40px; margin-bottom: 20px;">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-4">	
+								<div class="calendar_block">
+									<input type="hidden" name="dt" id="" class="dateInput" />
+									<div class="text-center datetimeHeading"> 
+										<span>Select Date</span>
+									</div>
+									<div class="dt">	
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4 common-bottom ">
+								<div class="hideHr">
+									<div class="text-center timeHeading">
+										<span>Select Hour</span>
+									</div>
+									<div class="timeWrap">
+										<input type="text" name="hour"  class="form-control" id="hour"/>
+									</div>
 
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-4 common-bottom">
-					<label for="name">Patient Name</label>
-					<input type="text" name="name" id="name" maxlength="50" class="form-control" onclick="generateRandomNumber()"/>
-				</div>
-				<div class="col-sm-4 common-bottom">
-					<label for="gender">Gender</label>
-					<select name="gender" id="gender" class="form-control">
-						<option value="male" <?php if ($this->_tpl_vars['data']['gender'] == 'male'): ?> selected="selected" <?php endif; ?>>Male</option>
-						<option value="female" <?php if ($this->_tpl_vars['data']['gender'] == 'female'): ?> selected="selected" <?php endif; ?>>Female</option>
-						<option value="other" <?php if ($this->_tpl_vars['data']['gender'] == 'other'): ?> selected="selected" <?php endif; ?>>Other</option>
-					</select>
-				</div> 
-			</div>
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-4 common-bottom">
-					<label for="dob">Date of Birth</label>
-					<input type="text" name="dob" id="dob" value="<?php echo $this->_tpl_vars['data']['dob']; ?>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-4 common-bottom">
+								<label for="name">Patient Name</label>
+								<input type="text" name="name" id="name" maxlength="50" class="form-control" onclick="generateRandomNumber()"/>
+							</div>
+							<div class="col-sm-4 common-bottom">
+								<label for="gender">Gender</label>
+								<select name="gender" id="gender" class="form-control">
+									<option value="male" <?php if ($this->_tpl_vars['data']['gender'] == 'male'): ?> selected="selected" <?php endif; ?>>Male</option>
+									<option value="female" <?php if ($this->_tpl_vars['data']['gender'] == 'female'): ?> selected="selected" <?php endif; ?>>Female</option>
+									<option value="other" <?php if ($this->_tpl_vars['data']['gender'] == 'other'): ?> selected="selected" <?php endif; ?>>Other</option>
+								</select>
+							</div> 
+						</div>
+						<div class="row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-4 common-bottom">
+								<label for="dob">Date of Birth</label>
+								<input type="text" name="dob" id="dob" value="<?php echo $this->_tpl_vars['data']['dob']; ?>
 " autocomplete="off" class="form-control"/>
-				</div>
-				<div class="col-sm-4 common-bottom">
-					<label for="marital_status">Marital Status</label>
+							</div>
+							<div class="col-sm-4 common-bottom">
+								<label for="marital_status">Marital Status</label>
 					<select name="marital_status" id="marital_status" class="form-control"><!-- 
 						<option value="-1"  selected="" disabled="">Select Status</option> -->
 						<option value="married">Married</option>
@@ -396,7 +415,7 @@ doc-appointments/<?php echo $_GET['doc_id']; ?>
 	margin:0 auto;
 	box-shadow: 0 0 5px 5px #dcdcdc;
 	border-radius: 5px;
-	width: 40%;
+	width: 100%;
 	min-height: 150px;
 	
 }
@@ -445,6 +464,26 @@ doc-appointments/<?php echo $_GET['doc_id']; ?>
 	/*// border-radius: 15px;*/
 
 }
+.ui-timepicker-list .ui-timepicker-selected{
+	background-color: #FF8800 !important;
+	color: #FFF !important;
+
+}
+.ui-timepicker-list .disabledFullhr{
+	
+	background: #6B6565 !important;
+	color: #FFF !important;
+	/*cursor: not-allowed;*/
+
+}
+.ui-timepicker-list .disabledFullhr:hover{
+	
+	background: #6B6565 !important;
+	color: #FFF !important;
+	cursor: not-allowed;
+
+}
+
 /*.ui-datepicker-next-hover{
    background-color:#FFF !important;
 	border: none !important;
@@ -485,6 +524,14 @@ doc-appointments/<?php echo $_GET['doc_id']; ?>
 	}
 	span.select2.select2-container.select2-container--default {
 		width: 340px !important;
+	}
+	.fa-money, .fa-star-o{
+		font-size: 20px;
+		color: #FF8800;
+	}
+	.expri-div{
+
+		margin-top: 55px;
 	}
 
 </style>
@@ -662,31 +709,32 @@ doc-appointments/add?ajax=y<?php echo '",
 
 		}
 
-		$(\'#hour\').on("change",function(){
+		$(\'#hour\').on("change",function(e,ui){
 			var hr = $(\'#hour\').val();
-                  // debugger;
-                  $.ajax({ 
-                  	type: "POST",
-                  	url: "'; ?>
+			debugger;
+			$.ajax({ 
+				type: "POST",
+				url: "'; ?>
 <?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 doc-appointments/add?appoint=y<?php echo '",
-                  	data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
-                  	success: function(msg) 
-                  	{
-                  		debugger
+				data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
+				success: function(msg) 
+				{
+                  		//debugger
                   		$(\'#ap_number\').val(+msg + +1);
 
-                  		if (msg >count) {
+                  		if (parseInt(count) == parseInt(msg)) {
 
                   			$(\'#hour\').val(\'\');
-                  			$(\'#hour\').timepicker(\'hide\');
-                  			alert("The selected hour\'s slot if full, please choose another time.");
+                  			$(\'.ui-timepicker-selected\').addClass(\'disabledFullhr\');
+                  			//$(\'#hour\').timepicker(\'hide\');
+                  			alert("The selected hour\'s slot is full, please choose another time.");
 
                   		}
                   	}
                   });
 
-              });
+		});
 
 		$( "#dob" ).datepicker({
 			yearRange: "-100:+0",

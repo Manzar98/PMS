@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-23 15:52:46
+<?php /* Smarty version 2.6.31, created on 2018-11-27 18:21:42
          compiled from appointments/appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'appointments/appointments.tpl', 8, false),array('modifier', 'date_format', 'appointments/appointments.tpl', 57, false),)), $this); ?>
@@ -93,6 +93,8 @@ add-appointment/?doc_id=<?php echo $this->_tpl_vars['data']['id']; ?>
 &img=<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 &speciallist=<?php echo $this->_tpl_vars['data']['specialist']; ?>
 &pkgId=<?php echo $this->_tpl_vars['data']['package_id']; ?>
+&exprience=<?php echo $this->_tpl_vars['data']['exprience']; ?>
+&fee=<?php echo $this->_tpl_vars['data']['c_fee']; ?>
 &exist=patient" class="btn btn-primary">Get Appointment</a>
 		</div>
 		<div class="col-sm-1"  >
@@ -167,6 +169,18 @@ history/" class="btn btn-primary">Veiw History</a>
 			<span><b>Doctor's Experience : </b><span><?php echo $this->_tpl_vars['data']['exprience']; ?>
 </span></span>
 		</div>
+		<div class="col-sm-4 common-bottom">
+			<span><b>Clinic Name : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['c_name']; ?>
+</span></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-4 common-bottom">
+			<span><b>Clinic Fee : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['c_fee']; ?>
+</span></span>
+		</div>
+
 	</div>
 	<div style="margin-bottom: 30px;"></div>
 	<?php endif; ?>

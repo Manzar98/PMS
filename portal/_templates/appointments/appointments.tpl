@@ -60,7 +60,7 @@
 	<div class="row" style="margin-top: 10px;">
 		<div class="col-sm-8"></div>
 		<div class="col-sm-2 common-bottom" >
-			<a href="{$BASE_URL_ADMIN}add-appointment/?doc_id={$data.id}&doc_name={$data.F_name} {$data.L_name} &doc_adr={$data.c_address}&doc_phne={$data.phone}&img={$data.profile_img}&speciallist={$data.specialist}&pkgId={$data.package_id}&exist=patient" class="btn btn-primary">Get Appointment</a>
+			<a href="{$BASE_URL_ADMIN}add-appointment/?doc_id={$data.id}&doc_name={$data.F_name} {$data.L_name} &doc_adr={$data.c_address}&doc_phne={$data.phone}&img={$data.profile_img}&speciallist={$data.specialist}&pkgId={$data.package_id}&exprience={$data.exprience}&fee={$data.c_fee}&exist=patient" class="btn btn-primary">Get Appointment</a>
 		</div>
 		<div class="col-sm-1"  >
 			<a href="{$BASE_URL_ADMIN}history/" class="btn btn-primary">Veiw History</a>
@@ -119,6 +119,16 @@
 		<div class="col-sm-4 common-bottom">
 			<span><b>Doctor's Experience : </b><span>{$data.exprience}</span></span>
 		</div>
+		<div class="col-sm-4 common-bottom">
+			<span><b>Clinic Name : </b><span class="capitalize">{$data.c_name}</span></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-4 common-bottom">
+			<span><b>Clinic Fee : </b><span class="capitalize">{$data.c_fee}</span></span>
+		</div>
+
 	</div>
 	<div style="margin-bottom: 30px;"></div>
 	{/if}
