@@ -252,6 +252,9 @@ switch($page)
 	{
 		redirect_to(BASE_URL);
 		exit;
+	}elseif (empty($_SESSION['UserType'])) {
+		redirect_to(BASE_URL);
+		exit;
 	}
 	require_once 'dir_users/add_users.php';
 	$flag = 1;
@@ -278,8 +281,12 @@ switch($page)
 	break;
 
 	case 'packages':
+	print_r($_SESSION);
 	if(!isset($_SESSION['AdminId']))
 	{
+		redirect_to(BASE_URL);
+		exit;
+	}elseif (empty($_SESSION['UserType'])) {
 		redirect_to(BASE_URL);
 		exit;
 	}
@@ -292,11 +299,24 @@ switch($page)
 	{
 		redirect_to(BASE_URL);
 		exit;
+	}elseif (empty($_SESSION['UserType'])) {
+		redirect_to(BASE_URL);
+		exit;
 	}
     require_once 'dir_packages/add_package.php';
     $flag = 1;
     break;
-
+   
+    case 'own-package':
+	if(!isset($_SESSION['AdminId']))
+	{
+		redirect_to(BASE_URL);
+		exit;
+	}
+    require_once 'own_package.php';
+    $flag = 1;
+    break;
+    
 	case 'links':
 	if(!isset($_SESSION['AdminId']))
 	{
@@ -323,16 +343,6 @@ switch($page)
 		exit;
 	}
 	require_once 'work_settings.php';
-	$flag = 1;
-	break;
-
-	case 'edit-users':
-	if(!isset($_SESSION['AdminId']))
-	{
-		redirect_to(BASE_URL);
-		exit;
-	}
-	require_once 'dir_users/edit_user.php';
 	$flag = 1;
 	break;
 

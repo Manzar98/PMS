@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 16:28:32
+<?php /* Smarty version 2.6.31, created on 2018-11-28 18:31:39
          compiled from index.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -123,6 +123,18 @@ edit-users/<?php echo $_SESSION['AdminId']; ?>
 						<span style="">Profile</span><br>
 						<div class="div-P" style="">
 							<p style="">Manage your<br> profile</p>
+						</div>
+					</div>
+				</a>
+			</div>
+						<div class="col-sm-3 text-center">
+				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'own-package'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+own-package/">
+					<div class="db-back-shadow">
+						<i class="fa fa-info" aria-hidden="true"></i><br>
+						<span style="">Package</span><br>
+						<div class="div-P">
+							<p style="">Check your<br> package details</p>
 						</div>
 					</div>
 				</a>

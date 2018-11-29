@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-26 11:04:29
+<?php /* Smarty version 2.6.31, created on 2018-11-28 18:33:55
          compiled from reports/reports.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'reports/reports.tpl', 49, false),array('modifier', 'print_r', 'reports/reports.tpl', 69, false),array('modifier', 'count', 'reports/reports.tpl', 80, false),)), $this); ?>
@@ -114,8 +114,6 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 					<?php $_from = $this->_tpl_vars['v']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['name']):
 ?>
-
-					
 					<tr>
 						<td class="text-center"><?php echo $this->_tpl_vars['name']; ?>
 </td>

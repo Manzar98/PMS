@@ -84,8 +84,6 @@
 						{$k} ({$v|@count})</th>
 					</tr>
 					{foreach from=$v item=name key=k}
-
-					
 					<tr>
 						<td class="text-center">{$name}</td>
 					</tr>

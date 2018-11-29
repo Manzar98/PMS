@@ -96,3 +96,5 @@
 
 	</div>
 </div><!-- #content -->
+<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+{include file="footer.tpl"}

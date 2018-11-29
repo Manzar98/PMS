@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-20 19:54:42
+<?php /* Smarty version 2.6.31, created on 2018-11-28 18:26:30
          compiled from packages/packages.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 20, false),)), $this); ?>
@@ -131,3 +131,9 @@ add-package/edit/<?php echo $this->_tpl_vars['singleRecord']['id']; ?>
 
 	</div>
 </div><!-- #content -->
+<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>

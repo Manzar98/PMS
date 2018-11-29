@@ -63,5 +63,19 @@ Class Package
 
 	}
 
+	function getPackageDetail($pkg_id){
+      global $db;
+		$sql='SELECT * FROM '.DB_PREFIX.'packages where id='.$pkg_id;
+		//echo $sql;
+		return $db->QueryRow($sql);
+	}
+
+    function getConsumptionDetail($id){
+       global $db;
+		$sql='SELECT * FROM '.DB_PREFIX.'doctor_consumption where user_id='.$id;
+		//echo $sql;
+		return $db->QueryRow($sql);
+	}
+
 }
 ?>

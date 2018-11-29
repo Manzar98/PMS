@@ -109,6 +109,17 @@
 					</div>
 				</a>
 			</div>
+						<div class="col-sm-3 text-center">
+				<a {if $CURRENT_PAGE == 'own-package'}class="selected"{/if} href="{$BASE_URL_ADMIN}own-package/">
+					<div class="db-back-shadow">
+						<i class="fa fa-info" aria-hidden="true"></i><br>
+						<span style="">Package</span><br>
+						<div class="div-P">
+							<p style="">Check your<br> package details</p>
+						</div>
+					</div>
+				</a>
+			</div>
 			<div class="col-sm-3 text-center">
 				<a {if $CURRENT_PAGE == 'password'}class="selected"{/if} href="{$BASE_URL_ADMIN}password/">
 					<div class="db-back-shadow">

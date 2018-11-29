@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-27 18:15:34
+<?php /* Smarty version 2.6.31, created on 2018-11-28 18:33:51
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
