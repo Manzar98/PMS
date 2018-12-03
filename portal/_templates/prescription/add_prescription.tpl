@@ -154,7 +154,7 @@
 						}	
 					});
 
-						
+
 				}
 				else
 				{
@@ -194,7 +194,7 @@
 				var test ='<tr> <td>' + test_name + '</td><td>' + option_name + '</td> <td class="bold"> '+ test_result+' </td> <td><span class="close">X</span></td>'+test_data+' </tr>';					
 				$("#test_table").show();
 				$("#test_table tbody").append(test);
-					
+
 				$("#test_table td .close").on("click", function(){
 					$(this).parents('tr').remove();
 				});
@@ -244,49 +244,49 @@
 							$("#add_medicine_wrap").hide();
 							$("#add_medicine_wrap .empty-inpt").val('');
 						}else{
-						
-						var dropdown = "";
-						dropdown+='<option class="topOpt" value="" selected disabled>Select Medicine First</option>';
-						$.each(data.id,function(k,v){
-                             console.log(v);
+
+							var dropdown = "";
+							dropdown+='<option class="topOpt" value="" selected disabled>Select Medicine First</option>';
+							$.each(data.id,function(k,v){
+								console.log(v);
 
                              //debugger
                              dropdown+='<option value="'+v+'">'+data.medi[k]+'</option>';   
                          })
-						
-						$('#medicine').html('');
-						$('#medicine').html(dropdown);
 
-						if(data.insertedId>0)
-						{
+							$('#medicine').html('');
+							$('#medicine').html(dropdown);
+
+							if(data.insertedId>0)
+							{
 
 
-							if (medicine_instruct!="") {
-								
-								$.ajax({
+								if (medicine_instruct!="") {
 
-									type: "POST",
-									url : "{/literal}{$BASE_URL_ADMIN}instructions/add?ajax=y{literal}",
-									data: "medicine_id="+data.insertedId+"&instruction="+medicine_instruct,
-									success:function (isnt_msg) {
-										if (isnt_msg > 0) {
+									$.ajax({
 
-										}else{
+										type: "POST",
+										url : "{/literal}{$BASE_URL_ADMIN}instructions/add?ajax=y{literal}",
+										data: "medicine_id="+data.insertedId+"&instruction="+medicine_instruct,
+										success:function (isnt_msg) {
+											if (isnt_msg > 0) {
 
+											}else{
+
+											}
 										}
-									}
-								})
-								
-							}
-							$("#add_medicine_wrap").hide();
-							$("#add_medicine_wrap .empty-inpt").val('');
+									})
 
+								}
+								$("#add_medicine_wrap").hide();
+								$("#add_medicine_wrap .empty-inpt").val('');
+
+							}
+							else
+							{
+								alert('Some Error Occured');
+							}
 						}
-						else
-						{
-							alert('Some Error Occured');
-						}
-                       }
 					}
 				})
 			}
@@ -315,43 +315,43 @@
 							$("#add_test_wrap .empty-inpt").val('');
 						}else{
 
-						var dropdown = "";
-						dropdown+='<option class="topOpt" value="" selected disabled>Select Test</option>';
-						$.each(data.ids,function(k,v){
+							var dropdown = "";
+							dropdown+='<option class="topOpt" value="" selected disabled>Select Test</option>';
+							$.each(data.ids,function(k,v){
                              // console.log(v);
                              dropdown+='<option value="'+v+'">'+data.test[k]+'</option>';   
                          })
-						
-						$('#test_name').html('');
-						$('#test_name').html(dropdown);
-						
-						if(data.insertedId>0)
-						{
-							if (test_option!="" || test_measurement!="" || test_range!="") {
-								
-								$.ajax({
 
-									type: "POST",
-									url : "{/literal}{$BASE_URL_ADMIN}test-options/add/"+data.insertedId+"?ajax=y{literal}",
-									data: "name="+test_option+"&measurement="+test_measurement+"&normal_range="+test_range,
-									success:function (opt_msg) {
-										if (opt_msg > 0) {
-											
-										}else{
+							$('#test_name').html('');
+							$('#test_name').html(dropdown);
 
+							if(data.insertedId>0)
+							{
+								if (test_option!="" || test_measurement!="" || test_range!="") {
+
+									$.ajax({
+
+										type: "POST",
+										url : "{/literal}{$BASE_URL_ADMIN}test-options/add/"+data.insertedId+"?ajax=y{literal}",
+										data: "name="+test_option+"&measurement="+test_measurement+"&normal_range="+test_range,
+										success:function (opt_msg) {
+											if (opt_msg > 0) {
+
+											}else{
+
+											}
 										}
-									}
-								})
-								
+									})
+
+								}
+								$("#add_test_wrap").hide();
+								$("#add_test_wrap .empty-inpt").val('');
 							}
-							$("#add_test_wrap").hide();
-							$("#add_test_wrap .empty-inpt").val('');
+							else
+							{
+								alert('Some Error Occured');
+							}
 						}
-						else
-						{
-							alert('Some Error Occured');
-						}
-                      }
 					}
 				})
 			}
@@ -363,8 +363,8 @@
 			patient_name = $("#name").val();
 			mobile_number = $("#mobile_number").val();
 			city = $("#city").val();
-		var	s_key = $("#security_key").val();
-		var	email = $("#email").val();
+			var	s_key = $("#security_key").val();
+			var	email = $("#email").val();
 
 
 			if(patient_name !="" && mobile_number !="")
@@ -376,12 +376,12 @@
 					data: "name="+patient_name+"&mobile_number="+mobile_number+"&city_id="+city+"&security_key="+s_key+"&email="+email,
 					success: function(msg) 
 					{
-                        if (msg=="You Can't add the patient. Because No of patients is full.") {
+						if (msg=="You Can't add the patient. Because No of patients is full.") {
 							$("#add_new_patient").hide();
 							$("#add_new_patient .empty-inpt").val('');
-                        	alert(msg);
-                            
-                        }else if(msg>0)
+							alert(msg);
+
+						}else if(msg>0)
 						{
 							$('#patient_id').val(msg);
 							$('#patient_name').val(patient_name);
@@ -416,29 +416,44 @@
                 });
 
 		if ($('#prescriptionFull').val()) {
-           
-            alert($('#prescriptionFull').val());
+
+			alert($('#prescriptionFull').val());
 		}else{
 
-          $('#prescriptionFull').val('')
+			$('#prescriptionFull').val('')
 		}
 
 	});
 function generateRandomNumber(){
 
-   var d=new Date();
-   var n=d.getTime();
-   n = n.toString()
-   m=n.substring(9,14)
-   $('#security_key').val(m);
+	var d=new Date();
+	var n=d.getTime();
+	n = n.toString()
+	m=n.substring(9,14)
+	$('#security_key').val(m);
 }
 // debugger
 </script>
 {/literal}
-<div id="content">
+<div id="content" class="content-wrapper">
 	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>
+				{if isset($id) && $id=="0"}
+				<li class="breadcrumb-item active">Prescriptions</li>
+				{else}
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}prescriptions/">Prescriptions</a>
+				</li>
+				<li class="breadcrumb-item active">Add</li>
+				{/if}
+			</ol>
+		</div>
 		<h2>Add Prescription</h2>
-
 		{if (isset($errors) && $errors)}
 		<div class="fail">
 			{foreach from=$errors item=error}
@@ -446,6 +461,7 @@ function generateRandomNumber(){
 			{/foreach}
 		</div>
 		{/if}
+
 		<input type="hidden" name="" id="prescriptionFull" value="{$prescriptionFull}">
 		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="get" enctype="multipart/form-data">
 
@@ -453,16 +469,20 @@ function generateRandomNumber(){
 				
 				<legend>Search Patient</legend>
 				<div class="row">
-					<div class="col-md-3 col-sm-12 search-top">
-						<select name="field" class="form-control" id="field" onchange="PatientLookUp(document.getElementById('q').value)">
-							<option value="id" {if (isset($data) && $data.field=='id')} selected="selected" {/if}>Patient ID</option>
-							<option value="name" {if (isset($data) && $data.field=='name')} selected="selected" {/if}>Patient Name</option>
-							<option value="mobile" {if (isset($data) && $data.field=='mobile')} selected="selected" {/if}>Mobile No</option>
-							<option value="phone" {if (isset($data) && $data.field=='phone')} selected="selected" {/if}>Phone No</option>
-						</select>
+					<div class="col-md-3">
+						<div class="form-group">
+							<select name="field" class="form-control" id="field" onchange="PatientLookUp(document.getElementById('q').value)">
+								<option value="id" {if (isset($data) && $data.field=='id')} selected="selected" {/if}>Patient ID</option>
+								<option value="name" {if (isset($data) && $data.field=='name')} selected="selected" {/if}>Patient Name</option>
+								<option value="mobile" {if (isset($data) && $data.field=='mobile')} selected="selected" {/if}>Mobile No</option>
+								<option value="phone" {if (isset($data) && $data.field=='phone')} selected="selected" {/if}>Phone No</option>
+							</select>
+						</div>
 					</div>
-					<div class="col-md-3 col-sm-12 search-top">
-						<input type="text" class="form-control" name="q" id="q" {if (isset($data) && $data.q)}value="{$data.q}"{/if}  maxlength="20" onkeyup="PatientLookUp(this.value)" />
+					<div class="col-md-3">
+						<div class="form-group">
+							<input type="text" class="form-control" name="q" id="q" {if (isset($data) && $data.q)}value="{$data.q}"{/if}  maxlength="20" onkeyup="PatientLookUp(this.value)" />
+						</div>
 					</div>
 					<!-- <div class="col-md-2 col-sm-12 search-top">
 						<input class="btn btn-primary" type="submit" value="Search" id="submit" />
@@ -477,49 +497,57 @@ function generateRandomNumber(){
 		<form id="add_prescription" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 			<fieldset>
 				<legend>Patient Information</legend>
-				<div class="col-sm-3">
-						<label for="patient_name">Patient Name</label>
-						<input type="text" class="form-control input-field" name="patient_name" id="patient_name" readonly="readonly" {if (isset($data) && $data.patient_name)}value="{$data.name}"{/if} />
-					</div>
+				
 				<div class="row">
 					<div class="col-sm-3">
-						<label for="patient_id">Patient Id</label>
-						<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" {if (isset($data) && $data.patient_id)}value="{$data.patient_id}"{/if} />
+						<div class="form-group">
+							<label for="patient_name">Patient Name</label>
+							<input type="text" class="form-control input-field" name="patient_name" id="patient_name" readonly="readonly" {if (isset($data) && $data.patient_name)}value="{$data.name}"{/if} />
+						</div>
 					</div>
-
-					<div class="col-sm-2 addNewBtn">
-						<a id="add_patient" href="javascript:void(0)">Add New Patient</a>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="patient_id">Patient Id</label>
+							<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" {if (isset($data) && $data.patient_id)}value="{$data.patient_id}"{/if} />
+						</div>
+					</div>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_patient" class="btn btn-primary" href="javascript:void(0)">Add New Patient</a>
 					</div>
 				</div>
-
-				<div class="row">
-					<div id="add_new_patient" style="display: none; clear:both;">
-                        <input type="hidden" name="security_key" id="security_key">
-						<div class="col-sm-3 common-top">
-							<label for="name">Name</label>
-							<input type="text" class="input-field form-control empty-inpt" id="name" name="name" onclick="generateRandomNumber()"/>
-							
+				
+				<div id="add_new_patient" style="display: none; clear:both;">
+					<div class="row">
+						<input type="hidden" name="security_key" id="security_key">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="input-field form-control empty-inpt" id="name" name="name" onclick="generateRandomNumber()"/>
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="mobile_number">Phone</label>
-							<input type="text" class="form-control empty-inpt" name="mobile_number" id="mobile_number" />
-							
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="mobile_number">Phone</label>
+								<input type="text" class="form-control empty-inpt" name="mobile_number" id="mobile_number" />
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="city">City</label>
-							<select name="city" id="city" class="form-control empty-inpt">
-								{foreach from=$cities item=city}
-
-								<option {if (isset($data) && $data.city_id==$city.id)} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
-
-								{/foreach}						
-							</select>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="city">City</label>
+								<select name="city" id="city" class="form-control empty-inpt">
+									{foreach from=$cities item=city}
+									<option {if (isset($data) && $data.city_id==$city.id)} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
+									{/foreach}						
+								</select>
+							</div>
 						</div>
-						<div class="col-sm-2 common-top">
-                        <label for="email">Email Address</label>
-                        <input type="email" name="email"
-                        id="email" class="form-control empty-inpt">
-                    </div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<label for="email">Email Address</label>
+								<input type="email" name="email"
+								id="email" class="form-control empty-inpt">
+							</div>
+						</div>
 						<div class="col-sm-1 addUp_btn">
 							<input type="button"  class="btn btn-primary" id="submit_patient" value="Add" />
 						</div>				
@@ -530,72 +558,88 @@ function generateRandomNumber(){
 			<fieldset id="medicines">
 
 				<legend>Medicine Instructions</legend> 
-
 				<div class="row">
-					<div class="col-md-3 common-top">
-						<label>Medicine</label>
-						<select id="medicine" onchange="GetMedicineInstruction(this)" class="form-control">
-							<option value="" disabled="" selected="">Select Medicine First</option>
-							{foreach from=$medicines item=m}
-							<option value="{$m.id}">{$m.name} ({$m.dose})</option>
-							{/foreach}	
-						</select>
+					<div class="col-md-3">
+						<div class="form-group"> 
+							<label>Medicine</label>
+							<select id="medicine" onchange="GetMedicineInstruction(this)" class="form-control">
+								<option value="" disabled="" selected="">Select Medicine First</option>
+								{foreach from=$medicines item=m}
+								<option value="{$m.id}">{$m.name} ({$m.dose})</option>
+								{/foreach}	
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group"> 
+							<label>Instruction</label>
+							<select class="medicine_instruction form-control" >
+
+							</select>
+						</div>
 					</div>
 					<div class="col-md-3 common-top">
-						<label>Instruction</label>
-						<select class="medicine_instruction form-control" >
-
-						</select>
-					</div>
-					<div class="col-md-3 common-top">
-						<label>Custom Instruction</label>
-						<input type="text" id="custom_instruction" class="form-control" />
-
+						<div class="form-group"> 
+							<label>Custom Instruction</label>
+							<input type="text" id="custom_instruction" class="form-control" />
+						</div>
 					</div>
 					<div class="col-sm-1 addUp_btn">
 						<input type="button" name="add_instruction" id="add_instruction" value="Add" class="btn btn-primary" />
 					</div>
-					<div class="col-sm-2 addNewBtn">
-						<a id="add_new_medicine" class="pull-right ">Add New Medicine</a>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_new_medicine" class="btn btn-primary pull-right">Add New Medicine</a>
 					</div>
 				</div>
-				<div class="row">
-					<div id="add_medicine_wrap" style="display: none; clear:both;">
-						<div class="col-md-3 common-top">
-							<label for="m_name">Medicine Name</label>
-							<input type="text" name="name" class="form-control empty-inpt" id="m_name"/>	
+				
+				<div id="add_medicine_wrap" style="display: none; clear:both;">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_name">Medicine Name</label>
+								<input type="text" name="name" class="form-control empty-inpt" id="m_name"/>
+							</div>	
 						</div>
-						<div class="col-md-3 common-top">
-							<label for="m_formula">Medicine Formula</label>
-							<input type="text" name="formula" id="m_formula" class="form-control empty-inpt"/>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_formula">Medicine Formula</label>
+								<input type="text" name="formula" id="m_formula" class="form-control empty-inpt"/>
+							</div>
 						</div>
-						<div class="col-md-3 common-top">
-
-							<label for="m_type">Type</label>
-							<select name="type" id="m_type" class="form-control empty-inpt">
-								<option value="" disabled="" selected="">Select</option>
-								<option value="Tablet">Tablet</option>
-								<option value="Capsule">Capsule</option>
-								<option value="Syrup">Syrup</option>
-								<option value="Injection">Injection</option>
-								<option value="Cream">Cream</option>
-								<option value="Drops">Drops</option>
-							</select>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_type">Type</label>
+								<select name="type" id="m_type" class="form-control empty-inpt">
+									<option value="" disabled="" selected="">Select</option>
+									<option value="Tablet">Tablet</option>
+									<option value="Capsule">Capsule</option>
+									<option value="Syrup">Syrup</option>
+									<option value="Injection">Injection</option>
+									<option value="Cream">Cream</option>
+									<option value="Drops">Drops</option>
+								</select>
+							</div>
 						</div>
-						<div class="col-md-3 common-top">
-							<label for="m_dose">Dose</label>
-							<input type="text" class="form-control empty-inpt" name="dose" id="m_dose"/>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_dose">Dose</label>
+								<input type="text" class="form-control empty-inpt" name="dose" id="m_dose"/>
+							</div>
 						</div>
-						<div class="col-md-3 common-top">
-							<label for="m_company">Company</label>
-							<input type="text" name="company" id="m_company" class="form-control empty-inpt"/>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_company">Company</label>
+								<input type="text" name="company" id="m_company" class="form-control empty-inpt"/>
+							</div>
 						</div>
-						<div class="col-md-3 common-top">
-							<label for="m_instruction">Instruction</label>
-							<textarea  name="instruction" id="m_instruction" class="form-control empty-inpt"></textarea>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_instruction">Instruction</label>
+								<textarea  name="instruction" id="m_instruction" class="form-control empty-inpt" cols="2"></textarea>
+							</div>
 						</div>
 						<div class="col-md-3 addUp_btn">
-							<input type="button" id="submit_medicine" value="Add" class="btn btn-primary" />
+							<input type="button" id="submit_medicine" value="Add" class="btn btn-primary"/>
 						</div>
 					</div>
 				</div>
@@ -614,58 +658,66 @@ function generateRandomNumber(){
 				</table>
 
 			</fieldset>
-
-
-
 			<fieldset id="tests">
 				<legend>Tests</legend>
 				<div class="row">
-					<div class="col-sm-3 common-top">
-						<label>Test Name</label>
-						<select id="test_name" onchange="GetTestOptions(this)" class="form-control">
-							<option value="" disabled="" selected="">Select Test</option>
-							{foreach from=$test_list item=t}
-							<option value="{$t.id}">{$t.name}</option>
-							{/foreach}
-						</select>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Test Name</label>
+							<select id="test_name" onchange="GetTestOptions(this)" class="form-control">
+								<option value="" disabled="" selected="">Select Test</option>
+								{foreach from=$test_list item=t}
+								<option value="{$t.id}">{$t.name}</option>
+								{/foreach}
+							</select>
+						</div>
 					</div>
-					<div class="col-sm-3 common-top">
-						<label>Test Options</label>
-						<select class="test_options form-control">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Test Options</label>
+							<select class="test_options form-control">
 
-						</select>
+							</select>
+						</div>
 					</div>
-					<div class="col-sm-3 common-top">
-
-						<label> Test Result</label>
-						<input type="text" class="form-control" id="test_result" />	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label> Test Result</label>
+							<input type="text" class="form-control" id="test_result" />	
+						</div>
 					</div>
 					<div class="col-sm-1 addUp_btn">
-
 						<input type="button" id="add_test" class="btn btn-primary" value="Add" />
 					</div>
-					<div class="col-sm-2 addNewBtn">
-						<a id="add_new_test" class="pull-right">Add New Test</a>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_new_test" class="pull-right btn btn-primary">Add New Test</a>
 					</div>
 				</div>
-
-				<div class="row">
-					<div  id="add_test_wrap" style="display: none;clear: both;">
-						<div class="col-sm-3 common-top">
-							<label for="t_name">Test Name</label>
-							<input type="text" name="name" id="t_name" maxlength="100" class="form-control empty-inpt" />
+				<div  id="add_test_wrap" style="display: none;clear: both;">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="t_name">Test Name</label>
+								<input type="text" name="name" id="t_name" maxlength="100" class="form-control empty-inpt" />
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="t_option">Option Name</label>
-							<input type="text" name="name" id="t_option" maxlength="100" class="form-control empty-inpt" />
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="t_option">Option Name</label>
+								<input type="text" name="name" id="t_option" maxlength="100" class="form-control empty-inpt" />
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="measurement">Measurment</label>
-							<input type="text" name="measurement" id="measurement" maxlength="100" class="form-control empty-inpt" />
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="measurement">Measurment</label>
+								<input type="text" name="measurement" id="measurement" maxlength="100" class="form-control empty-inpt" />
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="normal_range">Normal Range</label>
-							<input type="text" name="normal_range" id="normal_range" class="form-control empty-inpt" />
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="normal_range">Normal Range</label>
+								<input type="text" name="normal_range" id="normal_range" class="form-control empty-inpt" />
+							</div>
 						</div>
 						<div class="col-sm-2 addUp_btn">
 							<input type="button" id="submit_test" value="Add" class="btn btn-primary" />
@@ -694,42 +746,56 @@ function generateRandomNumber(){
 			<fieldset id="prescription">
 				<legend> Prescription Info</legend>
 				<div class="row">
-					<div class="col-sm-3 common-top">
-						<label for="description">Description</label>
-						<textarea name="description" id="description" tabindex="21" class="form-control"></textarea>	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="description">Description</label>
+							<textarea name="description" id="description" tabindex="21" class="form-control"></textarea>
+						</div>	
 					</div>
-					<div class="col-sm-3 common-top">
-						<label for="next_date">Next Date</label>
-						<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" />	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="next_date">Next Date</label>
+							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" />
+						</div>	
 					</div>
-					<div class="col-sm-3 common-top">
-						<label for="complain">Complain</label>
-						<input type="text" name="complain" tabindex="24"  class="form-control" />	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="complain">Complain</label>
+							<input type="text" name="complain" tabindex="24"  class="form-control" />	
+						</div>
 					</div>
-					<div class="col-sm-3 common-top">
-						<label for="next_plan">Next Plan</label>
-						<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control"></textarea>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="next_plan">Next Plan</label>
+							<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control"></textarea>
+						</div>
 					</div>
-					<div class="col-sm-3 common-top">
-						<label for="complain_detail">Complain Detail</label>
-						<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control"></textarea>	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="complain_detail">Complain Detail</label>
+							<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control"></textarea>	
+						</div>
 					</div>
 
 				</div>
 
 			</fieldset>
-
 			<fieldset>
 				<legend>Fee</legend>
-				<div class="col-sm-3">
-					<label for="fee_received">Fee Received</label>
-					<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="{$smarty.session.c_fee}" />
-				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="fee_received">Fee Received</label>
+							<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="{$smarty.session.c_fee}" />
+						</div>
+					</div>
+					</div>
+					<div class="col-sm-3 mx-auto" >
+						<label></label>
+						<input type="submit" class="btn btn-primary form-control" name="submit" id="submit" />
+					</div>
 			</fieldset>	
 
-			<label >
-				<input type="submit" class="btn btn-primary" name="submit" id="submit" />
-			</label>
 		</form>
 	</div><!-- #content -->
 </div>

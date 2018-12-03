@@ -35,18 +35,6 @@
 			</div>
 			{/section}
 			{if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}
-			<div class="setBolc">
-			<div class="col-sm-4 text-center ">
-				<div class="feeWrap">
-						<a href="{$BASE_URL_ADMIN}work-settings/" title="">
-							<i class="fa fa-clock-o" aria-hidden="true" style="color: ;"></i><h4 class="setH2 ">Time & Date</h4>
-							<div class="divP">
-								Manage availability settings
-							</div>
-						</a>
-					</div>
-			</div>
-			</div>
 			{/if}
 		</div>
 		<div style="margin-bottom: 20px;"></div>

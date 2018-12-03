@@ -47,7 +47,7 @@
 </script>
 
 {/literal}
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
 		{if (isset($errors) && $errors)}
 		<div class="fail noprint">
@@ -56,9 +56,22 @@
 			{/foreach}
 		</div>
 		{/if}
-		
-		
-		
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+			</li>
+			{if isset($id) && $id=="0"}
+			<li class="breadcrumb-item active">Prescriptions</li>
+			{else}
+			<li class="breadcrumb-item">
+				<a href="{$BASE_URL_ADMIN}prescriptions/">Prescriptions</a>
+			</li>
+			<li class="breadcrumb-item active">View</li>
+			{/if}
+		</ol>
+		</div>
 		<h2 class="noprint headingBottom">{if (isset($smarty.get.q) && $smarty.get.q neq '')} Search Result For "<b>{$smarty.get.q}</b>" {else}Prescription List{/if}</h2>
 		
 		<p class="noprint">
@@ -100,7 +113,7 @@
 
 		{if (isset($grouped_prescriptions) && $grouped_prescriptions)}
 		
-		<div class="pagination pull-right grp_btn">
+		<div class="pull-right grp_btn">
 			<span style="margin-bottom: 5px;">Group By :</span> 
 			<a {if ( isset($group_by) && $group_by=='date')} class="current_page" {/if} href="{$BASE_URL_ADMIN}prescriptions/?group_by=date&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Date</a>
 			<a {if ( isset($group_by) && $group_by=='patient_id')} class="current_page" {/if} href="{$BASE_URL_ADMIN}prescriptions/?group_by=patient_id&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Patient ID</a>
@@ -132,11 +145,11 @@
 
 				{foreach from=$prescriptions item=prescription}
 				<tr class="{cycle values='odd,even'}">
-					<td class="bold" width="35">{$prescription.id}</td>
-					<td width="200">{$prescription.patient_name} ({$prescription.patient_id})</td>
+					<td class="bold">{$prescription.id}</td>
+					<td>{$prescription.patient_name} ({$prescription.patient_id})</td>
 					<td>{$prescription.complain|default:'<span style="color:gray;font-style: italic;">Empty</span>'}</td>
-					<td width="200">{$prescription.created_on|date_format:"%A, %B %e, %Y"}</td>
-					<td width="65">
+					<td>{$prescription.created_on|date_format:"%A, %B %e, %Y"}</td>
+					<td>
 						<div class="icons">				
 							<a href="{$BASE_URL_ADMIN}prescriptions/view/{$prescription.id}/" title="View this Prescription"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
 							<a href="{$BASE_URL_ADMIN}edit-prescription/{$prescription.id}/" title="Edit this Prescription"><img src="{$BASE_URL_ADMIN}_templates/img/pencil.png" alt="Edit" /></a>
@@ -159,8 +172,8 @@
 		<div class="pagination">
 			{$pages}
 		</div>
-	
-	{elseif (isset($data) && $data)}
+
+		{elseif (isset($data) && $data)}
 
 		<div id="prescription_info">
 			<div class="row">
@@ -240,8 +253,8 @@
 						</tbody>
 					</table>
 					{foreachelse}	
-			<p class="box-info">No Tests for this prescription.</p>
-			{/foreach}
+					<p class="box-info">No Tests for this prescription.</p>
+					{/foreach}
 				</div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-4">
@@ -266,19 +279,19 @@
 			<p id="fee"> Fee Received : <strong>{$data.fee_received}</strong>    </p>
 			<p class="noprint">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
 		</div>
-	<p></p>
-	
-	<br /><br /><br />
-	<br />
-	
-	<br />
+		<p></p>
 
-{else}
-	
-	<p class="box-info">No Prescription on the List</p>
-	
-	{/if}
-</div>
+		<br /><br /><br />
+		<br />
+
+		<br />
+
+		{else}
+
+		<p class="box-info">No Prescription on the List</p>
+
+		{/if}
+	</div>
 
 </div>
 

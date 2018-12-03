@@ -61,11 +61,13 @@
 		});
 	}
 
-	function SelectPatient(thisValue)
+	function SelectPatient(thisValue,thisName)
 	{
 		if(thisValue)
 		{
+			//debugger
 			$("#patient_id").val(thisValue);
+			$("#patient_name").val(thisName);
 			$("#suggestion").hide();
 		}
 
@@ -130,50 +132,50 @@
 
 			var custom_instruction = $("#custom_instruction").val();
       // debugger
-			if(custom_instruction!="")
-			{
+      if(custom_instruction!="")
+      {
 //debugger
-				$.ajax({
-					type: "POST",
-					url: "{/literal}{$BASE_URL_ADMIN}add-prescription/add-instruction/{literal}",
-					data: "medicine_id=" + medicine_id + "&instruction="+custom_instruction,
-					success: function(msg) 
-					{
-						console.log(msg);
+$.ajax({
+	type: "POST",
+	url: "{/literal}{$BASE_URL_ADMIN}add-prescription/add-instruction/{literal}",
+	data: "medicine_id=" + medicine_id + "&instruction="+custom_instruction,
+	success: function(msg) 
+	{
+		console.log(msg);
                     //  debugger
-						if(parseInt(msg)>0)
-						{
-							instruction_id = msg;
-						}
-						var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
-						var instruction ='<tr> <td>' + medicine_name + '</td><td>' + custom_instruction + '</td> <td><span class="close">X</span></td>'+instruction_data+' </tr>';					
+                    if(parseInt(msg)>0)
+                    {
+                    	instruction_id = msg;
+                    }
+                    var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
+                    var instruction ='<tr> <td>' + medicine_name + '</td><td>' + custom_instruction + '</td> <td><span class="close">X</span></td>'+instruction_data+' </tr>';					
 
-						$("#instructions").show();
-						$("#instructions table").append(instruction);
-						$("#custom_instruction").val('');
+                    $("#instructions").show();
+                    $("#instructions table").append(instruction);
+                    $("#custom_instruction").val('');
 
-$("#instructions").find('.close').on("click", function(){
-			$(this).parents('tr').remove();
-		});
+                    $("#instructions").find('.close').on("click", function(){
+                    	$(this).parents('tr').remove();
+                    });
 
-					}	
-				});
+                }	
+            });
 
-			}
-			else
-			{
-				var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
-				var instruction ='<tr> <td>' + medicine_name + '</td><td>' + instruction_name + '</td><td><span class="close">X</span></td>'+instruction_data+' </tr>';					
-				$("#instructions").show();
-				$("#instructions table").append(instruction);
+}
+else
+{
+	var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
+	var instruction ='<tr> <td>' + medicine_name + '</td><td>' + instruction_name + '</td><td><span class="close">X</span></td>'+instruction_data+' </tr>';					
+	$("#instructions").show();
+	$("#instructions table").append(instruction);
 
-				$("#instructions").find('.close').on("click", function(){
-			$(this).parents('tr').remove();
-		});
-			}
+	$("#instructions").find('.close').on("click", function(){
+		$(this).parents('tr').remove();
+	});
+}
 
 
-		});
+});
 
 		$("#instructions").find('.close').on("click", function(){
 			$(this).parents('tr').remove();
@@ -202,15 +204,12 @@ $("#instructions").find('.close').on("click", function(){
 				$("#test_table table").append(test);
 				$("#test_table td .close").on("click", function(){
 					$(this).parents('tr').remove();
-				});	
-
+				});
 
 			}
-
-
 		});
 		
-	    $("#medicine").select2({
+		$("#medicine").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
@@ -225,18 +224,34 @@ $("#instructions").find('.close').on("click", function(){
 
 	});
 
-	function generateRandomNumber(){
+function generateRandomNumber(){
 
-		var d=new Date();
-		var n=d.getTime();
-		n = n.toString()
-		m=n.substring(9,14)
-		$('#security_key').val(m);
-	}
+	var d=new Date();
+	var n=d.getTime();
+	n = n.toString()
+	m=n.substring(9,14)
+	$('#security_key').val(m);
+}
 </script>
 {/literal}
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>
+				{if isset($id) && $id=="0"}
+				<li class="breadcrumb-item active">Prescriptions</li>
+				{else}
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}prescriptions/">Prescriptions</a>
+				</li>
+				<li class="breadcrumb-item active">Edit</li>
+				{/if}
+			</ol>
+		</div>
 		<h2>Edit Prescription</h2>
 
 		{if isset($errors)}
@@ -246,25 +261,26 @@ $("#instructions").find('.close').on("click", function(){
 			{/foreach}
 		</div>
 		{/if}
-		
+
 		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="get" enctype="multipart/form-data">
 			<fieldset >
 				<legend>Search Patient</legend>
 				<div class="row">
-					<div class="col-md-3 col-sm-12 search-top">
-						<select name="field" id="field" onchange="PatientLookUp(document.getElementById('q').value)" class="form-control">
-							<option value="id" {if (isset($data.field) && $data.field=='id')} selected="selected" {/if}>Patient ID</option>
-							<option value="name" {if (isset($data.field) && $data.field=='name')} selected="selected" {/if}>Patient Name</option>
-							<option value="mobile" {if (isset($data.field) && $data.field=='mobile')} selected="selected" {/if}>Mobile No</option>
-							<option value="phone" {if (isset($data.field) && $data.field=='phone')} selected="selected" {/if}>Phone No</option>
-						</select>
+					<div class="col-md-3">
+						<div class="form-group">
+							<select name="field" id="field" onchange="PatientLookUp(document.getElementById('q').value)" class="form-control">
+								<option value="id" {if (isset($data.field) && $data.field=='id')} selected="selected" {/if}>Patient ID</option>
+								<option value="name" {if (isset($data.field) && $data.field=='name')} selected="selected" {/if}>Patient Name</option>
+								<option value="mobile" {if (isset($data.field) && $data.field=='mobile')} selected="selected" {/if}>Mobile No</option>
+								<option value="phone" {if (isset($data.field) && $data.field=='phone')} selected="selected" {/if}>Phone No</option>
+							</select>
+						</div>
 					</div>
-					<div class="col-md-3 col-sm-12 search-top">
-						<input type="text" name="q" id="q" {if isset($data.q)}value="{$data.q}"{/if} maxlength="20" onkeyup="PatientLookUp(this.value)" class="form-control" />
+					<div class="col-md-3">
+						<div class="form-group">
+							<input type="text" name="q" id="q" {if isset($data.q)}value="{$data.q}"{/if} maxlength="20" onkeyup="PatientLookUp(this.value)" class="form-control" />
+						</div>
 					</div>
-					<!-- <div class="col-md-3 col-sm-12 search-top">
-						<input type="submit" value="Search" id="submit" class="btn btn-primary" />
-					</div> -->
 				</div>
 			</fieldset>
 		</form>
@@ -275,190 +291,213 @@ $("#instructions").find('.close').on("click", function(){
 			<fieldset>
 				<legend>Patient Information</legend>
 				<div class="row">
+					<!-- {$data|print_r} -->
 					<div class="col-sm-3">
-						<label for="patient_id">Patient Id</label>
-						<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" {if (isset($data) && $data.patient_id)}value="{$data.patient_id}"{/if} />
+						<div class="form-group">
+							<label for="patient_name">Patient Name</label>
+							<input type="text" class="form-control input-field" name="patient_name" id="patient_name" readonly="readonly" {if (isset($data) && $data.patient.name)}value="{$data.patient.name}"{/if} />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="patient_id">Patient Id</label>
+							<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" {if (isset($data) && $data.patient_id)}value="{$data.patient_id}"{/if} />
+						</div>
 					</div>
 				</div>
-
 			</fieldset>	
 
 			<div id="accordion">
 				<fieldset id="medicines">
-
 					<legend>Medicine</legend> 
-
 					<div class="row">
-						<div class="col-md-3 common-top">
-							<label>Medicine</label>
-							<select id="medicine" onchange="GetMedicineInstruction(this)" class="form-control">
-								<option value="" disabled="" selected="">Select Medicine First</option>
-								{foreach from=$medicines item=m}
-								<option value="{$m.id}">{$m.name} ({$m.dose})</option>
-								{/foreach}	
-							</select>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Medicine</label>
+								<select id="medicine" onchange="GetMedicineInstruction(this)" class="form-control">
+									<option value="" disabled="" selected="">Select Medicine First</option>
+									{foreach from=$medicines item=m}
+									<option value="{$m.id}">{$m.name} ({$m.dose})</option>
+									{/foreach}	
+								</select>
+							</div>
 						</div>
-						<div class="col-md-3 common-top">
-							<label>Instruction</label>
-							<select class="medicine_instruction form-control" >
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Instruction</label>
+								<select class="medicine_instruction form-control" >
 
-							</select>
+								</select>
+							</div>
 						</div>
-						<div class="col-md-3 common-top">
-							<label>Custom Instruction</label>
-							<input type="text" id="custom_instruction" class="form-control" />
-
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Custom Instruction</label>
+								<input type="text" id="custom_instruction" class="form-control" />
+							</div>
 						</div>
 						<div class="col-sm-3 addUp_btn">
 							<input type="button" name="add_instruction" id="add_instruction" value="Add" class="btn btn-primary" />
 						</div>
 					</div>
-				</fieldset>
-				
-				<div id="medicines">
-					<div style="clear:both;" id="instructions">
-						<table class="table table-striped half-tbl" >
-							<tr class="" style="background-color: #000;color:#fff;">
-								<td>Medicine Name</td>
-								<td>Instruction</td> 
-								<td></td>
-							</tr>
-							{foreach from=$data.instructions item=ins}
-                            <!--  {$ins.medicine_id} -->
-							<tr>
-								<td>{$ins.name} ({$ins.formula})</td>
-								<td>{$ins.instruction}</td>
-								<td><span class="remove" onclick="remove_instruction(this,{$ins.pid})">X</span></td>
-
-								<input type="hidden" name="instructions[1][medicine_id]" value="{$ins.medicine_id}">
-								<input type="hidden" name="instructions[1][instruction_id]" value="{$ins.id}">
-
-							</tr>
-							{/foreach}
-						</table>
+					<div class="row">
+						<div id="medicines" class="col-md-6 mt-3">
+							<div style="clear:both;" id="instructions">
+								<table class="table table-striped half-tbl" >
+									<tr class="" style="background-color: #000;color:#fff;">
+										<td>Medicine Name</td>
+										<td>Instruction</td> 
+										<td></td>
+									</tr>
+									{foreach from=$data.instructions item=ins}
+									<!--  {$ins.medicine_id} -->
+									<tr>
+										<td>{$ins.name} ({$ins.formula})</td>
+										<td>{$ins.instruction}</td>
+										<td><span class="remove" onclick="remove_instruction(this,{$ins.pid})">X</span></td>
+										<input type="hidden" name="instructions[1][medicine_id]" value="{$ins.medicine_id}">
+										<input type="hidden" name="instructions[1][instruction_id]" value="{$ins.id}">
+									</tr>
+									{/foreach}
+								</table>
+							</div>
+						</div>
 					</div>
-				</div>
+				</fieldset>
 
 				<fieldset id="tests">
 					<legend>Tests</legend>
 					<div class="row">
-						<div class="col-sm-3 common-top">
-							<label>Test Name</label>
-							<select id="test_name" onchange="GetTestOptions(this)" class="form-control">
-								<option value="" disabled="" selected="">Select Test</option>
-								{foreach from=$test_list item=t}
-								<option value="{$t.id}">{$t.name}</option>
-								{/foreach}
-							</select>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label>Test Name</label>
+								<select id="test_name" onchange="GetTestOptions(this)" class="form-control">
+									<option value="" disabled="" selected="">Select Test</option>
+									{foreach from=$test_list item=t}
+									<option value="{$t.id}">{$t.name}</option>
+									{/foreach}
+								</select>
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label>Test Options</label>
-							<select class="test_options form-control">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label>Test Options</label>
+								<select class="test_options form-control">
 
-							</select>
+								</select>
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-
-							<label> Test Result</label>
-							<input type="text" class="form-control" id="test_result" />	
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label> Test Result</label>
+								<input type="text" class="form-control" id="test_result" />
+							</div>	
 						</div>
 						<div class="col-sm-3 addUp_btn">
-
 							<input type="button" id="add_test" class="btn btn-primary" value="Add" />
+						</div>
+					</div>
+					<div class="row">
+						<div id="tests" class="col-md-6 mt-3">
+							<div style="clear:both;" id="test_table">
+								<table class="table table-striped half-tbl">
+									<tr style="background-color: #000;color:#fff;">
+										<td>Test Name</td>
+										<td>Option</td>
+										<td>Result</td>
+										<td></td>
+									</tr>
+									{foreach from=$data.tests item=test}
+
+									{foreach from=$test.options item=option name=option}
+									<tr>
+										<td>{$test.test_name}</td>
+										<td>{$option.option_name} ({$option.measurement}) normal range -> ({$option.normal_range})</td>
+										<td>{$option.result}</td>
+										<td>
+											<span class="remove" onclick="remove_test(this,{$option.pid})">X</span>
+											<input type="hidden" name="test[{$smarty.foreach.option.index+1}][test_id]" value="{$test.test_id}" />
+											<input type="hidden" name="test[{$smarty.foreach.option.index+1}][option_id]" value="{$option.option_id}" />
+											<input type="hidden" name="test[{$smarty.foreach.option.index+1}][result]" value="{$option.result}" />
+										</td>
+									</tr>
+									{/foreach}
+									{/foreach}
+								</table>
+							</div>
 						</div>
 					</div>
 				</fieldset>
 
-				<div id="tests">
-
-					<div style="clear:both;" id="test_table">
-						<table class="table table-striped half-tbl">
-							<tr style="background-color: #000;color:#fff;">
-								<td>Test Name</td>
-								<td>Option</td>
-								<td>Result</td>
-								<td></td>
-							</tr>
-
-							{foreach from=$data.tests item=test}
-
-							{foreach from=$test.options item=option name=option}
-							<tr>
-								<td>{$test.test_name}</td>
-								<td>{$option.option_name} ({$option.measurement}) normal range -> ({$option.normal_range})</td>
-								<td>{$option.result}</td>
-								<td>
-									<span class="remove" onclick="remove_test(this,{$option.pid})">X</span>
-									<input type="hidden" name="test[{$smarty.foreach.option.index+1}][test_id]" value="{$test.test_id}" />
-									<input type="hidden" name="test[{$smarty.foreach.option.index+1}][option_id]" value="{$option.option_id}" />
-									<input type="hidden" name="test[{$smarty.foreach.option.index+1}][result]" value="{$option.result}" />
-								</td>
-							</tr>
-							{/foreach}
-
-							{/foreach}
-
-						</table>
-					</div>
-				</div>
 
 				<fieldset id="prescription">
 					<legend> Prescription Info</legend>
 					<div class="row">
-						<div class="col-sm-3 common-top">
-							<label for="description">Description</label>
-							<textarea name="description" id="description" tabindex="21" class="form-control">{$data.description}</textarea>	
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="description">Description</label>
+								<textarea name="description" id="description" tabindex="21" class="form-control">{$data.description}</textarea>	
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="next_date">Next Date</label>
-							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" value="{$data.next_date|date_format:"%Y-%m-%d"}"/>	
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="next_date">Next Date</label>
+								<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" value="{$data.next_date|date_format:"%Y-%m-%d"}"/>	
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="complain">Complain</label>
-							<input type="text" name="complain" tabindex="24"  class="form-control" value="{$data.complain}"/>	
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="complain">Complain</label>
+								<input type="text" name="complain" tabindex="24"  class="form-control" value="{$data.complain}"/>
+							</div>	
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="next_plan">Next Plan</label>
-							<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control">{$data.next_plan}</textarea>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="next_plan">Next Plan</label>
+								<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control">{$data.next_plan}</textarea>
+							</div>
 						</div>
-						<div class="col-sm-3 common-top">
-							<label for="complain_detail">Complain Detail</label>
-							<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control">{$data.complain_detail}</textarea>	
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="complain_detail">Complain Detail</label>
+								<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control">{$data.complain_detail}</textarea>	</div>
+							</div>
 						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Fee</legend>
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label for="fee_received">Fee Received</label>
+									<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="{$data.fee_received}"/>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3 mx-auto" >
+							<label></label>
+							<input type="submit" class="btn btn-primary form-control" name="submit" value="Update"  id="submit" />
+						</div>
+						
+					</fieldset>	
+				</div><!-- #accrodion -->
 
-					</div>
-
-				</fieldset>
-				<fieldset>
-					<legend>Fee</legend>
-					<div class="col-sm-3">
-						<label for="fee_received">Fee Received</label>
-						<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="{$data.fee_received}"/>
-					</div>
-				</fieldset>	
-
-				<label>
-					<input type="submit" class="btn btn-primary" name="submit" id="submit" value="Update" />
-				</label>
-
-			</div><!-- #accrodion -->
-			
-		</form>
-	</div><!-- #content -->
-</div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
-{literal}
-<script type="text/javascript">
-	$(document).ready(function()
-	{
-		$('#name').focus();
-		$('#add_prescription').validate({
-			rules: {
-				patient_id: { required: true }
-			}
+			</form>
+		</div><!-- #content -->
+	</div>
+	<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+	{literal}
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			$('#name').focus();
+			$('#add_prescription').validate({
+				rules: {
+					patient_id: { required: true }
+				}
+			});
 		});
-	});
-</script>
-{/literal}
+	</script>
+	{/literal}
 
-{include file="footer.tpl"}
+	{include file="footer.tpl"}

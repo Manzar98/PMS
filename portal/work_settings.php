@@ -21,7 +21,7 @@ if ( $_POST['days'][0]=='mon_on' || $_POST['days'][1]=='tue_on' || $_POST['days'
           $Work_days->addwork($_POST['days'][$i],$_POST['dt_from'][$i],$_POST['dt_to'][$i],$_POST['hr_count'][$i],$_SESSION['AdminId']);    
 
  }
- redirect_to(BASE_URL.'settings/');
+ redirect_to(BASE_URL.'work-settings/');
 }
 }
 else{

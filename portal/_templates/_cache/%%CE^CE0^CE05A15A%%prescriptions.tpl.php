@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-27 14:29:33
+<?php /* Smarty version 2.6.31, created on 2018-12-03 15:07:38
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 72, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 115, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 137, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 134, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 85, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 128, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 150, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 147, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -56,7 +56,7 @@ unset($_smarty_tpl_vars);
 
 '; ?>
 
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
 		<div class="fail noprint">
@@ -68,9 +68,24 @@ unset($_smarty_tpl_vars);
 			<?php endforeach; endif; unset($_from); ?>
 		</div>
 		<?php endif; ?>
-		
-		
-		
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+			</li>
+			<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == '0'): ?>
+			<li class="breadcrumb-item active">Prescriptions</li>
+			<?php else: ?>
+			<li class="breadcrumb-item">
+				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+prescriptions/">Prescriptions</a>
+			</li>
+			<li class="breadcrumb-item active">View</li>
+			<?php endif; ?>
+		</ol>
+		</div>
 		<h2 class="noprint headingBottom"><?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Prescription List<?php endif; ?></h2>
 		
@@ -118,7 +133,7 @@ prescriptions/">Back to all Prescription List</a></p>
 
 		<?php if (( isset ( $this->_tpl_vars['grouped_prescriptions'] ) && $this->_tpl_vars['grouped_prescriptions'] )): ?>
 		
-		<div class="pagination pull-right grp_btn">
+		<div class="pull-right grp_btn">
 			<span style="margin-bottom: 5px;">Group By :</span> 
 			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'date' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/?group_by=date&q=<?php echo $_GET['q']; ?>
@@ -174,16 +189,16 @@ prescriptions/?group_by=complain&q=<?php echo $_GET['q']; ?>
 ?>
 				<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 ">
-					<td class="bold" width="35"><?php echo $this->_tpl_vars['prescription']['id']; ?>
+					<td class="bold"><?php echo $this->_tpl_vars['prescription']['id']; ?>
 </td>
-					<td width="200"><?php echo $this->_tpl_vars['prescription']['patient_name']; ?>
+					<td><?php echo $this->_tpl_vars['prescription']['patient_name']; ?>
  (<?php echo $this->_tpl_vars['prescription']['patient_id']; ?>
 )</td>
 					<td><?php echo ((is_array($_tmp=@$this->_tpl_vars['prescription']['complain'])) ? $this->_run_mod_handler('default', true, $_tmp, '<span style="color:gray;font-style: italic;">Empty</span>') : smarty_modifier_default($_tmp, '<span style="color:gray;font-style: italic;">Empty</span>')); ?>
 </td>
-					<td width="200"><?php echo ((is_array($_tmp=$this->_tpl_vars['prescription']['created_on'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+					<td><?php echo ((is_array($_tmp=$this->_tpl_vars['prescription']['created_on'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </td>
-					<td width="65">
+					<td>
 						<div class="icons">				
 							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/view/<?php echo $this->_tpl_vars['prescription']['id']; ?>
@@ -216,8 +231,8 @@ _templates/img/bin.png" alt="Delete" /></a>
 			<?php echo $this->_tpl_vars['pages']; ?>
 
 		</div>
-	
-	<?php elseif (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] )): ?>
+
+		<?php elseif (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] )): ?>
 
 		<div id="prescription_info">
 			<div class="row">
@@ -317,8 +332,8 @@ _templates/img/bin.png" alt="Delete" /></a>
 						</tbody>
 					</table>
 					<?php endforeach; else: ?>	
-			<p class="box-info">No Tests for this prescription.</p>
-			<?php endif; unset($_from); ?>
+					<p class="box-info">No Tests for this prescription.</p>
+					<?php endif; unset($_from); ?>
 				</div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-4">
@@ -350,19 +365,19 @@ _templates/img/bin.png" alt="Delete" /></a>
 </strong>    </p>
 			<p class="noprint">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
 		</div>
-	<p></p>
-	
-	<br /><br /><br />
-	<br />
-	
-	<br />
+		<p></p>
 
-<?php else: ?>
-	
-	<p class="box-info">No Prescription on the List</p>
-	
-	<?php endif; ?>
-</div>
+		<br /><br /><br />
+		<br />
+
+		<br />
+
+		<?php else: ?>
+
+		<p class="box-info">No Prescription on the List</p>
+
+		<?php endif; ?>
+	</div>
 
 </div>
 

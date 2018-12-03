@@ -188,8 +188,9 @@ elseif($id>0)
 	  $prescription_details['patient'] = $patient->GetPatientDetails($prescription_details['patient_id']);
 	 
   }
-   // print_r($prescription_details);
+    // print_r($prescription_details);
    if (isset($prescription_details)) {
+
    	$smarty->assign('data',$prescription_details);
    }
   

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-28 18:31:39
+<?php /* Smarty version 2.6.31, created on 2018-12-03 17:56:54
          compiled from index.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -6,16 +6,23 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 
-<div id="content" class="db-icons">
-	<div class="container-fluid homeWrap">
+<div id="" class="content-wrapper">
+	<div class="container-fluid homeWrap db-icons">
+		<!-- Breadcrumbs-->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="#">Dashboard</a>
+			</li>
+			<li class="breadcrumb-item active">My Dashboard</li>
+		</ol>
 		<?php if (isset ( $_SESSION['UserType'] ) && $_SESSION['UserType'] != 'S_admin'): ?>
-		<div class="row db-bottom" style="margin-top: 20px;">
 
-			<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'prescriptions'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-prescriptions/">
+		<div class="row mt-5">
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+prescriptions/" class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'prescriptions'): ?> selected <?php endif; ?>" >
 					<div class="db-back-shadow">
-						<i class="fa fa-file-text-o" aria-hidden="true" style="color: #7986cd;padding-left: 7px;"></i><br>
+						<i class="fa fa-file-text-o text-primary" aria-hidden="true"></i><br>
 						<span>Prescriptions</span><br>
 						<div class="div-P">
 							<p style="">Add/Edit/View <br>Prescriptions</p>
@@ -23,11 +30,11 @@ prescriptions/">
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'patients'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'patients'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/">
 					<div class="db-back-shadow">
-						<i class="fa fa-users" aria-hidden="true" style="color: #064f68;"></i><br>
+						<i class="fa fa-users text-secondary" aria-hidden="true"></i><br>
 						<span style="">Patients</span><br>
 						<div class="div-P" style="">
 							<p style="">Add/Edit/View <br>Patients</p>
@@ -35,11 +42,11 @@ patients/">
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'medicine'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'medicine'): ?> selected <?php endif; ?>"  href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 medicine/">
 					<div class="db-back-shadow">
-						<i class="fa fa-archive" aria-hidden="true" style="color: #58c457;"></i><br>
+						<i class="fa fa-archive text-success" aria-hidden="true" ></i><br>
 						<span style="">Medicine</span><br>
 						<div class="div-P" style="">
 							<p style="">Add/Edit/View <br>Medicines</p>
@@ -47,11 +54,11 @@ medicine/">
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'tests'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'tests'): ?> selected <?php endif; ?>"  href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 tests/">
 					<div class="db-back-shadow">
-						<i class="fa fa-plus-square" aria-hidden="true" style="color: #d61e40;"></i><br>
+						<i class="fa fa-plus-square text-danger" aria-hidden="true"></i><br>
 						<span style="">Tests</span><br>
 						<div class="div-P" style="">
 							<p style="">Add/Edit/View <br>Tests</p>
@@ -60,12 +67,12 @@ tests/">
 				</a>
 			</div>
 		</div>
-		<div class="row db-bottom">
-			<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'instructions'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+		<div class="row">
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'instructions'): ?> selected <?php endif; ?>"  href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 instructions/">
 					<div class="db-back-shadow">
-						<i class="fa fa-list-ul" aria-hidden="true" style="color: #ff8200;"></i><br>
+						<i class="fa fa-list-ul text-warning" aria-hidden="true"></i><br>
 						<span style="padding-left: 3px;">Instructions</span><br>
 						<div class="div-P">
 							<p style="">Manage <br>Instructions</p>
@@ -73,12 +80,12 @@ instructions/">
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'list-appointments'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'list-appointments'): ?> selected <?php endif; ?>"  href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 list-appointments/<?php echo $_SESSION['AdminId']; ?>
 /">
 					<div class="db-back-shadow">
-						<i class="fa  fa-calendar" aria-hidden="true"></i><br>
+						<i class="fa  fa-calendar text-info" aria-hidden="true"></i><br>
 						<span style="">Appointments</span><br>
 						<div class="div-P">
 							<p style="">Manage<br> Appointments</p>
@@ -86,40 +93,39 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-3 text-center">
-			<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'reports'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'reports'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 reports/<?php echo $_SESSION['AdminId']; ?>
 /">
-				<div class="db-back-shadow">
-						<i class="fa fa-bars" aria-hidden="true"></i><br>
+					<div class="db-back-shadow">
+						<i class="fa fa-bars text-dark" aria-hidden="true"></i><br>
 						<span style="">Reports</span><br>
 						<div class="div-P">
 							<p style="">Manage<br> Reports</p>
 						</div>
 					</div>
-			</a>
-		</div>
-			<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'settings'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-settings/">
+				</a>
+			</div>
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'work-settings'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+work-settings/" title="" >
 					<div class="db-back-shadow">
-						<i class="fa fa-cogs" aria-hidden="true" style="color: #064f68; "></i><br>
-						<span style="padding-left: 10px;">Settings</span><br>
-						<div class="div-P" style="padding-left: 14px;">
-							<p style="">Manage global<br> settings</p>
+						<i class="fa fa-clock-o text-muted" aria-hidden="true" style="color: #064f68; "></i><br>
+						<span style="padding-left: 10px;">Time & Date</span><br>
+						<div class="div-P">
+							<p style="">Manage availability<br> settings</p>
 						</div>
 					</div>
 				</a>
 			</div>
-			
 		</div>
-		<div class="row db-bottom">
-			<div class="col-sm-3 text-center">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+		<div class="row">
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a  class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'edit-users'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 edit-users/<?php echo $_SESSION['AdminId']; ?>
-/">
+/" >
 					<div class="db-back-shadow">
-						<i class="fa fa-user" aria-hidden="true" style="color: #1da1f2;"></i><br>
+						<i class="fa fa-user text-danger" aria-hidden="true"></i><br>
 						<span style="">Profile</span><br>
 						<div class="div-P" style="">
 							<p style="">Manage your<br> profile</p>
@@ -127,11 +133,11 @@ edit-users/<?php echo $_SESSION['AdminId']; ?>
 					</div>
 				</a>
 			</div>
-						<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'own-package'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'own-package'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 own-package/">
 					<div class="db-back-shadow">
-						<i class="fa fa-info" aria-hidden="true"></i><br>
+						<i class="fa fa-info text-success" aria-hidden="true"></i><br>
 						<span style="">Package</span><br>
 						<div class="div-P">
 							<p style="">Check your<br> package details</p>
@@ -139,11 +145,11 @@ own-package/">
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-3 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 password/">
 					<div class="db-back-shadow">
-						<i class="fa fa-key" aria-hidden="true"></i><br>
+						<i class="fa fa-key text-primary" aria-hidden="true"></i><br>
 						<span style="">Password</span><br>
 						<div class="div-P">
 							<p style="">Change your<br> password</p>
@@ -151,48 +157,38 @@ password/">
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-3 text-center">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+<!-- 			<div class="col-xl-3 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'logout'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 logout/">
 					<div class="db-back-shadow">
-						<i class="fa fa-power-off" aria-hidden="true" style="color: #f44242;"></i><br>
+						<i class="fa fa-power-off text-warning" aria-hidden="true"></i><br>
 						<span style="">Logout</span><br>
 						<div class="div-P" style="">
 							<p style="">Logout from<br> system</p>
 						</div>
 					</div>
 				</a>
-			</div>
-
-			<div class="col-sm-3">
-
-			</div>
-			<div class="col-sm-3">
-
-			</div>
-			<div class="col-sm-2">
-
-			</div>
+			</div> -->
 		</div>
 		<?php else: ?>
-		<div class="row db-bottom" style="margin-top: 20px;">
-			<div class="col-sm-4 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'users'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+		<div class="row mt-5">
+			<div class="col-xl-4 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'users'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/">
 					<div class="db-back-shadow">
-						<i class="fa fa-users" aria-hidden="true" style="color: #064f68;"></i><br>
-						<span>Doctors</span><br>
-						<div class="div-P">
+						<i class="fa fa-users text-info" aria-hidden="true"></i><br>
+						<span style="">Doctors</span><br>
+						<div class="div-P" style="">
 							<p style="">Add/Edit/View <br>Doctors</p>
 						</div>
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-4 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'packages'): ?> class="selected" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-4 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'packages'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 packages/">
 					<div class="db-back-shadow">
-						<i class="fa fa-list-alt" aria-hidden="true"></i><br>
+						<i class="fa fa-list-alt text-warning" aria-hidden="true"></i><br>
 						<span>Packages</span><br>
 						<div class="div-P">
 							<p style="">Add/Edit/View <br>Packages</p>
@@ -200,25 +196,11 @@ packages/">
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-4 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'settings'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-settings/">
-					<div class="db-back-shadow">
-						<i class="fa fa-cogs" aria-hidden="true" style="color: #064f68; "></i><br>
-						<span style="padding-left: 10px;">Settings</span><br>
-						<div class="div-P" style="padding-left: 14px;">
-							<p style="">Manage global<br> settings</p>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-		<div class="row db-bottom">
-			<div class="col-sm-4 text-center">
-				<a <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?>class="selected"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<div class="col-xl-4 col-sm-6 mb-5 text-center">
+				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 password/">
 					<div class="db-back-shadow">
-						<i class="fa fa-key" aria-hidden="true"></i><br>
+						<i class="fa fa-key text-primary" aria-hidden="true"></i><br>
 						<span style="">Password</span><br>
 						<div class="div-P">
 							<p style="">Change your<br> password</p>
@@ -226,19 +208,21 @@ password/">
 					</div>
 				</a>
 			</div>
-			<div class="col-sm-4 text-center">
+		</div>
+<!-- 		<div class="row">
+			<div class="col-xl-4 col-sm-6 mb-5 text-center">
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 logout/">
 					<div class="db-back-shadow">
-						<i class="fa fa-power-off" aria-hidden="true" style="color: #f44242;"></i><br>
-						<span style="padding-left: 10px;">Logout</span><br>
+						<i class="fa fa-power-off text-danger" aria-hidden="true"></i><br>
+						<span>Logout</span><br>
 						<div class="div-P" >
-							<p style="">Logout from<br> system</p>
+							<p>Logout from<br> system</p>
 						</div>
 					</div>
 				</a>
 			</div>
-		</div>
+		</div> -->
 		<?php endif; ?>
 	</div>
 </div><!-- #content -->

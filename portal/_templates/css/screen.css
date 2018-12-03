@@ -447,319 +447,319 @@ pre {
 																										background-image: url(../img/links.png);
 																										background-position: 0 -2px;}
 																										h2#settings {
-																											/*background-image: url('');*/}
-																											h2#password {
-																												background-image: url(../img/password.png);}
+																										/*background-image: url('');*/}
+																										h2#password {
+																											background-image: url(../img/password.png);}
 
-																												.block {
-																													border: 1px solid #8eb2bf;
-																													-moz-border-radius: 7px;
-																													-webkit-border-radius: 7px;
-																													background: #f8fafb url(../img/block_bg.png) repeat-x 0 0;}
-																													#login .block {
-																														padding: 2em;}
+																											.block {
+																												border: 1px solid #8eb2bf;
+																												-moz-border-radius: 7px;
+																												-webkit-border-radius: 7px;
+																												background: #f8fafb url(../img/block_bg.png) repeat-x 0 0;}
+																												#login .block {
+																													padding: 2em;}
 
-																														.block_inner {
-																															padding: 10px 7px;
-																															border: 1px solid #FFF;
-																															-moz-border-radius-topleft: 0;
-																															-webkit-border-top-left-radius: 0;
-																															-moz-border-radius-topright: 0;
-																															-webkit-border-top-right-radius: 0;
-																															-moz-border-radius-bottomleft: 7px;
-																															-webkit-border-bottom-left-radius: 7px;
-																															-moz-border-radius-bottomright: 7px;
-																															-webkit-border-bottom-right-radius: 7px;
+																													.block_inner {
+																														padding: 10px 7px;
+																														border: 1px solid #FFF;
+																														-moz-border-radius-topleft: 0;
+																														-webkit-border-top-left-radius: 0;
+																														-moz-border-radius-topright: 0;
+																														-webkit-border-top-right-radius: 0;
+																														-moz-border-radius-bottomleft: 7px;
+																														-webkit-border-bottom-left-radius: 7px;
+																														-moz-border-radius-bottomright: 7px;
+																														-webkit-border-bottom-right-radius: 7px;
+																													}
+
+																													.block input, .block textarea {
+																														background-color: #FFF;
+																														margin-left: 1em;}
+
+																														.block h3 {
+																															background: #02698c url(../img/block_h3.png) repeat-x 0 0;
+																															color: #FFF;
+																															height: 32px;
+																															line-height: 32px;
+																															padding: 0 0 0 2em;
+																															margin: 0;
+																															border-bottom: 1px solid #025470;
+																															-moz-border-radius-topleft: 7px;
+																															-moz-border-radius-topright: 7px;
+																															-webkit-border-top-left-radius: 7px; /* !!!!!!!!!!!!!! */
+																															-webkit-border-top-right-radius: 7px;
 																														}
+																														#page_content_parent table, #page_form_message_parent table {margin-left: 1em!important}
+																														#company_info label, #job_details label, form.add_page label, #city_form label {
+																															display: block;
+																															margin: 0 0 0.3em 0;
+																															width: 100%;
+																															float: none;}
+																															#job_details label {}
+																															div.category div {
+																																float: left;
+																																margin-left: 1em;}
 
-																														.block input, .block textarea {
-																															background-color: #FFF;
-																															margin-left: 1em;}
+																																#textile-suggestions table th, #textile-suggestions table td {
+																																	width: 50%;}
 
-																															.block h3 {
-																																background: #02698c url(../img/block_h3.png) repeat-x 0 0;
-																																color: #FFF;
-																																height: 32px;
-																																line-height: 32px;
-																																padding: 0 0 0 2em;
-																																margin: 0;
-																																border-bottom: 1px solid #025470;
-																																-moz-border-radius-topleft: 7px;
-																																-moz-border-radius-topright: 7px;
-																																-webkit-border-top-left-radius: 7px; /* !!!!!!!!!!!!!! */
-																																-webkit-border-top-right-radius: 7px;
-																															}
-																															#page_content_parent table, #page_form_message_parent table {margin-left: 1em!important}
-																															#company_info label, #job_details label, form.add_page label, #city_form label {
-																																display: block;
-																																margin: 0 0 0.3em 0;
-																																width: 100%;
-																																float: none;}
-																																#job_details label {}
-																																div.category div {
-																																	float: left;
-																																	margin-left: 1em;}
+																																	/* NOTIFICATIONS */
+																																	.attention, .approved, .fail, .information {
+																																		background-repeat:no-repeat;
+																																		background-position: 5px 5px;
+																																		color:#3c3c3c;
+																																		margin-bottom:2em;
+																																		border-width:1px;
+																																		border-left: 0;
+																																		border-right: 0;
+																																		border-style:solid;
+																																		padding:5px 5px 5px 25px;
+																																		line-height: 1.7em;
+																																	}
 
-																																	#textile-suggestions table th, #textile-suggestions table td {
-																																		width: 50%;}
-
-																																		/* NOTIFICATIONS */
-																																		.attention, .approved, .fail, .information {
-																																			background-repeat:no-repeat;
-																																			background-position: 5px 5px;
-																																			color:#3c3c3c;
-																																			margin-bottom:2em;
-																																			border-width:1px;
-																																			border-left: 0;
-																																			border-right: 0;
-																																			border-style:solid;
-																																			padding:5px 5px 5px 25px;
-																																			line-height: 1.7em;
-																																		}
-
-																																		.attention, .information
+																																	.attention, .information
+																																	{
+																																		background-color:#FFF3A3;
+																																		background-image: url(../img/exclamation.png);
+																																		border-color: #E7BD72;
+																																	}
+																																	.approved
+																																	{
+																																		background-color:#CDEFA6;
+																																		background-image: url(../img/tick.png);
+																																		border-color: #9BCC54;
+																																	}
+																																	.fail
+																																	{
+																																		background-color:#FFD5D5;
+																																		background-image: url(../img/fail.png);
+																																		border-color: #FFACAD;
+																																	}
+																																	.fail a, .approved a {
+																																		font-size: 11px;
+																																		color: #777!important;
+																																		float: right;
+																																	}
+																																	.fail a:hover, .approved a:hover {
+																																		background-color:transparent!important;
+																																		text-decoration:underline!important;}
+																																		.information
 																																		{
-																																			background-color:#FFF3A3;
-																																			background-image: url(../img/exclamation.png);
-																																			border-color: #E7BD72;
+																																			background-image: url(../img/information.png);
 																																		}
-																																		.approved
-																																		{
-																																			background-color:#CDEFA6;
-																																			background-image: url(../img/tick.png);
-																																			border-color: #9BCC54;
+
+																																		#categoriesContainer, #typesContainer, #linksContainer {
+																																			position:relative;
 																																		}
-																																		.fail
-																																		{
-																																			background-color:#FFD5D5;
-																																			background-image: url(../img/fail.png);
-																																			border-color: #FFACAD;
+																																		#categoriesContainer input:hover, #categoriesContainer textarea:hover, #typesContainer input:hover, #typesContainer textarea:hover, #linksContainer input:hover, #linksContainer textarea:hover {
+																																			border: 1px solid #666;
 																																		}
-																																		.fail a, .approved a {
-																																			font-size: 11px;
-																																			color: #777!important;
-																																			float: right;
+																																		#categoriesContainer input:focus, #categoriesContainer textarea:focus, #typesContainer input:focus, #typesContainer textarea:focus, #linksContainer input:focus, #linksContainer textarea:focus {
+																																			border: 1px solid #09C;
 																																		}
-																																		.fail a:hover, .approved a:hover {
-																																			background-color:transparent!important;
-																																			text-decoration:underline!important;}
-																																			.information
-																																			{
-																																				background-image: url(../img/information.png);
+
+																																		.categoryItem, .typeItem, .linkItem {
+																																			background-color:#f5f5f5;
+																																			border:1px solid #ccc;
+																																			margin:0 0 5px 0;
+																																			position:relative
+																																		}
+																																		.categoryItem a, .typeItem a, .linkItem a {
+																																			float:right
+																																		}
+																																		.categoryItem label, .typeItem label, .linkItem label {
+																																			float: left;
+																																			margin-bottom: 0.7em;
+																																		}
+																																		.categoryItem label img, .typeItem label img, .linkItem label img {
+																																			margin-left: 0.7em;}
+																																			.categoryItem label span, .typeItem label span, .linkItem label span {
+																																				float:left;
+																																				display:block;
+																																				margin-bottom:5px;
+																																				clear:left;
+																																				width:10em
+																																			}
+																																			.categoryHandle, .typeHandle, .linkHandle {
+																																				margin-bottom:5px;
+																																				height:10px;
+																																				overflow:hidden;
+																																				cursor:move;
+																																				background:#09C
+																																			}
+																																			.typeHandle, .itemHandle {
+																																				cursor: default;
+																																			}
+																																			.categoryWrapper, .typeWrapper, .linkWrapper {
+																																				padding: 1em;
+																																				overflow: auto;
+																																			}
+																																			div.draggingItem div.categoryHandle, div.draggingItem div.linkHandle {
+																																				background:#005D7E
+																																			}
+																																			#categoriesContainer a.saveCategory, #typesContainer a.saveType, #linksContainer a.saveLink {
+																																				display:none;
+																																				margin-right: 0.5em;
+																																			}
+																																			.category_name{}
+																																			.category_box{
+																																				margin:5px;
 																																			}
 
-																																			#categoriesContainer, #typesContainer, #linksContainer {
-																																				position:relative;
+
+																																			#messagesContainer{
+																																				position:fixed;
+																																				top:0;
+																																				left:50%;
+																																				margin-left:-150px;
+																																				width:300px
 																																			}
-																																			#categoriesContainer input:hover, #categoriesContainer textarea:hover, #typesContainer input:hover, #typesContainer textarea:hover, #linksContainer input:hover, #linksContainer textarea:hover {
-																																				border: 1px solid #666;
-																																			}
-																																			#categoriesContainer input:focus, #categoriesContainer textarea:focus, #typesContainer input:focus, #typesContainer textarea:focus, #linksContainer input:focus, #linksContainer textarea:focus {
-																																				border: 1px solid #09C;
+																																			#messagesContainer div{
+																																				border:5px solid #eee;
+																																				margin:0 0 10px;
+																																				padding:10px;
+																																				background-color:#fff;
+																																				text-align: center;
 																																			}
 
-																																			.categoryItem, .typeItem, .linkItem {
-																																				background-color:#f5f5f5;
-																																				border:1px solid #ccc;
-																																				margin:0 0 5px 0;
-																																				position:relative
+																																			.help {
+																																				float: right;
 																																			}
-																																			.categoryItem a, .typeItem a, .linkItem a {
-																																				float:right
-																																			}
-																																			.categoryItem label, .typeItem label, .linkItem label {
-																																				float: left;
-																																				margin-bottom: 0.7em;
-																																			}
-																																			.categoryItem label img, .typeItem label img, .linkItem label img {
-																																				margin-left: 0.7em;}
-																																				.categoryItem label span, .typeItem label span, .linkItem label span {
-																																					float:left;
-																																					display:block;
-																																					margin-bottom:5px;
-																																					clear:left;
-																																					width:10em
-																																				}
-																																				.categoryHandle, .typeHandle, .linkHandle {
-																																					margin-bottom:5px;
-																																					height:10px;
-																																					overflow:hidden;
-																																					cursor:move;
-																																					background:#09C
-																																				}
-																																				.typeHandle, .itemHandle {
-																																					cursor: default;
-																																				}
-																																				.categoryWrapper, .typeWrapper, .linkWrapper {
-																																					padding: 1em;
-																																					overflow: auto;
-																																				}
-																																				div.draggingItem div.categoryHandle, div.draggingItem div.linkHandle {
-																																					background:#005D7E
-																																				}
-																																				#categoriesContainer a.saveCategory, #typesContainer a.saveType, #linksContainer a.saveLink {
-																																					display:none;
-																																					margin-right: 0.5em;
-																																				}
-																																				.category_name{}
-																																				.category_box{
-																																					margin:5px;
-																																				}
+																																			#fancy_div p {
+																																				padding: 1em;}
+
+																																				iframe {border: 1px solid #ccc; width: 100%; height: 200px;}
+																																				iframe#updates {margin-top: 2em;}
 
 
-																																				#messagesContainer{
-																																					position:fixed;
-																																					top:0;
-																																					left:50%;
-																																					margin-left:-150px;
-																																					width:300px
-																																				}
-																																				#messagesContainer div{
-																																					border:5px solid #eee;
-																																					margin:0 0 10px;
-																																					padding:10px;
-																																					background-color:#fff;
-																																					text-align: center;
+
+																																				/* CUSTOM CSS */
+
+
+																																				.form
+																																				{
+																																					width: 990px;
+																																					overflow: hidden;
 																																				}
 
-																																				.help {
+																																				.form fieldset
+																																				{
+																																					width:495px;
+																																					border:none;
+																																					padding:0px;
+																																					margin:0px;
+																																					float: left;
+																																				}
+
+																																				.form label
+																																				{
+																																					width: 470px;
+																																					display: block;
+																																					clear: both;
+																																					float: left;
+																																					border: 1px solid #DEDEDE;
+																																					padding: 9px;
+																																					min-height: 30px;
+																																					margin-bottom: 5px;
+																																					font-weight:bold;
+																																				}
+																																				.form input
+																																				{
 																																					float: right;
+																																					width:270px;
+																																					min-height: 20px;
+																																					display: block;
 																																				}
-																																				#fancy_div p {
-																																					padding: 1em;}
+																																				.form select
+																																				{
+																																					float: right;
+																																					width:284px;
+																																					padding:0px;
+																																					height: 30px;
+																																					display: block;
+																																				}
 
-																																					iframe {border: 1px solid #ccc; width: 100%; height: 200px;}
-																																					iframe#updates {margin-top: 2em;}
+																																				.form input[type="checkbox"]
+																																				{
+																																					display: inline;
+																																					width: auto;
+																																					float: left;
+																																					vertical-align: text-bottom;
+																																					margin: 0px 10px 0 0px;
+																																				}
 
-
-
-																																					/* CUSTOM CSS */
-
-
-																																					.form
-																																					{
-																																						width: 990px;
-																																						overflow: hidden;
-																																					}
-
-																																					.form fieldset
-																																					{
-																																						width:495px;
-																																						border:none;
-																																						padding:0px;
-																																						margin:0px;
-																																						float: left;
-																																					}
-
-																																					.form label
-																																					{
-																																						width: 470px;
-																																						display: block;
-																																						clear: both;
-																																						float: left;
-																																						border: 1px solid #DEDEDE;
-																																						padding: 9px;
-																																						min-height: 30px;
-																																						margin-bottom: 5px;
-																																						font-weight:bold;
-																																					}
-																																					.form input
-																																					{
-																																						float: right;
-																																						width:270px;
-																																						min-height: 20px;
-																																						display: block;
-																																					}
-																																					.form select
-																																					{
-																																						float: right;
-																																						width:284px;
-																																						padding:0px;
-																																						height: 30px;
-																																						display: block;
-																																					}
-
-																																					.form input[type="checkbox"]
-																																					{
-																																						display: inline;
-																																						width: auto;
-																																						float: left;
-																																						vertical-align: text-bottom;
-																																						margin: 0px 10px 0 0px;
-																																					}
-
-																																					.form textarea
-																																					{
-																																						float: right;
-																																						width:370px;
-																																						height: 300px;
-																																						display: block;
-																																					}
-																																					.suggestionList
-																																					{
-																																						width: 449px;
-																																						display: block;
-																																						clear: both;
-																																						float: left;
-																																						border: 1px solid #DEDEDE;
-																																						padding: 9px;
-																																						padding-left:30px;
-																																						min-height: 30px;
-																																						margin-bottom: 5px;
-																																					}
-																																					.suggestionList li:hover
-																																					{
-																																						color: green;
-																																						text-decoration: underline;
-																																						cursor: pointer;
-																																					}
-																																					#related_news, #topics_wrap,.embed_box
-																																					{
-																																						width: 470px;
-																																						display: block;
-																																						clear: both;
-																																						float: left;
-																																						border: 1px solid #DEDEDE;
-																																						padding: 9px;
-																																						min-height: 30px;
-																																						margin-bottom: 5px;
-																																						overflow: hidden;
-																																					}
-																																					#topics_wrap .topics_item, .embed_box .hidden_tags_item, .embed_box .public_tags_item, .embed_box .tags_item
-																																					{
-																																						width: auto !important;
-																																					}
-																																					#related_news .related_news_item, #topics_wrap .topics_item, .embed_box .public_tags_item, .embed_box .hidden_tags_item, .embed_box .tags_item
-																																					{
-																																						width:50px;
-																																						float:left;
-																																						background: #57A700;
-																																						border: 1px solid white;
-																																						padding: 5px;
-																																					}
-																																					span.close, span.remove
-																																					{
-																																						margin: 0px 0px 0px 5px;
-																																						float: right;
-																																						font-size: 0.8em;
-																																						cursor: pointer;
-																																						padding: 5px;
-																																						background-color:black;
-																																						/*font-family: 'Arial, Helvetica, sans-serif';*/
-																																						font-weight: bold;
-																																						color: white;
-																																						-moz-border-radius: 4px;
-																																						-webkit-border-radius: 4px;
-																																					}
-																																					span.close:hover ,span.remove:hover
-																																					{
-																																						background-color:#fff;
-																																						color:#57A700;
-																																					}
-																																					.mceContentBody 
-																																					{
-																																						background-color: #fff;
-																																					}
+																																				.form textarea
+																																				{
+																																					float: right;
+																																					width:370px;
+																																					height: 300px;
+																																					display: block;
+																																				}
+																																				.suggestionList
+																																				{
+																																					width: 449px;
+																																					display: block;
+																																					clear: both;
+																																					float: left;
+																																					border: 1px solid #DEDEDE;
+																																					padding: 9px;
+																																					padding-left:30px;
+																																					min-height: 30px;
+																																					margin-bottom: 5px;
+																																				}
+																																				.suggestionList li:hover
+																																				{
+																																					color: green;
+																																					text-decoration: underline;
+																																					cursor: pointer;
+																																				}
+																																				#related_news, #topics_wrap,.embed_box
+																																				{
+																																					width: 470px;
+																																					display: block;
+																																					clear: both;
+																																					float: left;
+																																					border: 1px solid #DEDEDE;
+																																					padding: 9px;
+																																					min-height: 30px;
+																																					margin-bottom: 5px;
+																																					overflow: hidden;
+																																				}
+																																				#topics_wrap .topics_item, .embed_box .hidden_tags_item, .embed_box .public_tags_item, .embed_box .tags_item
+																																				{
+																																					width: auto !important;
+																																				}
+																																				#related_news .related_news_item, #topics_wrap .topics_item, .embed_box .public_tags_item, .embed_box .hidden_tags_item, .embed_box .tags_item
+																																				{
+																																					width:50px;
+																																					float:left;
+																																					background: #57A700;
+																																					border: 1px solid white;
+																																					padding: 5px;
+																																				}
+																																				span.close, span.remove
+																																				{
+																																					margin: 0px 0px 0px 5px;
+																																					float: right;
+																																					font-size: 0.8em;
+																																					cursor: pointer;
+																																					padding: 5px;
+																																					background-color:black;
+																																					/*font-family: 'Arial, Helvetica, sans-serif';*/
+																																					font-weight: bold;
+																																					color: white;
+																																					-moz-border-radius: 4px;
+																																					-webkit-border-radius: 4px;
+																																				}
+																																				span.close:hover ,span.remove:hover
+																																				{
+																																					background-color:#fff;
+																																					color:#57A700;
+																																				}
+																																				.mceContentBody 
+																																				{
+																																					background-color: #fff;
+																																				}
 
 																																					/*form.style fieldset
 																																					{
@@ -848,7 +848,7 @@ pre {
 																																						border-color: #DCE6BE;
 																																						color: #51621C;
 																																					}
-*/
+																																					*/
 
 
 																																					/* Table Design */
@@ -1097,105 +1097,102 @@ pre {
 																																						border-top-color: #a2a2a2;
 																																						border-bottom-color: #cfcfcf;
 																																						box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
-																																					}*/
+																																						}*/
 
 
-																																					/* Dotted Horizontal Rule */
-																																					hr.dotted { background: url(../img/line_dotted.png) 0 0 repeat-x; }
-																																					hr.dotted { border: none;
-																																					}
+																																						/* Dotted Horizontal Rule */
+																																						hr.dotted { background: url(../img/line_dotted.png) 0 0 repeat-x; }
+																																						hr.dotted { border: none;
+																																						}
 
-																																					hr {
-																																						display: block;
-																																						height: 1px;
-																																						padding: 0;
-																																						border: 0;
-																																						border-top: 1px solid;
-																																					}
-																																					hr {
-																																						border-top-color: #E2E2E2;
-																																					}
-																																					#prescription_info
-																																					{
-																																						overflow: hidden;
-																																					}
+																																						hr {
+																																							display: block;
+																																							height: 1px;
+																																							padding: 0;
+																																							border: 0;
+																																							border-top: 1px solid;
+																																						}
+																																						hr {
+																																							border-top-color: #E2E2E2;
+																																						}
+																																						#prescription_info
+																																						{
+																																							overflow: hidden;
+																																						}
 
-																																					#prescription_info .details
-																																					{
-																																						width: 42%;float: right;padding-left: 20px;margin-left: 20px;
-																																					}
+																																						#prescription_info .details
+																																						{
+																																							width: 42%;float: right;padding-left: 20px;margin-left: 20px;
+																																						}
+																																						#prescription_info .patient_info
+																																						{
+																																							margin-bottom: 30px;
+																																						}
+																																						#prescription_info span.date
+																																						{
+																																							float: right;margin:20px 10px 0 0;
+																																						}
+																																						#prescription_info .patient_info span
+																																						{
+																																							margin-right: 80px;
+																																						}
+																																						#prescription_info .patient_info span:last-child
+																																						{
+																																							margin-right: 0px;
+																																							margin-left:7px;
+																																							font-weight:bold;
 
-
-
-																																					#prescription_info .patient_info
-																																					{
-																																						margin-bottom: 30px;
-																																					}
-																																					#prescription_info span.date
-																																					{
-																																						float: right;margin:20px 10px 0 0;
-																																					}
-																																					#prescription_info .patient_info span
-																																					{
-																																						margin-right: 80px;
-																																					}
-																																					#prescription_info .patient_info span:last-child
-																																					{
-																																						margin-right: 0px;
-																																						margin-left:7px;
-																																						font-weight:bold;
-
-																																					}
+																																						}
 
 
-																																					#prescription_info .instructions li
-																																					{
-																																						line-height: 55px;
-																																					}
+																																						#prescription_info .instructions li
+																																						{
+																																							line-height: 55px;
+																																						}
 
-																																					#prescription_info .instructions span
-																																					{
+																																						#prescription_info .instructions span
+																																						{
 
-																																					}
+																																						}
 
-																																					#prescription_info .instructions .medicine_name
-																																					{
-																																						width: 85px;		
-																																					}
+																																						#prescription_info .instructions .medicine_name
+																																						{
+																																							width: 85px;		
+																																						}
 
-																																					#prescription_info .instructions .dose
-																																					{
-																																						width: 60px;
-																																					}
+																																						#prescription_info .instructions .dose
+																																						{
+																																							width: 60px;
+																																						}
 
-																																					#prescription_info .instructions .instruction
-																																					{
-																																						font-style: italic;	
-																																					}
+																																						#prescription_info .instructions .instruction
+																																						{
+																																							font-style: italic;	
+																																						}
 
-																																					#add_prescription #add_patient 
-																																					{
-																																						background-image: url(../img/plus-button.png);
-																																						background-repeat: no-repeat;
-																																						padding-left: 20px;
-																																						margin-top: 24px;
-																																						display: block;
-																																						float: left;
-																																					}
-																																					#add_new_medicine, #add_new_test
-																																					{
-																																						background-image: url(../img/plus-button.png);
-																																						background-repeat: no-repeat;
-																																						padding-left: 20px;
-																																						margin-top: 24px;
-																																						display: block;
-																																						float: left;
-																																					}
-																																					.printBtn
-																																					{
-																																						margin-top:3px !important;
-																																						width: inherit !important;
-																																					}
+																																						#add_prescription #add_patient 
+																																						{
+																																							background-image: url(../img/plus-button.png);
+																																							background-repeat: no-repeat;
+																																							padding-left: 20px;
+																																							margin-top: 24px;
+																																							display: block;
+																																							float: left;
+																																						}
+																																						#add_new_medicine, #add_new_test
+																																						{
+																																							background-image: url(../img/plus-button.png);
+																																							background-repeat: no-repeat;
+																																							padding-left: 20px;
+																																							margin-top: 24px;
+																																							display: block;
+																																							float: left;
+																																						}
+																																						.printBtn
+																																						{
+																																							margin-top:3px !important;
+																																							width: inherit !important;
+																																						}
 
 
 /* Definition Lists
@@ -1369,35 +1366,35 @@ ul.check > li {
  Manzar Custom Styles
  *********************
  *************/
-#add_test #submit{
-	margin-top: 22px;
-}
-.common_width 
-{
-	width: 275px;
-}
+ #add_test #submit{
+ 	margin-top: 22px;
+ }
+ .common_width 
+ {
+ 	width: 275px;
+ }
 
-.navbar ul {
-	list-style: none;
-	/*background-color: #444;*/
-	padding: 0;
-	margin: 0;
-}
+ .navbar ul {
+ 	list-style: none;
+ 	/*background-color: #444;*/
+ 	padding: 0;
+ 	margin: 0;
+ }
 
-.navbar li {
-	/*font-family: 'Oswald', sans-serif;*/
-	font-size: 15px !important;
-	line-height: 40px;
-	text-align: left;
-}
+ .navbar li {
+ 	/*font-family: 'Oswald', sans-serif;*/
+ 	font-size: 15px !important;
+ 	line-height: 40px;
+ 	text-align: left;
+ }
 
-.navbar a {
-	text-decoration: none;
-	color: #fff;
-	border-bottom: 1px solid #888;
-	transition: .3s background-color;
+ .navbar a {
+ 	text-decoration: none;
+ 	color: #fff;
+ 	border-bottom: 1px solid #888;
+ 	transition: .3s background-color;
 	/*wi
-	 137px !important;*/
+	137px !important;*/
 
 }
 
@@ -1420,11 +1417,11 @@ ul.check > li {
 .grp_btn a{
 
 	border: 1px solid #303030;
-    padding: 5px;
-    border-radius: 3px;
-    background: #303030;
-    color: #FFF;
-    text-decoration: none;
+	padding: 5px;
+	border-radius: 3px;
+	background: #303030;
+	color: #FFF;
+	text-decoration: none;
 }
 
 .grp_btn a:hover{
@@ -1454,60 +1451,60 @@ ul.check > li {
 .m-border{
 	border: 1px solid #DEDEDE;
 	padding: 10px;
-    margin-top: 5px;
-    max-height: 50px;
-    border-radius: 5px;
+	margin-top: 5px;
+	max-height: 50px;
+	border-radius: 5px;
 }
 .family-border{
 	border: 1px solid #DEDEDE;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    padding-bottom: 14px;
-    min-height: 100px;
+	padding: 10px;
+	margin-top: 5px;
+	border-radius: 5px;
+	padding-bottom: 14px;
+	min-height: 100px;
 }
 .other-border{
 
 	border: 1px solid #DEDEDE;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    padding-bottom: 14px;
-    min-height: 100px;
+	padding: 10px;
+	margin-top: 5px;
+	border-radius: 5px;
+	padding-bottom: 14px;
+	min-height: 100px;
 }
 .relative-border{
 	border: 1px solid #DEDEDE;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    padding-bottom: 14px;
-    min-height: 100px;
+	padding: 10px;
+	margin-top: 5px;
+	border-radius: 5px;
+	padding-bottom: 14px;
+	min-height: 100px;
 }
 .common-bottom{
 	margin-bottom: 15px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b{
-   top: 60% !important;
+	top: 60% !important;
 }
 .select2-container--default .select2-selection--single {
-    background-color: #FCFCFC !important;
-    border: 1px solid #a9a9a9 !important;
-    border-radius: 2px !important;
-    height: 34px !important;
+	background-color: #FCFCFC !important;
+	border: 1px solid #a9a9a9 !important;
+	border-radius: 2px !important;
+	height: 34px !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: #778895 !important;
-    line-height: 32px !important;
+	color: #778895 !important;
+	line-height: 32px !important;
 }
 ul.patient_info.list-inline li{
-    padding: 0 30px;
+	padding: 0 30px;
 }
 .branding{
 	text-align: center;
-    background: #323232;
-    color: #FFF;
-    font-size: 12px;
+	background: #323232;
+	color: #FFF;
+	font-size: 12px;
 }
 .search-top{
 	padding-top: 5px;
@@ -1516,33 +1513,33 @@ ul.patient_info.list-inline li{
 	color: #323232;
 }
 #pro-file-upload {
-    padding: 17px;
-    line-height: 12px;
-    height: 45px;
+	padding: 17px;
+	line-height: 12px;
+	height: 45px;
 }
 #pro-file-upload span {
-    color: #fff;
-    font-weight: 699;
-    font-size: 15px;
+	color: #fff;
+	font-weight: 699;
+	font-size: 15px;
 }
 .file-field input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 24%;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	width: 24%;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
 }
 .db-icons .fa{
-   font-size: 70px;
-   padding-bottom: 20px;
-   cursor: pointer;
+	font-size: 70px;
+	padding-bottom: 20px;
+	cursor: pointer;
 }
 .db-icons .db-bottom{
 	margin-bottom: 60px;
@@ -1551,14 +1548,14 @@ ul.patient_info.list-inline li{
 	color: #323232;
 	font-size: 15px;
 	/*font-family: Arial;*/
-    font-weight: bold;
+	font-weight: bold;
 }
 .db-icons a:hover, .setBolc a:hover{
 	text-decoration: none;
 	color: #c1bfbf;
 }
 .db-icons a:hover i.fa, .setBolc a:hover i.fa{
-    color: #c1bfbf !important;
+	color: #c1bfbf !important;
 }
 .db-back-shadow:hover{
 	background: #f4f2f2;
@@ -1569,9 +1566,8 @@ ul.patient_info.list-inline li{
 }
 .div-P{
 	/*width: 50px;*/
-    
-    line-height: 18px;
-    margin-top: 10px;
+	line-height: 18px;
+	margin-top: 10px;
 }
 .div-P p, .divP{
 	font-size:12px;
@@ -1599,11 +1595,11 @@ ul.patient_info.list-inline li{
 .mainWrap:hover, .feeWrap:hover{
 	background: #f4f2f2;
 	padding-top: 20px;
-    padding-bottom: 20px;
-	}
+	padding-bottom: 20px;
+}
 .mainWrap, .feeWrap{
 	padding-top: 20px;
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 
@@ -1620,41 +1616,41 @@ ul.patient_info.list-inline li{
 .docCard{
 	cursor: pointer;
 	color: inherit;
-    text-decoration: none;
+	text-decoration: none;
 }
 .docCard:hover{
 	cursor: pointer;
 	color: inherit;
-    text-decoration: none;
+	text-decoration: none;
 }
 .ui-timepicker-list{
 
-    background: #F9F8F8;
-    width: 340px;
-    min-width: 340px;
-    min-height: 365px;
-    /*border: 1px solid;*/
-    padding: 0;
-    text-align: center;
-    padding-top: 20px;
-    box-shadow: 0 0 5px 5px #dcdcdc;
-    border-radius: 7px;
+	background: #F9F8F8;
+	width: 340px;
+	min-width: 340px;
+	min-height: 365px;
+	/*border: 1px solid;*/
+	padding: 0;
+	text-align: center;
+	padding-top: 20px;
+	box-shadow: 0 0 5px 5px #dcdcdc;
+	border-radius: 7px;
 }
 .ui-timepicker-list li {
-    display: inline-block;
-    width: 100px;
-    padding: 10px 0;
-    border: 1px solid #d9bb73;
-    margin-bottom: 20px;
-    margin-left: 8px;
-    color: #ff8800;
+	display: inline-block;
+	width: 100px;
+	padding: 10px 0;
+	border: 1px solid #d9bb73;
+	margin-bottom: 20px;
+	margin-left: 8px;
+	color: #ff8800;
 }
 .ui-timepicker-list li:hover {
-    background: #FF8800;
-    color: #FFF;
+	background: #FF8800;
+	color: #FFF;
 }
 select#searchBy_cat {
-    /*font-family: arial;*/
+	/*font-family: arial;*/
 }
 .grp_btn{
 	font-size: 13px;
@@ -1692,14 +1688,14 @@ p .info_wrap{
 	font-size: 12px;
 }
 .ui-dialog-titlebar{
-    background: #E9E9E9;
-    color: black;
-    border: none;
-    border-radius: 0px;
+	background: #E9E9E9;
+	color: black;
+	border: none;
+	border-radius: 0px;
 }
 .appoint_Wrap{
 	border: 1px solid #EDEDED;
-    padding: 20px;
+	padding: 20px;
 }
 .clientWrap{
 	margin-top: 100px !important;
@@ -1711,17 +1707,17 @@ p .info_wrap{
 }
 .ui-button-icon.ui-icon.ui-icon-closethick{
 	position: relative !important;
-    left: -3px !important;
-    top: -4px !important; 
-    visibility: visible;
+	left: -3px !important;
+	top: -4px !important; 
+	visibility: visible;
 }
 .ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle{
 	background: #e9e9e9;
-    color: #000;
-    border: unset;
+	color: #000;
+	border: unset;
 }
 .ui-resizable-handle.ui-resizable-se.ui-icon.ui-icon-gripsmall-diagonal-se {
-    visibility: hidden !important;
+	visibility: hidden !important;
 }
 button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close{
 	visibility: hidden;
@@ -1733,12 +1729,12 @@ button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-
 	cursor: pointer;
 }
 span.select2.select2-container.select2-container--default {
-    width: 236px !important; 
+	width: 236px !important; 
 }
 
 /*.checkboxWrap h2 {
 	margin-bottom: 40px;
-}*/
+	}*/
 /*******************************************
    Style menu for larger screens
 
@@ -1803,7 +1799,7 @@ span.select2.select2-container.select2-container--default {
 
    	}
    	.checkboxWrap .l{
-	height: unset;
-}
+   		height: unset;
+   	}
 
    }
