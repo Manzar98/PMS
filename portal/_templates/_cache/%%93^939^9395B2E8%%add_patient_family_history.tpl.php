@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-08-15 17:06:24
+<?php /* Smarty version 2.6.31, created on 2018-12-03 22:28:27
          compiled from patients/add_patient_family_history.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -14,7 +14,7 @@ unset($_smarty_tpl_vars);
 </style>
 '; ?>
 
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<h2><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add a<?php endif; ?> Patient Family History</h2>
 

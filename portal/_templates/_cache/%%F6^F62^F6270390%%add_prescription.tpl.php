@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 18:49:11
+<?php /* Smarty version 2.6.31, created on 2018-12-03 23:11:51
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -686,7 +686,7 @@ prescriptions/">Prescriptions</a>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="m_instruction">Instruction</label>
-								<textarea  name="instruction" id="m_instruction" class="form-control empty-inpt" cols="2"></textarea>
+								<textarea  name="instruction" id="m_instruction" class="form-control empty-inpt textarea-height"></textarea>
 							</div>
 						</div>
 						<div class="col-md-3 addUp_btn">
@@ -804,7 +804,7 @@ prescriptions/">Prescriptions</a>
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="description">Description</label>
-							<textarea name="description" id="description" tabindex="21" class="form-control"></textarea>
+							<textarea name="description" id="description" tabindex="21" class="form-control textarea-height"></textarea>
 						</div>	
 					</div>
 					<div class="col-sm-3">
@@ -822,13 +822,13 @@ prescriptions/">Prescriptions</a>
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="next_plan">Next Plan</label>
-							<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control"></textarea>
+							<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control textarea-height"></textarea>
 						</div>
 					</div>
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="complain_detail">Complain Detail</label>
-							<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control"></textarea>	
+							<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control textarea-height"></textarea>	
 						</div>
 					</div>
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 15:07:38
+<?php /* Smarty version 2.6.31, created on 2018-12-03 23:02:38
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 85, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 128, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 150, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 147, false),)), $this); ?>
@@ -75,14 +75,14 @@ unset($_smarty_tpl_vars);
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
 			</li>
-			<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == '0'): ?>
-			<li class="breadcrumb-item active">Prescriptions</li>
-			<?php else: ?>
+			<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == 'view' && $this->_tpl_vars['id'] != '0'): ?>
 			<li class="breadcrumb-item">
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/">Prescriptions</a>
 			</li>
 			<li class="breadcrumb-item active">View</li>
+			<?php else: ?>
+			<li class="breadcrumb-item active">Prescriptions</li>
 			<?php endif; ?>
 		</ol>
 		</div>
@@ -217,8 +217,9 @@ _templates/img/bin.png" alt="Delete" /></a>
 				</tr>
 				<?php endforeach; else: ?>
 				<tr style="color:red;">
-					<td>
+					<td class="">
 						No Prescription For this date
+						</span>
 					</td>
 				</tr>
 				<?php endif; unset($_from); ?>
@@ -374,7 +375,7 @@ _templates/img/bin.png" alt="Delete" /></a>
 
 		<?php else: ?>
 
-		<p class="box-info">No Prescription on the List</p>
+		<p class="box-info text-center" style="margin-top: 7rem!important;">No Prescription on the List</p>
 
 		<?php endif; ?>
 	</div>

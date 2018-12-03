@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-08-15 20:50:20
+<?php /* Smarty version 2.6.31, created on 2018-12-03 21:52:49
          compiled from patients/patient_info.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patient_info.tpl', 52, false),)), $this); ?>
@@ -28,7 +28,7 @@ unset($_smarty_tpl_vars);
 
 '; ?>
 
-<div id="content">
+<div id="" class="content-wrapper">
  <div class="container-fluid">
    <div id="tabs">
     <ul class="tabs">

@@ -1,6 +1,15 @@
 {include file="header.tpl"}
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Patients</li>
+			</ol>
+		</div>
 		<h2 class="headingBottom">{if $smarty.get.q neq ''} Search Result For "<b>{$smarty.get.q}</b>" {else}Patient List{/if}</h2>
 		<p>
 			<a href="{$BASE_URL_ADMIN}patients/add/" title="Add a new patient"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
@@ -28,7 +37,7 @@
 		<p class="common-top"><a href="{$BASE_URL_ADMIN}patients/">Back to all Patients List</a></p>
 		{/if}
 		
-		<div class="pagination pull-right grp_btn common-top">
+		<div class="pull-right grp_btn">
 			Group By : 
 			<a {if $group_by=='date'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=date&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Date</a>
 			<a {if $group_by=='blood_group'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=blood_group&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Blood Group</a>
@@ -61,10 +70,10 @@
 
 				{foreach from=$patients item=patient}
 				<tr class="{cycle values='odd,even'}">
-					<td class="bold" width="45">{$patient.patient_id}</td>
-					<td>{$patient.patient_name}</td>
-					<td width="100">{$patient.mobile}</td>
-					<td width="155">
+					<td class="bold">{$patient.patient_id}</td>
+					<td width="400">{$patient.patient_name}</td>
+					<td width="400">{$patient.mobile}</td>
+					<td width="250">
 						<div class="icons">				
 							<a href="{$BASE_URL_ADMIN}patient-family-history/add/{$patient.patient_id}/" title="Add Family History">
 								<img src="{$BASE_URL_ADMIN}_templates/img/user_male_16.png" alt="family"/>
@@ -81,7 +90,7 @@
 							<a href="{$BASE_URL_ADMIN}patients/view/{$patient.patient_id}/" title="View this patient"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
 
 							<a href="{$BASE_URL_ADMIN}prescriptions/{$patient.patient_id}/" title="View list of prescription against this patient">
-								<img src="{$BASE_URL_ADMIN}_templates/img/121-512.png" alt="prescription" width="15%" />
+								<img src="{$BASE_URL_ADMIN}_templates/img/121-512.png" alt="prescription" width="10%" />
 							</a>
 							<a href="{$BASE_URL_ADMIN}patients/edit/{$patient.patient_id}/" title="Edit this patient"><img src="{$BASE_URL_ADMIN}_templates/img/pencil.png" alt="Edit" /></a>
 							<a href="{$BASE_URL_ADMIN}patients/delete/{$patient.patient_id}/" title="Delete this patient" onclick="if(!confirm('Are you sure you want to delete this?'))return false;"><img src="{$BASE_URL_ADMIN}_templates/img/bin.png" alt="Delete" /></a>

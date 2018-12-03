@@ -62,13 +62,13 @@
 			<li class="breadcrumb-item">
 				<a href="{$BASE_URL_ADMIN}">Dashboard</a>
 			</li>
-			{if isset($id) && $id=="0"}
-			<li class="breadcrumb-item active">Prescriptions</li>
-			{else}
+			{if isset($id) && $id=="view" && $id!="0"}
 			<li class="breadcrumb-item">
 				<a href="{$BASE_URL_ADMIN}prescriptions/">Prescriptions</a>
 			</li>
 			<li class="breadcrumb-item active">View</li>
+			{else}
+			<li class="breadcrumb-item active">Prescriptions</li>
 			{/if}
 		</ol>
 		</div>
@@ -159,8 +159,9 @@
 				</tr>
 				{foreachelse}
 				<tr style="color:red;">
-					<td>
+					<td class="">
 						No Prescription For this date
+						</span>
 					</td>
 				</tr>
 				{/foreach}
@@ -288,7 +289,7 @@
 
 		{else}
 
-		<p class="box-info">No Prescription on the List</p>
+		<p class="box-info text-center" style="margin-top: 7rem!important;">No Prescription on the List</p>
 
 		{/if}
 	</div>

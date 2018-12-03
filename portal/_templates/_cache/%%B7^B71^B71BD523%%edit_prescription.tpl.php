@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 18:47:01
+<?php /* Smarty version 2.6.31, created on 2018-12-03 23:12:30
          compiled from prescription/edit_prescription.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 294, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 445, false),)), $this); ?>
@@ -510,7 +510,7 @@ if ($this->_foreach['option']['total'] > 0):
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="description">Description</label>
-								<textarea name="description" id="description" tabindex="21" class="form-control"><?php echo $this->_tpl_vars['data']['description']; ?>
+								<textarea name="description" id="description" tabindex="21" class="form-control textarea-height"><?php echo $this->_tpl_vars['data']['description']; ?>
 </textarea>	
 							</div>
 						</div>
@@ -531,14 +531,14 @@ if ($this->_foreach['option']['total'] > 0):
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="next_plan">Next Plan</label>
-								<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control"><?php echo $this->_tpl_vars['data']['next_plan']; ?>
+								<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control textarea-height"><?php echo $this->_tpl_vars['data']['next_plan']; ?>
 </textarea>
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="complain_detail">Complain Detail</label>
-								<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control"><?php echo $this->_tpl_vars['data']['complain_detail']; ?>
+								<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control textarea-height"><?php echo $this->_tpl_vars['data']['complain_detail']; ?>
 </textarea>	</div>
 							</div>
 						</div>

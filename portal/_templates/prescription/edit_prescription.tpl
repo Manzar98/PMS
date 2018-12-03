@@ -436,7 +436,7 @@ function generateRandomNumber(){
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="description">Description</label>
-								<textarea name="description" id="description" tabindex="21" class="form-control">{$data.description}</textarea>	
+								<textarea name="description" id="description" tabindex="21" class="form-control textarea-height">{$data.description}</textarea>	
 							</div>
 						</div>
 						<div class="col-sm-3">
@@ -454,13 +454,13 @@ function generateRandomNumber(){
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="next_plan">Next Plan</label>
-								<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control">{$data.next_plan}</textarea>
+								<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control textarea-height">{$data.next_plan}</textarea>
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="complain_detail">Complain Detail</label>
-								<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control">{$data.complain_detail}</textarea>	</div>
+								<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control textarea-height">{$data.complain_detail}</textarea>	</div>
 							</div>
 						</div>
 					</fieldset>

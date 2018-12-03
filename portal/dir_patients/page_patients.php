@@ -222,8 +222,6 @@ elseif($id=='') {
 
 $smarty->assign('data',@$data);
 $smarty->assign('errors',@$errors);
-
-
 if($id==='add' || $id==='edit')
 {
 	if (!isset($_GET['img'])) {
@@ -236,8 +234,7 @@ if($id==='add' || $id==='edit')
 		$smarty->assign('cities', get_cities());
 		$template = 'patients/add_patient.tpl';
 	}
-}
-elseif($id==="view"){
+}elseif($id==="view"){
 	$template = 'patients/patient_info.tpl';
 }
 else {

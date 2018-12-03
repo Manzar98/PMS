@@ -19,7 +19,7 @@
 </script>
 
 {/literal}
-<div id="content">
+<div id="" class="content-wrapper">
  <div class="container-fluid">
    <div id="tabs">
     <ul class="tabs">

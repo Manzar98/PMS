@@ -1,14 +1,24 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 19:55:06
+<?php /* Smarty version 2.6.31, created on 2018-12-03 23:03:20
          compiled from patients/patients.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 45, false),array('modifier', 'default', 'patients/patients.tpl', 49, false),array('function', 'cycle', 'patients/patients.tpl', 63, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 54, false),array('modifier', 'default', 'patients/patients.tpl', 58, false),array('function', 'cycle', 'patients/patients.tpl', 72, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Patients</li>
+			</ol>
+		</div>
 		<h2 class="headingBottom"><?php if ($_GET['q'] != ''): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Patient List<?php endif; ?></h2>
 		<p>
@@ -41,7 +51,7 @@ patients/" method="get" enctype="multipart/form-data">
 patients/">Back to all Patients List</a></p>
 		<?php endif; ?>
 		
-		<div class="pagination pull-right grp_btn common-top">
+		<div class="pull-right grp_btn">
 			Group By : 
 			<a <?php if ($this->_tpl_vars['group_by'] == 'date'): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/?group_by=date&q=<?php echo $_GET['q']; ?>
@@ -106,13 +116,13 @@ patients/?group_by=marital_status&q=<?php echo $_GET['q']; ?>
 ?>
 				<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 ">
-					<td class="bold" width="45"><?php echo $this->_tpl_vars['patient']['patient_id']; ?>
+					<td class="bold"><?php echo $this->_tpl_vars['patient']['patient_id']; ?>
 </td>
-					<td><?php echo $this->_tpl_vars['patient']['patient_name']; ?>
+					<td width="400"><?php echo $this->_tpl_vars['patient']['patient_name']; ?>
 </td>
-					<td width="100"><?php echo $this->_tpl_vars['patient']['mobile']; ?>
+					<td width="400"><?php echo $this->_tpl_vars['patient']['mobile']; ?>
 </td>
-					<td width="155">
+					<td width="250">
 						<div class="icons">				
 							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patient-family-history/add/<?php echo $this->_tpl_vars['patient']['patient_id']; ?>
@@ -147,7 +157,7 @@ _templates/img/eye.png" alt="View" /></a>
 prescriptions/<?php echo $this->_tpl_vars['patient']['patient_id']; ?>
 /" title="View list of prescription against this patient">
 								<img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/img/121-512.png" alt="prescription" width="15%" />
+_templates/img/121-512.png" alt="prescription" width="10%" />
 							</a>
 							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/edit/<?php echo $this->_tpl_vars['patient']['patient_id']; ?>

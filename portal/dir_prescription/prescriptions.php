@@ -86,7 +86,6 @@ else {
 
 
 $smarty->assign('id',$id);
-
 $template = "prescription/prescriptions.tpl";
 
 ?>

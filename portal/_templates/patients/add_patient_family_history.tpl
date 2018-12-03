@@ -7,7 +7,7 @@
 }
 </style>
 {/literal}
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<h2>{if isset($edit)} Edit{else} Add a{/if} Patient Family History</h2>
 
