@@ -1,19 +1,34 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-16 16:21:41
+<?php /* Smarty version 2.6.31, created on 2018-12-03 23:41:48
          compiled from instructions/instructions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 85, false),array('function', 'cycle', 'instructions/instructions.tpl', 103, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 102, false),array('function', 'cycle', 'instructions/instructions.tpl', 120, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<div id="content">
+<div id=""  class="content-wrapper">
 	<div class="container-fluid"> 
-		
-		
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
+				<?php if (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+instructions/">Instructions</a>
+				</li>
+				<li class="breadcrumb-item active"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?></li>
+				<?php else: ?>
+				<li class="breadcrumb-item active">Instructions</li>
+				<?php endif; ?>
+			</ol>
+		</div>
 		<?php if (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
 		<h2><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?> Instruction</h2>
-
 		<?php if (isset ( $this->_tpl_vars['errors'] )): ?>
 		<div class="fail">
 			<?php $_from = $this->_tpl_vars['errors']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
@@ -27,39 +42,37 @@ unset($_smarty_tpl_vars);
 		<form id="add_instructions" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
 			<fieldset>
-				<legend>Add Instructions</legend>  
+				<legend><?php if (isset ( $this->_tpl_vars['edit'] )): ?>Edit<?php else: ?>Add<?php endif; ?>  Instructions</legend>  
 				<div class="row">
-					<div class="col-sm-4 common-bottom">
-						<label for="medicine_id">Medicine</label>
-						<select name="medicine_id" id="medicine_id" class="form-control">
-							<option value="">Without Medicine</option>
-							<?php $_from = $this->_tpl_vars['medicine_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="medicine_id">Medicine</label>
+							<select name="medicine_id" id="medicine_id" class="form-control">
+								<option value="">Without Medicine</option>
+								<?php $_from = $this->_tpl_vars['medicine_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['medicine']):
 ?>
-							<option <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['medicine_id'] == $this->_tpl_vars['medicine']['id'] )): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['medicine']['id']; ?>
+								<option <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['medicine_id'] == $this->_tpl_vars['medicine']['id'] )): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['medicine']['id']; ?>
 "><?php echo $this->_tpl_vars['medicine']['name']; ?>
 </option>
-							<?php endforeach; endif; unset($_from); ?>
-						</select>
+								<?php endforeach; endif; unset($_from); ?>
+							</select>
+						</div>
 					</div>
-				</div>
-				<div class="row"> 
-					<div class="col-sm-4 common-bottom">
-						<label for="instruction">Instruction</label>
-						<textarea name="instruction" id="instruction" class="form-control"><?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['instruction'] )): ?><?php echo $this->_tpl_vars['data']['instruction']; ?>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="instruction">Instruction</label>
+							<textarea name="instruction" id="instruction" class="form-control textarea-height"><?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['instruction'] )): ?><?php echo $this->_tpl_vars['data']['instruction']; ?>
 <?php endif; ?></textarea>
+						</div>
 					</div>
-				</div> 
-				
-				<div class="" style="margin-left: 15px;">
-					<input type="submit" name="submit" id="submit" value="<?php if (isset ( $this->_tpl_vars['edit'] )): ?> Update<?php else: ?> Add <?php endif; ?>" class="btn btn-primary" />
 				</div>
-				
+				<div class="col-sm-3 mt-3 mx-auto">
+					<input type="submit" name="submit" id="submit" value="<?php if (isset ( $this->_tpl_vars['edit'] )): ?> Update<?php else: ?> Add <?php endif; ?>" class="btn btn-primary form-control" />
+				</div>	
 			</fieldset>			
 		</form>
 		<?php else: ?>
-
-
 		<h2 class="headingBottom"><?php if ($_GET['q'] != ''): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Instructions List<?php endif; ?></h2>
 		<p>
@@ -72,18 +85,24 @@ instructions/" method="get" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Search for Instructions</legend>
 				<div class="row">
-					<div class="col-sm-3 search-top">
-						<select name="field" id="field" class="form-control">
-							<option value="instruction" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'instruction' )): ?> selected="selected" <?php endif; ?>>Instruction</option>
-							<option value="medicine.name" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'medicine_name' )): ?> selected="selected" <?php endif; ?>>Medicine Name</option>	
-						</select>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<select name="field" id="field" class="form-control">
+								<option value="instruction" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'instruction' )): ?> selected="selected" <?php endif; ?>>Instruction</option>
+								<option value="medicine.name" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'medicine_name' )): ?> selected="selected" <?php endif; ?>>Medicine Name</option>	
+							</select>
+						</div>
 					</div>
-					<div class="col-sm-3 search-top">
-						<input type="text" name="q" id="q" <?php if (isset ( $this->_tpl_vars['data']['q'] )): ?>value="<?php echo $this->_tpl_vars['data']['q']; ?>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<input type="text" name="q" id="q" <?php if (isset ( $this->_tpl_vars['data']['q'] )): ?>value="<?php echo $this->_tpl_vars['data']['q']; ?>
 "<?php endif; ?> maxlength="20" class="form-control" />
+						</div>
 					</div>
-					<div class="col-sm-3 search-top">
-						<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
+					<div class="col-sm-3 mt-1">
+						<div class="form-group">
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
+						</div>
 					</div>
 				</div>
 			</fieldset>
@@ -95,8 +114,8 @@ medicine/">Back to all Medicine List</a></p>
 		<?php endif; ?>
 		<?php if ($this->_tpl_vars['grouped_instructions']): ?>
 
-		<div class="pagination  pull-right grp_btn">
-			<span style="margin-bottom: 5px;">Group By :</span>  
+		<div class="pull-right grp_btn">
+			<span>Group By :&nbsp;</span>  
 			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'medicine_name' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 instructions/?group_by=medicine_name&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
@@ -139,13 +158,13 @@ instructions/?group_by=instruction&q=<?php echo $_GET['q']; ?>
 ?>
 				<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 ">
-					<td width="45"><?php echo $this->_tpl_vars['instruction']['id']; ?>
+					<td width="200"><?php echo $this->_tpl_vars['instruction']['id']; ?>
 </td>
-					<td width="150"><?php echo $this->_tpl_vars['instruction']['medicine_name']; ?>
+					<td width="200"><?php echo $this->_tpl_vars['instruction']['medicine_name']; ?>
 </td>
-					<td><?php echo $this->_tpl_vars['instruction']['instruction']; ?>
+					<td width="200"><?php echo $this->_tpl_vars['instruction']['instruction']; ?>
 </td>
-					<td width="50">
+					<td width="200">
 						<div class="icons">				
 							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 instructions/edit/<?php echo $this->_tpl_vars['instruction']['id']; ?>

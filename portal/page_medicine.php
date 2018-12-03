@@ -223,6 +223,7 @@ else {
 }
 
 $smarty->assign('data',@$data);
+$smarty->assign('id',$id);
 if (!isset($_GET['ajax'])) {
 	$template = 'medicine.tpl';
 }

@@ -1,18 +1,34 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-20 18:36:15
+<?php /* Smarty version 2.6.31, created on 2018-12-04 00:01:36
          compiled from tests/tests.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'tests/tests.tpl', 50, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'tests/tests.tpl', 64, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
-
-
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
+				<?php if (( isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] ) )): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+tests/">Tests</a>
+				</li>
+				<li class="breadcrumb-item active"><?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?>Edit<?php else: ?>Add<?php endif; ?></li>
+				<?php else: ?>
+				<li class="breadcrumb-item active">Tests</li>
+				<?php endif; ?>
+			</ol>
+		</div>
 		<?php if (( isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] ) )): ?>
-		<h2><?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?> Test</h2>
+		<h2 class="pt-3"><?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?> Test</h2>
 
 		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
 		<div class="fail">
@@ -33,25 +49,25 @@ unset($_smarty_tpl_vars);
 				<legend>Add Test</legend>
 				<div class="row">
 					<div class="col-sm-4">
-						<label for="name">Test Name</label>
-						<input type="text" name="name" id="name" maxlength="100" <?php if (( isset ( $this->_tpl_vars['data'] ) )): ?>value="<?php echo $this->_tpl_vars['data']['name']; ?>
+						<div class="form-group">
+							<label for="name">Test Name</label>
+							<input type="text" name="name" id="name" maxlength="100" <?php if (( isset ( $this->_tpl_vars['data'] ) )): ?>value="<?php echo $this->_tpl_vars['data']['name']; ?>
 "<?php endif; ?> class="form-control" />
+						</div>
 					</div>
-					<div class="col-sm-4" style="margin-top: 2px;">
-						<input type="submit" name="submit" id="submit" value="<?php if (( isset ( $this->_tpl_vars['edit'] ) )): ?> Update<?php else: ?> Add <?php endif; ?>" class="btn btn-primary" />
+					<div class="col-sm-1" style="margin-top: 28px;">
+						<input type="submit" name="submit" id="submit" value="<?php if (( isset ( $this->_tpl_vars['edit'] ) )): ?> Update<?php else: ?> Add <?php endif; ?>" class="btn btn-primary form-control" />
 					</div>
 				</div>
 			</fieldset>	
 			<div class="" style="margin-bottom: 20px;"></div>		
 		</form>
 		<?php else: ?>
-
+		<h2 class="pb-2 pt-2">Test List</h2>
 		<p class="common-top">
 			<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 tests/add/" title="Add a new"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
 		</p>
-
-
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
@@ -72,7 +88,7 @@ tests/add/" title="Add a new"><i class="fa fa-plus-square sqicon" aria-hidden="t
 test-options/<?php echo $this->_tpl_vars['test']['id']; ?>
 /" ><?php echo $this->_tpl_vars['test']['name']; ?>
 </a></td>
-					<td width="90">
+					<td width="150">
 						<div class="icons">				
 							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 test-options/<?php echo $this->_tpl_vars['test']['id']; ?>
@@ -100,7 +116,6 @@ _templates/img/bin.png" alt="Delete" /></a>
 		</table>
 
 		<?php endif; ?>	
-
 		<div class="pagination">
 			<?php echo $this->_tpl_vars['pages']; ?>
 
