@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 23:41:48
+<?php /* Smarty version 2.6.31, created on 2018-12-04 11:50:03
          compiled from instructions/instructions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 102, false),array('function', 'cycle', 'instructions/instructions.tpl', 120, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 104, false),array('function', 'cycle', 'instructions/instructions.tpl', 122, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -12,11 +12,18 @@ unset($_smarty_tpl_vars);
 		<!-- Breadcrumbs-->
 		<div class="noprint">
 			<ol class="breadcrumb">
+				
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
 				</li>
-				<?php if (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
+				<?php if ($_GET['q'] != ''): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+instructions/">Instructions</a>
+				</li>
+				<li class="breadcrumb-item active">Search</li>
+				<?php elseif (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 instructions/">Instructions</a>
@@ -107,11 +114,6 @@ instructions/" method="get" enctype="multipart/form-data">
 				</div>
 			</fieldset>
 		</form>
-		
-		<?php if ($_GET['q'] != ''): ?>
-		<p><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-medicine/">Back to all Medicine List</a></p>
-		<?php endif; ?>
 		<?php if ($this->_tpl_vars['grouped_instructions']): ?>
 
 		<div class="pull-right grp_btn">
@@ -187,7 +189,9 @@ _templates/img/bin.png" alt="Delete" /></a>
 			</tbody>
 		</table>
 		<?php endforeach; endif; unset($_from); ?>
-
+		<?php else: ?>
+		<p class="box-info text-center" style="margin-top: 7rem!important;">No Instruction against this <?php if ($_GET['field'] == "medicine.name"): ?> Medicine<?php else: ?> <?php echo $_GET['field']; ?>
+ <?php endif; ?></p>
 		<?php endif; ?>
 
 		<div class="pagination">

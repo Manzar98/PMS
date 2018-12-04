@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 23:03:20
+<?php /* Smarty version 2.6.31, created on 2018-12-04 11:44:28
          compiled from patients/patients.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 54, false),array('modifier', 'default', 'patients/patients.tpl', 58, false),array('function', 'cycle', 'patients/patients.tpl', 72, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 59, false),array('modifier', 'default', 'patients/patients.tpl', 63, false),array('function', 'cycle', 'patients/patients.tpl', 77, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -12,11 +12,23 @@ unset($_smarty_tpl_vars);
 		<!-- Breadcrumbs-->
 		<div class="noprint">
 			<ol class="breadcrumb">
+				<?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+patients">Patients</a>
+				</li>
+				<li class="breadcrumb-item active">Search</li>
+				<?php else: ?>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
 				</li>
 				<li class="breadcrumb-item active">Patients</li>
+				<?php endif; ?>
 			</ol>
 		</div>
 		<h2 class="headingBottom"><?php if ($_GET['q'] != ''): ?> Search Result For "<b><?php echo $_GET['q']; ?>
@@ -44,15 +56,9 @@ patients/" method="get" enctype="multipart/form-data">
 					<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary"/>
 				</div>
 			</div>
-		</form>
-		
-		<?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?>
-		<p class="common-top"><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-patients/">Back to all Patients List</a></p>
-		<?php endif; ?>
-		
+		</form>		
 		<div class="pull-right grp_btn">
-			Group By : 
+			Group By : &nbsp;
 			<a <?php if ($this->_tpl_vars['group_by'] == 'date'): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/?group_by=date&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
@@ -84,7 +90,7 @@ patients/?group_by=marital_status&q=<?php echo $_GET['q']; ?>
 &p=<?php echo $_GET['p']; ?>
 ">Marital Status </a>
 		</div>
-
+		<?php if ($this->_tpl_vars['grouped_patients']): ?>
 		<?php $_from = $this->_tpl_vars['grouped_patients']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['key'] => $this->_tpl_vars['patients']):
 ?>
@@ -180,7 +186,10 @@ _templates/img/bin.png" alt="Delete" /></a>
 			</tbody>
 		</table>
 		<?php endforeach; endif; unset($_from); ?>
-
+		<?php else: ?>
+		<p class="box-info text-center" style="margin-top: 7rem!important;">No Patient against this <?php echo $_GET['field']; ?>
+</p>
+		<?php endif; ?>
 		<div class="pagination"><?php echo $this->_tpl_vars['pages']; ?>
 </div>
 	</div><!-- #content -->

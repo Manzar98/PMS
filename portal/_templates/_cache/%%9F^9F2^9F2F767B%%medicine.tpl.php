@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 23:30:20
+<?php /* Smarty version 2.6.31, created on 2018-12-04 11:42:05
          compiled from medicine.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 158, false),array('function', 'cycle', 'medicine.tpl', 178, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 162, false),array('function', 'cycle', 'medicine.tpl', 182, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -40,16 +40,30 @@ unset($_smarty_tpl_vars);
 		<!-- Breadcrumbs-->
 		<div class="noprint">
 			<ol class="breadcrumb">
+				<?php if ($_GET['q'] != ''): ?>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
 				</li>
-				<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == '0'): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+medicine/">Medicines</a>
+				</li>
+				<li class="breadcrumb-item active">Search</li>
+				<?php elseif (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == '0'): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
 				<li class="breadcrumb-item active">Medicines</li>
 				<?php else: ?>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-prescriptions/">Medicines</a>
+">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+medicine/">Medicines</a>
 				</li>
 				<li class="breadcrumb-item active text-capitalize"><?php echo $this->_tpl_vars['id']; ?>
 </li>
@@ -137,40 +151,32 @@ medicine/" method="get" enctype="multipart/form-data">
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="form-group">
-							<select name="field" id="field" class="form-control">
-								<option value="id" <?php if ($this->_tpl_vars['data']['field'] == 'id'): ?> selected="selected" <?php endif; ?>>Medicine ID</option>
-								<option value="name" <?php if ($this->_tpl_vars['data']['field'] == 'name'): ?> selected="selected" <?php endif; ?>>Medicine Name</option>	
-								<option value="formula" <?php if ($this->_tpl_vars['data']['field'] == 'formula'): ?> selected="selected" <?php endif; ?>>Medicine Formula</option>
-								<option value="type" <?php if ($this->_tpl_vars['data']['field'] == 'type'): ?> selected="selected" <?php endif; ?>>Type</option>
-								<option value="dose" <?php if ($this->_tpl_vars['data']['field'] == 'dose'): ?> selected="selected" <?php endif; ?>>Dose</option>
-								<option value="company" <?php if ($this->_tpl_vars['data']['field'] == 'company'): ?> selected="selected" <?php endif; ?>>Company</option>
-							</select>
-						</div>
+								<select name="field" id="field" class="form-control">
+									<option value="id" <?php if ($this->_tpl_vars['data']['field'] == 'id'): ?> selected="selected" <?php endif; ?>>Medicine ID</option>
+									<option value="name" <?php if ($this->_tpl_vars['data']['field'] == 'name'): ?> selected="selected" <?php endif; ?>>Medicine Name</option>	
+									<option value="formula" <?php if ($this->_tpl_vars['data']['field'] == 'formula'): ?> selected="selected" <?php endif; ?>>Medicine Formula</option>
+									<option value="type" <?php if ($this->_tpl_vars['data']['field'] == 'type'): ?> selected="selected" <?php endif; ?>>Type</option>
+									<option value="dose" <?php if ($this->_tpl_vars['data']['field'] == 'dose'): ?> selected="selected" <?php endif; ?>>Dose</option>
+									<option value="company" <?php if ($this->_tpl_vars['data']['field'] == 'company'): ?> selected="selected" <?php endif; ?>>Company</option>
+								</select>
+							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
-							<input type="text" name="q" id="q" value="<?php echo $this->_tpl_vars['data']['q']; ?>
+								<input type="text" name="q" id="q" value="<?php echo $this->_tpl_vars['data']['q']; ?>
 " maxlength="20" class="form-control" />
+							</div>
 						</div>
-					</div>
 						<div class="col-sm-3 mt-1">
 							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
 						</div>
 					</div>
 				</fieldset>
 			</form>
-
-			<?php if ($_GET['q'] != ''): ?>
-			<div style="padding: 20px 0;">
-				<p><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-medicine/">Back to all Medicine List</a></p>
-			</div>
-			<?php endif; ?>
-
 			<?php if ($this->_tpl_vars['medicine_list']): ?>
 
 			<div class="pull-right grp_btn">
-				Group By : 
+				Group By :&nbsp; 
 				<a <?php if ($this->_tpl_vars['group_by'] == 'formula'): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 medicine/?group_by=formula&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
@@ -260,12 +266,18 @@ _templates/img/bin.png" alt="Delete" /></a>
 				</tbody>
 			</table>
 			<?php endforeach; endif; unset($_from); ?>
+			<?php else: ?>
+			<p class="box-info text-center" style="margin-top: 7rem!important;">No Medicine against this <?php echo $_GET['field']; ?>
+</p>
 			<?php endif; ?>
 			<div class="pagination">
 				<?php echo $this->_tpl_vars['pages']; ?>
 
-			</div>	
-			<?php endif; ?>	
+			</div>
+
+
+			<?php endif; ?>
+
 		</div><!-- #content -->
 	</div>
 	<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>

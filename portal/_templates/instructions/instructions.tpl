@@ -3,11 +3,16 @@
 	<div class="container-fluid"> 
 		<!-- Breadcrumbs-->
 		<div class="noprint">
-			<ol class="breadcrumb">
+			<ol class="breadcrumb">				
 				<li class="breadcrumb-item">
 					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
 				</li>
-				{if isset($edit) || isset($add)}
+				{if $smarty.get.q neq ''}
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}instructions/">Instructions</a>
+				</li>
+				<li class="breadcrumb-item active">Search</li>
+				{elseif isset($edit) || isset($add)}
 				<li class="breadcrumb-item">
 					<a href="{$BASE_URL_ADMIN}instructions/">Instructions</a>
 				</li>
@@ -84,10 +89,6 @@
 				</div>
 			</fieldset>
 		</form>
-		
-		{if $smarty.get.q neq ''}
-		<p><a href="{$BASE_URL_ADMIN}medicine/">Back to all Medicine List</a></p>
-		{/if}
 		{if $grouped_instructions}
 
 		<div class="pull-right grp_btn">
@@ -138,17 +139,13 @@
 			</tbody>
 		</table>
 		{/foreach}
-
+		{else}
+		<p class="box-info text-center" style="margin-top: 7rem!important;">No Instruction against this {if $smarty.get.field =="medicine.name"} medicine{else} {$smarty.get.field } {/if}</p>
 		{/if}
-
 		<div class="pagination">
 			{$pages}
 		</div>
-		{/if}	
-		
-		
-		
-		
+		{/if}		
 	</div><!-- #content -->
 </div>
 <div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>

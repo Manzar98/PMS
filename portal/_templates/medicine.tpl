@@ -34,11 +34,16 @@
 				<li class="breadcrumb-item">
 					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
 				</li>
-				{if isset($id) && $id=="0"}
+				{if $smarty.get.q neq ''}
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}medicine/">Medicines</a>
+				</li>
+				<li class="breadcrumb-item active">Search</li>
+				{elseif isset($id) && $id=="0"}
 				<li class="breadcrumb-item active">Medicines</li>
 				{else}
 				<li class="breadcrumb-item">
-					<a href="{$BASE_URL_ADMIN}prescriptions/">Medicines</a>
+					<a href="{$BASE_URL_ADMIN}medicine/">Medicines</a>
 				</li>
 				<li class="breadcrumb-item active text-capitalize">{$id}</li>
 				{/if}
@@ -114,38 +119,31 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="form-group">
-							<select name="field" id="field" class="form-control">
-								<option value="id" {if $data.field=='id'} selected="selected" {/if}>Medicine ID</option>
-								<option value="name" {if $data.field=='name'} selected="selected" {/if}>Medicine Name</option>	
-								<option value="formula" {if $data.field=='formula'} selected="selected" {/if}>Medicine Formula</option>
-								<option value="type" {if $data.field=='type'} selected="selected" {/if}>Type</option>
-								<option value="dose" {if $data.field=='dose'} selected="selected" {/if}>Dose</option>
-								<option value="company" {if $data.field=='company'} selected="selected" {/if}>Company</option>
-							</select>
-						</div>
+								<select name="field" id="field" class="form-control">
+									<option value="id" {if $data.field=='id'} selected="selected" {/if}>Medicine ID</option>
+									<option value="name" {if $data.field=='name'} selected="selected" {/if}>Medicine Name</option>	
+									<option value="formula" {if $data.field=='formula'} selected="selected" {/if}>Medicine Formula</option>
+									<option value="type" {if $data.field=='type'} selected="selected" {/if}>Type</option>
+									<option value="dose" {if $data.field=='dose'} selected="selected" {/if}>Dose</option>
+									<option value="company" {if $data.field=='company'} selected="selected" {/if}>Company</option>
+								</select>
+							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
-							<input type="text" name="q" id="q" value="{$data.q}" maxlength="20" class="form-control" />
+								<input type="text" name="q" id="q" value="{$data.q}" maxlength="20" class="form-control" />
+							</div>
 						</div>
-					</div>
 						<div class="col-sm-3 mt-1">
 							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
 						</div>
 					</div>
 				</fieldset>
 			</form>
-
-			{if $smarty.get.q neq ''}
-			<div style="padding: 20px 0;">
-				<p><a href="{$BASE_URL_ADMIN}medicine/">Back to all Medicine List</a></p>
-			</div>
-			{/if}
-
 			{if $medicine_list}
 
 			<div class="pull-right grp_btn">
-				Group By : 
+				Group By :&nbsp; 
 				<a {if $group_by=='formula'} class="current_page" {/if} href="{$BASE_URL_ADMIN}medicine/?group_by=formula&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Formula</a>
 				<a {if $group_by=='dose'} class="current_page" {/if} href="{$BASE_URL_ADMIN}medicine/?group_by=dose&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Dose</a>
 				<a {if $group_by=='type'} class="current_page" {/if} href="{$BASE_URL_ADMIN}medicine/?group_by=type&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Type</a>
@@ -199,11 +197,16 @@
 				</tbody>
 			</table>
 			{/foreach}
+			{else}
+			<p class="box-info text-center" style="margin-top: 7rem!important;">No Medicine against this {$smarty.get.field}</p>
 			{/if}
 			<div class="pagination">
 				{$pages}
-			</div>	
-			{/if}	
+			</div>
+
+
+			{/if}
+
 		</div><!-- #content -->
 	</div>
 	<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>

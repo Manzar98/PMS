@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 23:58:12
+<?php /* Smarty version 2.6.31, created on 2018-12-04 11:45:15
          compiled from tests/test_options.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'tests/test_options.tpl', 84, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'tests/test_options.tpl', 83, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -11,30 +11,30 @@ unset($_smarty_tpl_vars);
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
 		<div class="noprint">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
-			</li>
-			<?php if (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
-			<li class="breadcrumb-item">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+				</li>
+				<?php if (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 tests/">Tests</a>
-			</li>
-			<li class="breadcrumb-item">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 test-options/<?php echo $this->_tpl_vars['test_id']; ?>
 /">Test Options</a>
-			</li>
-			<li class="breadcrumb-item active"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?> Test Option</li>
-			<?php else: ?>
-			<li class="breadcrumb-item">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+				</li>
+				<li class="breadcrumb-item active"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?> Test Option</li>
+				<?php else: ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 tests/">Tests</a>
-			</li>
-			<li class="breadcrumb-item active">Test Options</li>
-			<?php endif; ?>
-		</ol>
+				</li>
+				<li class="breadcrumb-item active">Test Options</li>
+				<?php endif; ?>
+			</ol>
 		</div>
 		<?php if (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
 		<h2 class="pt-2"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?> Test Option</h2>
@@ -59,30 +59,29 @@ tests/">Tests</a>
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group">
-						<label for="name">Option Name</label>
-						<input type="text" name="name" id="name" maxlength="100" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['name'] )): ?>value="<?php echo $this->_tpl_vars['data']['name']; ?>
+							<label for="name">Option Name</label>
+							<input type="text" name="name" id="name" maxlength="100" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['name'] )): ?>value="<?php echo $this->_tpl_vars['data']['name']; ?>
 "<?php endif; ?> class="form-control"/>
+						</div>
 					</div>
-				</div>
 					<div class="col-sm-4">
 						<div class="form-group">
-						<label for="measurement">Measurment</label>
-						<input type="text" name="measurement" id="measurement" maxlength="100" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['name'] )): ?>value="<?php echo $this->_tpl_vars['data']['measurement']; ?>
+							<label for="measurement">Measurment</label>
+							<input type="text" name="measurement" id="measurement" maxlength="100" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['name'] )): ?>value="<?php echo $this->_tpl_vars['data']['measurement']; ?>
 "<?php endif; ?> class="form-control"/>
+						</div>
 					</div>
-				</div>
 					<div class="col-sm-4">
 						<div class="form-group">
-						<label for="normal_range">Normal Range</label>
-						<input type="text" name="normal_range" id="normal_range" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['name'] )): ?>value="<?php echo $this->_tpl_vars['data']['normal_range']; ?>
+							<label for="normal_range">Normal Range</label>
+							<input type="text" name="normal_range" id="normal_range" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['name'] )): ?>value="<?php echo $this->_tpl_vars['data']['normal_range']; ?>
 "<?php endif; ?> class="form-control" />
+						</div>
 					</div>
-				</div>
 				</div>
 				<div class="col-sm-3 mx-auto mt-3">
 					<input type="submit" name="submit" id="submit" value="<?php if (isset ( $this->_tpl_vars['edit'] )): ?> Update<?php else: ?> Add <?php endif; ?>" class="btn btn-primary form-control" />
-				</div>
-				
+				</div>	
 			</fieldset>		
 		</form>
 		<?php else: ?>
@@ -138,12 +137,7 @@ _templates/img/bin.png" alt="Delete" /></a>
 				<?php endif; unset($_from); ?>
 			</tbody>
 		</table>
-		
-		<?php endif; ?>	
-		
-		
-		
-		
+		<?php endif; ?>		
 	</div><!-- #content -->
 </div>
 <div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>

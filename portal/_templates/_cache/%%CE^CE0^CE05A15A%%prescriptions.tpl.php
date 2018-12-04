@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 23:02:38
+<?php /* Smarty version 2.6.31, created on 2018-12-04 11:38:46
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 85, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 128, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 150, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 147, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 90, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 126, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 148, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 145, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -70,21 +70,27 @@ unset($_smarty_tpl_vars);
 		<?php endif; ?>
 		<!-- Breadcrumbs-->
 		<div class="noprint">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
-			</li>
-			<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == 'view' && $this->_tpl_vars['id'] != '0'): ?>
-			<li class="breadcrumb-item">
-				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+				</li>
+				<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == 'view' && $this->_tpl_vars['id'] != '0'): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/">Prescriptions</a>
-			</li>
-			<li class="breadcrumb-item active">View</li>
-			<?php else: ?>
-			<li class="breadcrumb-item active">Prescriptions</li>
-			<?php endif; ?>
-		</ol>
+				</li>
+				<li class="breadcrumb-item active">View</li>
+				<?php elseif (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+prescriptions/">Prescriptions</a>
+				</li>
+				<li class="breadcrumb-item active">Search</li>
+				<?php else: ?>
+				<li class="breadcrumb-item active">Prescriptions</li>
+				<?php endif; ?>
+			</ol>
 		</div>
 		<h2 class="noprint headingBottom"><?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Prescription List<?php endif; ?></h2>
@@ -119,22 +125,14 @@ prescriptions/" method="get" enctype="multipart/form-data">
 				</div>
 				
 			</div>
-
 			<?php if (( ! isset ( $this->_tpl_vars['grouped_prescriptions'] ) && ! $this->_tpl_vars['grouped_prescriptions'] )): ?>
 			<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
 			<?php endif; ?>
-			
 		</form>
-		
-		<?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?>
-		<p class="noprint"><a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-prescriptions/">Back to all Prescription List</a></p>
-		<?php endif; ?>
-
 		<?php if (( isset ( $this->_tpl_vars['grouped_prescriptions'] ) && $this->_tpl_vars['grouped_prescriptions'] )): ?>
 		
 		<div class="pull-right grp_btn">
-			<span style="margin-bottom: 5px;">Group By :</span> 
+			<span style="margin-bottom: 5px;">Group By :&nbsp;</span> 
 			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'date' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/?group_by=date&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
@@ -219,166 +217,162 @@ _templates/img/bin.png" alt="Delete" /></a>
 				<tr style="color:red;">
 					<td class="">
 						No Prescription For this date
-						</span>
-					</td>
-				</tr>
-				<?php endif; unset($_from); ?>
-			</tbody>
-		</table>
+					</span>
+				</td>
+			</tr>
+			<?php endif; unset($_from); ?>
+		</tbody>
+	</table>
+	<?php endforeach; endif; unset($_from); ?>
+	<?php else: ?>
+	<p class="box-info text-center" style="margin-top: 7rem!important;">No Prescription against this <?php echo $_GET['field']; ?>
+</p>
+	<?php endif; ?>
+	<div class="pagination">
+		<?php echo $this->_tpl_vars['pages']; ?>
 
-		<?php endforeach; endif; unset($_from); ?>
+	</div>
 
-		<div class="pagination">
-			<?php echo $this->_tpl_vars['pages']; ?>
+	<?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] )): ?>
+	<div id="prescription_info">
+		<div class="row">
+			<div class="col-sm-10">
+				<h3 class="hideThink" >Patient's Details</h3>
+			</div>
+			<div class="col-sm-2">
+				<span class="date">Date:<em><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['created_on'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
+</em></span>
+			</div>
+		</div> 
 
+		<hr style="border-top: dotted 1px #DEDEDE; " />
+		<div>
+			<ul class="patient_info list-inline">
+				<li><span style="font-weight: normal;"> Patient's Name: <span><?php echo $this->_tpl_vars['data']['patient']['name']; ?>
+</span></span></li>
+				<li><span style="font-weight: normal;">City: <span><?php echo $this->_tpl_vars['data']['patient']['city_name']; ?>
+</span></span ></li>
+				<li><span style="font-weight: normal;">Gender:<?php if (isset ( $this->_tpl_vars['data']['patient']['gender'] )): ?><span><?php echo $this->_tpl_vars['data']['patient']['gender']; ?>
+ </span><?php endif; ?></span></li>
+				<li><span style="font-weight: normal;">Date of Birth: <span><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['patient']['dob'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
+</span></span></li>
+				<li><span style="font-weight: normal;">ID: <span><?php echo $this->_tpl_vars['data']['patient']['id']; ?>
+</span></span></li>
+			</ul>	
 		</div>
 
-		<?php elseif (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] )): ?>
+		<div class="row">
+			<div class="col-sm-6">
+				<h3>Instructions</h3>
 
-		<div id="prescription_info">
-			<div class="row">
-				<div class="col-sm-10">
-					<h3 class="hideThink" >Patient's Details</h3>
-				</div>
-				<div class="col-sm-2">
-					<span class="date">Date:<em><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['created_on'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
-</em></span>
-				</div>
-			</div> 
-
-			<hr style="border-top: dotted 1px #DEDEDE; " />
-			<div>
-				<ul class="patient_info list-inline">
-					<li><span style="font-weight: normal;"> Patient's Name: <span><?php echo $this->_tpl_vars['data']['patient']['name']; ?>
-</span></span></li>
-					<li><span style="font-weight: normal;">City: <span><?php echo $this->_tpl_vars['data']['patient']['city_name']; ?>
-</span></span ></li>
-					<li><span style="font-weight: normal;">Gender:<?php if (isset ( $this->_tpl_vars['data']['patient']['gender'] )): ?><span><?php echo $this->_tpl_vars['data']['patient']['gender']; ?>
- </span><?php endif; ?></span></li>
-					<li><span style="font-weight: normal;">Date of Birth: <span><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['patient']['dob'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
-</span></span></li>
-					<li><span style="font-weight: normal;">ID: <span><?php echo $this->_tpl_vars['data']['patient']['id']; ?>
-</span></span></li>
-				</ul>	
-			</div>
-			
-			<div class="row">
-				<div class="col-sm-6">
-					<h3>Instructions</h3>
-					
-					<?php if ($this->_tpl_vars['data']['instructions']): ?>
-					<table class="table table-bordered table-striped instructions">
-						<caption>Instructions</caption>
-						<thead class="thead-dark">
-							<tr>
-								<th>Medicine</th>
-								<th>Dose</th>
-								<th>Instruction</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php $_from = $this->_tpl_vars['data']['instructions']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+				<?php if ($this->_tpl_vars['data']['instructions']): ?>
+				<table class="table table-bordered table-striped instructions">
+					<caption>Instructions</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>Medicine</th>
+							<th>Dose</th>
+							<th>Instruction</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $_from = $this->_tpl_vars['data']['instructions']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['ins']):
 ?>
-							<tr>
-								
-								<td class="medicine_name"><?php echo $this->_tpl_vars['ins']['name']; ?>
+						<tr>
+
+							<td class="medicine_name"><?php echo $this->_tpl_vars['ins']['name']; ?>
 </td>
-								<td class="dose">(<?php echo $this->_tpl_vars['ins']['dose']; ?>
+							<td class="dose">(<?php echo $this->_tpl_vars['ins']['dose']; ?>
 )</td> 
-								<td class="instruction"><?php echo $this->_tpl_vars['ins']['instruction']; ?>
+							<td class="instruction"><?php echo $this->_tpl_vars['ins']['instruction']; ?>
 </td>
-							</tr>
-							<?php endforeach; endif; unset($_from); ?>
-						</tbody>
-					</table>
-					<?php else: ?>
-					
-					<p class="box-info">No Instructions for this prescription.</p>
-					
-					<?php endif; ?>
-					<hr class="noprint dotted"/>
-					
-					<h3>Tests</h3>
-					
-					
-					<?php $_from = $this->_tpl_vars['data']['tests']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+						</tr>
+						<?php endforeach; endif; unset($_from); ?>
+					</tbody>
+				</table>
+				<?php else: ?>
+
+				<p class="box-info">No Instructions for this prescription.</p>
+
+				<?php endif; ?>
+				<hr class="noprint dotted"/>
+
+				<h3>Tests</h3>
+
+
+				<?php $_from = $this->_tpl_vars['data']['tests']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['test']):
 ?>
-					<table class="table table-bordered table-striped tests">
-						<caption><?php echo $this->_tpl_vars['test']['test_name']; ?>
+				<table class="table table-bordered table-striped tests">
+					<caption><?php echo $this->_tpl_vars['test']['test_name']; ?>
 </caption>
-						
-						<thead class="thead-dark">
-							<tr>
-								<th>Test Field</th>
-								<th>Result</th>
-								<th>Default</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php $_from = $this->_tpl_vars['test']['options']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+
+					<thead class="thead-dark">
+						<tr>
+							<th>Test Field</th>
+							<th>Result</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $_from = $this->_tpl_vars['test']['options']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['option']):
 ?>
-							<tr>
-								<td width="40%"><?php echo $this->_tpl_vars['option']['option_name']; ?>
+						<tr>
+							<td width="40%"><?php echo $this->_tpl_vars['option']['option_name']; ?>
 </td> 
-								<td width="30%"><?php echo $this->_tpl_vars['option']['result']; ?>
+							<td width="30%"><?php echo $this->_tpl_vars['option']['result']; ?>
 <?php echo $this->_tpl_vars['option']['measurement']; ?>
 </td>
-								<td width="30%"><?php echo $this->_tpl_vars['option']['normal_range']; ?>
+							<td width="30%"><?php echo $this->_tpl_vars['option']['normal_range']; ?>
 </td>
-							</tr>
-							<?php endforeach; endif; unset($_from); ?>
-						</tbody>
-					</table>
-					<?php endforeach; else: ?>	
-					<p class="box-info">No Tests for this prescription.</p>
-					<?php endif; unset($_from); ?>
-				</div>
-				<div class="col-sm-1"></div>
-				<div class="col-sm-4">
-					<div class="">
-						<h3>Details</h3>
-						<dl class="separator" style="margin-top: 23px;">
-							<dt style="font-size: 13px;">Description</dt>
-							<dd><?php echo $this->_tpl_vars['data']['description']; ?>
+						</tr>
+						<?php endforeach; endif; unset($_from); ?>
+					</tbody>
+				</table>
+				<?php endforeach; else: ?>	
+				<p class="box-info">No Tests for this prescription.</p>
+				<?php endif; unset($_from); ?>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-4">
+				<div class="">
+					<h3>Details</h3>
+					<dl class="separator" style="margin-top: 23px;">
+						<dt style="font-size: 13px;">Description</dt>
+						<dd><?php echo $this->_tpl_vars['data']['description']; ?>
 </dd>
-							<dt style="font-size: 13px;">Complain</dt>
-							<dd><strong><?php echo $this->_tpl_vars['data']['complain']; ?>
+						<dt style="font-size: 13px;">Complain</dt>
+						<dd><strong><?php echo $this->_tpl_vars['data']['complain']; ?>
 </strong></dd>
-							<dd><?php echo $this->_tpl_vars['data']['complain_detail']; ?>
+						<dd><?php echo $this->_tpl_vars['data']['complain_detail']; ?>
 </dd>
-							<dt style="font-size: 13px;">Next Plan</dt>
-							<dd><strong><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['next_date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+						<dt style="font-size: 13px;">Next Plan</dt>
+						<dd><strong><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['next_date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </strong></dd>
-							<dd><?php echo $this->_tpl_vars['data']['next_plan']; ?>
+						<dd><?php echo $this->_tpl_vars['data']['next_plan']; ?>
 </dd>
-							<dt style="font-size: 13px;">Address</dt>
-							<dd><?php echo $this->_tpl_vars['data']['patient']['address']; ?>
+						<dt style="font-size: 13px;">Address</dt>
+						<dd><?php echo $this->_tpl_vars['data']['patient']['address']; ?>
 </dd>
 
-						</dl>
-					</div>
+					</dl>
 				</div>
 			</div>
-			<p id="fee"> Fee Received : <strong><?php echo $this->_tpl_vars['data']['fee_received']; ?>
-</strong>    </p>
-			<p class="noprint">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
 		</div>
-		<p></p>
-
-		<br /><br /><br />
-		<br />
-
-		<br />
-
-		<?php else: ?>
-
-		<p class="box-info text-center" style="margin-top: 7rem!important;">No Prescription on the List</p>
-
-		<?php endif; ?>
+		<p id="fee"> Fee Received : <strong><?php echo $this->_tpl_vars['data']['fee_received']; ?>
+</strong>    </p>
+		<p class="noprint">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
 	</div>
+	<p></p>
+
+	<br /><br /><br />
+	<br />
+
+	<br />
+	<?php endif; ?>
+</div>
 
 </div>
 

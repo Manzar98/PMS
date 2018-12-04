@@ -7,7 +7,14 @@
 				<li class="breadcrumb-item">
 					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
 				</li>
+				{if (isset($smarty.get.q) && $smarty.get.q neq '')}
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}patients">Patients</a>
+				</li>
+				<li class="breadcrumb-item active">Search</li>
+				{else}
 				<li class="breadcrumb-item active">Patients</li>
+				{/if}
 			</ol>
 		</div>
 		<h2 class="headingBottom">{if $smarty.get.q neq ''} Search Result For "<b>{$smarty.get.q}</b>" {else}Patient List{/if}</h2>
@@ -31,14 +38,9 @@
 					<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary"/>
 				</div>
 			</div>
-		</form>
-		
-		{if (isset($smarty.get.q) && $smarty.get.q neq '')}
-		<p class="common-top"><a href="{$BASE_URL_ADMIN}patients/">Back to all Patients List</a></p>
-		{/if}
-		
+		</form>		
 		<div class="pull-right grp_btn">
-			Group By : 
+			Group By : &nbsp;
 			<a {if $group_by=='date'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=date&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Date</a>
 			<a {if $group_by=='blood_group'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=blood_group&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Blood Group</a>
 			<a {if $group_by=='patient_name'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=patient_name&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Name</a>
@@ -46,7 +48,7 @@
 			<a {if $group_by=='gender'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=gender&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Gender</a>
 			<a {if $group_by=='marital_status'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=marital_status&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Marital Status </a>
 		</div>
-
+		{if $grouped_patients}
 		{foreach from=$grouped_patients item=patients key=key}
 		
 		<table class="table table-striped table-bordered" >
@@ -107,7 +109,9 @@
 			</tbody>
 		</table>
 		{/foreach}
-
+		{else}
+		<p class="box-info text-center" style="margin-top: 7rem!important;">No Patient against this {$smarty.get.field}</p>
+		{/if}
 		<div class="pagination">{$pages}</div>
 	</div><!-- #content -->
 </div>
