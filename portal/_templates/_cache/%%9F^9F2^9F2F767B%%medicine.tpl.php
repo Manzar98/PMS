@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 11:42:05
+<?php /* Smarty version 2.6.31, created on 2018-12-04 16:10:46
          compiled from medicine.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 162, false),array('function', 'cycle', 'medicine.tpl', 182, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 155, false),array('function', 'cycle', 'medicine.tpl', 175, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -40,27 +40,19 @@ unset($_smarty_tpl_vars);
 		<!-- Breadcrumbs-->
 		<div class="noprint">
 			<ol class="breadcrumb">
-				<?php if ($_GET['q'] != ''): ?>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
 				</li>
+				<?php if ($_GET['q'] != ''): ?>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 medicine/">Medicines</a>
 				</li>
 				<li class="breadcrumb-item active">Search</li>
 				<?php elseif (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == '0'): ?>
-				<li class="breadcrumb-item">
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-">Dashboard</a>
-				</li>
 				<li class="breadcrumb-item active">Medicines</li>
 				<?php else: ?>
-				<li class="breadcrumb-item">
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-">Dashboard</a>
-				</li>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 medicine/">Medicines</a>
@@ -167,14 +159,13 @@ medicine/" method="get" enctype="multipart/form-data">
 " maxlength="20" class="form-control" />
 							</div>
 						</div>
-						<div class="col-sm-3 mt-1">
-							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
+						<div class="col-sm-1">
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control" />
 						</div>
 					</div>
 				</fieldset>
 			</form>
 			<?php if ($this->_tpl_vars['medicine_list']): ?>
-
 			<div class="pull-right grp_btn">
 				Group By :&nbsp; 
 				<a <?php if ($this->_tpl_vars['group_by'] == 'formula'): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>

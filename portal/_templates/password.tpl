@@ -1,7 +1,16 @@
 {include file="header.tpl"}
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
-		<h2 id="password">Change password</h2>
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Change Password</li>
+			</ol>
+		</div>
+		<h2 id="password" class="pt-3">Change password</h2>
 
 		{if isset($error)}
 		<div class="fail">
@@ -9,19 +18,31 @@
 		</div>
 		{/if}
 
-		<form id="change_password" action="{$smarty.server.REQUEST_URI}" method="post">
-			
-			<div class="group{if $error} error{/if} col-sm-4">
-				<label for="new_password">New password</label>
-				<input type="password" name="new_password" id="new_password" size="30" class="form-control" />
-			</div>
-			<div class="group{if $error} error{/if} col-sm-4">
-				<label for="verify_password">Verify password</label>
-				<input type="password" name="verify_password" id="verify_password" size="30" class="form-control" />
-			</div>
-			<div class="group_submit">
-				<button type="submit" class="btn btn-primary"><span>Change password</span></button>
-			</div>
+		<form id="change_password" action="{$smarty.server.REQUEST_URI}" method="post" class="box style">
+			<fieldset>
+				<legend>Change Password</legend>
+
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<div class="group{if $error} error{/if} col-sm-4">
+						<div class="form-group">
+							<label for="new_password">New password</label>
+							<input type="password" name="new_password" id="new_password" size="30" class="form-control" />
+						</div>
+					</div>
+					<div class="group{if $error} error{/if} col-sm-4">
+						<div class="form-group">
+							<label for="verify_password">Verify password</label>
+							<input type="password" name="verify_password" id="verify_password" size="30" class="form-control" />
+						</div>
+					</div>
+				</div>
+				<div class="row"> 
+					<div class="group_submit col-sm-3 mx-auto py-4">
+						<button type="submit" class="btn btn-primary form-control"><span>Change password</span></button>
+					</div>
+				</div>
+			</fieldset>
 		</form>
 		<div class="common-bottom"></div>
 	</div><!-- #content -->

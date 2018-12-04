@@ -1,14 +1,32 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-28 18:26:30
+<?php /* Smarty version 2.6.31, created on 2018-12-04 18:03:48
          compiled from packages/packages.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 20, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 36, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
+				<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
+				<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == 'view' && $this->_tpl_vars['id'] != '0'): ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+packages/">Packages</a>
+				</li>
+				<li class="breadcrumb-item active">View</li>
+				<?php else: ?>
+				<li class="breadcrumb-item active">Packages</li>
+				<?php endif; ?>
+			</ol>
+		</div>
        <?php if (isset ( $this->_tpl_vars['record'] ) && $this->_tpl_vars['record']): ?>  
        <h2>Packages List</h2>
 		<p class="common-top">
@@ -58,65 +76,69 @@ _templates/img/bin.png" alt="Delete" /></a>
 		</table>
 		<?php elseif (isset ( $this->_tpl_vars['singleRecord'] )): ?>
 		<div class="row">
-			<div class="col-sm-11">
+			<div class="col-sm-10 pt-3">
         <h2 style="margin-bottom: 60px;"><?php echo $this->_tpl_vars['singleRecord']['pkg_name']; ?>
  Package Detail's</h2>
         </div>
-        <div class="col-sm-1" style="margin-top: 25px;">
+        <div class="col-sm-2  pt-3">
         	<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 add-package/edit/<?php echo $this->_tpl_vars['singleRecord']['id']; ?>
-/" class="btn btn-primary">Edit</a>
+/" class="btn btn-primary form-control">Edit Package</a>
         </div>
         </div>
-		<div class="row ">
+		<div class="row mt-5">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>Package Name : </b><span><?php echo $this->_tpl_vars['singleRecord']['pkg_name']; ?>
 </span></span>
-			
+		</div>		
 		</div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>Package Price : </b><span><?php echo $this->_tpl_vars['singleRecord']['pkg_price']; ?>
 </span></span>
 		</div>
 	</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Patients : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_patients']; ?>
 </span></span>
 		</div>
-		<div class="col-sm-4 common-bottom">
+		</div>
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Prescriptions : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_prescriptions']; ?>
 </span></span>
 		</div>
 	</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Medicines : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_medicines']; ?>
 </span></span>
 		</div>
-		<div class="col-sm-4 common-bottom">
+	</div>
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Tests : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_tests']; ?>
 </span></span>
 		</div>
 	</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Online Appointments : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_online_appointments']; ?>
 </span></span>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
-			<span><b></b><span></span></span>
-		</div>
-		<div class="col-sm-4 common-bottom">
-			<span><b></b><span></span></span>
-		</div>
 	</div>
 	<?php else: ?>
       <h2>Packages List</h2>

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 11:38:46
+<?php /* Smarty version 2.6.31, created on 2018-12-04 16:16:25
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 90, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 126, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 148, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 145, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 91, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 132, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 154, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 151, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -103,31 +103,37 @@ add-prescription/" title="Add a new Prescription"><i class="fa fa-plus-square sq
 
 		<form class="box style noprint" action="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/" method="get" enctype="multipart/form-data">
-			
-			<div class="row">
-				<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['search'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
+			<fieldset>
+				<legend>Search for Prescriptions</legend>
+				<div class="row">
+					<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['search'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
  -->
-				<div class="col-md-3 col-sm-12 search-top">
-					<select name="field" id="field" class="form-control">
-						<option value="id" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'id' )): ?> selected="selected" <?php endif; ?>>Prescription ID</option>
-						<option value="patient_id" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'patient_id' )): ?> selected="selected" <?php endif; ?>>Patient ID</option>
-						<option value="patient_name" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'patient_name' )): ?> selected="selected" <?php endif; ?>>Patient Name</option>
-						<option value="created_on" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'created_on' )): ?> selected="selected" <?php endif; ?>>Date</option>
-						<option value="complain" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'complain' )): ?> selected="selected" <?php endif; ?>>Complain</option>
-					</select>
-				</div>
-				<div class="col-md-3 col-sm-12 search-top">
-					<input type="text" class="form-control" name="q" id="q" <?php if (isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['q']): ?>value="<?php echo $this->_tpl_vars['search']['q']; ?>
+					<div class="col-md-3 col-sm-12">
+						<div class="form-group">
+							<select name="field" id="field" class="form-control">
+								<option value="id" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'id' )): ?> selected="selected" <?php endif; ?>>Prescription ID</option>
+								<option value="patient_id" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'patient_id' )): ?> selected="selected" <?php endif; ?>>Patient ID</option>
+								<option value="patient_name" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'patient_name' )): ?> selected="selected" <?php endif; ?>>Patient Name</option>
+								<option value="created_on" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'created_on' )): ?> selected="selected" <?php endif; ?>>Date</option>
+								<option value="complain" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'complain' )): ?> selected="selected" <?php endif; ?>>Complain</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<input type="text" class="form-control" name="q" id="q" <?php if (isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['q']): ?>value="<?php echo $this->_tpl_vars['search']['q']; ?>
 "<?php endif; ?> maxlength="20" />
+						</div>
+					</div>
+					<div class="col-sm-1">
+						<input class="btn btn-primary form-control" type="submit" value="Search" name="submit" id="submit" />
+					</div>
+					
 				</div>
-				<div class="col-md-2 col-sm-12 search-top">
-					<input class="btn btn-primary" type="submit" value="Search" name="submit" id="submit" />
-				</div>
-				
-			</div>
-			<?php if (( ! isset ( $this->_tpl_vars['grouped_prescriptions'] ) && ! $this->_tpl_vars['grouped_prescriptions'] )): ?>
-			<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
-			<?php endif; ?>
+				<?php if (( ! isset ( $this->_tpl_vars['grouped_prescriptions'] ) && ! $this->_tpl_vars['grouped_prescriptions'] )): ?>
+				<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
+				<?php endif; ?>
+			</fieldset>
 		</form>
 		<?php if (( isset ( $this->_tpl_vars['grouped_prescriptions'] ) && $this->_tpl_vars['grouped_prescriptions'] )): ?>
 		

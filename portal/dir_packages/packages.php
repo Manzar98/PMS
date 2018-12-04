@@ -1,7 +1,7 @@
 <?php
 
 $package = new Package;
-
+$smarty->assign('id',$id);
 if($id==='view')
 {
 	$smarty->assign('singleRecord',$package->getSinglePackage($extra));
@@ -17,6 +17,8 @@ elseif($id==="delete")
 
 	$record=$package->getAllPackages();
 	$smarty->assign('record',$record);
+	
+	//echo $id;
 }
 
 

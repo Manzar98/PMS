@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 11:44:28
+<?php /* Smarty version 2.6.31, created on 2018-12-04 16:13:45
          compiled from patients/patients.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 59, false),array('modifier', 'default', 'patients/patients.tpl', 63, false),array('function', 'cycle', 'patients/patients.tpl', 77, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 63, false),array('modifier', 'default', 'patients/patients.tpl', 67, false),array('function', 'cycle', 'patients/patients.tpl', 81, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -12,21 +12,17 @@ unset($_smarty_tpl_vars);
 		<!-- Breadcrumbs-->
 		<div class="noprint">
 			<ol class="breadcrumb">
-				<?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
 				</li>
+				<?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?>
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients">Patients</a>
 				</li>
 				<li class="breadcrumb-item active">Search</li>
 				<?php else: ?>
-				<li class="breadcrumb-item">
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-">Dashboard</a>
-				</li>
 				<li class="breadcrumb-item active">Patients</li>
 				<?php endif; ?>
 			</ol>
@@ -39,23 +35,30 @@ patients/add/" title="Add a new patient"><i class="fa fa-plus-square sqicon" ari
 		</p>
 		<form class="box style" action="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/" method="get" enctype="multipart/form-data">
+			<fieldset>
+				<legend>Search for Patients</legend>
 			<div class="row">
-				<div class="col-md-3 col-sm-12 search-top">
+				<div class="col-md-3">
+					<div class="form-group">
 					<select name="field" id="field" class="form-control">
 						<option value="id" <?php if ($this->_tpl_vars['data']['field'] == 'id'): ?> selected="selected" <?php endif; ?>>Patient ID</option>
 						<option value="name" <?php if ($this->_tpl_vars['data']['field'] == 'name'): ?> selected="selected" <?php endif; ?>>Patient Name</option>
 						<option value="mobile" <?php if ($this->_tpl_vars['data']['field'] == 'mobile'): ?> selected="selected" <?php endif; ?>>Mobile No</option>
 						<option value="phone" <?php if ($this->_tpl_vars['data']['field'] == 'phone'): ?> selected="selected" <?php endif; ?>>Phone No</option>
 					</select>
+					</div>
 				</div>
-				<div class="col-md-3 col-sm-12 search-top">
+				<div class="col-sm-3">
+					<div class="form-group">
 					<input type="text" name="q" id="q" value="<?php echo $this->_tpl_vars['data']['q']; ?>
 " maxlength="20" class="form-control"/>
 				</div>
-				<div class="col-md-2 col-sm-12 search-top">
-					<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary"/>
+			</div>
+				<div class="col-sm-1">
+					<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control"/>
 				</div>
 			</div>
+		</fieldset>
 		</form>		
 		<div class="pull-right grp_btn">
 			Group By : &nbsp;

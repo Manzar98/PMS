@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 	<title>{$SITE_NAME} Administration</title>
@@ -30,12 +29,12 @@
 	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/select2.css" />
 	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/croppie.css" />
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery.timepicker.css" /> -->
-	<link href=" rel="stylesheet" />
+	<link href=" "rel="stylesheet" />
 	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.js" type="text/javascript"></script> 
 	<!-- Doctor Template Scripting Start  -->
-	<script src="{$BASE_URL_ADMIN}_templates/js/admin.js" type="text/javascript"></script> 
+<!-- 	<script src="{$BASE_URL_ADMIN}_templates/js/admin.js" type="text/javascript"></script> 
 	<script src="{$BASE_URL_ADMIN}_templates/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery-easing/jquery.easing.min.js" type="text/javascript"></script> 
+	<script src="{$BASE_URL_ADMIN}_templates/js/jquery-easing/jquery.easing.min.js" type="text/javascript"></script> --> 
 	<!-- Doctor Template Scripting End  -->
 	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.bgiframe.js" type="text/javascript"></script>
 	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.validate.min.js" type="text/javascript"></script>

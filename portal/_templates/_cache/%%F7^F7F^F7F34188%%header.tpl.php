@@ -1,7 +1,6 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 19:00:49
+<?php /* Smarty version 2.6.31, created on 2018-12-04 15:59:30
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
-
 <html>
 <head>
 	<title><?php echo $this->_tpl_vars['SITE_NAME']; ?>
@@ -53,16 +52,16 @@ _templates/css/select2.css" />
 _templates/css/croppie.css" />
 	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/jquery.timepicker.css" /> -->
-	<link href=" rel="stylesheet" />
+	<link href=" "rel="stylesheet" />
 	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/jquery.js" type="text/javascript"></script> 
 	<!-- Doctor Template Scripting Start  -->
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+<!-- 	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/admin.js" type="text/javascript"></script> 
 	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery-easing/jquery.easing.min.js" type="text/javascript"></script> 
+_templates/js/jquery-easing/jquery.easing.min.js" type="text/javascript"></script> --> 
 	<!-- Doctor Template Scripting End  -->
 	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/jquery.bgiframe.js" type="text/javascript"></script>

@@ -76,8 +76,6 @@ else {
 	if (isset($_GET['group_by'])) {
 		$group_by = $_GET['group_by'];
 	}
-
-
 	if($group_by=='')
 	{
 		$group_by = 'medicine_name';

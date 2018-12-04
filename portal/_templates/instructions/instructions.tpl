@@ -81,9 +81,9 @@
 							<input type="text" name="q" id="q" {if isset($data.q)}value="{$data.q}"{/if} maxlength="20" class="form-control" />
 						</div>
 					</div>
-					<div class="col-sm-3 mt-1">
+					<div class="col-sm-1">
 						<div class="form-group">
-							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control" />
 						</div>
 					</div>
 				</div>
@@ -94,7 +94,7 @@
 		<div class="pull-right grp_btn">
 			<span>Group By :&nbsp;</span>  
 			<a {if (isset($group_by) && $group_by=='medicine_name')} class="current_page" {/if} href="{$BASE_URL_ADMIN}instructions/?group_by=medicine_name&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Medicine Name</a>
-			<a {if (isset($group_by) && $group_by=='instruction')} class="current_page" {/if} href="{$BASE_URL_ADMIN}instructions/?group_by=instruction&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Instruction</a>
+			<a {if (isset($group_by) && $group_by=='instruction')} class="current_page"{/if} href="{$BASE_URL_ADMIN}instructions/?group_by=instruction&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Instruction</a>
 		</div>
 		{foreach from=$grouped_instructions item=instructions key=key}
 

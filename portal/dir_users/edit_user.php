@@ -94,9 +94,9 @@ elseif($id>0)
    	$smarty->assign('cities', get_cities());
    	$smarty->assign('packages',$package->getAllPackages());
    }
-
+   
+   	$smarty->assign('id',$id);
   if (!isset($_GET['img'])) {
-
   $template = "users/edit_user.tpl";
 }
 ?>

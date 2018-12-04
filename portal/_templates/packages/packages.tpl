@@ -1,6 +1,22 @@
 {include file="header.tpl"}
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
+				<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>
+				{if isset($id) && $id=="view" && $id!="0"}
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}packages/">Packages</a>
+				</li>
+				<li class="breadcrumb-item active">View</li>
+				{else}
+				<li class="breadcrumb-item active">Packages</li>
+				{/if}
+			</ol>
+		</div>
        {if isset($record) && $record}  
        <h2>Packages List</h2>
 		<p class="common-top">
@@ -34,55 +50,59 @@
 		</table>
 		{elseif isset($singleRecord)}
 		<div class="row">
-			<div class="col-sm-11">
+			<div class="col-sm-10 pt-3">
         <h2 style="margin-bottom: 60px;">{$singleRecord.pkg_name} Package Detail's</h2>
         </div>
-        <div class="col-sm-1" style="margin-top: 25px;">
-        	<a href="{$BASE_URL_ADMIN}add-package/edit/{$singleRecord.id}/" class="btn btn-primary">Edit</a>
+        <div class="col-sm-2  pt-3">
+        	<a href="{$BASE_URL_ADMIN}add-package/edit/{$singleRecord.id}/" class="btn btn-primary form-control">Edit Package</a>
         </div>
         </div>
-		<div class="row ">
+		<div class="row mt-5">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>Package Name : </b><span>{$singleRecord.pkg_name}</span></span>
-			
+		</div>		
 		</div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>Package Price : </b><span>{$singleRecord.pkg_price}</span></span>
 		</div>
 	</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Patients : </b><span>{$singleRecord.no_of_patients}</span></span>
 		</div>
-		<div class="col-sm-4 common-bottom">
+		</div>
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Prescriptions : </b><span>{$singleRecord.no_of_prescriptions}</span></span>
 		</div>
 	</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Medicines : </b><span>{$singleRecord.no_of_medicines}</span></span>
 		</div>
-		<div class="col-sm-4 common-bottom">
+	</div>
+		<div class="col-sm-4">
+			<div class="form-group">
 			<span><b>No Of Tests : </b><span>{$singleRecord.no_of_tests}</span></span>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
-			<span><b>No Of Online Appointments : </b><span>{$singleRecord.no_of_online_appointments}</span></span>
-		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-4 common-bottom">
-			<span><b></b><span></span></span>
+		<div class="col-sm-4">
+			<div class="form-group">
+			<span><b>No Of Online Appointments : </b><span>{$singleRecord.no_of_online_appointments}</span></span>
 		</div>
-		<div class="col-sm-4 common-bottom">
-			<span><b></b><span></span></span>
-		</div>
+	</div>
 	</div>
 	{else}
       <h2>Packages List</h2>

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-28 18:33:55
+<?php /* Smarty version 2.6.31, created on 2018-12-04 13:02:37
          compiled from reports/reports.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'reports/reports.tpl', 49, false),array('modifier', 'print_r', 'reports/reports.tpl', 69, false),array('modifier', 'count', 'reports/reports.tpl', 80, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'reports/reports.tpl', 66, false),array('modifier', 'print_r', 'reports/reports.tpl', 86, false),array('modifier', 'count', 'reports/reports.tpl', 97, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -17,331 +17,357 @@ _templates/js/fusioncharts.theme.fusion.js" type="text/javascript"></script>
 <script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/fusioncharts.theme.zune.js" type="text/javascript"></script> 
 
-<div id="content" class="clientWrap">
-
-	<?php if (isset ( $_GET['type'] )): ?>
-	<!--======Comparsion if Condition Start======= -->
-	<div class="row">
-        <div class="col-sm-6">
-			<h3></h3>
+<div id="" class="clientWrap content-wrapper">
+	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Reports</li>
+			</ol>
 		</div>
-		<div class="col-sm-offset-11" style="margin-top: 15px;">
-			<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+		<?php if (isset ( $_GET['type'] )): ?>
+		<!--======Comparsion if Condition Start======= -->
+		<div class="row">
+			<div class="col-sm-10 pt-4">
+				<h3>Comparison Reports</h3>
+			</div>
+			<div class="col-sm-2 pt-4">
+				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 reports/<?php echo $_SESSION['AdminId']; ?>
-/" class="btn btn-primary">Reports</a>
+/" class="btn btn-primary form-control">Reports</a>
+			</div>
 		</div>
-	</div>
-	<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
-" method="POST" enctype="multipart/form-data" id="comparsionForm">
-		<fieldset>
-			<legend>Reports</legend>
-			<div class="row">
-				<div class="col-sm-3">
-					<label for="from_Comp">From Date</label>
-					<input type="text" class="form-control input-field" name="from_Comp" id="from_Comp" />
-				</div>
-				<div class="col-sm-3">
-					<label for="to_Comp">To Date</label>
-					<input type="text" class="form-control input-field" name="to_Comp" id="to_Comp" />
-				</div>
-				<div class="col-sm-4">
-					<label for="parameter_Comp">Parameters</label>
-					<select class="form-control" id="parameter_Comp" name="parameter_Comp">
-						<option value="">Select One</option>
-						<option value="New Vs Returning Patients">New Vs Returning Patients</option>
-						<option value="Paid Vs Free Checkups">Paid Vs Free Checkups</option>
-						<option value="Manual Vs Online Appointments">Manual Vs Online Appointments</option>
-					</select>
-				</div>
-				<div class="col-sm-2 text-center">
-					<input type="submit" name="" value="Search" class="btn btn-primary" id="reportFormBtn" style="margin-top: 25px;">
-				</div>
-			</div>
-
-			<div class="row text-center headingSearchWrap">
-				<div class="col-sm-4 common-bottom">
-					<input value="<?php echo $this->_tpl_vars['data']['filter']; ?>
-" type="hidden" id="dmyfilter">
-					<span>From Date:</span>&nbsp;<span><b><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['from_Comp'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
-</b></span>
-				</div>
-				<div class="col-sm-4 common-bottom">
-					<span>To Date:</span>&nbsp;<span><b><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['to_Comp'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
-</b></span>
-				</div>
-				<div class="col-sm-4 common-bottom">
-					<span>Comparison B/W:</span>&nbsp;<span><b><?php echo $this->_tpl_vars['data']['parameter_Comp']; ?>
-</b></span>
-				</div>
-			</div>
-
-           <?php if (isset ( $this->_tpl_vars['pieChart'] ) && ! isset ( $this->_tpl_vars['error'] )): ?>
-            <div id="pieChart" hidden="">
-          	 <?php echo $this->_tpl_vars['pieChart']; ?>
-
-          </div>
-          <div id="chart-container-pie"></div>
-          <table class="table table-striped table-bordered reportGenTblPie">
-				<thead>
-					<th class="text-center">Total <?php echo $this->_tpl_vars['data']['parameter_Comp']; ?>
-</th>
-					<th class="text-center"><?php echo $this->_tpl_vars['data']['totalCount']; ?>
-</th>
-				</thead>
-				<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['data']['thName'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
- -->
-			</table>
-			<table class="table table-striped table-bordered extendedTablePie">
-				<thead>
-					<tr>
-					<th class="text-center">Parameter</th>
-					<th class="text-center">Name (id)</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $_from = $this->_tpl_vars['resRecord']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['v']):
-?>
-					<?php $this->assign('val', count($this->_tpl_vars['v'])); ?>
-                    <?php $this->assign('val', $this->_tpl_vars['val']+1); ?>
-					<tr class="">
-						<th class="text-center multiRowColumn" rowspan="<?php echo $this->_tpl_vars['val']; ?>
-" style="vertical-align : middle;text-align:center;">
-						<?php echo $this->_tpl_vars['k']; ?>
- (<?php echo count($this->_tpl_vars['v']); ?>
-)</th>
-					</tr>
-					<?php $_from = $this->_tpl_vars['v']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['name']):
-?>
-					<tr>
-						<td class="text-center"><?php echo $this->_tpl_vars['name']; ?>
-</td>
-					</tr>
-					<?php endforeach; endif; unset($_from); ?>
-					<?php endforeach; endif; unset($_from); ?>
-				</tbody>
-			</table>
-			<?php else: ?>
-			
-             <span class="text-center"><p><?php echo $this->_tpl_vars['error']; ?>
-</p></span>
-			
-			<?php endif; ?>
-
-		</fieldset>
-	</form>
-
-	<?php else: ?> <!--=======Reports Else Condition Start====== -->
-	<div class="row">
-		<div class="col-sm-6">
-			<h3>Reports</h3>
-		</div>
-		<div class="col-sm-offset-10" style="margin-top: 15px;">
-			<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-reports/<?php echo $_SESSION['AdminId']; ?>
-?type=comparison" class="btn btn-primary">Comparison Reports</a>
-		</div>
-	</div>
-    
-	
-	<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
-" method="POST" enctype="multipart/form-data" id="reportForm">
-		<fieldset>
-			<legend>Reports</legend>
-			<div class="row">
-				<div class="col-sm-2">
-					<label for="filter">Filteration</label>
-					<select class="form-control" name="filter" onchange="filteration(this)" id="filter">
-						<option value="days">Days</option>
-						<option value="months">Months</option>
-						<option value="years">Years</option>
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<label for="from">From Date</label>
-					<input type="text" class="form-control input-field" name="from" id="from" />
-				</div>
-				<div class="col-sm-3">
-					<label for="to">To Date</label>
-					<input type="text" class="form-control input-field" name="to" id="to" />
-				</div>
-				<div class="col-sm-4">
-					<label for="parameter">Parameters</label>
-					<select class="form-control" id="parameter" name="parameter" onchange="checkParameter(this)">
-						<option value="">Select One</option>
-						<option value="New Patients">New Patients</option>
-						<option value="Returning patients">Returning patients</option>
-						<option value="Medicines">Medicines</option>
-						<option value="Tests">Tests</option>
-						<option value="Prescriptions">Prescriptions</option>
-						<option value="Online appointments">Online appointments</option>
-						<option value="Manual appointments">Manual appointments</option>
-						<option value="Medicine prescribed to number of patients">Medicine prescribed to number of patients</option>
-						<option value="Total fee collected">Total fee collected</option>
-						<option value="Free checkups">Free checkups</option>
-					</select>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3 common-top" >
-					<div id="mediWrap">
-						<label for="medicine">Medicines</label>
-						<select class="form-control" name="medicine" id="medicine" class="medicine">
-						</select>
-					</div>
-					<div id="testWrap">
-						<label>Tests</label>
-						<select class="form-control" name="testSelect" id="testSelect">
-						</select>
-					</div>
-				</div>
-				<div class="col-sm-offset-11">
-					<input type="submit" name="" value="Search" class="btn btn-primary" id="reportFormBtn" style="margin-top: 35px;">
-				</div>
-			</div>
-
-		</fieldset>
-	</form>
-
-	<form class="box style resultWrap" action="" method="" enctype="multipart/form-data" id="">
-
-		<fieldset>
-			<div class="row text-center">
-				<div class="col-sm-4 common-bottom">
-					<input value="<?php echo $this->_tpl_vars['data']['filter']; ?>
-" type="hidden" id="dmyfilter">
-					<span>From Date:</span>&nbsp;<span><b><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['from'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
-</b></span>
-				</div>
-				<div class="col-sm-4 common-bottom">
-					<span>To Date:</span>&nbsp;<span><b><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['to'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
-</b></span>
-				</div>
-				<div class="col-sm-4 common-bottom">
-					<span>Search For:</span>&nbsp;<span><b><?php echo $this->_tpl_vars['data']['parameter']; ?>
-</b></span>
-				</div>
-			</div>
-
-			<div id="chart-container"></div>
-
-			<legend>Reports</legend>
-			<?php if (isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] && ! isset ( $this->_tpl_vars['error'] )): ?>
-			<table class="table table-striped table-bordered reportGenTbl">
-				<thead>
-					<th class="text-center"><?php echo $this->_tpl_vars['data']['heading']; ?>
-</th>
-					<th class="text-center"><?php echo $this->_tpl_vars['data']['totalCount']; ?>
-</th>
-				</thead>
-				<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['data']['thName'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
- -->
-			</table>
-			<div class="extendedTable">
-				<?php if (isset ( $this->_tpl_vars['data']['filter'] ) && ( $this->_tpl_vars['data']['filter'] == 'months' || $this->_tpl_vars['data']['filter'] == 'years' )): ?>
-
-				<?php if (isset ( $this->_tpl_vars['data'] ) && ( $this->_tpl_vars['data']['parameter'] == 'Free checkups' || $this->_tpl_vars['data']['parameter'] == 'Total fee collected' )): ?>
-
-				<table class="table table-striped table-bordered">
-					<thead>
-						<tr>
-							<th class="text-center"><?php if ($this->_tpl_vars['data']['filter'] == 'years'): ?>Year<?php else: ?>Month<?php endif; ?></th>
-							<th class="text-center"><?php if (isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['parameter'] == 'Free checkups'): ?>Checkups<?php else: ?>Total Amount<?php endif; ?></th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php $_from = $this->_tpl_vars['feerecord']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['v']):
-?>
-						<div id="charts" hidden="">
-							<?php echo $this->_tpl_vars['charts']; ?>
-
+		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="POST" enctype="multipart/form-data" id="comparisonForm">
+			<fieldset>
+				<legend>Reports</legend>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="from_Comp">From Date</label>
+							<input type="text" class="form-control input-field" name="from_Comp" id="from_Comp" />
 						</div>
-						<tr>
-							<th><?php echo $this->_tpl_vars['k']; ?>
-</th>
-							<td class="text-center"><?php echo $this->_tpl_vars['v']; ?>
-</td>
-						</tr>
-						<?php endforeach; endif; unset($_from); ?>
-					</tbody>
-				</table>
-				<?php else: ?>
-				<div id="charts" hidden="">
-					<?php echo $this->_tpl_vars['charts']; ?>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="to_Comp">To Date</label>
+							<input type="text" class="form-control input-field" name="to_Comp" id="to_Comp" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="parameter_Comp">Parameters</label>
+							<select class="form-control" id="parameter_Comp" name="parameter_Comp">
+								<option value="">Select One</option>
+								<option value="New Vs Returning Patients">New Vs Returning Patients</option>
+								<option value="Paid Vs Free Checkups">Paid Vs Free Checkups</option>
+								<option value="Manual Vs Online Appointments">Manual Vs Online Appointments</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-2 text-center">
+						<input type="submit" name="" value="Search" class="btn btn-primary form-control" id="reportFormBtn" style="margin-top: 30px;">
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Result</legend>
+				<div class="row text-center my-4">
+					<div class="col-sm-4 common-bottom">
+						<input value="<?php echo $this->_tpl_vars['data']['filter']; ?>
+" type="hidden" id="dmyfilter">
+						<span>From Date:</span>&nbsp;<span><b><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['from_Comp'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
+</b></span>
+					</div>
+					<div class="col-sm-4 common-bottom">
+						<span>To Date:</span>&nbsp;<span><b><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['to_Comp'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
+</b></span>
+					</div>
+					<div class="col-sm-4 common-bottom">
+						<span>Comparison B/W:</span>&nbsp;<span><b><?php echo $this->_tpl_vars['data']['parameter_Comp']; ?>
+</b></span>
+					</div>
+				</div>
+
+				<?php if (isset ( $this->_tpl_vars['pieChart'] ) && ! isset ( $this->_tpl_vars['error'] )): ?>
+				<div id="pieChart" hidden="">
+					<?php echo $this->_tpl_vars['pieChart']; ?>
 
 				</div>
-				<table class="table table-striped table-bordered ">
+				<div id="chart-container-pie"></div>
+				<table class="table table-striped table-bordered reportGenTblPie mt-4 bg-dark">
+					<thead>
+						<th class="text-center text-white" >Total <?php echo $this->_tpl_vars['data']['parameter_Comp']; ?>
+</th>
+						<th class="text-center text-white"><?php echo $this->_tpl_vars['data']['totalCount']; ?>
+</th>
+					</thead>
+					<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['data']['thName'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
+ -->
+				</table>
+				<table class="table table-striped table-bordered extendedTablePie  bg-dark">
 					<thead>
 						<tr>
-						<th class="text-center"><?php if ($this->_tpl_vars['data']['filter'] == 'years'): ?>Year<?php else: ?>Month<?php endif; ?></th>
-						<th class="text-center">Name</th>
-						<tr>
+							<th class="text-center text-white">Parameter</th>
+							<th class="text-center text-white">Name (id)</th>
+						</tr>
 					</thead>
 					<tbody>
-						<?php $_from = $this->_tpl_vars['feerecord']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+						<?php $_from = $this->_tpl_vars['resRecord']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['v']):
 ?>
 						<?php $this->assign('val', count($this->_tpl_vars['v'])); ?>
-                        <?php $this->assign('val', $this->_tpl_vars['val']+1); ?>
-						<tr>
-							<th class="text-center multiRowColumn" rowspan="<?php echo $this->_tpl_vars['val']; ?>
+						<?php $this->assign('val', $this->_tpl_vars['val']+1); ?>
+						<tr class="">
+							<th class="text-center multiRowColumn text-white" rowspan="<?php echo $this->_tpl_vars['val']; ?>
 " style="vertical-align : middle;text-align:center;">
 							<?php echo $this->_tpl_vars['k']; ?>
  (<?php echo count($this->_tpl_vars['v']); ?>
 )</th>
 						</tr>
 						<?php $_from = $this->_tpl_vars['v']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['name']):
+    foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['name']):
 ?>
 						<tr>
-							<td class="text-center"><?php echo $this->_tpl_vars['name']; ?>
+							<td class="text-center text-white"><?php echo $this->_tpl_vars['name']; ?>
 </td>
 						</tr>
 						<?php endforeach; endif; unset($_from); ?>
-						
-						<?php endforeach; endif; unset($_from); ?>
-					</tbody>
-				</table>
-				<?php endif; ?>
-
-				<?php elseif (isset ( $this->_tpl_vars['feerecord'] ) && $this->_tpl_vars['feerecord']): ?>
-
-				<div id="charts" hidden="">
-					<?php echo $this->_tpl_vars['charts']; ?>
-
-				</div>
-				<table class="table table-striped table-bordered">
-					<thead>
-						<tr>
-							<th class="text-center">Date</th>
-							<th class="text-center"><?php if (isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['parameter'] == 'Free checkups'): ?>Checkups<?php else: ?>Total Amount<?php endif; ?></th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php $_from = $this->_tpl_vars['feerecord']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['feerec']):
-?>
-						<tr>
-							<th><?php echo ((is_array($_tmp=$this->_tpl_vars['feerec']['date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
-</th>
-							<td class="text-center"><?php echo $this->_tpl_vars['feerec']['fee']; ?>
-</td>
-						</tr>
 						<?php endforeach; endif; unset($_from); ?>
 					</tbody>
 				</table>
 				<?php else: ?>
-				
-				<div id="charts" hidden="">
-					<?php echo $this->_tpl_vars['charts']; ?>
 
+				<span class="text-center"><p><?php echo $this->_tpl_vars['error']; ?>
+</p></span>
+
+				<?php endif; ?>
+
+			</fieldset>
+		</form>
+		<?php else: ?> <!--=======Reports Else Condition Start====== -->
+		<div class="row">
+			<div class="col-sm-10 pt-4">
+				<h3>Reports</h3>
+			</div>
+			<div class="col-sm-2  pt-4">
+				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+reports/<?php echo $_SESSION['AdminId']; ?>
+?type=comparison" class="btn btn-primary form-control">Comparison Reports</a>
+			</div>
+		</div>
+		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="POST" enctype="multipart/form-data" id="reportForm">
+			<fieldset>
+				<legend>Reports</legend>
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="filter">Filteration</label>
+							<select class="form-control" name="filter" onchange="filteration(this)" id="filter">
+								<option value="days">Days</option>
+								<option value="months">Months</option>
+								<option value="years">Years</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="from">From Date</label>
+							<input type="text" class="form-control input-field" name="from" id="from" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="to">To Date</label>
+							<input type="text" class="form-control input-field" name="to" id="to" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="parameter">Parameters</label>
+							<select class="form-control" id="parameter" name="parameter" onchange="checkParameter(this)">
+								<option value="">Select One</option>
+								<option value="New Patients">New Patients</option>
+								<option value="Returning patients">Returning patients</option>
+								<option value="Medicines">Medicines</option>
+								<option value="Tests">Tests</option>
+								<option value="Prescriptions">Prescriptions</option>
+								<option value="Online appointments">Online appointments</option>
+								<option value="Manual appointments">Manual appointments</option>
+								<option value="Medicine prescribed to number of patients">Medicine prescribed to number of patients</option>
+								<option value="Total fee collected">Total fee collected</option>
+								<option value="Free checkups">Free checkups</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<table class="table table-striped table-bordered">
+				<div class="row">
+					<div class="col-sm-3" >
+						<div class="form-group">
+							<div id="mediWrap">
+								<label for="medicine">Medicines</label>
+								<select class="form-control" name="medicine" id="medicine" class="medicine">
+								</select>
+							</div>
+							<div id="testWrap">
+								<label>Tests</label>
+								<select class="form-control" name="testSelect" id="testSelect">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-1"></div>
+					<div class="col-sm-3 text-center">
+						<input type="submit" name="" value="Search" class="btn btn-primary form-control" id="reportFormBtn" style="margin-top: 20px;">
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<form class="box style resultWrap" action="" method="" enctype="multipart/form-data" id="">
+			<fieldset>
+
+				<legend>Result</legend>
+				<div class="row text-center my-4">
+					<div class="col-sm-4">
+						<input value="<?php echo $this->_tpl_vars['data']['filter']; ?>
+" type="hidden" id="dmyfilter">
+						<span>From Date:</span>&nbsp;<span><b><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['from'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
+</b></span>
+					</div>
+					<div class="col-sm-4 common-bottom">
+						<span>To Date:</span>&nbsp;<span><b><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['to'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
+</b></span>
+					</div>
+					<div class="col-sm-4 common-bottom">
+						<span>Search For:</span>&nbsp;<span><b><?php echo $this->_tpl_vars['data']['parameter']; ?>
+</b></span>
+					</div>
+				</div>
+
+				<div id="chart-container"></div>
+
+				
+				<?php if (isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] && ! isset ( $this->_tpl_vars['error'] )): ?>
+				<table class="table table-striped table-bordered reportGenTbl bg-dark text-white">
 					<thead>
-						<tr>
-							<?php unset($this->_sections['th']);
+						<th class="text-center"><?php echo $this->_tpl_vars['data']['heading']; ?>
+</th>
+						<th class="text-center"><?php echo $this->_tpl_vars['data']['totalCount']; ?>
+</th>
+					</thead>
+					<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['data']['thName'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
+ -->
+				</table>
+				<div class="extendedTable">
+					<?php if (isset ( $this->_tpl_vars['data']['filter'] ) && ( $this->_tpl_vars['data']['filter'] == 'months' || $this->_tpl_vars['data']['filter'] == 'years' )): ?>
+
+					<?php if (isset ( $this->_tpl_vars['data'] ) && ( $this->_tpl_vars['data']['parameter'] == 'Free checkups' || $this->_tpl_vars['data']['parameter'] == 'Total fee collected' )): ?>
+
+					<table class="table table-striped table-bordered text-white bg-dark">
+						<thead>
+							<tr>
+								<th class="text-center"><?php if ($this->_tpl_vars['data']['filter'] == 'years'): ?>Year<?php else: ?>Month<?php endif; ?></th>
+								<th class="text-center"><?php if (isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['parameter'] == 'Free checkups'): ?>Checkups<?php else: ?>Total Amount<?php endif; ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php $_from = $this->_tpl_vars['feerecord']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['v']):
+?>
+							<div id="charts" hidden="">
+								<?php echo $this->_tpl_vars['charts']; ?>
+
+							</div>
+							<tr>
+								<th><?php echo $this->_tpl_vars['k']; ?>
+</th>
+								<td class="text-center"><?php echo $this->_tpl_vars['v']; ?>
+</td>
+							</tr>
+							<?php endforeach; endif; unset($_from); ?>
+						</tbody>
+					</table>
+					<?php else: ?>
+					<div id="charts" hidden="">
+						<?php echo $this->_tpl_vars['charts']; ?>
+
+					</div>
+					<table class="table table-striped table-bordered text-white bg-dark">
+						<thead>
+							<tr>
+								<th class="text-center"><?php if ($this->_tpl_vars['data']['filter'] == 'years'): ?>Year<?php else: ?>Month<?php endif; ?></th>
+								<th class="text-center">Name</th>
+								<tr>
+								</thead>
+								<tbody>
+									<?php $_from = $this->_tpl_vars['feerecord']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['v']):
+?>
+									<?php $this->assign('val', count($this->_tpl_vars['v'])); ?>
+									<?php $this->assign('val', $this->_tpl_vars['val']+1); ?>
+									<tr>
+										<th class="text-center multiRowColumn" rowspan="<?php echo $this->_tpl_vars['val']; ?>
+" style="vertical-align : middle;text-align:center;">
+										<?php echo $this->_tpl_vars['k']; ?>
+ (<?php echo count($this->_tpl_vars['v']); ?>
+)</th>
+									</tr>
+									<?php $_from = $this->_tpl_vars['v']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['name']):
+?>
+									<tr>
+										<td class="text-center"><?php echo $this->_tpl_vars['name']; ?>
+</td>
+									</tr>
+									<?php endforeach; endif; unset($_from); ?>
+
+									<?php endforeach; endif; unset($_from); ?>
+								</tbody>
+							</table>
+							<?php endif; ?>
+
+							<?php elseif (isset ( $this->_tpl_vars['feerecord'] ) && $this->_tpl_vars['feerecord']): ?>
+
+							<div id="charts" hidden="">
+								<?php echo $this->_tpl_vars['charts']; ?>
+
+							</div>
+							<table class="table table-striped table-bordered text-white bg-dark">
+								<thead>
+									<tr>
+										<th class="text-center">Date</th>
+										<th class="text-center"><?php if (isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['parameter'] == 'Free checkups'): ?>Checkups<?php else: ?>Total Amount<?php endif; ?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php $_from = $this->_tpl_vars['feerecord']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['feerec']):
+?>
+									<tr>
+										<th><?php echo ((is_array($_tmp=$this->_tpl_vars['feerec']['date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d-%b-%y") : smarty_modifier_date_format($_tmp, "%d-%b-%y")); ?>
+</th>
+										<td class="text-center"><?php echo $this->_tpl_vars['feerec']['fee']; ?>
+</td>
+									</tr>
+									<?php endforeach; endif; unset($_from); ?>
+								</tbody>
+							</table>
+							<?php else: ?>
+
+							<div id="charts" hidden="">
+								<?php echo $this->_tpl_vars['charts']; ?>
+
+							</div>
+							<table class="table table-striped table-bordered text-white bg-dark">
+								<thead>
+									<tr>
+										<?php unset($this->_sections['th']);
 $this->_sections['th']['name'] = 'th';
 $this->_sections['th']['loop'] = is_array($_loop=$this->_tpl_vars['data']['thName']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
 $this->_sections['th']['show'] = true;
@@ -365,74 +391,68 @@ $this->_sections['th']['index_next'] = $this->_sections['th']['index'] + $this->
 $this->_sections['th']['first']      = ($this->_sections['th']['iteration'] == 1);
 $this->_sections['th']['last']       = ($this->_sections['th']['iteration'] == $this->_sections['th']['total']);
 ?>
-							<th><?php echo $this->_tpl_vars['data']['thName'][$this->_sections['th']['index']]; ?>
+										<th><?php echo $this->_tpl_vars['data']['thName'][$this->_sections['th']['index']]; ?>
 </th>
-							<?php endfor; endif; ?>
-						</tr>
-					</thead>
-					<tbody>
+										<?php endfor; endif; ?>
+									</tr>
+								</thead>
+								<tbody>
 
-						<?php $_from = $this->_tpl_vars['record']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+									<?php $_from = $this->_tpl_vars['record']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['rec']):
 ?>
-						<tr>
-							<?php $_from = $this->_tpl_vars['data']['tdName']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+									<tr>
+										<?php $_from = $this->_tpl_vars['data']['tdName']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['td']):
 ?>
-							<td><?php echo $this->_tpl_vars['rec'][$this->_tpl_vars['td']]; ?>
+										<td><?php echo $this->_tpl_vars['rec'][$this->_tpl_vars['td']]; ?>
 </td>
-							<?php endforeach; endif; unset($_from); ?>
-						</tr>
-						<?php endforeach; endif; unset($_from); ?>
+										<?php endforeach; endif; unset($_from); ?>
+									</tr>
+									<?php endforeach; endif; unset($_from); ?>
 
-					</tbody>
-				</table>
-				<?php endif; ?>
-			</div>
-			<?php else: ?>
-			<span class="text-center"><p><?php echo $this->_tpl_vars['error']; ?>
+								</tbody>
+							</table>
+							<?php endif; ?>
+						</div>
+						<?php else: ?>
+						<span class="text-center"><p><?php echo $this->_tpl_vars['error']; ?>
 </p></span>
-			<?php endif; ?>
-		</fieldset>
-	</form>
-	<?php endif; ?><!--=======Reports Else Condition End======= -->
-	
+						<?php endif; ?>
+					</fieldset>
+				</form>
+				<?php endif; ?><!--=======Reports Else Condition End======= -->
+			</div>
+		</div><!-- #content -->
 
+		<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+		<?php echo '
+		<style type="text/css">
+		.raphael-group-23-creditgroup,.raphael-group-24-creditgroup{
+			display: none;
+		}
+		span#chartobject-1 {
+			display: block !important;
+			margin: 0 auto !important;
+		}
+		span.select2.select2-container.select2-container--default {
+			width: 100% !important;
+		}
+	</style>
+	'; ?>
 
-	<div style="margin-top: 30px;"></div>
-</div><!-- #content -->
+	<?php echo '
+	<script type="text/javascript">
 
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
-<?php echo '
-<style type="text/css">
-.raphael-group-23-creditgroup,.raphael-group-24-creditgroup{
-	display: none;
-}
-.row.text-center.headingSearchWrap {
-	margin-top: 120px;
-}
-span#chartobject-1 {
-    display: block !important;
-        margin: 0 auto !important;
-}
-span.select2.select2-container.select2-container--default {
-    width: 100% !important;
-}
-</style>
-'; ?>
-
-<?php echo '
-<script type="text/javascript">
-  
-	$(\'#mediWrap\').hide();
-	$(\'#testWrap\').hide();
-	$(\'#chart-container\').hide();
-	$(\'#chart-container-pie\').hide();
+		$(\'#mediWrap\').hide();
+		$(\'#testWrap\').hide();
+		$(\'#chart-container\').hide();
+		$(\'#chart-container-pie\').hide();
 	// $(\'.resultWrap\').hide();
 	$(document).ready(function()
 	{
-      
-        $("#testSelect").select2({
+
+		$("#testSelect").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
@@ -441,7 +461,7 @@ span.select2.select2-container.select2-container--default {
                     allowClear: true
                 });
 
-      
+
 		$( "#from" ).datepicker({
 			dateFormat : "yy-mm-dd",
 			changeMonth: true,
@@ -483,104 +503,104 @@ span.select2.select2-container.select2-container--default {
 		var charts=$( "#charts" ).html();
  //console.log(charts);
 //debugger;
- 
- if (charts) {
 
- 	charts=JSON.parse(charts);
- 	$(\'#chart-container\').show();
- 	var dmy=$(\'#dmyfilter\').val();
+if (charts) {
 
- const dataSource = {
- 	"chart": {
- 		"caption": "",
- 		"subcaption": "",
- 		"xaxisname": dmy,
- 		"yaxisname": "", 
- 		"theme": "zune"
- 	},
- 	"data":charts
- };
+	charts=JSON.parse(charts);
+	$(\'#chart-container\').show();
+	var dmy=$(\'#dmyfilter\').val();
 
- FusionCharts.ready(function() {
- 	var myChart = new FusionCharts({
- 		type: "column2d",
- 		renderAt: "chart-container",
- 		width: "70%",
- 		height: "40%",
- 		dataFormat: "json",
- 		dataSource
- 	}).render();
- });
+	const dataSource = {
+		"chart": {
+			"caption": "",
+			"subcaption": "",
+			"xaxisname": dmy,
+			"yaxisname": "", 
+			"theme": "zune"
+		},
+		"data":charts
+	};
 
- }else{
- 	$(\'#chart-container\').hide();
- }
+	FusionCharts.ready(function() {
+		var myChart = new FusionCharts({
+			type: "column2d",
+			renderAt: "chart-container",
+			width: "70%",
+			height: "40%",
+			dataFormat: "json",
+			dataSource
+		}).render();
+	});
 
- 
+}else{
+	$(\'#chart-container\').hide();
+}
+
+
 
 
 /*====================Comparison Script Start=======================*/
-		$(\'.extendedTablePie\').hide();
-		
-		$(\'.reportGenTblPie\').click(function(){
+$(\'.extendedTablePie\').hide();
 
-			$(".extendedTablePie").toggle();
-		})
-		$(\'#comparsionForm\').validate({
+$(\'.reportGenTblPie\').click(function(){
 
-			rules:{
-				parameter_Comp:{required: true},
-				to_Comp:{required: true},
-				from_Comp:{required: true},
-			}
+	$(".extendedTablePie").toggle();
+})
+$(\'#comparisonForm\').validate({
 
-		});
+	rules:{
+		parameter_Comp:{required: true},
+		to_Comp:{required: true},
+		from_Comp:{required: true},
+	}
+
+});
 
 $( "#to_Comp" ).datepicker({
-				dateFormat : "yy-mm-dd",
-				changeMonth: true,
-				changeYear: true,
-				readOnly:true,
-			});	
-			
-			$( "#from_Comp" ).datepicker({
-				dateFormat : "yy-mm-dd",
-				changeMonth: true,
-				changeYear: true,
-				readonly:true,
+	dateFormat : "yy-mm-dd",
+	changeMonth: true,
+	changeYear: true,
+	readOnly:true,
+});	
 
-			});
+$( "#from_Comp" ).datepicker({
+	dateFormat : "yy-mm-dd",
+	changeMonth: true,
+	changeYear: true,
+	readonly:true,
+
+});
 var piechart=$( "#pieChart" ).html();
 
 if (piechart) {
- 
-	piechart=JSON.parse(piechart);
-	 console.log(piechart);
-	//debugger
- 	$(\'#chart-container-pie\').show();
 
- const dataSource = {
-  "chart": {
-    "caption": "",
-    "plottooltext": "<b>$value</b> $label",
-    "showlegend": "1",
-    "showpercentvalues": "1",
-    "legendposition": "bottom",
-    "usedataplotcolorforlabels": "1",
-    "theme": "fusion"
-  },
-  "data":piechart
-};
+	piechart=JSON.parse(piechart);
+	console.log(piechart);
+	//debugger
+	$(\'#chart-container-pie\').show();
+
+	const dataSource = {
+		"chart": {
+			"caption": "",
+			"plottooltext": "<b>$value</b> $label",
+			"showlegend": "1",
+			"showpercentvalues": "1",
+			"legendposition": "bottom",
+			"usedataplotcolorforlabels": "1",
+			"theme": "fusion"
+		},
+		"data":piechart
+	};
 //debugger
 FusionCharts.ready(function() {
-   var myChart = new FusionCharts({
-      type: "pie2d",
-      renderAt: "chart-container-pie",
-      width: "70%",
-      height: "70%",
-      dataFormat: "json",
-      dataSource
-   }).render();
+	var myChart = new FusionCharts({
+		type: "pie2d",
+		renderAt: "chart-container-pie",
+		width: "70%",
+		height: "70%",
+		dataFormat: "json",
+		dataSource
+	}).render();
 });
 
 }else{
@@ -589,7 +609,7 @@ FusionCharts.ready(function() {
 }
 
 
-      /*================Comparison Script End=================*/
+/*================Comparison Script End=================*/
 });
 
 	function checkParameter(that){

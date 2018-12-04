@@ -144,3 +144,33 @@ span.select2.select2-container.select2-container--default {
 	padding-bottom: 14px;
 	min-height: 100px;
 }
+.text-white{
+	color: #fff;
+}
+.reportGenTblPie{
+	cursor: pointer;
+}
+#pro-file-upload {
+	padding: 17px;
+	line-height: 12px;
+	height: 45px;
+}
+#pro-file-upload span {
+	color: #fff;
+	font-weight: 699;
+	font-size: 15px;
+}
+.file-field input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	width: 24%;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}

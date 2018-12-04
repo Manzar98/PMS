@@ -22,22 +22,29 @@
 			<a href="{$BASE_URL_ADMIN}patients/add/" title="Add a new patient"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
 		</p>
 		<form class="box style" action="{$BASE_URL_ADMIN}patients/" method="get" enctype="multipart/form-data">
+			<fieldset>
+				<legend>Search for Patients</legend>
 			<div class="row">
-				<div class="col-md-3 col-sm-12 search-top">
+				<div class="col-md-3">
+					<div class="form-group">
 					<select name="field" id="field" class="form-control">
 						<option value="id" {if $data.field=='id'} selected="selected" {/if}>Patient ID</option>
 						<option value="name" {if $data.field=='name'} selected="selected" {/if}>Patient Name</option>
 						<option value="mobile" {if $data.field=='mobile'} selected="selected" {/if}>Mobile No</option>
 						<option value="phone" {if $data.field=='phone'} selected="selected" {/if}>Phone No</option>
 					</select>
+					</div>
 				</div>
-				<div class="col-md-3 col-sm-12 search-top">
+				<div class="col-sm-3">
+					<div class="form-group">
 					<input type="text" name="q" id="q" value="{$data.q}" maxlength="20" class="form-control"/>
 				</div>
-				<div class="col-md-2 col-sm-12 search-top">
-					<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary"/>
+			</div>
+				<div class="col-sm-1">
+					<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control"/>
 				</div>
 			</div>
+		</fieldset>
 		</form>		
 		<div class="pull-right grp_btn">
 			Group By : &nbsp;

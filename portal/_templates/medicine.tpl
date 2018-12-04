@@ -134,14 +134,13 @@
 								<input type="text" name="q" id="q" value="{$data.q}" maxlength="20" class="form-control" />
 							</div>
 						</div>
-						<div class="col-sm-3 mt-1">
-							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
+						<div class="col-sm-1">
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control" />
 						</div>
 					</div>
 				</fieldset>
 			</form>
 			{if $medicine_list}
-
 			<div class="pull-right grp_btn">
 				Group By :&nbsp; 
 				<a {if $group_by=='formula'} class="current_page" {/if} href="{$BASE_URL_ADMIN}medicine/?group_by=formula&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Formula</a>

@@ -85,29 +85,35 @@
 		</p>
 
 		<form class="box style noprint" action="{$BASE_URL_ADMIN}prescriptions/" method="get" enctype="multipart/form-data">
-			
-			<div class="row">
-				<!-- {$search|print_r} -->
-				<div class="col-md-3 col-sm-12 search-top">
-					<select name="field" id="field" class="form-control">
-						<option value="id" {if (isset($search) && $search.field=='id')} selected="selected" {/if}>Prescription ID</option>
-						<option value="patient_id" {if (isset($search) && $search.field=='patient_id')} selected="selected" {/if}>Patient ID</option>
-						<option value="patient_name" {if (isset($search) && $search.field=='patient_name')} selected="selected" {/if}>Patient Name</option>
-						<option value="created_on" {if (isset($search) && $search.field=='created_on')} selected="selected" {/if}>Date</option>
-						<option value="complain" {if (isset($search) && $search.field=='complain')} selected="selected" {/if}>Complain</option>
-					</select>
+			<fieldset>
+				<legend>Search for Prescriptions</legend>
+				<div class="row">
+					<!-- {$search|print_r} -->
+					<div class="col-md-3 col-sm-12">
+						<div class="form-group">
+							<select name="field" id="field" class="form-control">
+								<option value="id" {if (isset($search) && $search.field=='id')} selected="selected" {/if}>Prescription ID</option>
+								<option value="patient_id" {if (isset($search) && $search.field=='patient_id')} selected="selected" {/if}>Patient ID</option>
+								<option value="patient_name" {if (isset($search) && $search.field=='patient_name')} selected="selected" {/if}>Patient Name</option>
+								<option value="created_on" {if (isset($search) && $search.field=='created_on')} selected="selected" {/if}>Date</option>
+								<option value="complain" {if (isset($search) && $search.field=='complain')} selected="selected" {/if}>Complain</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<input type="text" class="form-control" name="q" id="q" {if isset($search) && $search.q}value="{$search.q}"{/if} maxlength="20" />
+						</div>
+					</div>
+					<div class="col-sm-1">
+						<input class="btn btn-primary form-control" type="submit" value="Search" name="submit" id="submit" />
+					</div>
+					
 				</div>
-				<div class="col-md-3 col-sm-12 search-top">
-					<input type="text" class="form-control" name="q" id="q" {if isset($search) && $search.q}value="{$search.q}"{/if} maxlength="20" />
-				</div>
-				<div class="col-md-2 col-sm-12 search-top">
-					<input class="btn btn-primary" type="submit" value="Search" name="submit" id="submit" />
-				</div>
-				
-			</div>
-			{if (!isset($grouped_prescriptions) && !$grouped_prescriptions)}
-			<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
-			{/if}
+				{if (!isset($grouped_prescriptions) && !$grouped_prescriptions)}
+				<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
+				{/if}
+			</fieldset>
 		</form>
 		{if (isset($grouped_prescriptions) && $grouped_prescriptions)}
 		

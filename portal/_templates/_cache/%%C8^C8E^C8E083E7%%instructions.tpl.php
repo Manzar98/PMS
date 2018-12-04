@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 11:50:03
+<?php /* Smarty version 2.6.31, created on 2018-12-04 16:12:20
          compiled from instructions/instructions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 104, false),array('function', 'cycle', 'instructions/instructions.tpl', 122, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 103, false),array('function', 'cycle', 'instructions/instructions.tpl', 121, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -11,8 +11,7 @@ unset($_smarty_tpl_vars);
 	<div class="container-fluid"> 
 		<!-- Breadcrumbs-->
 		<div class="noprint">
-			<ol class="breadcrumb">
-				
+			<ol class="breadcrumb">				
 				<li class="breadcrumb-item">
 					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 ">Dashboard</a>
@@ -106,9 +105,9 @@ instructions/" method="get" enctype="multipart/form-data">
 "<?php endif; ?> maxlength="20" class="form-control" />
 						</div>
 					</div>
-					<div class="col-sm-3 mt-1">
+					<div class="col-sm-1">
 						<div class="form-group">
-							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control" />
 						</div>
 					</div>
 				</div>
@@ -123,7 +122,7 @@ instructions/?group_by=medicine_name&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
 &p=<?php echo $_GET['p']; ?>
 ">Medicine Name</a>
-			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'instruction' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'instruction' )): ?> class="current_page"<?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 instructions/?group_by=instruction&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
 &p=<?php echo $_GET['p']; ?>
@@ -190,19 +189,14 @@ _templates/img/bin.png" alt="Delete" /></a>
 		</table>
 		<?php endforeach; endif; unset($_from); ?>
 		<?php else: ?>
-		<p class="box-info text-center" style="margin-top: 7rem!important;">No Instruction against this <?php if ($_GET['field'] == "medicine.name"): ?> Medicine<?php else: ?> <?php echo $_GET['field']; ?>
+		<p class="box-info text-center" style="margin-top: 7rem!important;">No Instruction against this <?php if ($_GET['field'] == "medicine.name"): ?> medicine<?php else: ?> <?php echo $_GET['field']; ?>
  <?php endif; ?></p>
 		<?php endif; ?>
-
 		<div class="pagination">
 			<?php echo $this->_tpl_vars['pages']; ?>
 
 		</div>
-		<?php endif; ?>	
-		
-		
-		
-		
+		<?php endif; ?>		
 	</div><!-- #content -->
 </div>
 <div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
