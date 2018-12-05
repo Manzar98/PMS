@@ -5,7 +5,6 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		
 		$("#header-footer").checked = false;		
 		$("#field").change(function(){
 			
@@ -77,13 +76,12 @@
 				{/if}
 			</ol>
 		</div>
-		<h2 class="noprint headingBottom">{if (isset($smarty.get.q) && $smarty.get.q neq '')} Search Result For "<b>{$smarty.get.q}</b>" {else}Prescription List{/if}</h2>
-		
+		{if $id=="0"}
+		<h2 class="noprint py-2">{if (isset($smarty.get.q) && $smarty.get.q neq '')} Search Result For "<b>{$smarty.get.q}</b>" {else}Prescription List{/if}</h2>
 		<p class="noprint">
-
 			<a href="{$BASE_URL_ADMIN}add-prescription/" title="Add a new Prescription"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
 		</p>
-
+		
 		<form class="box style noprint" action="{$BASE_URL_ADMIN}prescriptions/" method="get" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Search for Prescriptions</legend>
@@ -108,13 +106,10 @@
 					<div class="col-sm-1">
 						<input class="btn btn-primary form-control" type="submit" value="Search" name="submit" id="submit" />
 					</div>
-					
 				</div>
-				{if (!isset($grouped_prescriptions) && !$grouped_prescriptions)}
-				<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
-				{/if}
 			</fieldset>
 		</form>
+		{/if}
 		{if (isset($grouped_prescriptions) && $grouped_prescriptions)}
 		
 		<div class="pull-right grp_btn">
@@ -172,8 +167,6 @@
 		</tbody>
 	</table>
 	{/foreach}
-	{else}
-	<p class="box-info text-center" style="margin-top: 7rem!important;">No Prescription against this {$smarty.get.field}</p>
 	{/if}
 	<div class="pagination">
 		{$pages}
@@ -181,29 +174,31 @@
 
 	{if (isset($data) && $data)}
 	<div id="prescription_info">
-		<div class="row">
-			<div class="col-sm-10">
-				<h3 class="hideThink" >Patient's Details</h3>
+		<div class="row noprint">
+			<div class="col-sm-11  py-3">
+				<h3 class="hideThink noprint" >Patient's Details</h3>
 			</div>
-			<div class="col-sm-2">
-				<span class="date">Date:<em>{$data.created_on|date_format:"%d/%m/%Y"}</em></span>
+			<div class="col-sm-1  py-3 noprint">
+				<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
 			</div>
 		</div> 
-
-		<hr style="border-top: dotted 1px #DEDEDE; " />
-		<div>
-			<ul class="patient_info list-inline">
-				<li><span style="font-weight: normal;"> Patient's Name: <span>{$data.patient.name}</span></span></li>
-				<li><span style="font-weight: normal;">City: <span>{$data.patient.city_name}</span></span ></li>
-				<li><span style="font-weight: normal;">Gender:{if isset($data.patient.gender)}<span>{$data.patient.gender} </span>{/if}</span></li>
-				<li><span style="font-weight: normal;">Date of Birth: <span>{$data.patient.dob|date_format:"%d/%m/%Y"}</span></span></li>
-				<li><span style="font-weight: normal;">ID: <span>{$data.patient.id}</span></span></li>
+		<div class="pull-right pt-3">
+			<span class="date text-dark">Date:&nbsp;&nbsp;<em>{$data.created_on|date_format:"%d/%m/%Y"}</em></span>
+		</div><br>
+		<hr style="border-top: dotted 1px #DEDEDE; "/>
+		<div class="mb-5">
+			<ul class="patient_info list-inline text-center" style="font-size: 15px;">
+				<li class="list-inline-item"><span style="font-weight: normal;"> Patient's Name: <span class="text-dark">{$data.patient.name}</span></span></li>
+				<li class="list-inline-item"><span style="font-weight: normal;">City: <span  class="text-dark">{$data.patient.city_name}</span></span ></li>
+				<li class="list-inline-item"><span style="font-weight: normal;">Gender:{if isset($data.patient.gender)}<span  class="text-dark">{$data.patient.gender} </span>{/if}</span></li>
+				<li class="list-inline-item"><span style="font-weight: normal;">Date of Birth: <span  class="text-dark">{$data.patient.dob|date_format:"%d/%m/%Y"}</span></span></li>
+				<li class="list-inline-item"> <span style="font-weight: normal;">ID: <span  class="text-dark">{$data.patient.id}</span></span></li>
 			</ul>	
 		</div>
 
-		<div class="row">
+		<div class="row instr_detail_row">
 			<div class="col-sm-6">
-				<h3>Instructions</h3>
+				<h3 class="pb-3">Instructions</h3>
 
 				{if $data.instructions}
 				<table class="table table-bordered table-striped instructions">
@@ -233,7 +228,7 @@
 				{/if}
 				<hr class="noprint dotted"/>
 
-				<h3>Tests</h3>
+				<h3 class="pb-3">Tests</h3>
 
 
 				{foreach from=$data.tests item=test}
@@ -264,25 +259,25 @@
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<div class="">
-					<h3>Details</h3>
+					<h3 class="pb-3">Details</h3>
 					<dl class="separator" style="margin-top: 23px;">
-						<dt style="font-size: 13px;">Description</dt>
+						<dt style="font-size: 13px;" class="text-dark">Description</dt>
 						<dd>{$data.description}</dd>
-						<dt style="font-size: 13px;">Complain</dt>
+						<dt style="font-size: 13px;" class="text-dark">Complain</dt>
 						<dd><strong>{$data.complain}</strong></dd>
 						<dd>{$data.complain_detail}</dd>
-						<dt style="font-size: 13px;">Next Plan</dt>
+						<dt style="font-size: 13px;" class="text-dark">Next Plan</dt>
 						<dd><strong>{$data.next_date|date_format:"%A, %B %e, %Y"}</strong></dd>
 						<dd>{$data.next_plan}</dd>
-						<dt style="font-size: 13px;">Address</dt>
+						<dt style="font-size: 13px;" class="text-dark">Address</dt>
 						<dd>{$data.patient.address}</dd>
 
 					</dl>
 				</div>
 			</div>
 		</div>
-		<p id="fee"> Fee Received : <strong>{$data.fee_received}</strong>    </p>
-		<p class="noprint">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
+		<p id="fee" class="text-dark"> Fee Received : <strong>{$data.fee_received}</strong>    </p>
+		<p class="noprint text-dark">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
 	</div>
 	<p></p>
 

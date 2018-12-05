@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 23:12:30
+<?php /* Smarty version 2.6.31, created on 2018-12-05 18:46:58
          compiled from prescription/edit_prescription.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 294, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 445, false),)), $this); ?>
@@ -281,7 +281,7 @@ prescriptions/">Prescriptions</a>
 				<?php endif; ?>
 			</ol>
 		</div>
-		<h2>Edit Prescription</h2>
+		<h2 class="py-3">Edit Prescription</h2>
 
 		<?php if (isset ( $this->_tpl_vars['errors'] )): ?>
 		<div class="fail">

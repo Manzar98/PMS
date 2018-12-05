@@ -116,34 +116,11 @@ span.select2.select2-container.select2-container--default {
 	color: red !important;
 	font-size: 12px !important;
 }
-.m-border{
-	border: 1px solid #DEDEDE;
-	padding: 10px;
-	margin-top: 5px;
-	max-height: 50px;
-	border-radius: 5px;
-	padding-top: 15px
-}
-.other-border{
 
-	border: 1px solid #DEDEDE;
-	padding: 10px;
-	margin-top: 5px;
-	border-radius: 5px;
-	padding-bottom: 14px;
-	min-height: 100px;
-}
 .textarea-height{
 	height: 44px;
 }
-.relative-border{
-	border: 1px solid #DEDEDE;
-	padding: 10px;
-	margin-top: 5px;
-	border-radius: 5px;
-	padding-bottom: 14px;
-	min-height: 100px;
-}
+
 .text-white{
 	color: #fff;
 }
@@ -253,3 +230,340 @@ button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-
 	padding: 12px 12px 0;
 	width: 80%;
 }
+
+/* /////// TABS ///////*/
+
+#tabs {
+	font-size: 90%;
+	margin: 20px 0;
+}
+#tabs ul.tabs {
+	float: left;
+	background: #fff;
+	width: 100%;
+	padding-left:0px;
+	padding-top: 4px;
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 0px;
+}
+
+#tabs ul.tabs li:hover
+{
+	border-color: #cfcfcf;
+	border-bottom-color: #b5b5b5;
+	background-position: 0 -50px;
+}
+
+* html #tabs li {
+	display: inline;
+	
+}
+#tabs ul.tabs li, #tabs ul.tabs li a {
+	float: left;
+}
+#tabs ul.tabs  li.active {
+	background: none;
+	border-top:2px solid #eee;
+}
+#tabs ul.tabs  li.active a {
+	/*color: #333333;*/
+}
+#tabs div {
+	clear: both;
+	padding: 15px;
+	min-height: 200px;
+}
+#tabs div h3 {
+	margin-bottom: 12px;
+}
+#tabs div p {
+	line-height: 150%;
+}
+#tabs ul.tabs  li a {
+	text-decoration: none;
+	padding: 8px;
+	color: #212529;
+	font-size: 13px;
+}
+
+/*View Prescription Css*/
+
+#prescription_info 
+{
+	/*margin-top:20px;*/
+	overflow: hidden;
+}
+#prescription_info .details
+{
+	width: 45%;float: right;padding-left: 0px;margin-left: 10px;
+}
+#prescription_info span.date
+{
+	float: right;margin:-20px 10px 0 0;
+	display: block;width:100px;
+}
+#prescription_info .patient_info
+{
+	/*margin-bottom: 30px;*/
+}
+#prescription_info .patient_info span
+{
+	margin-right: 40px;
+}
+#prescription_info .patient_info span:last-child
+{
+	margin-right: 0px;
+	margin-left:7px;
+	font-weight:bold;
+	
+}
+
+/*.noprint
+{display: none;
+}
+.hideThink
+{
+	visibility:hidden;
+}*/
+caption
+{
+	display: none;
+}
+.tests caption
+{
+	display: inline;
+	font-style: italic;
+	font-size: 125%;
+	color:#666;
+}
+
+/* Table Design */
+table.zebra {
+	width: 100%;
+	overflow:hidden;
+	font-family: Arial;
+}
+table.zebra {
+	border-right: 1px solid lightGrey;
+	border-bottom: 1px solid lightGrey;
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: 0 1px 2px 
+	rgba(0, 0, 0, 0.05);
+}
+table.zebra caption {
+	color: 	#777;
+}
+table.zebra caption {
+	font-size: 11px;
+	text-align: left;
+	font-style: italic;
+}
+table.zebra thead {
+background: #EFEFEF;
+}
+
+table.zebra tr {
+border-top: 1px solid lightGrey;
+border-right: 1px solid lightGrey;
+}
+
+
+table.zebra tr td, table.zebra tr th {
+border-left: 1px solid lightGrey;
+border-right: 1px solid lightGrey;
+}
+table.zebra thead th {
+	color: #888;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+table.zebra th, table.zebra td {
+	padding: 5px;
+}
+table.zebra th {
+	font-size: 16px;
+	font-weight: normal;
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+
+table.zebra { width: 100%;margin-bottom:3px; }
+
+table.zebra th {
+	font-size: 15px;
+	font-weight: normal;
+	text-align: left;
+}
+
+table.zebra th,
+table.zebra td { padding: 7px; }
+
+table.zebra tbody,
+table.zebra tfoot { font-size: 11px; }
+
+table.zebra .bold { font-weight: bold; }
+table.zebra .center { text-align: center; }
+
+table.zebra td * { vertical-align: middle; }
+
+table.zebra tfoot { font-style: italic; }
+
+table.zebra caption {
+	font-size: 10px;
+	text-align: left;
+	font-style: italic;
+}
+table.zebra thead th { border-bottom: 1px solid #e2e2e2; }
+
+table.zebra tbody td { border-bottom: 1px solid #e2e2e2; }
+ul.zebra > li:first-child,
+table.zebra tbody tr:first-child td { border-top: 1px solid #e2e2e2; }
+
+ul.zebra > li.odd,
+table.zebra tbody tr.odd { background: #fafafa; }
+ul.zebra > li:nth-of-type(odd),
+table.zebra tbody tr:nth-of-type(odd) { background: #fafafa; }
+table.zebra {
+	border-right: 1px solid #d3d3d3;
+	border-bottom: 1px solid #d3d3d3;
+	background: rgba(255,255,255,0.8);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+table.zebra caption { color: #777; margin-top:5px;display: block}
+
+table.zebra thead {
+	background: #efefef;
+	background: -moz-linear-gradient(
+					50% 0%,
+					#f7f7f7 0%,
+					#e8e8e8 100%
+				);
+	background: -webkit-gradient( 
+					linear,
+					50% 0%,
+					50% 100%,
+					color-stop(0%, #f7f7f7),
+					color-stop(100%, #e8e8e8)
+				);
+}
+
+table.zebra thead th {
+	color: #888;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+table.zebra tr { border-top: 1px solid #d3d3d3;border-right: 1px solid black; }
+
+table.zebra tr:hover,
+table.zebra tbody tr:nth-of-type(odd):hover,
+table.zebra tbody tr.odd:hover {
+	background: #fff;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.06);
+}
+
+table.zebra tr td,
+table.zebra tr th {	border-left: 1px solid #d3d3d3;border-right: 1px solid lightGrey; }
+
+table.zebra tfoot tr {
+	border-bottom: 1px solid #c3c3c3;
+	background: rgba(0,0,0,0.02);
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+/* Definition Lists
+----------------------------------------------------------------------------------------------------*/
+
+dl.separator {
+	padding: 0;
+	overflow: hidden;
+	margin: 15px 0;
+}
+
+dl.separator dt {	
+	width: 90px;
+	padding-right: 10px;
+	float: left;
+	clear: both;
+}
+
+dl.separator dd {
+	margin-left: 100px;
+	padding-left: 10px;
+	line-height: 18px;
+}
+
+
+dl.separator dt {	
+	position: relative;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-transform: uppercase; 
+}
+
+/* border code because of RTL */
+dl.separator dd {
+	padding-top: 5px;
+	padding-bottom: 10px;
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	border-color: #e2e2e2;
+}
+
+dl.separator dt:before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    width: 30px;
+    border-top: 1px solid #e2e2e2;
+    left: 85px;
+}
+
+dl.separator dt:after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: -3px;
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 6px;
+    left: 98px;
+}
+
+dl.separator dt:first-child:before,
+dl.separator dt:first-child:after { display: none; }
+
+/*.instr_detail_row{
+margin-top: 5rem!important;
+}*/
+.patient_info li {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 15px;
+}
+
+/*  Branding  */
+/*.branding
+{
+	clear:both;
+	position:absolute;
+	bottom:10px;
+	text-align: center;
+	width: 100%;
+	overflow: hidden;
+
+}*/

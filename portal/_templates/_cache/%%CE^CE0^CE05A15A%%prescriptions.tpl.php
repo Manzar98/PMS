@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 16:16:25
+<?php /* Smarty version 2.6.31, created on 2018-12-05 22:07:25
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 91, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 132, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 154, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 151, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 89, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 127, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 149, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 146, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -12,7 +12,6 @@ unset($_smarty_tpl_vars);
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		
 		
 		$("#header-footer").checked = false;		
 		$("#field").change(function(){
@@ -92,15 +91,14 @@ prescriptions/">Prescriptions</a>
 				<?php endif; ?>
 			</ol>
 		</div>
-		<h2 class="noprint headingBottom"><?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?> Search Result For "<b><?php echo $_GET['q']; ?>
+		<?php if ($this->_tpl_vars['id'] == '0'): ?>
+		<h2 class="noprint py-2"><?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Prescription List<?php endif; ?></h2>
-		
 		<p class="noprint">
-
 			<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 add-prescription/" title="Add a new Prescription"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
 		</p>
-
+		
 		<form class="box style noprint" action="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/" method="get" enctype="multipart/form-data">
 			<fieldset>
@@ -128,13 +126,10 @@ prescriptions/" method="get" enctype="multipart/form-data">
 					<div class="col-sm-1">
 						<input class="btn btn-primary form-control" type="submit" value="Search" name="submit" id="submit" />
 					</div>
-					
 				</div>
-				<?php if (( ! isset ( $this->_tpl_vars['grouped_prescriptions'] ) && ! $this->_tpl_vars['grouped_prescriptions'] )): ?>
-				<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
-				<?php endif; ?>
 			</fieldset>
 		</form>
+		<?php endif; ?>
 		<?php if (( isset ( $this->_tpl_vars['grouped_prescriptions'] ) && $this->_tpl_vars['grouped_prescriptions'] )): ?>
 		
 		<div class="pull-right grp_btn">
@@ -230,9 +225,6 @@ _templates/img/bin.png" alt="Delete" /></a>
 		</tbody>
 	</table>
 	<?php endforeach; endif; unset($_from); ?>
-	<?php else: ?>
-	<p class="box-info text-center" style="margin-top: 7rem!important;">No Prescription against this <?php echo $_GET['field']; ?>
-</p>
 	<?php endif; ?>
 	<div class="pagination">
 		<?php echo $this->_tpl_vars['pages']; ?>
@@ -241,35 +233,37 @@ _templates/img/bin.png" alt="Delete" /></a>
 
 	<?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data'] )): ?>
 	<div id="prescription_info">
-		<div class="row">
-			<div class="col-sm-10">
-				<h3 class="hideThink" >Patient's Details</h3>
+		<div class="row noprint">
+			<div class="col-sm-11  py-3">
+				<h3 class="hideThink noprint" >Patient's Details</h3>
 			</div>
-			<div class="col-sm-2">
-				<span class="date">Date:<em><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['created_on'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
-</em></span>
+			<div class="col-sm-1  py-3 noprint">
+				<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
 			</div>
 		</div> 
-
-		<hr style="border-top: dotted 1px #DEDEDE; " />
-		<div>
-			<ul class="patient_info list-inline">
-				<li><span style="font-weight: normal;"> Patient's Name: <span><?php echo $this->_tpl_vars['data']['patient']['name']; ?>
+		<div class="pull-right pt-3">
+			<span class="date text-dark">Date:&nbsp;&nbsp;<em><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['created_on'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
+</em></span>
+		</div><br>
+		<hr style="border-top: dotted 1px #DEDEDE; "/>
+		<div class="mb-5">
+			<ul class="patient_info list-inline text-center" style="font-size: 15px;">
+				<li class="list-inline-item"><span style="font-weight: normal;"> Patient's Name: <span class="text-dark"><?php echo $this->_tpl_vars['data']['patient']['name']; ?>
 </span></span></li>
-				<li><span style="font-weight: normal;">City: <span><?php echo $this->_tpl_vars['data']['patient']['city_name']; ?>
+				<li class="list-inline-item"><span style="font-weight: normal;">City: <span  class="text-dark"><?php echo $this->_tpl_vars['data']['patient']['city_name']; ?>
 </span></span ></li>
-				<li><span style="font-weight: normal;">Gender:<?php if (isset ( $this->_tpl_vars['data']['patient']['gender'] )): ?><span><?php echo $this->_tpl_vars['data']['patient']['gender']; ?>
+				<li class="list-inline-item"><span style="font-weight: normal;">Gender:<?php if (isset ( $this->_tpl_vars['data']['patient']['gender'] )): ?><span  class="text-dark"><?php echo $this->_tpl_vars['data']['patient']['gender']; ?>
  </span><?php endif; ?></span></li>
-				<li><span style="font-weight: normal;">Date of Birth: <span><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['patient']['dob'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
+				<li class="list-inline-item"><span style="font-weight: normal;">Date of Birth: <span  class="text-dark"><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['patient']['dob'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y") : smarty_modifier_date_format($_tmp, "%d/%m/%Y")); ?>
 </span></span></li>
-				<li><span style="font-weight: normal;">ID: <span><?php echo $this->_tpl_vars['data']['patient']['id']; ?>
+				<li class="list-inline-item"> <span style="font-weight: normal;">ID: <span  class="text-dark"><?php echo $this->_tpl_vars['data']['patient']['id']; ?>
 </span></span></li>
 			</ul>	
 		</div>
 
-		<div class="row">
+		<div class="row instr_detail_row">
 			<div class="col-sm-6">
-				<h3>Instructions</h3>
+				<h3 class="pb-3">Instructions</h3>
 
 				<?php if ($this->_tpl_vars['data']['instructions']): ?>
 				<table class="table table-bordered table-striped instructions">
@@ -304,7 +298,7 @@ _templates/img/bin.png" alt="Delete" /></a>
 				<?php endif; ?>
 				<hr class="noprint dotted"/>
 
-				<h3>Tests</h3>
+				<h3 class="pb-3">Tests</h3>
 
 
 				<?php $_from = $this->_tpl_vars['data']['tests']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
@@ -344,22 +338,22 @@ _templates/img/bin.png" alt="Delete" /></a>
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<div class="">
-					<h3>Details</h3>
+					<h3 class="pb-3">Details</h3>
 					<dl class="separator" style="margin-top: 23px;">
-						<dt style="font-size: 13px;">Description</dt>
+						<dt style="font-size: 13px;" class="text-dark">Description</dt>
 						<dd><?php echo $this->_tpl_vars['data']['description']; ?>
 </dd>
-						<dt style="font-size: 13px;">Complain</dt>
+						<dt style="font-size: 13px;" class="text-dark">Complain</dt>
 						<dd><strong><?php echo $this->_tpl_vars['data']['complain']; ?>
 </strong></dd>
 						<dd><?php echo $this->_tpl_vars['data']['complain_detail']; ?>
 </dd>
-						<dt style="font-size: 13px;">Next Plan</dt>
+						<dt style="font-size: 13px;" class="text-dark">Next Plan</dt>
 						<dd><strong><?php echo ((is_array($_tmp=$this->_tpl_vars['data']['next_date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </strong></dd>
 						<dd><?php echo $this->_tpl_vars['data']['next_plan']; ?>
 </dd>
-						<dt style="font-size: 13px;">Address</dt>
+						<dt style="font-size: 13px;" class="text-dark">Address</dt>
 						<dd><?php echo $this->_tpl_vars['data']['patient']['address']; ?>
 </dd>
 
@@ -367,9 +361,9 @@ _templates/img/bin.png" alt="Delete" /></a>
 				</div>
 			</div>
 		</div>
-		<p id="fee"> Fee Received : <strong><?php echo $this->_tpl_vars['data']['fee_received']; ?>
+		<p id="fee" class="text-dark"> Fee Received : <strong><?php echo $this->_tpl_vars['data']['fee_received']; ?>
 </strong>    </p>
-		<p class="noprint">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
+		<p class="noprint text-dark">Print Fee Amount <input type="checkbox" name="print_fee" id="print_fee" value="1" checked="checked" /></p>
 	</div>
 	<p></p>
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 22:52:59
+<?php /* Smarty version 2.6.31, created on 2018-12-05 18:07:23
          compiled from patients/add_patient_other_history.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -30,7 +30,7 @@ patients/">Patients</a>
 				<li class="breadcrumb-item active text-capitalize"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add<?php endif; ?> Other History</li>
 			</ol>
 		</div>
-		<h2><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add a<?php endif; ?> Patient Other History</h2>
+		<h2 class="py-2"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add a<?php endif; ?> Patient Other History</h2>
 		
 		<?php if (isset ( $this->_tpl_vars['errors'] )): ?>
 		<div class="fail">
@@ -50,62 +50,48 @@ patients/">Patients</a>
 			Mobile No: &nbsp;<strong  class="text-dark"><?php echo $this->_tpl_vars['patient_details']['mobile']; ?>
 </strong>
 		</p>	
-		<form id="add_patient_other_history" class="" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+		<form id="add_patient_other_history" class="box" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
 			<fieldset>
+				<legend>Other History</legend>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="other-border">
-								<label for="field1">Field 1</label>
-								<input type="text" name="field1" id="field1" <?php if (isset ( $this->_tpl_vars['data'] )): ?>value="<?php echo $this->_tpl_vars['data']['field1']; ?>
+							<label for="field1">Field 1</label>
+							<input type="text" name="field1" id="field1" <?php if (isset ( $this->_tpl_vars['data'] )): ?>value="<?php echo $this->_tpl_vars['data']['field1']; ?>
 "<?php endif; ?> class="form-control"/>
-							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="other-border">
-								<label for="value1">Value 1</label>
-								<textarea name="value1" id="value1" class="form-control textarea-height"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['value1']; ?>
+							<label for="value1">Value 1</label>
+							<textarea name="value1" id="value1" class="form-control textarea-height"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['value1']; ?>
 <?php endif; ?></textarea> 
-							</div>
 						</div>
 					</div>
 				</div>
-			</fieldset>	
-			<fieldset>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="other-border">
-								<label for="field2">Field 2</label>
-								<input type="text" name="field2" id="field2" <?php if (isset ( $this->_tpl_vars['data'] )): ?>value="<?php echo $this->_tpl_vars['data']['field2']; ?>
-"<?php endif; ?> class="form-control "/> 	
-							</div>
+							<label for="field2">Field 2</label>
+							<input type="text" name="field2" id="field2" <?php if (isset ( $this->_tpl_vars['data'] )): ?>value="<?php echo $this->_tpl_vars['data']['field2']; ?>
+"<?php endif; ?> class="form-control "/> 
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="other-border">
-								<label for="value2">Value 2</label>
-								<textarea name="value2" id="value2" class="form-control textarea-height"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['value2']; ?>
+							<label for="value2">Value 2</label>
+							<textarea name="value2" id="value2" class="form-control textarea-height"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['value2']; ?>
 <?php endif; ?></textarea>
-							</div>
 						</div>
 					</div>
 				</div>
-			</fieldset>
-			
-			<fieldset>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="other-border">
-								<label for="additional_history">Additional History</label>
-								<textarea name="additional_history" id="additional_history" class="form-control textarea-height"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['additional_history']; ?>
+							<label for="additional_history">Additional History</label>
+							<textarea name="additional_history" id="additional_history" class="form-control textarea-height"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['additional_history']; ?>
 <?php endif; ?></textarea>
-							</div>
 						</div>
 					</div>
 				</div>

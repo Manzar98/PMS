@@ -252,7 +252,7 @@ function generateRandomNumber(){
 				{/if}
 			</ol>
 		</div>
-		<h2>Edit Prescription</h2>
+		<h2 class="py-3">Edit Prescription</h2>
 
 		{if isset($errors)}
 		<div class="fail">

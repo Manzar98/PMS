@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 23:09:15
+<?php /* Smarty version 2.6.31, created on 2018-12-05 18:21:39
          compiled from patients/add_patient_relatives.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -21,7 +21,7 @@ patients/">Patients</a>
 				<li class="breadcrumb-item active text-capitalize"><?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?>Edit<?php else: ?> Add<?php endif; ?> Relatives</li>
 			</ol>
 		</div>
-		<h2><?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add a<?php endif; ?> Patient Relatives</h2>
+		<h2 class="py-2"><?php if (( isset ( $this->_tpl_vars['edit'] ) && $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add a<?php endif; ?> Patient Relatives</h2>
 
 		<?php if ($this->_tpl_vars['errors']): ?>
 		<div class="fail">
@@ -41,109 +41,80 @@ patients/">Patients</a>
 			Mobile No: <strong class="text-dark"><?php echo $this->_tpl_vars['patient_details']['mobile']; ?>
 </strong>
 		</p>	
-		<form id="add_patient_relatives" class="" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+		<form id="add_patient_relatives" class="box" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
 			<fieldset>
+				<legend>Relatives</legend>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="relative-border">
 								<label for="cancer">Cancer</label>
 								<input type="text" name="cancer" id="cancer" maxlength="2" value="<?php echo $this->_tpl_vars['data']['cancer']; ?>
 " class="form-control"/>
-							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="relative-border">
 								<label for="diabetes">Diabetes</label>
 								<input type="text" name="diabetes" id="diabetes" maxlength="2" value="<?php echo $this->_tpl_vars['data']['diabetes']; ?>
 " class="form-control"/>
-							</div>
 						</div>
 					</div>
 				</div>
-			</fieldset>
-
-			<fieldset>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="relative-border">
 								<label for="epilepsy">Epilepsy</label>
 								<input type="text" name="epilepsy" id="epilepsy" maxlength="2" value="<?php echo $this->_tpl_vars['data']['epilepsy']; ?>
 " class="form-control"/>
-							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="relative-border">
 								<label for="heart">Heart</label>
 								<input type="text" name="heart" id="heart" maxlength="2" value="<?php echo $this->_tpl_vars['data']['heart']; ?>
 " class="form-control"/>
-							</div>
 						</div>
 					</div>
 				</div>
-			</fieldset>
-
-			<fieldset>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="relative-border">
 								<label for="high_blood_pressure">High Blood Pressure</label>
 								<input type="text" name="high_blood_pressure" id="high_blood_pressure" maxlength="2" value="<?php echo $this->_tpl_vars['data']['high_blood_pressure']; ?>
 " class="form-control" />
-							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="relative-border">
 								<label for="mental_illness">Mental illness</label>
 								<input type="text" name="mental_illness" id="mental_illness" maxlength="2" value="<?php echo $this->_tpl_vars['data']['mental_illness']; ?>
 " class="form-control"/>
-							</div>
 						</div>
 					</div>
 				</div>
-			</fieldset>
-
-			<fieldset>
 				<div class="row">
 					<div class="col-sm-6">
-						<div class="form-group">
 							<div class="relative-border">
 								<label for="stroke">Stroke</label>
 								<input type="text" name="stroke" id="stroke" maxlength="2" value="<?php echo $this->_tpl_vars['data']['stroke']; ?>
 " class="form-control"/>
-							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="relative-border">
 								<label for="suicide">Suicide</label>
 								<input type="text" name="suicide" id="suicide" maxlength="2" value="<?php echo $this->_tpl_vars['data']['suicide']; ?>
 " class="form-control"/>
-							</div>
 						</div>
 					</div>
 				</div>
-			</fieldset>
-
-			<fieldset>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<div class="relative-border">
 								<label for="tuberculosis">Tuberculosis</label>
 								<input type="text" name="tuberculosis" id="tuberculosis" maxlength="2" value="<?php echo $this->_tpl_vars['data']['tuberculosis']; ?>
 " class="form-control" />
-							</div>
 						</div>
 					</div>
 				</div>

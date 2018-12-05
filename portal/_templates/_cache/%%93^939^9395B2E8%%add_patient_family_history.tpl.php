@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 22:28:27
+<?php /* Smarty version 2.6.31, created on 2018-12-05 18:07:29
          compiled from patients/add_patient_family_history.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -16,7 +16,21 @@ unset($_smarty_tpl_vars);
 
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
-		<h2><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add a<?php endif; ?> Patient Family History</h2>
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+patients/">Patients</a>
+				</li>
+				<li class="breadcrumb-item active text-capitalize"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add<?php endif; ?> Family History</li>
+			</ol>
+		</div>
+		<h2 class="py-2"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add a<?php endif; ?> Patient Family History</h2>
 
 		<?php if (isset ( $this->_tpl_vars['errors'] )): ?>
 		<div class="fail">
@@ -36,60 +50,55 @@ unset($_smarty_tpl_vars);
 			Mobile No: <strong><?php echo $this->_tpl_vars['patient_details']['mobile']; ?>
 </strong>
 		</p>	
-		<form id="add_patient_family_history" class="" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+		<form id="add_patient_family_history" class="box " action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post">
 			<fieldset>
+				<legend>Family History</legend>
 				<div class="row">
 					<div class="col-sm-6">
-						<div class="family-border">
+						<div class="form-group">
 							<label for="father">Father</label>
 							<textarea name="father" id="father" class="form-control"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['father']; ?>
 <?php endif; ?></textarea> 
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<div class="family-border">
+						<div class="form-group">
 							<label for="mother">Mother</label>
 							<textarea name="mother" id="mother" class="form-control"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['mother']; ?>
 <?php endif; ?></textarea>
 						</div> 
 					</div>
 				</div>
-			</fieldset>
-
-			<fieldset>
 				<div class="row">
 					<div class="col-sm-6">
-						<div class="family-border">
+						<div class="form-group">
 							<label for="siblings">Siblings</label>
 							<textarea name="siblings" id="siblings" class="form-control"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['siblings']; ?>
 <?php endif; ?></textarea>  
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<div class="family-border">
+						<div class="form-group">
 							<label for="spouse">Spouse</label>
 							<textarea name="spouse" id="spouse" class="form-control"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['spouse']; ?>
 <?php endif; ?></textarea> 
 						</div> 
 					</div>
 				</div>
-			</fieldset>
-
-			<fieldset>
 				<div class="row">
 					<div class="col-sm-6">
-						<div class="family-border">
+						<div class="form-group">
 							<label for="offspring">Offspring</label>
 							<textarea name="offspring" id="offspring" class="form-control"><?php if (isset ( $this->_tpl_vars['data'] )): ?><?php echo $this->_tpl_vars['data']['offspring']; ?>
 <?php endif; ?></textarea> 
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<div class="family-border">
-							<label for="submit"></label>
-							<input type="submit" name="submit" id="submit" value="<?php if (isset ( $this->_tpl_vars['edit'] )): ?> Update<?php else: ?> Add <?php endif; ?>" class="btn btn-primary" style="margin-top: 20px;" />
-						</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 mx-auto py-4">
+							<input type="submit" name="submit" id="submit" value="<?php if (isset ( $this->_tpl_vars['edit'] )): ?> Update<?php else: ?> Add <?php endif; ?>" class="btn btn-primary form-control"/>
+						
 					</div> 
 				</div>
 			</fieldset>	

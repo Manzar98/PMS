@@ -453,7 +453,7 @@ function generateRandomNumber(){
 				{/if}
 			</ol>
 		</div>
-		<h2>Add Prescription</h2>
+		<h2  class="py-3">Add Prescription</h2>
 		{if (isset($errors) && $errors)}
 		<div class="fail">
 			{foreach from=$errors item=error}

@@ -129,7 +129,8 @@ ol li
 }
 
 .noprint
-{display: none;
+{
+	display: none;
 }
 .hideThink
 {
@@ -333,29 +334,37 @@ dl.separator dd {
 }
 
 dl.separator dt:before {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: -15px;
-	width: 30px;
-	border-top: 1px solid #e2e2e2;
+    content: "";
+    position: absolute;
+    top: -4px;
+    width: 30px;
+    border-top: 1px solid #e2e2e2;
+    left: 85px;
 }
 
 dl.separator dt:after {
-	content: "";
-	position:absolute;
-	top: -3px;
-	right: -3px;
-	width: 5px;
-	height: 5px;
-	background: #fff;
-	border: 1px solid #e2e2e2;
-	border-radius:6px;
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: -3px;
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 6px;
+    left: 98px;
 }
 
 dl.separator dt:first-child:before,
 dl.separator dt:first-child:after { display: none; }
-
+/*.instr_detail_row{
+margin-top: 5rem!important;
+}*/
+.patient_info li {
+    padding-left: 10px !important;
+    padding-right: 10px  !important;
+    font-size: 12px  !important;
+}
 
 
 /*  Branding  */

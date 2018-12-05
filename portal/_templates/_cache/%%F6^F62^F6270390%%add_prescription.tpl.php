@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 23:11:51
+<?php /* Smarty version 2.6.31, created on 2018-12-05 18:46:45
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -486,7 +486,7 @@ prescriptions/">Prescriptions</a>
 				<?php endif; ?>
 			</ol>
 		</div>
-		<h2>Add Prescription</h2>
+		<h2  class="py-3">Add Prescription</h2>
 		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
 		<div class="fail">
 			<?php $_from = $this->_tpl_vars['errors']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):

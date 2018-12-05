@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 16:13:45
+<?php /* Smarty version 2.6.31, created on 2018-12-05 18:27:30
          compiled from patients/patients.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 63, false),array('modifier', 'default', 'patients/patients.tpl', 67, false),array('function', 'cycle', 'patients/patients.tpl', 81, false),)), $this); ?>
@@ -27,7 +27,7 @@ patients">Patients</a>
 				<?php endif; ?>
 			</ol>
 		</div>
-		<h2 class="headingBottom"><?php if ($_GET['q'] != ''): ?> Search Result For "<b><?php echo $_GET['q']; ?>
+		<h2 class="py-2"><?php if ($_GET['q'] != ''): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Patient List<?php endif; ?></h2>
 		<p>
 			<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>

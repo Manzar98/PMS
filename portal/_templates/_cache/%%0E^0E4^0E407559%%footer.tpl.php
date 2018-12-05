@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-09-04 13:46:49
+<?php /* Smarty version 2.6.31, created on 2018-12-05 22:56:23
          compiled from footer.tpl */ ?>
 	</div><!-- #wrap -->
 	<div class="footer clear noprint">
