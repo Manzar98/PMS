@@ -1,403 +1,439 @@
 {include file="header.tpl"} 
 
-<div id="content" class="clientWrap">
-	<input type="hidden" name="" value="{$exist_appoint}" id="exist_appoint">
-	<input type="hidden" name="" value="{$appointmentFull}" id="appointmentFull">
-	{if isset($printslip) && $printslip}
-	<div class="appoint_Wrap"> 
+<div id="" class="clientWrap content-wrapper">
+	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}list-appointments/{$smarty.session.AdminId}/">Appointments</a>
+				</li>
+				<li class="breadcrumb-item active">Get Appointment</li>
+				
+			</ol>
+		</div>
 
-		<div class="common-bottom text-center" style="margin-bottom: 40px;">
-			<h4><b>APPOINTMENT CONFIRMATION</b></h4>
-		</div>
-		<div class="noprint btnW">
-			<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
-		</div>
-		<div class="row common-bottom">
-			<div class="col-sm-10">
-				<div class="ac">
-					<span><b>Patient Name : </b><span>{$printslip.name}</span></span>
-				</div>
-				<div class="ac">
+		<input type="hidden" name="" value="{$exist_appoint}" id="exist_appoint">
+		<input type="hidden" name="" value="{$appointmentFull}" id="appointmentFull">
+		{if isset($printslip) && $printslip}
+		<div class="appoint_Wrap"> 
 
-					<span><b>Patient Id : </b><span>{$printslip.pat_id}</span></span>
-					
-				</div>
-				<div class="ac">
-					{foreach from=$cities item=city}
-					{if $printslip.city_id==$city.id}
-					<span><b>City : </b><span>{$city.name}</span></span>
-					{/if}
-					{/foreach}
-				</div> 
-				<div class="ac">
-					<span><b>Address : </b><span>{$printslip.address}</span></span>
-				</div>
-				<div class="ac">
-					<span><b>Mobile No : </b><span>{$printslip.mobile}</span></span>
-				</div>
-				<div class="ac">
-					<span><b>Gender : </b><span>{$printslip.gender}</span></span>
-				</div>
-				<div class="ac"><span><b>Email : </b><span>{$printslip.email}</span></span></div>
+			<div class="common-bottom text-center" style="margin-bottom: 40px;">
+				<h4><b>APPOINTMENT CONFIRMATION</b></h4>
 			</div>
-			<div class="col-sm-2">
-				<div width="100" height="100" style="border: 1px solid;"></div>
+			<div class="noprint btnW">
+				<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
 			</div>
-		</div>
-		<div class="row common-bottom bor">
-			<div class="col-sm-8">
-				<div class="common-bottom common-top">
-					<span class="common-bottom"><b>Appointment No : </b><span>{$printslip.ap_number}</span></span>
+			<div class="row common-bottom">
+				<div class="col-sm-10">
+					<div class="ac">
+						<span><b>Patient Name : </b><span>{$printslip.name}</span></span>
+					</div>
+					<div class="ac">
+
+						<span><b>Patient Id : </b><span>{$printslip.pat_id}</span></span>
+
+					</div>
+					<div class="ac">
+						{foreach from=$cities item=city}
+						{if $printslip.city_id==$city.id}
+						<span><b>City : </b><span>{$city.name}</span></span>
+						{/if}
+						{/foreach}
+					</div> 
+					<div class="ac">
+						<span><b>Address : </b><span>{$printslip.address}</span></span>
+					</div>
+					<div class="ac">
+						<span><b>Mobile No : </b><span>{$printslip.mobile}</span></span>
+					</div>
+					<div class="ac">
+						<span><b>Gender : </b><span>{$printslip.gender}</span></span>
+					</div>
+					<div class="ac"><span><b>Email : </b><span>{$printslip.email}</span></span></div>
 				</div>
-				<div class="common-bottom">
-					<span class="common-bottom"><b>Appointment Date : </b><span>{$printslip.ap_date}</span></span>
-				</div>
-				<div class="common-bottom">
-					<span class="common-bottom"><b>Appointment Time : </b><span>{$printslip.ap_time}</span></span>
+				<div class="col-sm-2">
+					<div width="100" height="100" style="border: 1px solid;"></div>
 				</div>
 			</div>
-			<div class="col-sm-4 ">
-				<div class="docInfo">
+			<div class="row common-bottom bor">
+				<div class="col-sm-8">
+					<div class="common-bottom common-top">
+						<span class="common-bottom"><b>Appointment No : </b><span>{$printslip.ap_number}</span></span>
+					</div>
 					<div class="common-bottom">
-						<span class="doci"><b>Doctor's Name : </b><span>{$printslip.doc_name}</span></span>
+						<span class="common-bottom"><b>Appointment Date : </b><span>{$printslip.ap_date}</span></span>
 					</div>
 					<div class="common-bottom">
-						<span class="doci"><b>Clinic Phone Number: </b><span>{$printslip.doc_phne}</span></span> 
-					</div>
-					<div class="common-bottom">
-						<span class="doci" ><b>Clinic Address : </b><span>{$printslip.doc_adr}</span></span>
-					</div>
-				</div> 
-			</div>
-		</div>
-		<div class="note" style=" " >
-			<p class="text-center common-bottom not_p">
-				Note: Please reach the clinic on time otherwise your appointment would be cancelled.
-			</p>
-			<p class="text-center doci">idoctor.pk</p>
-		</div>
-	</div>
-	{elseif isset($record) && record}
-
-	<div class="alertWrap" title="Errors"></div>
-	<form id="add_user" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
-		<fieldset>
-			<legend>Appointments</legend>
-			<div class="container doctorStyleCard">
-				<div class="row" style="padding: 10px;    padding-top: 20px;">
-					<div class="col-sm-2"> 
-						<img src="{$BASE_URL_ADMIN}{$smarty.get.img}" alt=""  class="img-responsive">
-					</div>
-					<div class="col-sm-7 ">
-						<h4 style="margin-bottom: 30px;">Dr. {$smarty.get.doc_name}</h4>
-						<div style="margin-bottom: 12px;">
-							<span class="text-center">{$smarty.get.speciallist}</span>
-						</div>
-						<span>{$smarty.get.doc_adr}</span>
-					</div>
-					<div class="col-sm-3 pull-right expri-div">
-						<div style="margin-bottom: 12px;">
-							<span class="text-center"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;{$smarty.get.exprience} Years of Exprience</span></div>
-							<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Rs. {$smarty.get.fee}</span>
-						</div>
-					</div>
-				</div>	
-				<div>
-					<input type="hidden" name="doc_name" value="{$smarty.get.doc_name}" id="doc_name">
-					<input type="hidden" name="doc_adr" value="{$smarty.get.doc_adr}" id="doc_adr">
-					<input type="hidden" name="doc_phne" value="{$smarty.get.doc_phne}" id="doc_phne">
-					<input type="hidden" name="u_id" value="{$smarty.get.doc_id}" id="id"> 
-					<input type="hidden" name="" value="{$unavail}" id="unavail"> 
-					<input type="hidden" name="p_id" value="" id="" placeholder="For Condition true(input for condition only)"> 
-					<input type="hidden" name="" value="{$from}" id="from"> 
-					<input type="hidden" name="" value="{$to}" id="to">
-					<input type="hidden" name="ap_number" id="ap_number"> 
-					<input type="hidden" name="security_key" id="security_key" value="{$record.security_key}">
-					<input type="hidden" name="" id="res_error" value="{$res_error}">
-					<input type="hidden" name="name" id="" value="{$record.name}">
-					<input type="hidden" name="patient_Id" id="" value="{$record.id}">
-					<input type="hidden" name="address" id="" value="{$record.address}">
-					<input type="hidden" name="mobile" id="" value="{$record.mobile}">
-					<input type="hidden" name="gender" id="" value="{$record.gender}">
-					<input type="hidden" name="email" id="" value="{$record.email}">
-					<input type="hidden" name="online_manual" id="online_manual" value="manual">
-					{foreach from=$cities item=city}
-					{if $record.city_id==$city.id}
-					<input type="hidden" name="city" id="" value="{$city.id}">
-					{/if}
-					{/foreach}
-
-				</div>
-				<div class="row">
-					<div class="col-sm-2"></div>
-					<div class="col-sm-4">	
-						<div class="calendar_block">
-							<input type="hidden" name="dt" id="" class="dateInput" />
-							<div class="text-center datetimeHeading"> 
-								<span>Select Date</span>
-							</div>
-							<div class="dt">
-								
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4 common-bottom ">
-						<div class="hideHr">
-							
-							<div class="timeWrap">
-								<div class="text-center timeHeading">
-									<span>Select Hour</span>
-								</div>
-							</div>
-							<input type="text" name="hour"  class="form-control" id="hour"/>
-						</div>
+						<span class="common-bottom"><b>Appointment Time : </b><span>{$printslip.ap_time}</span></span>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-2"></div>
-					<div class="col-sm-8">
-						<div style="margin-top: 24px;">
-							<input type="submit" name="submit" id="submit" value="Book Appointment" class="btn btn-primary form-control" />
+				<div class="col-sm-4 ">
+					<div class="docInfo">
+						<div class="common-bottom">
+							<span class="doci"><b>Doctor's Name : </b><span>{$printslip.doc_name}</span></span>
 						</div>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-		{elseif isset($smarty.get.exist)}
-
-		<input type="hidden" name="" value="{$erorMsg}" id="errorId">
-		<form id="check_patient" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-6">
-					<input type="hidden" name="doc_id" id="doc_id" class="doc_id form-control" value="{$smarty.get.doc_id}"/>
-					<input type="hidden" name="doc_name" id="doc_name" class="doc_name form-control" value="{$smarty.get.doc_name}" />
-					<label for="dt" class="">Patient Id</label>
-					<input type="text" name="p_id" id="p_id" class="p_id form-control" />
-				</div>
-				<div class="col-sm-1" style="padding-top: 24px;">
-					<input type="submit" class="btn btn-primary" value="Search" />
-				</div>
-				<div class="" style="padding-top: 24px;">
-					<a href="{$BASE_URL_ADMIN}doc-appointments/{$smarty.get.doc_id}?doc_name={$smarty.get.doc_name}&doc_adr={$smarty.get.doc_adr}&doc_phne={$smarty.get.doc_phne}&img={$smarty.get.img}&speciallist={$smarty.get.speciallist}&exprience={$smarty.get.exprience}&fee={$smarty.get.fee}" class="btn btn-primary">New Patient</a>
+						<div class="common-bottom">
+							<span class="doci"><b>Clinic Phone Number: </b><span>{$printslip.doc_phne}</span></span> 
+						</div>
+						<div class="common-bottom">
+							<span class="doci" ><b>Clinic Address : </b><span>{$printslip.doc_adr}</span></span>
+						</div>
+					</div> 
 				</div>
 			</div>
-		</form>
-		{else}
+			<div class="note" style=" " >
+				<p class="text-center common-bottom not_p">
+					Note: Please reach the clinic on time otherwise your appointment would be cancelled.
+				</p>
+				<p class="text-center doci">idoctor.pk</p>
+			</div>
+		</div>
+		{elseif isset($record) && record}
+
 		<div class="alertWrap" title="Errors"></div>
 		<form id="add_user" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
 			<fieldset>
 				<legend>Appointments</legend>
-				<div class="container doctorStyleCard">
+				<div class="container doctorStyleCard mb-5">
 					<div class="row" style="padding: 10px;    padding-top: 20px;">
 						<div class="col-sm-2"> 
 							<img src="{$BASE_URL_ADMIN}{$smarty.get.img}" alt=""  class="img-responsive">
 						</div>
-						<div class="col-sm-7 ">
+						<div class="col-sm-6 pt-3" style="margin-left: 20px;">
 							<h4 style="margin-bottom: 30px;">Dr. {$smarty.get.doc_name}</h4>
 							<div style="margin-bottom: 12px;">
-								<span class="text-center">{$smarty.get.speciallist}</span></div>
-								<span>{$smarty.get.doc_adr}</span>
+								<span class="text-center">{$smarty.get.speciallist}</span>
 							</div>
-							<div class="col-sm-3 pull-right expri-div">
-								<div style="margin-bottom: 12px;">
-									<span class="text-center"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;{$smarty.get.exprience} Years of Exprience</span></div>
-									<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Rs. {$smarty.get.fee}</span>
-								</div>
+							<span>{$smarty.get.doc_adr}</span>
+						</div>
+						<div class="col-sm-3 pull-right expri-div">
+							<div style="margin-bottom: 12px;">
+								<span class="text-center"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;{$smarty.get.exprience} Years of Exprience</span></div>
+								<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Rs. {$smarty.get.fee}</span>
 							</div>
-						</div>		
+						</div>
+					</div>	
+					<div>
 						<input type="hidden" name="doc_name" value="{$smarty.get.doc_name}" id="doc_name">
 						<input type="hidden" name="doc_adr" value="{$smarty.get.doc_adr}" id="doc_adr">
 						<input type="hidden" name="doc_phne" value="{$smarty.get.doc_phne}" id="doc_phne">
-						<input type="hidden" name="u_id" value="{$id}" id="id"> 
+						<input type="hidden" name="u_id" value="{$smarty.get.doc_id}" id="id"> 
 						<input type="hidden" name="" value="{$unavail}" id="unavail"> 
+						<input type="hidden" name="p_id" value="" id="" placeholder="For Condition true(input for condition only)"> 
 						<input type="hidden" name="" value="{$from}" id="from"> 
 						<input type="hidden" name="" value="{$to}" id="to">
 						<input type="hidden" name="ap_number" id="ap_number"> 
-						<input type="hidden" name="security_key" id="security_key">
+						<input type="hidden" name="security_key" id="security_key" value="{$record.security_key}">
 						<input type="hidden" name="" id="res_error" value="{$res_error}">
+						<input type="hidden" name="name" id="" value="{$record.name}">
+						<input type="hidden" name="patient_Id" id="" value="{$record.id}">
+						<input type="hidden" name="address" id="" value="{$record.address}">
+						<input type="hidden" name="mobile" id="" value="{$record.mobile}">
+						<input type="hidden" name="gender" id="" value="{$record.gender}">
+						<input type="hidden" name="email" id="" value="{$record.email}">
 						<input type="hidden" name="online_manual" id="online_manual" value="manual">
-						<div class="row" style="margin-top: 40px; margin-bottom: 20px;">
-							<div class="col-sm-2"></div>
-							<div class="col-sm-4">	
-								<div class="calendar_block">
-									<input type="hidden" name="dt" id="" class="dateInput" />
-									<div class="text-center datetimeHeading"> 
-										<span>Select Date</span>
-									</div>
-									<div class="dt">	
-									</div>
+						{foreach from=$cities item=city}
+						{if $record.city_id==$city.id}
+						<input type="hidden" name="city" id="" value="{$city.id}">
+						{/if}
+						{/foreach}
+
+					</div>
+					<div class="row">
+						<div class="col-sm-2"></div>
+						<div class="col-sm-4">	
+							<div class="calendar_block">
+								<input type="hidden" name="dt" id="" class="dateInput" />
+								<div class="text-center datetimeHeading"> 
+									<span>Select Date</span>
+								</div>
+								<div class="dt">
+
 								</div>
 							</div>
-							<div class="col-sm-4 common-bottom ">
-								<div class="hideHr">
+						</div>
+						<div class="col-sm-4 common-bottom ">
+							<div class="hideHr">
+
+								<div class="timeWrap">
 									<div class="text-center timeHeading">
 										<span>Select Hour</span>
 									</div>
-									<div class="timeWrap">
-										<input type="text" name="hour"  class="form-control" id="hour"/>
-									</div>
+								</div>
+								<input type="text" name="hour"  class="form-control" id="hour"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"></div>
+						<div class="col-sm-8">
+							<div style="margin-top: 24px;">
+								<input type="submit" name="submit" id="submit" value="Book Appointment" class="btn btn-primary form-control" />
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+			{elseif isset($smarty.get.exist)}
 
+			<input type="hidden" name="" value="{$erorMsg}" id="errorId">
+			<form id="check_patient" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
+				<fieldset>
+					<legend>Get Appointment</legend>
+
+					<div class="row">
+						<div class="col-sm-4 mx-auto">
+							<div class="form-group">
+								<input type="hidden" name="doc_id" id="doc_id" class="doc_id form-control" value="{$smarty.get.doc_id}"/>
+								<input type="hidden" name="doc_name" id="doc_name" class="doc_name form-control" value="{$smarty.get.doc_name}" />
+								<label for="dt" class="">Patient Id</label>
+								<input type="number" name="p_id" id="p_id" class="p_id form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-row my-3">
+						<div class="col-sm-4"></div>
+						<div class="col-sm-1">
+							<input type="submit" class="btn btn-primary form-control" value="Search" />
+						</div>
+						<div class="col-sm-3">
+							<a href="{$BASE_URL_ADMIN}doc-appointments/{$smarty.get.doc_id}?doc_name={$smarty.get.doc_name}&doc_adr={$smarty.get.doc_adr}&doc_phne={$smarty.get.doc_phne}&img={$smarty.get.img}&speciallist={$smarty.get.speciallist}&exprience={$smarty.get.exprience}&fee={$smarty.get.fee}" class="btn btn-primary form-control">New Patient</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+			{else}
+			<div class="alertWrap" title="Errors"></div>
+			<form id="add_user" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
+				<fieldset>
+					<legend>Appointments</legend>
+					<div class="container doctorStyleCard  mb-5">
+						<div class="row" style="padding: 10px;    padding-top: 20px;">
+							<div class="col-sm-2"> 
+								<img src="{$BASE_URL_ADMIN}{$smarty.get.img}" alt=""  class="img-responsive">
+							</div>
+							<div class="col-sm-6  pt-3" style="margin-left: 20px;">
+								<h4 style="margin-bottom: 30px;">Dr. {$smarty.get.doc_name}</h4>
+								<div style="margin-bottom: 12px;">
+									<span class="text-center">{$smarty.get.speciallist}</span></div>
+									<span>{$smarty.get.doc_adr}</span>
+								</div>
+								<div class="col-sm-3 pull-right expri-div">
+									<div style="margin-bottom: 12px;">
+										<span class="text-center"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;{$smarty.get.exprience} Years of Exprience</span></div>
+										<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Rs. {$smarty.get.fee}</span>
+									</div>
+								</div>
+							</div>		
+							<input type="hidden" name="doc_name" value="{$smarty.get.doc_name}" id="doc_name">
+							<input type="hidden" name="doc_adr" value="{$smarty.get.doc_adr}" id="doc_adr">
+							<input type="hidden" name="doc_phne" value="{$smarty.get.doc_phne}" id="doc_phne">
+							<input type="hidden" name="u_id" value="{$id}" id="id"> 
+							<input type="hidden" name="" value="{$unavail}" id="unavail"> 
+							<input type="hidden" name="" value="{$from}" id="from"> 
+							<input type="hidden" name="" value="{$to}" id="to">
+							<input type="hidden" name="ap_number" id="ap_number"> 
+							<input type="hidden" name="security_key" id="security_key">
+							<input type="hidden" name="" id="res_error" value="{$res_error}">
+							<input type="hidden" name="online_manual" id="online_manual" value="manual">
+							<div class="row" style="margin-top: 40px; margin-bottom: 20px;">
+								<div class="col-sm-2"></div>
+								<div class="col-sm-4">	
+									<div class="calendar_block">
+										<input type="hidden" name="dt" id="" class="dateInput" />
+										<div class="text-center datetimeHeading"> 
+											<span>Select Date</span>
+										</div>
+										<div class="dt">	
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 common-bottom ">
+									<div class="hideHr">
+										<div class="text-center timeHeading">
+											<span>Select Hour</span>
+										</div>
+										<div class="timeWrap">
+											<input type="text" name="hour"  class="form-control" id="hour"/>
+										</div>
+
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-2"></div>
-							<div class="col-sm-4 common-bottom">
-								<label for="name">Patient Name</label>
-								<input type="text" name="name" id="name" maxlength="50" class="form-control" onclick="generateRandomNumber()"/>
+							<div class="row mt-5">
+								<div class="col-sm-2"></div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="name">Patient Name</label>
+										<input type="text" name="name" id="name" maxlength="50" class="form-control" onclick="generateRandomNumber()"/>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="gender">Gender</label>
+										<select name="gender" id="gender" class="form-control">
+											<option value="male" {if $data.gender =='male'} selected="selected" {/if}>Male</option>
+											<option value="female" {if $data.gender =='female'} selected="selected" {/if}>Female</option>
+											<option value="other" {if $data.gender =='other'} selected="selected" {/if}>Other</option>
+										</select>
+									</div>
+								</div> 
 							</div>
-							<div class="col-sm-4 common-bottom">
-								<label for="gender">Gender</label>
-								<select name="gender" id="gender" class="form-control">
-									<option value="male" {if $data.gender =='male'} selected="selected" {/if}>Male</option>
-									<option value="female" {if $data.gender =='female'} selected="selected" {/if}>Female</option>
-									<option value="other" {if $data.gender =='other'} selected="selected" {/if}>Other</option>
-								</select>
-							</div> 
-						</div>
-						<div class="row">
-							<div class="col-sm-2"></div>
-							<div class="col-sm-4 common-bottom">
-								<label for="dob">Date of Birth</label>
-								<input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off" class="form-control"/>
+							<div class="row">
+								<div class="col-sm-2"></div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="dob">Date of Birth</label>
+										<input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off" class="form-control"/>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="marital_status">Marital Status</label>
+										<select name="marital_status" id="marital_status" class="form-control">
+											<option value="married">Married</option>
+											<option value="unmarried" >Unmarried</option>
+											<option value="widow">Widow</option>
+											<option value="divorced">Divorced</option>
+											<option value="seperated">Seperated</option>
+										</select> 
+									</div>
+								</div>
 							</div>
-							<div class="col-sm-4 common-bottom">
-								<label for="marital_status">Marital Status</label>
-					<select name="marital_status" id="marital_status" class="form-control"><!-- 
-						<option value="-1"  selected="" disabled="">Select Status</option> -->
-						<option value="married">Married</option>
-						<option value="unmarried" >Unmarried</option>
-						<option value="widow">Widow</option>
-						<option value="divorced">Divorced</option>
-						<option value="seperated">Seperated</option>
-					</select> 
-				</div>
+							<div class="row">
+								<div class="col-sm-2"></div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="mobile">Mobile</label>
+										<input type="text" name="mobile" id="mobile" value="{$data.mobile}" maxlength="50" class="form-control"/>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="city">City</label>
+										<select name="city" id="city" class="form-control">
+											<option value="">Select City</option>
+											{foreach from=$cities item=city}
+											<option {if $data.city==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
+											{/foreach}						
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2"></div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="address">Address</label>
+										<textarea  name="address" id="address" class="form-control textarea-height">{$data.address}</textarea>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="email">Email Address</label>
+										<input type="email" name="email"
+										id="email" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-8 mx-auto py-2">
+									<div >
+										<input type="submit" name="submit" id="submit" value="Book Appointment" class="btn btn-primary form-control" />
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+					{/if} 
+				</div><!-- #content -->
 			</div>
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-4 common-bottom">
-					<label for="mobile">Mobile</label>
-					<input type="text" name="mobile" id="mobile" value="{$data.mobile}" maxlength="50" class="form-control"/>
-				</div>
-				<div class="col-sm-4 common-bottom">
-					<label for="city">City</label>
-					<select name="city" id="city" class="form-control">
-						<option value="">Select City</option>
-						{foreach from=$cities item=city}
-						<option {if $data.city==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
-						{/foreach}						
-					</select>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-4 common-bottom">
-					<label for="address">Address</label>
-					<textarea  name="address" id="address" class="form-control">{$data.address}</textarea>
-				</div>
-				<div class="col-sm-4 common-top">
-					<label for="email">Email Address</label>
-					<input type="email" name="email"
-					id="email" class="form-control">
-				</div>
-				
-			</div>
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
-					<div >
-						<input type="submit" name="submit" id="submit" value="Book Appointment" class="btn btn-primary form-control" />
-					</div>
-				</div>
-			</div>
-		</fieldset>
-	</form>
-	{/if} 
-</div><!-- #content -->
+			<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+			{literal}
+			<style type="text/css">
+			.datetimeHeading{
+				margin-bottom: 10px;
+				border: 1px solid #e0e0e0;
+				padding: 6px;
+				background-color: #e0e0e0;
+				color: #FFF;
+			}
+			.container.doctorStyleCard{
+				margin:0 auto;
+				box-shadow: 0 0 5px 5px #dcdcdc;
+				border-radius: 5px;
+				width: 100%;
+				min-height: 150px;
 
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
-{literal}
-<style type="text/css">
-.datetimeHeading{
-	margin-bottom: 10px;
-	border: 1px solid #e0e0e0;
-	padding: 6px;
-	background-color: #e0e0e0;
-	color: #FFF;
-}
-.container.doctorStyleCard{
-	margin:0 auto;
-	box-shadow: 0 0 5px 5px #dcdcdc;
-	border-radius: 5px;
-	width: 100%;
-	min-height: 150px;
-	
-}
-.doctorStyleCard div span{
-	font-size: 14px;
-}
-.calendar_block {
-	box-shadow: 0 0 5px 5px #dcdcdc;
-	background-color:#f9f8f8;
-	border-radius: 5px;
-	/*float: left;*/
-}
+			}
+			.doctorStyleCard div span{
+				font-size: 14px;
+			}
+			.calendar_block {
+				box-shadow: 0 0 5px 5px #dcdcdc;
+				background-color:#f9f8f8;
+				border-radius: 5px;
+				/*float: left;*/
+			}
 
-.dt {
-	padding:20px;
-}
+			.dt {
+				padding:20px;
+			}
 
-.dt .ui-widget-header {
-	border:none;
-	background:none;
-}
+			.dt .ui-widget-header {
+				border:none;
+				background:none;
+			}
 
-.dt .ui-datepicker {
-	border: 3px solid #FF8800;
-	/*padding:10px 10px 10px;*/
-}
+			.dt .ui-datepicker {
+				border: 3px solid #FF8800;
+				/*padding:10px 10px 10px;*/
+			}
 
-.dt .ui-corner-all {
-	border-radius:10px;
-}
+			.dt .ui-corner-all {
+				border-radius:10px;
+			}
 
-.dt .ui-widget-content {
-	background: none;
-}
+			.dt .ui-widget-content {
+				background: none;
+			}
 
-.dt .ui-datepicker-calendar {
-	color: #FF8800;
-}
-.ui-icon{
-	background-color: #FF8800;
-	border-radius: 9px;
-}
-.dt .ui-state-hover {
-	background-color: #FF8800 !important;
-	color: #FFF !important;
-	/*// border-radius: 15px;*/
+			.dt .ui-datepicker-calendar {
+				color: #FF8800;
+			}
+			.ui-icon{
+				background-color: #FF8800;
+				border-radius: 9px;
+			}
+			.dt .ui-state-hover {
+				background-color: #FF8800 !important;
+				color: #FFF !important;
+				/*// border-radius: 15px;*/
 
-}
-.ui-timepicker-list .ui-timepicker-selected{
-	background-color: #FF8800 !important;
-	color: #FFF !important;
+			}
+			.ui-timepicker-list .ui-timepicker-selected{
+				background-color: #FF8800 !important;
+				color: #FFF !important;
 
-}
-.ui-timepicker-list .disabledFullhr{
-	
-	background: #6B6565 !important;
-	color: #FFF !important;
-	/*cursor: not-allowed;*/
+			}
+			.ui-timepicker-list .disabledFullhr{
 
-}
-.ui-timepicker-list .disabledFullhr:hover{
-	
-	background: #6B6565 !important;
-	color: #FFF !important;
-	cursor: not-allowed;
+				background: #6B6565 !important;
+				color: #FFF !important;
+				/*cursor: not-allowed;*/
 
-}
+			}
+			.ui-timepicker-list .disabledFullhr:hover{
+
+				background: #6B6565 !important;
+				color: #FFF !important;
+				cursor: not-allowed;
+
+			}
 
 /*.ui-datepicker-next-hover{
    background-color:#FFF !important;
@@ -436,6 +472,7 @@
 		padding: 6px;
 		background-color: #e0e0e0;
 		color: #FFF;
+		width: 338px;
 	}
 	span.select2.select2-container.select2-container--default {
 		width: 340px !important;
@@ -446,7 +483,7 @@
 	}
 	.expri-div{
 
-		margin-top: 55px;
+		margin-top: 73px;
 	}
 
 </style>

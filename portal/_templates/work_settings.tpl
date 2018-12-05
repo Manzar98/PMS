@@ -318,14 +318,33 @@ input[type="checkbox"]{
           margin: 0 auto !important;
 	}
 .daysWrap input[type="checkbox"]{
-		margin-top: 18px !important;
+		/*margin-top: 18px !important;*/
+	    position: relative;
+        left: 26px;
+        top: 5px;
+
+	}
+	.unavail{
+		position: relative;
+		left: 26px;
+		top: 5px;
 	}
 </style>
 {/literal}
 
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid checkboxWrap">
-		<h2>Date & Time Settings</h2>
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Date & Time</li>
+				
+			</ol>
+		</div>
+		<h2 class="pt-3">Date & Time Settings</h2>
 		<form class="box" action="{$smarty.server.REQUEST_URI}" method="post" enctype="multipart/form-data">
 		<fieldset>
 		<legend>Date & Time</legend>
@@ -334,220 +353,219 @@ input[type="checkbox"]{
 		<input type="hidden" name="" value="{$to}" id="toList">
 		<input type="hidden" name="" value="{$count}" id="countList">
 		<div class="daysWrap">
-			<div class="row common-bottom">
+			<div class="row">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
+					<div class="form-group">
 					<label class="m_lbl days_lbl">&nbsp;&nbsp;Monday</label>
 					<input type="checkbox" name="" class="center-block mon">
 					<input type="hidden" name="days[]" class="mondayHideInput" value="mon_off">
+					</div>
 				</div>
-				<div class="mon_Wrap">
-				<div class="col-sm-2 common-bottom">
-					<div class="mon_Div_Input">
+				<div class="col-sm-2">
+					<div class="mon_Div_Input form-group">
 					<label>From</label>
 					<input type="text" name="dt_from[]" class="form-control input-field dt_from from1">
 					</div>
 				</div>
-				<div class="col-sm-2 common-bottom">
-					<div class="mon_Div_Input">
+				<div class="col-sm-2">
+					<div class="mon_Div_Input form-group">
 					<label>To</label>
 					<input type="text" name="dt_to[]" class="form-control input-field dt_to to1">
 					</div>
 				</div>
-				<div class="col-sm-1 common-bottom">
-					<div class="mon_Div_Input">
+				<div class="col-sm-1">
+					<div class="mon_Div_Input form-group">
 					<label>Count</label>
 					<input type="number" name="hr_count[]" class="form-control input-field count1">
 					</div>
 				</div>
-				</div>
 				<div class="col-sm-1" style="margin-bottom: 30px;">
+					<div class="form-group">
 					<label class="tu_lbl days_lbl">Tuesday</label>
 					<input type="checkbox" name="" class="center-block tue">
 					<input type="hidden" name="days[]"  value="tue_off" class="tuesdayHideInput">
+					</div>
 				</div>
-				<div class="tue_Wrap">
-				<div class="col-sm-2 common-bottom">
-					<div class="tue_Div_Input">
+				<div class="col-sm-2">
+					<div class="tue_Div_Input form-group">
 					<label>From</label>
 					<input type="text" name="dt_from[]" class="form-control input-field dt_from from2">
 					</div>
 				</div>
-				<div class="col-sm-2 common-bottom">
-					<div class="tue_Div_Input">
+				<div class="col-sm-2">
+					<div class="tue_Div_Input form-group">
 					<label>To</label>
 					<input type="text" name="dt_to[]" class="form-control input-field dt_to to2">
 					</div>
 				</div>
-				<div class="col-sm-1 common-bottom">
-					<div class="tue_Div_Input">
+				<div class="col-sm-1">
+					<div class="tue_Div_Input form-group">
 					<label>Count</label>
 					<input type="number" name="hr_count[]" class="form-control input-field count2">
 					</div>
 				</div>
-				</div>
 			</div>
-			<div class="row common-bottom">
+			<div class="row">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
+					<div class="form-group">
 					<label class="w_lbl days_lbl">Wednesday</label>
 					<input type="checkbox" name="" class="center-block wed">
 					<input type="hidden" name="days[]"  value="wed_off" class="wednesdayHideInput">
 				</div>
-				<div class="wed_wrap">
-				<div class="col-sm-2 common-bottom">
-					<div class="wed_Div_Input">
+			</div>
+				<div class="col-sm-2">
+					<div class="wed_Div_Input form-group">
 					<label>From</label>
 					<input type="text" name="dt_from[]" class="form-control input-field dt_from from3">
 					</div>
 				</div>
-				<div class="col-sm-2 common-bottom">
-					<div class="wed_Div_Input">
+				<div class="col-sm-2">
+					<div class="wed_Div_Input form-group">
 					<label>To</label>
 					<input type="text" name="dt_to[]" class="form-control input-field dt_to to3">
 					</div>
 				</div>
-				<div class="col-sm-1 common-bottom">
-					<div class="wed_Div_Input">
+				<div class="col-sm-1">
+					<div class="wed_Div_Input form-group">
 					<label>Count</label>
 					<input type="number" name="hr_count[]" class="form-control input-field count3">
 					</div>
 				</div>
-				</div>
 				<div class="col-sm-1" style="margin-bottom: 30px;">
+					<div class="form-group">
 					<label class="th_lbl days_lbl">Thursday</label>
 					<input type="checkbox" name="" class="center-block thu">
 					<input type="hidden" name="days[]"  value="thu_off" class="thursdayHideInput">
 				</div>
-				<div class="thu_Wrap">
-				<div class="col-sm-2 common-bottom">
-					<div class="thu_Div_Input">
+			</div>
+				<div class="col-sm-2">
+					<div class="thu_Div_Input form-group">
 					<label>From</label>
 					<input type="text" name="dt_from[]" class="form-control input-field dt_from from4">
 					</div>
 				</div>
-				<div class="col-sm-2 common-bottom">
-					<div class="thu_Div_Input">
+				<div class="col-sm-2">
+					<div class="thu_Div_Input form-group">
 					<label>To</label>
 					<input type="text" name="dt_to[]" class="form-control input-field dt_to to4">
 					</div>
 				</div>
-				<div class="col-sm-1 common-bottom">
-					<div class="thu_Div_Input">
+				<div class="col-sm-1">
+					<div class="thu_Div_Input form-group">
 					<label>Count</label>
 					<input type="number" name="hr_count[]" class="form-control input-field count4">
 					</div>
 				</div>
-				</div>
 			</div>
-			<div class="row common-bottom">
+			<div class="row">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label class="f_lbl days_lbl">&nbsp;&nbsp;&nbsp;Friday</label>
+					<div class="form-group">
+					<label class="f_lbl days_lbl">&nbsp;&nbsp;&nbsp;Friday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<input type="checkbox" name="" class="center-block fri">
 					<input type="hidden" name="days[]"  value="fri_off" class="fridayHideInput">
 				</div>
-				<div class="fri_Wrap">
-				<div class="col-sm-2 common-bottom">
-					<div class="fri_Div_Input">
+			</div>
+				<div class="col-sm-2">
+					<div class="fri_Div_Input form-group">
 					<label>From</label>
 					<input type="text" name="dt_from[]" class="form-control input-field dt_from from5">
 					</div>
 				</div>
-				<div class="col-sm-2 common-bottom">
-					<div class="fri_Div_Input">
+				<div class="col-sm-2">
+					<div class="fri_Div_Input form-group">
 					<label>To</label>
 					<input type="text" name="dt_to[]" class="form-control input-field dt_to to5">
 					</div>
 				</div>
-				<div class="col-sm-1 common-bottom">
-					<div class="fri_Div_Input">
+				<div class="col-sm-1">
+					<div class="fri_Div_Input form-group">
 					<label>Count</label>
 					<input type="number" name="hr_count[]" class="form-control input-field count5">
 					</div>
 				</div>
-				</div>
 				<div class="col-sm-1" style="margin-bottom: 30px;">
+					<div class="form-group">
 					<label class="st_lbl days_lbl">Saturday</label>
 					<input type="checkbox" name="" class="center-block sat">
 					<input type="hidden" name="days[]"  value="sat_off" class="saturdayHideInput">
 				</div>
-				<div class="Sat_Wrap">
-				<div class="col-sm-2 common-bottom">
-					<div class="sat_Div_Input">
+			</div>
+				<div class="col-sm-2">
+					<div class="sat_Div_Input form-group">
 					<label>From</label>
 					<input type="text" name="dt_from[]" class="form-control input-field dt_from from6">
 					</div>
 				</div>
-				<div class="col-sm-2 common-bottom">
-					<div class="sat_Div_Input">
+				<div class="col-sm-2">
+					<div class="sat_Div_Input form-group">
 					<label>To</label>
 					<input type="text" name="dt_to[]" class="form-control input-field dt_to to6">
 					</div>
 				</div>
-				<div class="col-sm-1 common-bottom">
-					<div class="sat_Div_Input">
+				<div class="col-sm-1">
+					<div class="sat_Div_Input form-group">
 					<label>Count</label>
 					<input type="number" name="hr_count[]" class="form-control input-field count6">
 					</div>
 				</div>
-				</div>
 			</div>
-			<div class="row common-bottom">
+			<div class="row">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
-					<label class="su_lbl days_lbl">&nbsp;&nbsp;Sunday</label>
+					<div class="form-group">
+					<label class="su_lbl days_lbl">&nbsp;&nbsp;Sunday&nbsp;&nbsp;&nbsp;</label>
 					<input type="checkbox" name="" class="center-block sun">
 					<input type="hidden" name="days[]" value="sun_off" class="sundayHideInput">
 				</div>
-				<div class="sun_Wrap">
-				<div class="col-sm-2 common-bottom">
-					<div class="sun_Div_Input">
+			</div>
+				<div class="col-sm-2">
+					<div class="sun_Div_Input form-group">
 					<label>From</label>
 					<input type="text" name="dt_from[]" class="form-control input-field dt_from from7">
 					</div>
 				</div>
-				<div class="col-sm-2 common-bottom">
-					<div class="sun_Div_Input">
+				<div class="col-sm-2">
+					<div class="sun_Div_Input form-group">
 					<label>To</label>
 					<input type="text" name="dt_to[]" class="form-control input-field dt_to to7">
 					</div>
 				</div>
-				<div class="col-sm-1 common-bottom">
-					<div class="sun_Div_Input">
+				<div class="col-sm-1">
+					<div class="sun_Div_Input form-group">
 					<label>Count</label>
 					<input type="number" name="hr_count[]" class="form-control input-field count7">
 					</div>
 				</div>
-				</div>
 			</div>
 		</div>
-			<div class="row common-bottom">
+			<div class="row">
 				<div class="col-sm-1" style="margin-bottom: 30px;">
+					<div class="form-group">
 					<label class="un_lbl">Unavailable Days</label>
 					<input type="checkbox" name="" class="center-block unavail" >
 					<input type="hidden" name="days[]" class="unavailHideInput" value="unavail_off">
 				</div>
-				<div class="unavail_Wrap">
-				<div class="col-sm-2 common-bottom">
-					<div class="unavail_Div_Input">
+			</div>
+				<div class="col-sm-2">
+					<div class="unavail_Div_Input form-group">
 					<label>From</label>
 					<input type="text" name="dt_from[]" class="form-control input-field dateFrom from8">
 					</div>
 				</div>
-				<div class="col-sm-2 common-bottom">
-					<div class="unavail_Div_Input">
+				<div class="col-sm-2">
+					<div class="unavail_Div_Input form-group">
 					<label>To</label>
 					<input type="text" name="dt_to[]" class="form-control input-field dateTo to8">
 					</div>
 				</div>
-				<div class="col-sm-1 common-bottom">
+				<div class="col-sm-1">
 					<!-- <div class="unavail_Div_Input">
 					<label>Count</label>
 					<input type="number" name="hr_count[]" class="form-control input-field">
 					</div> -->
 				</div>
-				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6">
+				<div class="col-sm-6 mx-auto">
 				<input type="submit" name="" value="Submit" class="form-control btn btn-primary">
 				</div>
 			</div>

@@ -18,9 +18,9 @@
 	<link href="{$BASE_URL_ADMIN}_templates/css/custom.css" rel="stylesheet">
 	<!-- Main styles -->
 	<link href="{$BASE_URL_ADMIN}_templates/css/admin.css" rel="stylesheet">
-	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/screen.css" type="text/css" media="screen" /> -->
+<!-- 	 <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/screen.css" type="text/css" media="screen" /> -->
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery.fancybox.css" type="text/css" media="screen" /> -->
-	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery-ui.css"> -->
+	 <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery-ui.css">
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/fonts/kreon.css"> -->
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/fonts/droidsans.css" /> -->
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/bootstrap.css" /> -->

@@ -1,6 +1,16 @@
 {include file="header.tpl"}
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
+				<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>	
+				<li class="breadcrumb-item active">View Package</li>
+
+			</ol>
+		</div>
 		<h2>Package Details</h2>
 		<table class="table table-striped table-bordered" style="margin: 50px 0;">
 			<thead>

@@ -51,7 +51,6 @@
 				{else}
 				<li class="breadcrumb-item active">View Profile</li>
 				{/if}
-				
 			</ol>
 		</div>
 		{if (isset($errors) && $errors)}

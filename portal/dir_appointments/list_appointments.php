@@ -4,7 +4,7 @@ $appointment= new Appointment;
 $patient = new Patient;
 $users = new User;
 // echo $id;
-
+$smarty->assign("id",@$id);
 if($id=="view" && $extra>0){
 
     $appoint=$appointment->getSingleApointments($extra);

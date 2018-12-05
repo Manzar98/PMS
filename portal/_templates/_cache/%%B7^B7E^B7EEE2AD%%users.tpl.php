@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 17:47:50
+<?php /* Smarty version 2.6.31, created on 2018-12-04 18:42:40
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 107, false),array('modifier', 'date_format', 'users/users.tpl', 112, false),array('function', 'cycle', 'users/users.tpl', 131, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 106, false),array('modifier', 'date_format', 'users/users.tpl', 111, false),array('function', 'cycle', 'users/users.tpl', 130, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -63,7 +63,6 @@ users/">Doctors</a>
 				<?php else: ?>
 				<li class="breadcrumb-item active">View Profile</li>
 				<?php endif; ?>
-				
 			</ol>
 		</div>
 		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>

@@ -1,12 +1,23 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-28 18:39:57
+<?php /* Smarty version 2.6.31, created on 2018-12-04 18:13:14
          compiled from own_package.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<div id="content">
+<div id="" class="content-wrapper">
 	<div class="container-fluid">
+				<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>	
+				<li class="breadcrumb-item active">View Package</li>
+
+			</ol>
+		</div>
 		<h2>Package Details</h2>
 		<table class="table table-striped table-bordered" style="margin: 50px 0;">
 			<thead>

@@ -1509,9 +1509,7 @@ ul.patient_info.list-inline li{
 .search-top{
 	padding-top: 5px;
 }
-.ui-datepicker-month, .ui-datepicker-year{
-	color: #323232;
-}
+
 #pro-file-upload {
 	padding: 17px;
 	line-height: 12px;
@@ -1623,32 +1621,7 @@ ul.patient_info.list-inline li{
 	color: inherit;
 	text-decoration: none;
 }
-.ui-timepicker-list{
 
-	background: #F9F8F8;
-	width: 340px;
-	min-width: 340px;
-	min-height: 365px;
-	/*border: 1px solid;*/
-	padding: 0;
-	text-align: center;
-	padding-top: 20px;
-	box-shadow: 0 0 5px 5px #dcdcdc;
-	border-radius: 7px;
-}
-.ui-timepicker-list li {
-	display: inline-block;
-	width: 100px;
-	padding: 10px 0;
-	border: 1px solid #d9bb73;
-	margin-bottom: 20px;
-	margin-left: 8px;
-	color: #ff8800;
-}
-.ui-timepicker-list li:hover {
-	background: #FF8800;
-	color: #FFF;
-}
 select#searchBy_cat {
 	/*font-family: arial;*/
 }
@@ -1678,9 +1651,7 @@ p .info_wrap{
 .bor{
 	padding-top: 20px;
 }
-.doci{
-	font-size: 13px;
-}
+
 .note{
 	margin-top:40px;
 }

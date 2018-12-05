@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 15:59:30
+<?php /* Smarty version 2.6.31, created on 2018-12-04 22:49:04
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -30,12 +30,12 @@ _templates/css/custom.css" rel="stylesheet">
 	<!-- Main styles -->
 	<link href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/admin.css" rel="stylesheet">
-	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+<!-- 	 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/screen.css" type="text/css" media="screen" /> -->
 	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/jquery.fancybox.css" type="text/css" media="screen" /> -->
-	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/css/jquery-ui.css"> -->
+	 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+_templates/css/jquery-ui.css">
 	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/fonts/kreon.css"> -->
 	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
