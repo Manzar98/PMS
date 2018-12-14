@@ -22,8 +22,10 @@ if ($_POST) {
 
 		$data['id']= $_POST['id'];
 	}
+	
 	if ($package->addPackage($data)) {
 
+		$_SESSION['flashAlert']="Package is Successfully Created";
 		redirect_to(BASE_URL.'packages/');;
 	}
 }

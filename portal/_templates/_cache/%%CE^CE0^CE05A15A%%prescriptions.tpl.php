@@ -1,72 +1,14 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-05 22:07:25
+<?php /* Smarty version 2.6.31, created on 2018-12-14 14:20:03
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 89, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 127, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 149, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 146, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 32, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 89, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 111, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 108, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-
-<?php echo '
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		
-		$("#header-footer").checked = false;		
-		$("#field").change(function(){
-			
-			if( $("#field").val()== \'created_on\')
-			{
-				
-				$("#q").datepicker({
-					dateFormat : "yy-mm-dd",
-					changeMonth: true,
-				});
-				$("#q").datepicker("show");
-			}	
-			else
-			{
-				$("#q").datepicker("destroy");
-			}
-		});
-		
-		$("#print_fee").click(function()
-		{
-			//debugger;
-			if($("#print_fee").prop("checked") == true)
-			{
-				$("#fee").removeClass("noprint");
-			}
-			else
-			{
-				$("#fee").addClass("noprint");
-			}
-		});
-
-		$("#printPrescription").click(function(){
-			
-			window.print();
-		});
-
-		
-	});
-</script>
-
-'; ?>
-
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
-		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
-		<div class="fail noprint">
-			<?php $_from = $this->_tpl_vars['errors']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['error']):
-?>
-			<?php echo $this->_tpl_vars['error']; ?>
-
-			<?php endforeach; endif; unset($_from); ?>
-		</div>
-		<?php endif; ?>
 		<!-- Breadcrumbs-->
 		<div class="noprint">
 			<ol class="breadcrumb">
@@ -91,6 +33,29 @@ prescriptions/">Prescriptions</a>
 				<?php endif; ?>
 			</ol>
 		</div>
+		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
+		<div class="fail noprint">
+			<?php $_from = $this->_tpl_vars['errors']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['error']):
+?>
+			<?php echo $this->_tpl_vars['error']; ?>
+
+			<?php endforeach; endif; unset($_from); ?>
+		</div>
+		<?php endif; ?>
+		<!-- <?php echo ((is_array($_tmp=$_SESSION)) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
+ -->
+		<?php if (( isset ( $_SESSION['flashAlert'] ) )): ?>
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION['flashAlert']; ?>
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		<?php endif; ?>
 		<?php if ($this->_tpl_vars['id'] == '0'): ?>
 		<h2 class="noprint py-2"><?php if (( isset ( $_GET['q'] ) && $_GET['q'] != '' )): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Prescription List<?php endif; ?></h2>
@@ -104,15 +69,14 @@ prescriptions/" method="get" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Search for Prescriptions</legend>
 				<div class="row">
-					<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['search'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
- -->
+					<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['grouped_prescriptions'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
+	 				 -->
 					<div class="col-md-3 col-sm-12">
 						<div class="form-group">
 							<select name="field" id="field" class="form-control">
 								<option value="id" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'id' )): ?> selected="selected" <?php endif; ?>>Prescription ID</option>
 								<option value="patient_id" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'patient_id' )): ?> selected="selected" <?php endif; ?>>Patient ID</option>
 								<option value="patient_name" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'patient_name' )): ?> selected="selected" <?php endif; ?>>Patient Name</option>
-								<option value="created_on" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'created_on' )): ?> selected="selected" <?php endif; ?>>Date</option>
 								<option value="complain" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'complain' )): ?> selected="selected" <?php endif; ?>>Complain</option>
 							</select>
 						</div>
@@ -123,8 +87,8 @@ prescriptions/" method="get" enctype="multipart/form-data">
 "<?php endif; ?> maxlength="20" />
 						</div>
 					</div>
-					<div class="col-sm-1">
-						<input class="btn btn-primary form-control" type="submit" value="Search" name="submit" id="submit" />
+					<div class="col-sm-2">
+						<input class="btn btn-primary" type="submit" value="Search" name="submit" id="submit" />
 					</div>
 				</div>
 			</fieldset>
@@ -134,11 +98,6 @@ prescriptions/" method="get" enctype="multipart/form-data">
 		
 		<div class="pull-right grp_btn">
 			<span style="margin-bottom: 5px;">Group By :&nbsp;</span> 
-			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'date' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-prescriptions/?group_by=date&q=<?php echo $_GET['q']; ?>
-&field=<?php echo $_GET['field']; ?>
-&p=<?php echo $_GET['p']; ?>
-">Date</a>
 			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'patient_id' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/?group_by=patient_id&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
@@ -226,6 +185,8 @@ _templates/img/bin.png" alt="Delete" /></a>
 	</table>
 	<?php endforeach; endif; unset($_from); ?>
 	<?php endif; ?>
+	<!-- <?php echo $this->_tpl_vars['grouped_prescriptions']; ?>
+ -->
 	<div class="pagination">
 		<?php echo $this->_tpl_vars['pages']; ?>
 
@@ -374,14 +335,55 @@ _templates/img/bin.png" alt="Delete" /></a>
 	<?php endif; ?>
 </div>
 
-</div>
-
-
-<!-- #content -->
-
-<div class="print branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+</div><!-- #content -->
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+<?php echo '
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#header-footer").checked = false;		
+		$("#field").change(function(){
+			
+			if( $("#field").val()== \'created_on\')
+			{
+				
+				$("#q").datepicker({
+					dateFormat : "yy-mm-dd",
+					changeMonth: true,
+				});
+				$("#q").datepicker("show");
+			}	
+			else
+			{
+				$("#q").datepicker("destroy");
+			}
+		});
+		
+		$("#print_fee").click(function()
+		{
+			//debugger;
+			if($("#print_fee").prop("checked") == true)
+			{
+				$("#fee").removeClass("noprint");
+			}
+			else
+			{
+				$("#fee").addClass("noprint");
+			}
+		});
+
+		$("#printPrescription").click(function(){
+			
+			window.print();
+		});
+		$(\'#collapsePrescription\').collapse({
+			toggle: true
+		})
+	});
+</script>
+
+'; ?>

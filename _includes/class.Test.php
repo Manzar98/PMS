@@ -154,6 +154,22 @@ Class Test
 
 	  }	
 
+	 function GetTestBySearch($q,$field, $startIndex,$limit)
+	{
+		global $db;
+		$sql = 'SELECT * FROM '.DB_PREFIX.'tests WHERE '.$field.'  LIKE "%'.$q.'%" LIMIT '.$startIndex.' ,'.$limit;
+		   //echo $sql;
+		return $db->QueryArray($sql);
+	}
+	  function CountSearchedTest($q,$field)
+	{
+		global $db;
+		$sql = 'SELECT COUNT(id) FROM '.DB_PREFIX.'tests WHERE user_id='.$_SESSION['AdminId'].' AND '.$field.' LIKE "%'.$q.'%" LIMIT 1';
+		// echo $sql;
+		return $db->QueryItem($sql);
+
+	}
+
 	
 }
 ?>

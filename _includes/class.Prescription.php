@@ -126,20 +126,20 @@ Class Prescription
 				$sql = 'SELECT pt.id as patient_id,pt.name as patient_name, p.id as id, p.description as description, p.complain as complain, 
 				p.next_date as next_date, p.created_on as created_on, p.updated_on as updated_on
 				FROM  '.DB_PREFIX.'prescription p 
-				LEFT JOIN '.DB_PREFIX.'patient pt ON p.patient_id = pt.id  WHERE p.id='.$q.' AND user_id='.$id;
+				LEFT JOIN '.DB_PREFIX.'patient pt ON p.patient_id = pt.id  WHERE p.id='.$q.' AND pt.user_id='.$id;
 			}
 			elseif($field=="created_on")
 			{
 				$sql = 'SELECT pt.id as patient_id,pt.name as patient_name, p.id as id, p.description as description, p.complain as complain, 
 				p.next_date as next_date, p.created_on as created_on, p.updated_on as updated_on
 				FROM  '.DB_PREFIX.'prescription p 
-				LEFT JOIN '.DB_PREFIX.'patient pt ON p.patient_id = pt.id WHERE p.created_on = '.$q.' AND user_id='.$id;
+				LEFT JOIN '.DB_PREFIX.'patient pt ON p.patient_id = pt.id WHERE p.created_on = '.$q.' AND pt.user_id='.$id;
 			}
 			else {
 				$sql = 'SELECT pt.id as patient_id,pt.name as patient_name, p.id as id, p.description as description, p.complain as complain, 
 				p.next_date as next_date, p.created_on as created_on, p.updated_on as updated_on
 				FROM  '.DB_PREFIX.'prescription p 
-				LEFT JOIN '.DB_PREFIX.'patient pt ON p.patient_id = pt.id WHERE user_id='.$id.' AND '.$field.' LIKE "%'.$q.'%"';			
+				LEFT JOIN '.DB_PREFIX.'patient pt ON p.patient_id = pt.id WHERE pt.user_id='.$id.' AND '.$field.' LIKE "%'.$q.'%"';			
 			}
 		}
 		elseif($field=="patient_name") {
@@ -150,7 +150,7 @@ Class Prescription
 			FROM  '.DB_PREFIX.'prescription p 
 			LEFT JOIN '.DB_PREFIX.'patient pt ON p.patient_id = pt.id
 
-			WHERE  user_id='.$id.' AND  pt.name LIKE "%'.$q.'%"
+			WHERE  pt.user_id='.$id.' AND  pt.name LIKE "%'.$q.'%"
 			';
 
 		}
@@ -163,9 +163,9 @@ Class Prescription
 			FROM  '.DB_PREFIX.'prescription p 
 			LEFT JOIN '.DB_PREFIX.'patient pt ON p.patient_id = pt.id
 
-			WHERE pt.id="'.$q.'" AND user_id='.$id;
+			WHERE pt.id="'.$q.'" AND pt.user_id='.$id;
 		}
-		//echo $sql;
+		// echo $sql;
 		return $db->QueryArray($sql);
 	}
 

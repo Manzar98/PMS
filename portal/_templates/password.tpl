@@ -10,13 +10,20 @@
 				<li class="breadcrumb-item active">Change Password</li>
 			</ol>
 		</div>
-		<h2 id="password" class="pt-3">Change password</h2>
-
 		{if isset($error)}
-		<div class="fail">
-			{$error}
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<strong>Success!</strong> {$error}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
 		</div>
 		{/if}
+		<h2 id="password" class="pt-3">Change password</h2>
+
+		
 
 		<form id="change_password" action="{$smarty.server.REQUEST_URI}" method="post" class="box style">
 			<fieldset>
@@ -47,7 +54,7 @@
 		<div class="common-bottom"></div>
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+{include file="footer.tpl"}
 {literal}
 <script type="text/javascript">
 	$(document).ready(function()
@@ -60,8 +67,10 @@
 				verify_password: { equalTo: "#new_password" }
 			}
 		});
+		
+		$('#collapseProfile').collapse({
+			toggle: true
+		})
 	});
 </script>
 {/literal}
-
-{include file="footer.tpl"}

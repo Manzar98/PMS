@@ -1,239 +1,4 @@
 {include file="header.tpl"}
-
-{literal}
-<script>
-
-	$(function() {
-		$( "#next_date" ).datepicker({
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-		});
-	});
-
-
-	function PatientLookUp(q)
-	{
-		var field = $("#field").val();
-		$.ajax({
-			type: "POST",
-			url: "{/literal}{$BASE_URL_ADMIN}add-prescription/suggest-patients/{literal}",
-			data: "q=" + q + "&field="+field,
-			success: function(msg) 
-			{
-				if(msg!="")
-				{
-					$("#suggestion").show();
-					$("#suggestion").html(msg);
-				}
-			}
-		});
-	}
-
-
-
-	function GetMedicineInstruction(medicine)
-	{
-		var medicine_id = medicine.value;
-		$.ajax({
-			type: "POST",
-			url: "{/literal}{$BASE_URL_ADMIN}add-prescription/get-medicine-instructions/{literal}",
-			data: "medicine_id=" + medicine_id,
-			success: function(msg) 
-			{
-
-				$('.medicine_instruction').html(msg);
-
-			}
-		});
-	}
-	function GetTestOptions(test)
-	{
-		var test_id = test.value;
-
-		$.ajax({
-			type: "POST",
-			url: "{/literal}{$BASE_URL_ADMIN}add-prescription/get-test-options/{literal}",
-			data: "test_id=" + test_id,
-			success: function(msg) 
-			{
-				$('.test_options').html(msg);          
-			}
-		});
-	}
-
-	function SelectPatient(thisValue,thisName)
-	{
-		if(thisValue)
-		{
-			//debugger
-			$("#patient_id").val(thisValue);
-			$("#patient_name").val(thisName);
-			$("#suggestion").hide();
-		}
-
-	}
-
-	function remove_instruction(element,id)
-	{
-		$.ajax({
-			type: "POST",
-			url: "{/literal}{$BASE_URL_ADMIN}edit-prescription/remove-instruction/{literal}",
-			data: "id=" + id,
-			success: function(msg) 
-			{
-				// debugger;
-				if(msg=='1')
-				{
-					$(element).parents('tr').remove();
-				}
-				else
-				{
-					alert("some error occurred");
-				}
-			}
-		});
-	}
-	function remove_test(element,id)
-	{
-		$.ajax({
-			type: "POST",
-			url: "{/literal}{$BASE_URL_ADMIN}edit-prescription/remove-test-option/{literal}",
-			data: "id=" + id,
-			success: function(msg) 
-			{
-
-				if(msg=='1')
-				{
-					$(element).parents('tr').remove();
-				}
-				else{
-					alert("some error occurred");
-				}
-
-			}
-		});
-	}		
-	$(document).ready(function(){
-		var test_count = 0;
-		var medicine_count = 0;
-
-		var medicines = '{/literal}<select name="medicine_name[]">{foreach from=$medicines item=m}<option value="{if isset($m.medicine_id)}{$m.medicine_id}{/if}">{$m.name}({$m.formula})</option>{/foreach}</select>{literal}';
-
-
-		$("#add_instruction").on("click", function(){
-
-			medicine_count = medicine_count + 1;
-
-			var medicine_id = $("#medicine").val();
-			var medicine_name = $("#medicine option:selected").text();
-
-			var instruction_id = $(".medicine_instruction").val();
-			var instruction_name = $(".medicine_instruction :selected").text();
-
-			var custom_instruction = $("#custom_instruction").val();
-      // debugger
-      if(custom_instruction!="")
-      {
-//debugger
-$.ajax({
-	type: "POST",
-	url: "{/literal}{$BASE_URL_ADMIN}add-prescription/add-instruction/{literal}",
-	data: "medicine_id=" + medicine_id + "&instruction="+custom_instruction,
-	success: function(msg) 
-	{
-		console.log(msg);
-                    //  debugger
-                    if(parseInt(msg)>0)
-                    {
-                    	instruction_id = msg;
-                    }
-                    var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
-                    var instruction ='<tr> <td>' + medicine_name + '</td><td>' + custom_instruction + '</td> <td><span class="close">X</span></td>'+instruction_data+' </tr>';					
-
-                    $("#instructions").show();
-                    $("#instructions table").append(instruction);
-                    $("#custom_instruction").val('');
-
-                    $("#instructions").find('.close').on("click", function(){
-                    	$(this).parents('tr').remove();
-                    });
-
-                }	
-            });
-
-}
-else
-{
-	var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
-	var instruction ='<tr> <td>' + medicine_name + '</td><td>' + instruction_name + '</td><td><span class="close">X</span></td>'+instruction_data+' </tr>';					
-	$("#instructions").show();
-	$("#instructions table").append(instruction);
-
-	$("#instructions").find('.close').on("click", function(){
-		$(this).parents('tr').remove();
-	});
-}
-
-
-});
-
-		$("#instructions").find('.close').on("click", function(){
-			$(this).parents('tr').remove();
-		});
-
-
-
-		$("#add_test").on("click", function(){
-
-			test_count = test_count + 1;
-
-			var test_id = $("#test_name").val();
-			var test_name = $("#test_name :selected").text();
-
-			var option_id = $(".test_options").val();
-			var option_name = $(".test_options :selected").text();
-
-			var test_result = $("#test_result").val();
-
-			if(option_name!="")
-			{
-
-				var test_data = '<input type="hidden" name="test['+test_count+'][test_id]" value="' + test_id + '"/> <input type="hidden" name="test['+test_count+'][option_id]" value="'+ option_id +'" /> <input type="hidden" name="test['+test_count+'][result]" value="'+ test_result +'" /><input type="hidden" name="test['+test_count+'][is_TestChange]" value="true" />';
-				var test ='<tr> <td>' + test_name + '</td><td>' + option_name + '</td> <td> '+ test_result+' </td> <td><span class="close">X</span></td>'+test_data+' </tr>';					
-				$("#test_table").show();
-				$("#test_table table").append(test);
-				$("#test_table td .close").on("click", function(){
-					$(this).parents('tr').remove();
-				});
-
-			}
-		});
-		
-		$("#medicine").select2({
-                    // placeholder: "Select a State",
-                    allowClear: true
-                });
-		$("#test_name").select2({
-                    // placeholder: "Select a State",
-                    allowClear: true
-                });
-		$("#city").select2({
-                    // placeholder: "Select a State",
-                    allowClear: true
-                });
-
-	});
-
-function generateRandomNumber(){
-
-	var d=new Date();
-	var n=d.getTime();
-	n = n.toString()
-	m=n.substring(9,14)
-	$('#security_key').val(m);
-}
-</script>
-{/literal}
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
@@ -261,7 +26,6 @@ function generateRandomNumber(){
 			{/foreach}
 		</div>
 		{/if}
-
 		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="get" enctype="multipart/form-data">
 			<fieldset >
 				<legend>Search Patient</legend>
@@ -485,19 +249,244 @@ function generateRandomNumber(){
 			</form>
 		</div><!-- #content -->
 	</div>
-	<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+	{include file="footer.tpl"}
 	{literal}
-	<script type="text/javascript">
-		$(document).ready(function()
-		{
-			$('#name').focus();
-			$('#add_prescription').validate({
-				rules: {
-					patient_id: { required: true }
-				}
+	<script>
+
+		$(function() {
+			$( "#next_date" ).datepicker({
+				dateFormat : "yy-mm-dd",
+				changeMonth: true,
 			});
 		});
-	</script>
-	{/literal}
 
-	{include file="footer.tpl"}
+
+		function PatientLookUp(q)
+		{
+			var field = $("#field").val();
+			$.ajax({
+				type: "POST",
+				url: "{/literal}{$BASE_URL_ADMIN}add-prescription/suggest-patients/{literal}",
+				data: "q=" + q + "&field="+field,
+				success: function(msg) 
+				{
+					if(msg!="")
+					{
+						$("#suggestion").show();
+						$("#suggestion").html(msg);
+					}
+				}
+			});
+		}
+
+
+
+		function GetMedicineInstruction(medicine)
+		{
+			var medicine_id = medicine.value;
+			$.ajax({
+				type: "POST",
+				url: "{/literal}{$BASE_URL_ADMIN}add-prescription/get-medicine-instructions/{literal}",
+				data: "medicine_id=" + medicine_id,
+				success: function(msg) 
+				{
+
+					$('.medicine_instruction').html(msg);
+
+				}
+			});
+		}
+		function GetTestOptions(test)
+		{
+			var test_id = test.value;
+
+			$.ajax({
+				type: "POST",
+				url: "{/literal}{$BASE_URL_ADMIN}add-prescription/get-test-options/{literal}",
+				data: "test_id=" + test_id,
+				success: function(msg) 
+				{
+					$('.test_options').html(msg);          
+				}
+			});
+		}
+
+		function SelectPatient(thisValue,thisName)
+		{
+			if(thisValue)
+			{
+			//debugger
+			$("#patient_id").val(thisValue);
+			$("#patient_name").val(thisName);
+			$("#suggestion").hide();
+		}
+
+	}
+
+	function remove_instruction(element,id)
+	{
+		$.ajax({
+			type: "POST",
+			url: "{/literal}{$BASE_URL_ADMIN}edit-prescription/remove-instruction/{literal}",
+			data: "id=" + id,
+			success: function(msg) 
+			{
+				// debugger;
+				if(msg=='1')
+				{
+					$(element).parents('tr').remove();
+				}
+				else
+				{
+					alert("some error occurred");
+				}
+			}
+		});
+	}
+	function remove_test(element,id)
+	{
+		$.ajax({
+			type: "POST",
+			url: "{/literal}{$BASE_URL_ADMIN}edit-prescription/remove-test-option/{literal}",
+			data: "id=" + id,
+			success: function(msg) 
+			{
+
+				if(msg=='1')
+				{
+					$(element).parents('tr').remove();
+				}
+				else{
+					alert("some error occurred");
+				}
+
+			}
+		});
+	}		
+	$(document).ready(function(){
+		var test_count = 0;
+		var medicine_count = 0;
+
+		var medicines = '{/literal}<select name="medicine_name[]">{foreach from=$medicines item=m}<option value="{if isset($m.medicine_id)}{$m.medicine_id}{/if}">{$m.name}({$m.formula})</option>{/foreach}</select>{literal}';
+
+
+		$("#add_instruction").on("click", function(){
+
+			medicine_count = medicine_count + 1;
+
+			var medicine_id = $("#medicine").val();
+			var medicine_name = $("#medicine option:selected").text();
+
+			var instruction_id = $(".medicine_instruction").val();
+			var instruction_name = $(".medicine_instruction :selected").text();
+
+			var custom_instruction = $("#custom_instruction").val();
+      // debugger
+      if(custom_instruction!="")
+      {
+//debugger
+$.ajax({
+	type: "POST",
+	url: "{/literal}{$BASE_URL_ADMIN}add-prescription/add-instruction/{literal}",
+	data: "medicine_id=" + medicine_id + "&instruction="+custom_instruction,
+	success: function(msg) 
+	{
+		console.log(msg);
+                    //  debugger
+                    if(parseInt(msg)>0)
+                    {
+                    	instruction_id = msg;
+                    }
+                    var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
+                    var instruction ='<tr> <td>' + medicine_name + '</td><td>' + custom_instruction + '</td> <td><span class="close">X</span></td>'+instruction_data+' </tr>';					
+
+                    $("#instructions").show();
+                    $("#instructions table").append(instruction);
+                    $("#custom_instruction").val('');
+
+                    $("#instructions").find('.close').on("click", function(){
+                    	$(this).parents('tr').remove();
+                    });
+
+                }	
+            });
+
+}
+else
+{
+	var instruction_data = '<input type="hidden" name="instructions['+medicine_count+'][medicine_id]" value="' + medicine_id + '"/> <input type="hidden" name="instructions['+medicine_count+'][instruction_id]" value="'+ instruction_id+'"  /><input type="hidden" name="instructions['+medicine_count+'][is_instructionChange]" value="true"  /> ';
+	var instruction ='<tr> <td>' + medicine_name + '</td><td>' + instruction_name + '</td><td><span class="close">X</span></td>'+instruction_data+' </tr>';					
+	$("#instructions").show();
+	$("#instructions table").append(instruction);
+
+	$("#instructions").find('.close').on("click", function(){
+		$(this).parents('tr').remove();
+	});
+}
+
+
+});
+
+		$("#instructions").find('.close').on("click", function(){
+			$(this).parents('tr').remove();
+		});
+
+
+
+		$("#add_test").on("click", function(){
+
+			test_count = test_count + 1;
+
+			var test_id = $("#test_name").val();
+			var test_name = $("#test_name :selected").text();
+
+			var option_id = $(".test_options").val();
+			var option_name = $(".test_options :selected").text();
+
+			var test_result = $("#test_result").val();
+
+			if(option_name!="")
+			{
+
+				var test_data = '<input type="hidden" name="test['+test_count+'][test_id]" value="' + test_id + '"/> <input type="hidden" name="test['+test_count+'][option_id]" value="'+ option_id +'" /> <input type="hidden" name="test['+test_count+'][result]" value="'+ test_result +'" /><input type="hidden" name="test['+test_count+'][is_TestChange]" value="true" />';
+				var test ='<tr> <td>' + test_name + '</td><td>' + option_name + '</td> <td> '+ test_result+' </td> <td><span class="close">X</span></td>'+test_data+' </tr>';					
+				$("#test_table").show();
+				$("#test_table table").append(test);
+				$("#test_table td .close").on("click", function(){
+					$(this).parents('tr').remove();
+				});
+
+			}
+		});
+		
+		$("#medicine").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+		$("#test_name").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+		$("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+
+		$('#name').focus();
+		$('#add_prescription').validate({
+			rules: {
+				patient_id: { required: true }
+			}
+		});
+	});
+
+function generateRandomNumber(){
+
+	var d=new Date();
+	var n=d.getTime();
+	n = n.toString()
+	m=n.substring(9,14)
+	$('#security_key').val(m);
+}
+</script>
+{/literal}

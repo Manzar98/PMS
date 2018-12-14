@@ -1,31 +1,4 @@
 {include file="header.tpl"}
-{literal}
-<script type="text/javascript">
-
-	$(document).ready(function() {
-		var max_fields      = 5;
-		var wrapper    = $(".input_fields_wrap");
-		var x = 1; 
-		$('#m_does').click(function(e){
-			e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-            x++; //text box increment
-            $(wrapper).append('<div class="col-sm-4 common-bottom"><label for="dose'+x+'">Dose</label><input type="text" name="dose[]" id="dose'+x+'" class="form-control"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
-        }
-    })
-
-	 $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-	 	e.preventDefault(); $(this).parent('div').remove(); x--;
-	 })
-
-	 if ($('#medicineFull').val()) {
-	 	alert($('#medicineFull').val());
-	 }else{
-	 	$('#medicineFull').val('');
-	 }
-	})
-</script>
-{/literal}
 <div id=""  class="content-wrapper">
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
@@ -49,6 +22,16 @@
 				{/if}
 			</ol>
 		</div>
+		{if (isset($smarty.session.flashAlert))}
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{$smarty.session.flashAlert}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="{php} unset($_SESSION['flashAlert']); {/php}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		{/if}
 		{if isset($add)}
 		<h2 class="text-capitalize">{$id} Medicine</h2>
 		<input type="hidden" name="" id="medicineFull" value="{$medicineFull}">
@@ -134,8 +117,8 @@
 								<input type="text" name="q" id="q" value="{$data.q}" maxlength="20" class="form-control" />
 							</div>
 						</div>
-						<div class="col-sm-1">
-							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control" />
+						<div class="col-sm-3">
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
 						</div>
 					</div>
 				</fieldset>
@@ -208,5 +191,37 @@
 
 		</div><!-- #content -->
 	</div>
-	<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 	{include file="footer.tpl"}
+	
+	{literal}
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			var max_fields      = 5;
+			var wrapper    = $(".input_fields_wrap");
+			var x = 1; 
+			$('#m_does').click(function(e){
+				e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div class="col-sm-4 common-bottom"><label for="dose'+x+'">Dose</label><input type="text" name="dose[]" id="dose'+x+'" class="form-control"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+        }
+    })
+
+	 $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+	 	e.preventDefault(); $(this).parent('div').remove(); x--;
+	 })
+
+	 if ($('#medicineFull').val()) {
+	 	alert($('#medicineFull').val());
+	 }else{
+	 	$('#medicineFull').val('');
+	 }
+	 
+	 $('#collapseMedicine').collapse({
+	 	toggle: true
+	 })
+
+	})
+</script>
+{/literal}

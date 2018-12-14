@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 15:56:45
+<?php /* Smarty version 2.6.31, created on 2018-12-10 22:08:35
          compiled from password.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -17,14 +17,21 @@ unset($_smarty_tpl_vars);
 				<li class="breadcrumb-item active">Change Password</li>
 			</ol>
 		</div>
-		<h2 id="password" class="pt-3">Change password</h2>
-
 		<?php if (isset ( $this->_tpl_vars['error'] )): ?>
-		<div class="fail">
-			<?php echo $this->_tpl_vars['error']; ?>
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<strong>Success!</strong> <?php echo $this->_tpl_vars['error']; ?>
 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
 		</div>
 		<?php endif; ?>
+		<h2 id="password" class="pt-3">Change password</h2>
+
+		
 
 		<form id="change_password" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="post" class="box style">
@@ -56,7 +63,11 @@ unset($_smarty_tpl_vars);
 		<div class="common-bottom"></div>
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <script type="text/javascript">
 	$(document).ready(function()
@@ -69,13 +80,10 @@ unset($_smarty_tpl_vars);
 				verify_password: { equalTo: "#new_password" }
 			}
 		});
+		
+		$(\'#collapseProfile\').collapse({
+			toggle: true
+		})
 	});
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>

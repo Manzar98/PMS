@@ -186,7 +186,7 @@
 					<legend>Get Appointment</legend>
 
 					<div class="row">
-						<div class="col-sm-4 mx-auto">
+						<div class="col-sm-6 mx-auto">
 							<div class="form-group">
 								<input type="hidden" name="doc_id" id="doc_id" class="doc_id form-control" value="{$smarty.get.doc_id}"/>
 								<input type="hidden" name="doc_name" id="doc_name" class="doc_name form-control" value="{$smarty.get.doc_name}" />
@@ -196,13 +196,14 @@
 						</div>
 					</div>
 					<div class="form-row my-3">
-						<div class="col-sm-4"></div>
-						<div class="col-sm-1">
+						<div class="col-sm-3"></div>
+						<div class="col">
 							<input type="submit" class="btn btn-primary form-control" value="Search" />
 						</div>
-						<div class="col-sm-3">
-							<a href="{$BASE_URL_ADMIN}doc-appointments/{$smarty.get.doc_id}?doc_name={$smarty.get.doc_name}&doc_adr={$smarty.get.doc_adr}&doc_phne={$smarty.get.doc_phne}&img={$smarty.get.img}&speciallist={$smarty.get.speciallist}&exprience={$smarty.get.exprience}&fee={$smarty.get.fee}" class="btn btn-primary form-control">New Patient</a>
+						<div class="col">
+							<a href="{$BASE_URL_ADMIN}doc-appointments/{$smarty.get.doc_id}?doc_name={$smarty.get.doc_name}&doc_adr={$smarty.get.doc_adr}&doc_phne={$smarty.get.doc_phne}&img={$smarty.get.img}&speciallist={$smarty.get.speciallist}&exprience={$smarty.get.exprience}&fee={$smarty.get.fee}" class="btn btn-primary form-control" role="button">New Patient</a>
 						</div>
+						<div class="col-sm-3"></div>
 					</div>
 				</fieldset>
 			</form>
@@ -352,7 +353,7 @@
 					{/if} 
 				</div><!-- #content -->
 			</div>
-			<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+			{include file="footer.tpl"}
 			{literal}
 			<style type="text/css">
 			.datetimeHeading{
@@ -706,5 +707,3 @@ function generateRandomNumber(){
 
 </script>
 {/literal}
-
-{include file="footer.tpl"}

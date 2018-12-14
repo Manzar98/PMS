@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 16:33:27
+<?php /* Smarty version 2.6.31, created on 2018-12-14 10:03:04
          compiled from users/add_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -160,37 +160,40 @@ users/">Doctors</a>
 					</div>
 				</div>
 				<input type="hidden" name="profile_img" id="profile_img">
-
-			</form>
-			<div class="row">
-				<form>
-
-					<div class="col-md-6">
-						<div class="file-field input-field" style="margin-top: 25px;">
-							<div class="btn btn-primary" id="pro-file-upload"> <span>Profile photo</span>
-								<input type="file" id="upload">	
+				<div class="row">
+					<div class="col-md-6 my-2">
+						<div class="form-group">
+							<div class="file-field input-field">
+								<div class="btn btn-primary" id="pro-file-upload"> <span>Profile photo</span>
+									<input type="file" id="upload">	
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6" >
-
-						<div id="upload-demo" style="width:300px">
-						</div>
-						<button id="upload-demo-btn"  class="btn upload-result" type="button">Crop Image</button>
-						<div id="upload-demo-i">	
+					<div class="col-md-6 text-center my-4" >
+						<div class="form-group">
+							<div id="upload-demo">
+							</div>
+							<div id="upload-demo-i">	
+							</div>
+							<button id="upload-demo-btn"  class="btn upload-result" type="button">Crop Image</button>
 						</div>
 					</div>
-				</form>
-			</div>
-
+				</div>
+			</form>
 			<div class="row">
-				<div class="col-sm-3 mx-auto" style="padding-top: 25px;">
+				<div class="col-sm-3 my-4 mx-auto" style="padding-top: 25px;">
 					<input type="submit" name="submit" id="submit" class="btn btn-primary form-control" value="Add Doctor" />
 				</div>
 			</div>
 		</fieldset>
 	</div><!-- #content -->
 </div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <style type="text/css">
 span.select2.select2-container.select2-container--default {
@@ -300,10 +303,4 @@ add-users?img=y<?php echo '",
 });
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
+

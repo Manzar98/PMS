@@ -1,25 +1,4 @@
 {include file="header.tpl"}
-{literal}
-<script>
-	$(document).ready(function(){
-    $('#tabs div').hide();
-    $('#tabs div:first').show();
-    $('#tabs ul li:first a').addClass('active');
-
-    $('#tabs ul li a').click(function(){
-     $('#tabs ul li a').removeClass('active');
-     $(this).parent().addClass('active');
-     var currentTab = $(this).attr('href');
-     $('#tabs div').hide();
-     $(currentTab).show();
-     $(currentTab).find('.addBtnCls').show();
-     return false;
-   });
-  });
-
-</script>
-
-{/literal}
 <div id="" class="content-wrapper">
  <div class="container-fluid">
   <!-- Breadcrumbs-->
@@ -271,5 +250,25 @@
 
 </div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 {include file="footer.tpl"}
+{literal}
+<script>
+  $(document).ready(function(){
+    $('#tabs div').hide();
+    $('#tabs div:first').show();
+    $('#tabs ul li:first a').addClass('active');
+
+    $('#tabs ul li a').click(function(){
+     $('#tabs ul li a').removeClass('active');
+     $(this).parent().addClass('active');
+     var currentTab = $(this).attr('href');
+     $('#tabs div').hide();
+     $(currentTab).show();
+     $(currentTab).find('.addBtnCls').show();
+     return false;
+   });
+  });
+
+</script>
+
+{/literal}

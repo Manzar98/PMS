@@ -127,7 +127,7 @@
 		</form>
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+{include file="footer.tpl"}
 {literal}
 <script type="text/javascript">
 	$(document).ready(function()
@@ -143,4 +143,3 @@
 </script>
 {/literal}
 
-{include file="footer.tpl"}

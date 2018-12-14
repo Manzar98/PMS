@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-05 22:56:23
+<?php /* Smarty version 2.6.31, created on 2018-12-14 14:18:39
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -30,11 +30,11 @@ _templates/css/custom.css" rel="stylesheet">
 	<!-- Main styles -->
 	<link href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/admin.css" rel="stylesheet">
-<!-- 	 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+	<!-- 	 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/screen.css" type="text/css" media="screen" /> -->
 	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/jquery.fancybox.css" type="text/css" media="screen" /> -->
-	 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+	<link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/jquery-ui.css">
 	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/fonts/kreon.css"> -->
@@ -53,87 +53,13 @@ _templates/css/croppie.css" />
 	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/jquery.timepicker.css" /> -->
 	<link href=" "rel="stylesheet" />
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery.js" type="text/javascript"></script> 
-	<!-- Doctor Template Scripting Start  -->
-<!-- 	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/admin.js" type="text/javascript"></script> 
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery-easing/jquery.easing.min.js" type="text/javascript"></script> --> 
-	<!-- Doctor Template Scripting End  -->
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery.bgiframe.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery.validate.min.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/functions.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/main.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/categories.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/hoverIntent.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/links.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/select2.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/messages.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/overlay.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/types.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery.fancybox.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery.easing.1.3.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery.timepicker.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/jquery-ui.min.js"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/core.js"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/widget.js"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/datepicker.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/accordion.js"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/croppie.js"></script>
-	<?php if (isset ( $this->_tpl_vars['editor'] )): ?>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/tiny_mce/tiny_mce.js" type="text/javascript"></script>
-	<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/editor.js" type="text/javascript"></script>
-
-
-	<script type="text/javascript">
-		<?php echo '
-		tinyMCE.init({
-			plugins : \'style,layer,table,save,advhr,advimage,advlink,media,searchreplace,contextmenu,paste,directionality,nonbreaking,xhtmlxtras\',
-			themes : \'advanced\',
-			languages : \'en\',
-			disk_cache : true,
-			relative_urls : false, 
-			debug : false
-		});
-
-		'; ?>
-
-	</script>
-	<?php endif; ?> 
-	<script type="text/javascript">
-		SIK.I18n = <?php echo $this->_tpl_vars['translationsJson']; ?>
-;
-	</script>
+	<!-- <script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+_templates/js/jquery.js" type="text/javascript"></script>  -->
 </head>
 <body class="fixed-nav sticky-footer" id="page-top">
+	
 	<div id="wrap" class="">
+		
 		<?php if ($this->_tpl_vars['isAuthenticated'] == 1): ?>
 		<?php if (isset ( $_SESSION['status'] )): ?>
 		<div class="noprint" id="status">
@@ -230,8 +156,16 @@ tests/add/">Add New</a>
 								<a class="nav-link <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'reports'): ?>selected<?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 reports/<?php echo $_SESSION['AdminId']; ?>
 /">
-									<i class="fa fa-fw fa-bars"></i>
+									<i class="fa fa-fw fa-bar-chart"></i>
 									<span class="nav-link-text">Reports</span>
+								</a>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+								<a class="nav-link <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'list-appointments'): ?>selected<?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+list-appointments/<?php echo $_SESSION['AdminId']; ?>
+/">
+									<i class="fa fa-fw fa-calendar"></i>
+									<span class="nav-link-text">Appointments</span>
 								</a>
 							</li>
 							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
@@ -321,7 +255,7 @@ password/">
 						</ul>
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="modal" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+								<a class="nav-link" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 logout/">
 									<i class="fa fa-fw fa-sign-out"></i>Logout</a>
 								</li>
@@ -332,5 +266,5 @@ logout/">
 				</div>
 			</header>
 			<?php endif; ?>
-			
-			
+
+

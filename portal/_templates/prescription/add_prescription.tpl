@@ -1,8 +1,380 @@
 {include file="header.tpl"}
+<div id="" class="content-wrapper">
+	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
+				</li>
+				{if isset($id) && $id=="0"}
+				<li class="breadcrumb-item active">Prescriptions</li>
+				{else}
+				<li class="breadcrumb-item">
+					<a href="{$BASE_URL_ADMIN}prescriptions/">Prescriptions</a>
+				</li>
+				<li class="breadcrumb-item active">Add</li>
+				{/if}
+			</ol>
+		</div>
+		<h2  class="py-3">Add Prescription</h2>
+		{if (isset($errors) && $errors)}
+		<div class="fail">
+			{foreach from=$errors item=error}
+			{$error}
+			{/foreach}
+		</div>
+		{/if}
 
+		<input type="hidden" name="" id="prescriptionFull" value="{$prescriptionFull}">
+		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="get" enctype="multipart/form-data">
+
+			<fieldset >
+				
+				<legend>Search Patient</legend>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<select name="field" class="form-control" id="field" onchange="PatientLookUp(document.getElementById('q').value)">
+								<option value="id" {if (isset($data) && $data.field=='id')} selected="selected" {/if}>Patient ID</option>
+								<option value="name" {if (isset($data) && $data.field=='name')} selected="selected" {/if}>Patient Name</option>
+								<option value="mobile" {if (isset($data) && $data.field=='mobile')} selected="selected" {/if}>Mobile No</option>
+								<option value="phone" {if (isset($data) && $data.field=='phone')} selected="selected" {/if}>Phone No</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<input type="text" class="form-control" name="q" id="q" {if (isset($data) && $data.q)}value="{$data.q}"{/if}  maxlength="20" onkeyup="PatientLookUp(this.value)" />
+						</div>
+					</div>
+					<!-- <div class="col-md-2 col-sm-12 search-top">
+						<input class="btn btn-primary" type="submit" value="Search" id="submit" />
+					</div> -->
+
+				</div>
+			</fieldset>
+		</form>	
+		<div id="suggestion">
+
+		</div>	
+		<form id="add_prescription" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
+			<fieldset>
+				<legend>Patient Information</legend>
+				
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="patient_name">Patient Name</label>
+							<input type="text" class="form-control input-field" name="patient_name" id="patient_name" readonly="readonly" {if (isset($data) && $data.patient_name)}value="{$data.name}"{/if} />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="patient_id">Patient Id</label>
+							<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" {if (isset($data) && $data.patient_id)}value="{$data.patient_id}"{/if} />
+						</div>
+					</div>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_patient" class="btn btn-primary" href="javascript:void(0)">Add New Patient</a>
+					</div>
+				</div>
+				
+				<div id="add_new_patient" style="display: none; clear:both;">
+					<div class="row">
+						<input type="hidden" name="security_key" id="security_key">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="input-field form-control empty-inpt" id="name" name="name" onclick="generateRandomNumber()"/>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="mobile_number">Phone</label>
+								<input type="text" class="form-control empty-inpt" name="mobile_number" id="mobile_number" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="city">City</label>
+								<select name="city" id="city" class="form-control empty-inpt">
+									{foreach from=$cities item=city}
+									<option {if (isset($data) && $data.city_id==$city.id)} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
+									{/foreach}						
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<label for="email">Email Address</label>
+								<input type="email" name="email"
+								id="email" class="form-control empty-inpt">
+							</div>
+						</div>
+						<div class="col-sm-1 addUp_btn">
+							<input type="button"  class="btn btn-primary" id="submit_patient" value="Add" />
+						</div>				
+					</div>
+				</div>
+			</fieldset>			
+
+			<fieldset id="medicines">
+
+				<legend>Medicine Instructions</legend> 
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group"> 
+							<label>Medicine</label>
+							<select id="medicine" onchange="GetMedicineInstruction(this)" class="form-control">
+								<option value="" disabled="" selected="">Select Medicine First</option>
+								{foreach from=$medicines item=m}
+								<option value="{$m.id}">{$m.name} ({$m.dose})</option>
+								{/foreach}	
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group"> 
+							<label>Instruction</label>
+							<select class="medicine_instruction form-control" >
+
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 common-top">
+						<div class="form-group"> 
+							<label>Custom Instruction</label>
+							<input type="text" id="custom_instruction" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-1 addUp_btn">
+						<input type="button" name="add_instruction" id="add_instruction" value="Add" class="btn btn-primary" />
+					</div>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_new_medicine" class="btn btn-primary pull-right">Add New Medicine</a>
+					</div>
+				</div>
+				
+				<div id="add_medicine_wrap" style="display: none; clear:both;">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_name">Medicine Name</label>
+								<input type="text" name="name" class="form-control empty-inpt" id="m_name"/>
+							</div>	
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_formula">Medicine Formula</label>
+								<input type="text" name="formula" id="m_formula" class="form-control empty-inpt"/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_type">Type</label>
+								<select name="type" id="m_type" class="form-control empty-inpt">
+									<option value="" disabled="" selected="">Select</option>
+									<option value="Tablet">Tablet</option>
+									<option value="Capsule">Capsule</option>
+									<option value="Syrup">Syrup</option>
+									<option value="Injection">Injection</option>
+									<option value="Cream">Cream</option>
+									<option value="Drops">Drops</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_dose">Dose</label>
+								<input type="text" class="form-control empty-inpt" name="dose" id="m_dose"/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_company">Company</label>
+								<input type="text" name="company" id="m_company" class="form-control empty-inpt"/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_instruction">Instruction</label>
+								<textarea  name="instruction" id="m_instruction" class="form-control empty-inpt textarea-height"></textarea>
+							</div>
+						</div>
+						<div class="col-md-3 addUp_btn">
+							<input type="button" id="submit_medicine" value="Add" class="btn btn-primary"/>
+						</div>
+					</div>
+				</div>
+				<table style="clear:both;display: none;" id="instructions" class="zebra">
+					<caption>Medicine Instructions</caption>
+					<thead>
+						<tr>
+							<th>Medicine Name</th>
+							<th>Instruction</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+
+			</fieldset>
+			<fieldset id="tests">
+				<legend>Tests</legend>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Test Name</label>
+							<select id="test_name" onchange="GetTestOptions(this)" class="form-control">
+								<option value="" disabled="" selected="">Select Test</option>
+								{foreach from=$test_list item=t}
+								<option value="{$t.id}">{$t.name}</option>
+								{/foreach}
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Test Options</label>
+							<select class="test_options form-control">
+
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label> Test Result</label>
+							<input type="text" class="form-control" id="test_result" />	
+						</div>
+					</div>
+					<div class="col-sm-1 addUp_btn">
+						<input type="button" id="add_test" class="btn btn-primary" value="Add" />
+					</div>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_new_test" class="pull-right btn btn-primary">Add New Test</a>
+					</div>
+				</div>
+				<div  id="add_test_wrap" style="display: none;clear: both;">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="t_name">Test Name</label>
+								<input type="text" name="name" id="t_name" maxlength="100" class="form-control empty-inpt" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="t_option">Option Name</label>
+								<input type="text" name="name" id="t_option" maxlength="100" class="form-control empty-inpt" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="measurement">Measurment</label>
+								<input type="text" name="measurement" id="measurement" maxlength="100" class="form-control empty-inpt" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="normal_range">Normal Range</label>
+								<input type="text" name="normal_range" id="normal_range" class="form-control empty-inpt" />
+							</div>
+						</div>
+						<div class="col-sm-2 addUp_btn">
+							<input type="button" id="submit_test" value="Add" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>
+				<table style="clear:both;display: none;" id="test_table" class="zebra">
+					<caption>Tests</caption>
+					<thead>
+						<tr>
+							<th>Test Name</th>
+							<th>Test Field</th>
+							<th>Result</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</fieldset>
+
+
+
+
+			<fieldset id="prescription">
+				<legend> Prescription Info</legend>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="description">Description</label>
+							<textarea name="description" id="description" tabindex="21" class="form-control textarea-height"></textarea>
+						</div>	
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="next_date">Next Date</label>
+							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" />
+						</div>	
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="complain">Complain</label>
+							<input type="text" name="complain" tabindex="24"  class="form-control" />	
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="next_plan">Next Plan</label>
+							<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control textarea-height"></textarea>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="complain_detail">Complain Detail</label>
+							<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control textarea-height"></textarea>	
+						</div>
+					</div>
+
+				</div>
+
+			</fieldset>
+			<fieldset>
+				<legend>Fee</legend>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="fee_received">Fee Received</label>
+							<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="{$smarty.session.c_fee}" />
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 mx-auto" >
+					<label></label>
+					<input type="submit" class="btn btn-primary form-control" name="submit" id="submit" />
+				</div>
+			</fieldset>	
+
+		</form>
+	</div><!-- #content -->
+</div>
+{include file="footer.tpl"}
 {literal}
-
 <script>
+	$(document).ready(function()
+	{
+		$('#name').focus();
+		$('#add_prescription').validate({
+			rules: {
+				patient_id: { required: true }
+			}
+		});
+	});
 	$(function() {
 		var today = new Date();
 		$( "#next_date" ).datepicker({
@@ -423,6 +795,9 @@
 			$('#prescriptionFull').val('')
 		}
 
+		$('#collapsePrescription').collapse({
+			toggle: true
+		})
 	});
 function generateRandomNumber(){
 
@@ -435,383 +810,3 @@ function generateRandomNumber(){
 // debugger
 </script>
 {/literal}
-<div id="content" class="content-wrapper">
-	<div class="container-fluid">
-		<!-- Breadcrumbs-->
-		<div class="noprint">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
-				</li>
-				{if isset($id) && $id=="0"}
-				<li class="breadcrumb-item active">Prescriptions</li>
-				{else}
-				<li class="breadcrumb-item">
-					<a href="{$BASE_URL_ADMIN}prescriptions/">Prescriptions</a>
-				</li>
-				<li class="breadcrumb-item active">Add</li>
-				{/if}
-			</ol>
-		</div>
-		<h2  class="py-3">Add Prescription</h2>
-		{if (isset($errors) && $errors)}
-		<div class="fail">
-			{foreach from=$errors item=error}
-			{$error}
-			{/foreach}
-		</div>
-		{/if}
-
-		<input type="hidden" name="" id="prescriptionFull" value="{$prescriptionFull}">
-		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="get" enctype="multipart/form-data">
-
-			<fieldset >
-				
-				<legend>Search Patient</legend>
-				<div class="row">
-					<div class="col-md-3">
-						<div class="form-group">
-							<select name="field" class="form-control" id="field" onchange="PatientLookUp(document.getElementById('q').value)">
-								<option value="id" {if (isset($data) && $data.field=='id')} selected="selected" {/if}>Patient ID</option>
-								<option value="name" {if (isset($data) && $data.field=='name')} selected="selected" {/if}>Patient Name</option>
-								<option value="mobile" {if (isset($data) && $data.field=='mobile')} selected="selected" {/if}>Mobile No</option>
-								<option value="phone" {if (isset($data) && $data.field=='phone')} selected="selected" {/if}>Phone No</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<input type="text" class="form-control" name="q" id="q" {if (isset($data) && $data.q)}value="{$data.q}"{/if}  maxlength="20" onkeyup="PatientLookUp(this.value)" />
-						</div>
-					</div>
-					<!-- <div class="col-md-2 col-sm-12 search-top">
-						<input class="btn btn-primary" type="submit" value="Search" id="submit" />
-					</div> -->
-
-				</div>
-			</fieldset>
-		</form>	
-		<div id="suggestion">
-
-		</div>	
-		<form id="add_prescription" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
-			<fieldset>
-				<legend>Patient Information</legend>
-				
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="patient_name">Patient Name</label>
-							<input type="text" class="form-control input-field" name="patient_name" id="patient_name" readonly="readonly" {if (isset($data) && $data.patient_name)}value="{$data.name}"{/if} />
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="patient_id">Patient Id</label>
-							<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" {if (isset($data) && $data.patient_id)}value="{$data.patient_id}"{/if} />
-						</div>
-					</div>
-					<div class="col-sm-2 addNewBtn mb-3">
-						<a id="add_patient" class="btn btn-primary" href="javascript:void(0)">Add New Patient</a>
-					</div>
-				</div>
-				
-				<div id="add_new_patient" style="display: none; clear:both;">
-					<div class="row">
-						<input type="hidden" name="security_key" id="security_key">
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="name">Name</label>
-								<input type="text" class="input-field form-control empty-inpt" id="name" name="name" onclick="generateRandomNumber()"/>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="mobile_number">Phone</label>
-								<input type="text" class="form-control empty-inpt" name="mobile_number" id="mobile_number" />
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="city">City</label>
-								<select name="city" id="city" class="form-control empty-inpt">
-									{foreach from=$cities item=city}
-									<option {if (isset($data) && $data.city_id==$city.id)} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
-									{/foreach}						
-								</select>
-							</div>
-						</div>
-						<div class="col-sm-2">
-							<div class="form-group">
-								<label for="email">Email Address</label>
-								<input type="email" name="email"
-								id="email" class="form-control empty-inpt">
-							</div>
-						</div>
-						<div class="col-sm-1 addUp_btn">
-							<input type="button"  class="btn btn-primary" id="submit_patient" value="Add" />
-						</div>				
-					</div>
-				</div>
-			</fieldset>			
-
-			<fieldset id="medicines">
-
-				<legend>Medicine Instructions</legend> 
-				<div class="row">
-					<div class="col-md-3">
-						<div class="form-group"> 
-							<label>Medicine</label>
-							<select id="medicine" onchange="GetMedicineInstruction(this)" class="form-control">
-								<option value="" disabled="" selected="">Select Medicine First</option>
-								{foreach from=$medicines item=m}
-								<option value="{$m.id}">{$m.name} ({$m.dose})</option>
-								{/foreach}	
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group"> 
-							<label>Instruction</label>
-							<select class="medicine_instruction form-control" >
-
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3 common-top">
-						<div class="form-group"> 
-							<label>Custom Instruction</label>
-							<input type="text" id="custom_instruction" class="form-control" />
-						</div>
-					</div>
-					<div class="col-sm-1 addUp_btn">
-						<input type="button" name="add_instruction" id="add_instruction" value="Add" class="btn btn-primary" />
-					</div>
-					<div class="col-sm-2 addNewBtn mb-3">
-						<a id="add_new_medicine" class="btn btn-primary pull-right">Add New Medicine</a>
-					</div>
-				</div>
-				
-				<div id="add_medicine_wrap" style="display: none; clear:both;">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_name">Medicine Name</label>
-								<input type="text" name="name" class="form-control empty-inpt" id="m_name"/>
-							</div>	
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_formula">Medicine Formula</label>
-								<input type="text" name="formula" id="m_formula" class="form-control empty-inpt"/>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_type">Type</label>
-								<select name="type" id="m_type" class="form-control empty-inpt">
-									<option value="" disabled="" selected="">Select</option>
-									<option value="Tablet">Tablet</option>
-									<option value="Capsule">Capsule</option>
-									<option value="Syrup">Syrup</option>
-									<option value="Injection">Injection</option>
-									<option value="Cream">Cream</option>
-									<option value="Drops">Drops</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_dose">Dose</label>
-								<input type="text" class="form-control empty-inpt" name="dose" id="m_dose"/>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_company">Company</label>
-								<input type="text" name="company" id="m_company" class="form-control empty-inpt"/>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_instruction">Instruction</label>
-								<textarea  name="instruction" id="m_instruction" class="form-control empty-inpt textarea-height"></textarea>
-							</div>
-						</div>
-						<div class="col-md-3 addUp_btn">
-							<input type="button" id="submit_medicine" value="Add" class="btn btn-primary"/>
-						</div>
-					</div>
-				</div>
-				<table style="clear:both;display: none;" id="instructions" class="zebra">
-					<caption>Medicine Instructions</caption>
-					<thead>
-						<tr>
-							<th>Medicine Name</th>
-							<th>Instruction</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-
-					</tbody>
-				</table>
-
-			</fieldset>
-			<fieldset id="tests">
-				<legend>Tests</legend>
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label>Test Name</label>
-							<select id="test_name" onchange="GetTestOptions(this)" class="form-control">
-								<option value="" disabled="" selected="">Select Test</option>
-								{foreach from=$test_list item=t}
-								<option value="{$t.id}">{$t.name}</option>
-								{/foreach}
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label>Test Options</label>
-							<select class="test_options form-control">
-
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label> Test Result</label>
-							<input type="text" class="form-control" id="test_result" />	
-						</div>
-					</div>
-					<div class="col-sm-1 addUp_btn">
-						<input type="button" id="add_test" class="btn btn-primary" value="Add" />
-					</div>
-					<div class="col-sm-2 addNewBtn mb-3">
-						<a id="add_new_test" class="pull-right btn btn-primary">Add New Test</a>
-					</div>
-				</div>
-				<div  id="add_test_wrap" style="display: none;clear: both;">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="t_name">Test Name</label>
-								<input type="text" name="name" id="t_name" maxlength="100" class="form-control empty-inpt" />
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="t_option">Option Name</label>
-								<input type="text" name="name" id="t_option" maxlength="100" class="form-control empty-inpt" />
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="measurement">Measurment</label>
-								<input type="text" name="measurement" id="measurement" maxlength="100" class="form-control empty-inpt" />
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="normal_range">Normal Range</label>
-								<input type="text" name="normal_range" id="normal_range" class="form-control empty-inpt" />
-							</div>
-						</div>
-						<div class="col-sm-2 addUp_btn">
-							<input type="button" id="submit_test" value="Add" class="btn btn-primary" />
-						</div>
-					</div>
-				</div>
-				<table style="clear:both;display: none;" id="test_table" class="zebra">
-					<caption>Tests</caption>
-					<thead>
-						<tr>
-							<th>Test Name</th>
-							<th>Test Field</th>
-							<th>Result</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-
-					</tbody>
-				</table>
-			</fieldset>
-
-
-
-
-			<fieldset id="prescription">
-				<legend> Prescription Info</legend>
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="description">Description</label>
-							<textarea name="description" id="description" tabindex="21" class="form-control textarea-height"></textarea>
-						</div>	
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="next_date">Next Date</label>
-							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" />
-						</div>	
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="complain">Complain</label>
-							<input type="text" name="complain" tabindex="24"  class="form-control" />	
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="next_plan">Next Plan</label>
-							<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control textarea-height"></textarea>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="complain_detail">Complain Detail</label>
-							<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control textarea-height"></textarea>	
-						</div>
-					</div>
-
-				</div>
-
-			</fieldset>
-			<fieldset>
-				<legend>Fee</legend>
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="fee_received">Fee Received</label>
-							<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="{$smarty.session.c_fee}" />
-						</div>
-					</div>
-					</div>
-					<div class="col-sm-3 mx-auto" >
-						<label></label>
-						<input type="submit" class="btn btn-primary form-control" name="submit" id="submit" />
-					</div>
-			</fieldset>	
-
-		</form>
-	</div><!-- #content -->
-</div>
-{literal}
-
-<script type="text/javascript">
-	$(document).ready(function()
-	{
-		$('#name').focus();
-		$('#add_prescription').validate({
-			rules: {
-				patient_id: { required: true }
-			}
-		});
-	});
-</script>
-{/literal}
-<div class="print branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
-{include file="footer.tpl"}

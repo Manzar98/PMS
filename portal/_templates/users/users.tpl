@@ -1,31 +1,4 @@
 {include file="header.tpl"}
-
-{literal}
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#field").change(function(){
-			
-			if( $("#field").val()== 'created_on')
-			{
-				
-				$("#q").datepicker({
-					dateFormat : "yy-mm-dd",
-					changeMonth: true,
-				});
-				$("#q").datepicker("show");
-			}	
-			else
-			{
-				$("#q").datepicker("destroy");
-			}
-		});
-
-
-		
-	});
-</script>
-
-{/literal}
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
@@ -53,6 +26,16 @@
 				{/if}
 			</ol>
 		</div>
+		{if (isset($smarty.session.flashAlert))}
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{$smarty.session.flashAlert}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="{php} unset($_SESSION['flashAlert']); {/php}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		{/if}
 		{if (isset($errors) && $errors)}
 		<div class="fail noprint">
 			{foreach from=$errors item=error}
@@ -87,8 +70,8 @@
 							<input type="text" name="q" id="q" {if isset($search) && $search.q}value="{$search.q}"{/if} maxlength="20" class="form-control" />
 						</div>
 					</div>
-					<div class="col-sm-1">
-						<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control"/>
+					<div class="col-sm-3">
+						<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary"/>
 					</div>
 				</div>
 			</fieldset>
@@ -269,7 +252,7 @@
 				<div class="form-group">
 					{foreach from=$packages item=package}
 					{if $data.package_id == $package.id} 
-					<span><b>Package : </b><span class="capitalize">{$package.pkg_name}</span></span> 
+					<span><b>Package Name : </b><span class="capitalize">{$package.pkg_name}</span></span> 
 					{/if}
 					{/foreach}	
 				</div>
@@ -297,5 +280,30 @@
 
 	</div><!-- #content -->
 </div>
-<div class="print branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 {include file="footer.tpl"}
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#field").change(function(){
+			
+			if( $("#field").val()== 'created_on')
+			{
+				
+				$("#q").datepicker({
+					dateFormat : "yy-mm-dd",
+					changeMonth: true,
+				});
+				$("#q").datepicker("show");
+			}	
+			else
+			{
+				$("#q").datepicker("destroy");
+			}
+		});	
+
+		$('#collapseProfile').collapse({
+			toggle: true
+		})
+	});
+</script>
+{/literal}

@@ -175,6 +175,8 @@ if($_POST)
 				
 				$errors['error'] = "Some Error Occured";
 			}
+            $_SESSION['flashAlert']="Prescription is Successfully Updated!";
+			redirect_to(BASE_URL.'prescriptions/');
 			
 		}
 	}

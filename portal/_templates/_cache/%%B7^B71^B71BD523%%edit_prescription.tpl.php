@@ -1,266 +1,12 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-05 18:46:58
+<?php /* Smarty version 2.6.31, created on 2018-12-13 20:41:09
          compiled from prescription/edit_prescription.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 294, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 445, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 58, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 209, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-
-<?php echo '
-<script>
-
-	$(function() {
-		$( "#next_date" ).datepicker({
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-		});
-	});
-
-
-	function PatientLookUp(q)
-	{
-		var field = $("#field").val();
-		$.ajax({
-			type: "POST",
-			url: "'; ?>
-<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-add-prescription/suggest-patients/<?php echo '",
-			data: "q=" + q + "&field="+field,
-			success: function(msg) 
-			{
-				if(msg!="")
-				{
-					$("#suggestion").show();
-					$("#suggestion").html(msg);
-				}
-			}
-		});
-	}
-
-
-
-	function GetMedicineInstruction(medicine)
-	{
-		var medicine_id = medicine.value;
-		$.ajax({
-			type: "POST",
-			url: "'; ?>
-<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-add-prescription/get-medicine-instructions/<?php echo '",
-			data: "medicine_id=" + medicine_id,
-			success: function(msg) 
-			{
-
-				$(\'.medicine_instruction\').html(msg);
-
-			}
-		});
-	}
-	function GetTestOptions(test)
-	{
-		var test_id = test.value;
-
-		$.ajax({
-			type: "POST",
-			url: "'; ?>
-<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-add-prescription/get-test-options/<?php echo '",
-			data: "test_id=" + test_id,
-			success: function(msg) 
-			{
-				$(\'.test_options\').html(msg);          
-			}
-		});
-	}
-
-	function SelectPatient(thisValue,thisName)
-	{
-		if(thisValue)
-		{
-			//debugger
-			$("#patient_id").val(thisValue);
-			$("#patient_name").val(thisName);
-			$("#suggestion").hide();
-		}
-
-	}
-
-	function remove_instruction(element,id)
-	{
-		$.ajax({
-			type: "POST",
-			url: "'; ?>
-<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-edit-prescription/remove-instruction/<?php echo '",
-			data: "id=" + id,
-			success: function(msg) 
-			{
-				// debugger;
-				if(msg==\'1\')
-				{
-					$(element).parents(\'tr\').remove();
-				}
-				else
-				{
-					alert("some error occurred");
-				}
-			}
-		});
-	}
-	function remove_test(element,id)
-	{
-		$.ajax({
-			type: "POST",
-			url: "'; ?>
-<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-edit-prescription/remove-test-option/<?php echo '",
-			data: "id=" + id,
-			success: function(msg) 
-			{
-
-				if(msg==\'1\')
-				{
-					$(element).parents(\'tr\').remove();
-				}
-				else{
-					alert("some error occurred");
-				}
-
-			}
-		});
-	}		
-	$(document).ready(function(){
-		var test_count = 0;
-		var medicine_count = 0;
-
-		var medicines = \''; ?>
-<select name="medicine_name[]"><?php $_from = $this->_tpl_vars['medicines']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['m']):
-?><option value="<?php if (isset ( $this->_tpl_vars['m']['medicine_id'] )): ?><?php echo $this->_tpl_vars['m']['medicine_id']; ?>
-<?php endif; ?>"><?php echo $this->_tpl_vars['m']['name']; ?>
-(<?php echo $this->_tpl_vars['m']['formula']; ?>
-)</option><?php endforeach; endif; unset($_from); ?></select><?php echo '\';
-
-
-		$("#add_instruction").on("click", function(){
-
-			medicine_count = medicine_count + 1;
-
-			var medicine_id = $("#medicine").val();
-			var medicine_name = $("#medicine option:selected").text();
-
-			var instruction_id = $(".medicine_instruction").val();
-			var instruction_name = $(".medicine_instruction :selected").text();
-
-			var custom_instruction = $("#custom_instruction").val();
-      // debugger
-      if(custom_instruction!="")
-      {
-//debugger
-$.ajax({
-	type: "POST",
-	url: "'; ?>
-<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-add-prescription/add-instruction/<?php echo '",
-	data: "medicine_id=" + medicine_id + "&instruction="+custom_instruction,
-	success: function(msg) 
-	{
-		console.log(msg);
-                    //  debugger
-                    if(parseInt(msg)>0)
-                    {
-                    	instruction_id = msg;
-                    }
-                    var instruction_data = \'<input type="hidden" name="instructions[\'+medicine_count+\'][medicine_id]" value="\' + medicine_id + \'"/> <input type="hidden" name="instructions[\'+medicine_count+\'][instruction_id]" value="\'+ instruction_id+\'"  /><input type="hidden" name="instructions[\'+medicine_count+\'][is_instructionChange]" value="true"  /> \';
-                    var instruction =\'<tr> <td>\' + medicine_name + \'</td><td>\' + custom_instruction + \'</td> <td><span class="close">X</span></td>\'+instruction_data+\' </tr>\';					
-
-                    $("#instructions").show();
-                    $("#instructions table").append(instruction);
-                    $("#custom_instruction").val(\'\');
-
-                    $("#instructions").find(\'.close\').on("click", function(){
-                    	$(this).parents(\'tr\').remove();
-                    });
-
-                }	
-            });
-
-}
-else
-{
-	var instruction_data = \'<input type="hidden" name="instructions[\'+medicine_count+\'][medicine_id]" value="\' + medicine_id + \'"/> <input type="hidden" name="instructions[\'+medicine_count+\'][instruction_id]" value="\'+ instruction_id+\'"  /><input type="hidden" name="instructions[\'+medicine_count+\'][is_instructionChange]" value="true"  /> \';
-	var instruction =\'<tr> <td>\' + medicine_name + \'</td><td>\' + instruction_name + \'</td><td><span class="close">X</span></td>\'+instruction_data+\' </tr>\';					
-	$("#instructions").show();
-	$("#instructions table").append(instruction);
-
-	$("#instructions").find(\'.close\').on("click", function(){
-		$(this).parents(\'tr\').remove();
-	});
-}
-
-
-});
-
-		$("#instructions").find(\'.close\').on("click", function(){
-			$(this).parents(\'tr\').remove();
-		});
-
-
-
-		$("#add_test").on("click", function(){
-
-			test_count = test_count + 1;
-
-			var test_id = $("#test_name").val();
-			var test_name = $("#test_name :selected").text();
-
-			var option_id = $(".test_options").val();
-			var option_name = $(".test_options :selected").text();
-
-			var test_result = $("#test_result").val();
-
-			if(option_name!="")
-			{
-
-				var test_data = \'<input type="hidden" name="test[\'+test_count+\'][test_id]" value="\' + test_id + \'"/> <input type="hidden" name="test[\'+test_count+\'][option_id]" value="\'+ option_id +\'" /> <input type="hidden" name="test[\'+test_count+\'][result]" value="\'+ test_result +\'" /><input type="hidden" name="test[\'+test_count+\'][is_TestChange]" value="true" />\';
-				var test =\'<tr> <td>\' + test_name + \'</td><td>\' + option_name + \'</td> <td> \'+ test_result+\' </td> <td><span class="close">X</span></td>\'+test_data+\' </tr>\';					
-				$("#test_table").show();
-				$("#test_table table").append(test);
-				$("#test_table td .close").on("click", function(){
-					$(this).parents(\'tr\').remove();
-				});
-
-			}
-		});
-		
-		$("#medicine").select2({
-                    // placeholder: "Select a State",
-                    allowClear: true
-                });
-		$("#test_name").select2({
-                    // placeholder: "Select a State",
-                    allowClear: true
-                });
-		$("#city").select2({
-                    // placeholder: "Select a State",
-                    allowClear: true
-                });
-
-	});
-
-function generateRandomNumber(){
-
-	var d=new Date();
-	var n=d.getTime();
-	n = n.toString()
-	m=n.substring(9,14)
-	$(\'#security_key\').val(m);
-}
-</script>
-'; ?>
-
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
@@ -293,7 +39,6 @@ prescriptions/">Prescriptions</a>
 			<?php endforeach; endif; unset($_from); ?>
 		</div>
 		<?php endif; ?>
-
 		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
 " method="get" enctype="multipart/form-data">
 			<fieldset >
@@ -565,24 +310,266 @@ if ($this->_foreach['option']['total'] > 0):
 			</form>
 		</div><!-- #content -->
 	</div>
-	<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
-	<?php echo '
-	<script type="text/javascript">
-		$(document).ready(function()
-		{
-			$(\'#name\').focus();
-			$(\'#add_prescription\').validate({
-				rules: {
-					patient_id: { required: true }
-				}
-			});
-		});
-	</script>
-	'; ?>
-
-
 	<?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+	<?php echo '
+	<script>
+
+		$(function() {
+			$( "#next_date" ).datepicker({
+				dateFormat : "yy-mm-dd",
+				changeMonth: true,
+			});
+		});
+
+
+		function PatientLookUp(q)
+		{
+			var field = $("#field").val();
+			$.ajax({
+				type: "POST",
+				url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-prescription/suggest-patients/<?php echo '",
+				data: "q=" + q + "&field="+field,
+				success: function(msg) 
+				{
+					if(msg!="")
+					{
+						$("#suggestion").show();
+						$("#suggestion").html(msg);
+					}
+				}
+			});
+		}
+
+
+
+		function GetMedicineInstruction(medicine)
+		{
+			var medicine_id = medicine.value;
+			$.ajax({
+				type: "POST",
+				url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-prescription/get-medicine-instructions/<?php echo '",
+				data: "medicine_id=" + medicine_id,
+				success: function(msg) 
+				{
+
+					$(\'.medicine_instruction\').html(msg);
+
+				}
+			});
+		}
+		function GetTestOptions(test)
+		{
+			var test_id = test.value;
+
+			$.ajax({
+				type: "POST",
+				url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-prescription/get-test-options/<?php echo '",
+				data: "test_id=" + test_id,
+				success: function(msg) 
+				{
+					$(\'.test_options\').html(msg);          
+				}
+			});
+		}
+
+		function SelectPatient(thisValue,thisName)
+		{
+			if(thisValue)
+			{
+			//debugger
+			$("#patient_id").val(thisValue);
+			$("#patient_name").val(thisName);
+			$("#suggestion").hide();
+		}
+
+	}
+
+	function remove_instruction(element,id)
+	{
+		$.ajax({
+			type: "POST",
+			url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+edit-prescription/remove-instruction/<?php echo '",
+			data: "id=" + id,
+			success: function(msg) 
+			{
+				// debugger;
+				if(msg==\'1\')
+				{
+					$(element).parents(\'tr\').remove();
+				}
+				else
+				{
+					alert("some error occurred");
+				}
+			}
+		});
+	}
+	function remove_test(element,id)
+	{
+		$.ajax({
+			type: "POST",
+			url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+edit-prescription/remove-test-option/<?php echo '",
+			data: "id=" + id,
+			success: function(msg) 
+			{
+
+				if(msg==\'1\')
+				{
+					$(element).parents(\'tr\').remove();
+				}
+				else{
+					alert("some error occurred");
+				}
+
+			}
+		});
+	}		
+	$(document).ready(function(){
+		var test_count = 0;
+		var medicine_count = 0;
+
+		var medicines = \''; ?>
+<select name="medicine_name[]"><?php $_from = $this->_tpl_vars['medicines']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['m']):
+?><option value="<?php if (isset ( $this->_tpl_vars['m']['medicine_id'] )): ?><?php echo $this->_tpl_vars['m']['medicine_id']; ?>
+<?php endif; ?>"><?php echo $this->_tpl_vars['m']['name']; ?>
+(<?php echo $this->_tpl_vars['m']['formula']; ?>
+)</option><?php endforeach; endif; unset($_from); ?></select><?php echo '\';
+
+
+		$("#add_instruction").on("click", function(){
+
+			medicine_count = medicine_count + 1;
+
+			var medicine_id = $("#medicine").val();
+			var medicine_name = $("#medicine option:selected").text();
+
+			var instruction_id = $(".medicine_instruction").val();
+			var instruction_name = $(".medicine_instruction :selected").text();
+
+			var custom_instruction = $("#custom_instruction").val();
+      // debugger
+      if(custom_instruction!="")
+      {
+//debugger
+$.ajax({
+	type: "POST",
+	url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+add-prescription/add-instruction/<?php echo '",
+	data: "medicine_id=" + medicine_id + "&instruction="+custom_instruction,
+	success: function(msg) 
+	{
+		console.log(msg);
+                    //  debugger
+                    if(parseInt(msg)>0)
+                    {
+                    	instruction_id = msg;
+                    }
+                    var instruction_data = \'<input type="hidden" name="instructions[\'+medicine_count+\'][medicine_id]" value="\' + medicine_id + \'"/> <input type="hidden" name="instructions[\'+medicine_count+\'][instruction_id]" value="\'+ instruction_id+\'"  /><input type="hidden" name="instructions[\'+medicine_count+\'][is_instructionChange]" value="true"  /> \';
+                    var instruction =\'<tr> <td>\' + medicine_name + \'</td><td>\' + custom_instruction + \'</td> <td><span class="close">X</span></td>\'+instruction_data+\' </tr>\';					
+
+                    $("#instructions").show();
+                    $("#instructions table").append(instruction);
+                    $("#custom_instruction").val(\'\');
+
+                    $("#instructions").find(\'.close\').on("click", function(){
+                    	$(this).parents(\'tr\').remove();
+                    });
+
+                }	
+            });
+
+}
+else
+{
+	var instruction_data = \'<input type="hidden" name="instructions[\'+medicine_count+\'][medicine_id]" value="\' + medicine_id + \'"/> <input type="hidden" name="instructions[\'+medicine_count+\'][instruction_id]" value="\'+ instruction_id+\'"  /><input type="hidden" name="instructions[\'+medicine_count+\'][is_instructionChange]" value="true"  /> \';
+	var instruction =\'<tr> <td>\' + medicine_name + \'</td><td>\' + instruction_name + \'</td><td><span class="close">X</span></td>\'+instruction_data+\' </tr>\';					
+	$("#instructions").show();
+	$("#instructions table").append(instruction);
+
+	$("#instructions").find(\'.close\').on("click", function(){
+		$(this).parents(\'tr\').remove();
+	});
+}
+
+
+});
+
+		$("#instructions").find(\'.close\').on("click", function(){
+			$(this).parents(\'tr\').remove();
+		});
+
+
+
+		$("#add_test").on("click", function(){
+
+			test_count = test_count + 1;
+
+			var test_id = $("#test_name").val();
+			var test_name = $("#test_name :selected").text();
+
+			var option_id = $(".test_options").val();
+			var option_name = $(".test_options :selected").text();
+
+			var test_result = $("#test_result").val();
+
+			if(option_name!="")
+			{
+
+				var test_data = \'<input type="hidden" name="test[\'+test_count+\'][test_id]" value="\' + test_id + \'"/> <input type="hidden" name="test[\'+test_count+\'][option_id]" value="\'+ option_id +\'" /> <input type="hidden" name="test[\'+test_count+\'][result]" value="\'+ test_result +\'" /><input type="hidden" name="test[\'+test_count+\'][is_TestChange]" value="true" />\';
+				var test =\'<tr> <td>\' + test_name + \'</td><td>\' + option_name + \'</td> <td> \'+ test_result+\' </td> <td><span class="close">X</span></td>\'+test_data+\' </tr>\';					
+				$("#test_table").show();
+				$("#test_table table").append(test);
+				$("#test_table td .close").on("click", function(){
+					$(this).parents(\'tr\').remove();
+				});
+
+			}
+		});
+		
+		$("#medicine").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+		$("#test_name").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+		$("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+
+		$(\'#name\').focus();
+		$(\'#add_prescription\').validate({
+			rules: {
+				patient_id: { required: true }
+			}
+		});
+	});
+
+function generateRandomNumber(){
+
+	var d=new Date();
+	var n=d.getTime();
+	n = n.toString()
+	m=n.substring(9,14)
+	$(\'#security_key\').val(m);
+}
+</script>
+'; ?>

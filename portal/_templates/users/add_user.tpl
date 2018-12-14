@@ -140,37 +140,36 @@
 					</div>
 				</div>
 				<input type="hidden" name="profile_img" id="profile_img">
-
-			</form>
-			<div class="row">
-				<form>
-
-					<div class="col-md-6">
-						<div class="file-field input-field" style="margin-top: 25px;">
-							<div class="btn btn-primary" id="pro-file-upload"> <span>Profile photo</span>
-								<input type="file" id="upload">	
+				<div class="row">
+					<div class="col-md-6 my-2">
+						<div class="form-group">
+							<div class="file-field input-field">
+								<div class="btn btn-primary" id="pro-file-upload"> <span>Profile photo</span>
+									<input type="file" id="upload">	
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6" >
-
-						<div id="upload-demo" style="width:300px">
-						</div>
-						<button id="upload-demo-btn"  class="btn upload-result" type="button">Crop Image</button>
-						<div id="upload-demo-i">	
+					<div class="col-md-6 text-center my-4" >
+						<div class="form-group">
+							<div id="upload-demo">
+							</div>
+							<div id="upload-demo-i">	
+							</div>
+							<button id="upload-demo-btn"  class="btn upload-result" type="button">Crop Image</button>
 						</div>
 					</div>
-				</form>
-			</div>
-
+				</div>
+			</form>
 			<div class="row">
-				<div class="col-sm-3 mx-auto" style="padding-top: 25px;">
+				<div class="col-sm-3 my-4 mx-auto" style="padding-top: 25px;">
 					<input type="submit" name="submit" id="submit" class="btn btn-primary form-control" value="Add Doctor" />
 				</div>
 			</div>
 		</fieldset>
 	</div><!-- #content -->
 </div>
+{include file="footer.tpl"}
 {literal}
 <style type="text/css">
 span.select2.select2-container.select2-container--default {
@@ -278,5 +277,3 @@ span.select2.select2-container.select2-container--default {
 });
 </script>
 {/literal}
-
-{include file="footer.tpl"}

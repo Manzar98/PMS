@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 18:08:26
+<?php /* Smarty version 2.6.31, created on 2018-12-14 10:07:53
          compiled from packages/add_package.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -93,6 +93,12 @@ packages/">Packages</a>
 		</form>
 	</div><!-- #content -->
 </div>
+
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <script type="text/javascript">
 	$(\'#add_package\').validate({
@@ -110,10 +116,3 @@ packages/">Packages</a>
 	});
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>

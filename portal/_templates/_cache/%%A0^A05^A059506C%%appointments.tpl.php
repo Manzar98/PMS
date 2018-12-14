@@ -1,22 +1,16 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-27 18:21:42
+<?php /* Smarty version 2.6.31, created on 2018-12-12 16:40:29
          compiled from appointments/appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'appointments/appointments.tpl', 8, false),array('modifier', 'date_format', 'appointments/appointments.tpl', 57, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'appointments/appointments.tpl', 53, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 
-<div id="content" class="publicWrap">
+<div id="" class="clientWrap content-wrapper">
+<div class="container-fluid">
 
-
-
-	<!-- <?php echo $_SERVER['REQUEST_URI']; ?>
-  -->
-	<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['doctors'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
- -->
-	
 	<?php if (isset ( $this->_tpl_vars['doctors'] )): ?>
 	<fieldset>
 		<!-- <legend>Appointments</legend> -->
@@ -185,8 +179,12 @@ history/" class="btn btn-primary">Veiw History</a>
 	<div style="margin-bottom: 30px;"></div>
 	<?php endif; ?>
 </div><!-- #content -->
-
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+</div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <script type="text/javascript">
 	$(document).ready(function()
@@ -248,10 +246,4 @@ $.each($(\'.info_wrap\'),function(k,value){
 }
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
+

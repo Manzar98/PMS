@@ -1,40 +1,12 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 18:42:40
+<?php /* Smarty version 2.6.31, created on 2018-12-14 10:01:00
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 106, false),array('modifier', 'date_format', 'users/users.tpl', 111, false),array('function', 'cycle', 'users/users.tpl', 130, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 89, false),array('modifier', 'date_format', 'users/users.tpl', 94, false),array('function', 'cycle', 'users/users.tpl', 113, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-
-<?php echo '
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#field").change(function(){
-			
-			if( $("#field").val()== \'created_on\')
-			{
-				
-				$("#q").datepicker({
-					dateFormat : "yy-mm-dd",
-					changeMonth: true,
-				});
-				$("#q").datepicker("show");
-			}	
-			else
-			{
-				$("#q").datepicker("destroy");
-			}
-		});
-
-
-		
-	});
-</script>
-
-'; ?>
-
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
@@ -65,6 +37,17 @@ users/">Doctors</a>
 				<?php endif; ?>
 			</ol>
 		</div>
+		<?php if (( isset ( $_SESSION['flashAlert'] ) )): ?>
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION['flashAlert']; ?>
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		<?php endif; ?>
 		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
 		<div class="fail noprint">
 			<?php $_from = $this->_tpl_vars['errors']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
@@ -106,8 +89,8 @@ users/" method="get" enctype="multipart/form-data">
 "<?php endif; ?> maxlength="20" class="form-control" />
 						</div>
 					</div>
-					<div class="col-sm-1">
-						<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control"/>
+					<div class="col-sm-3">
+						<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary"/>
 					</div>
 				</div>
 			</fieldset>
@@ -356,7 +339,7 @@ edit-users/<?php echo $this->_tpl_vars['data']['id']; ?>
     foreach ($_from as $this->_tpl_vars['package']):
 ?>
 					<?php if ($this->_tpl_vars['data']['package_id'] == $this->_tpl_vars['package']['id']): ?> 
-					<span><b>Package : </b><span class="capitalize"><?php echo $this->_tpl_vars['package']['pkg_name']; ?>
+					<span><b>Package Name : </b><span class="capitalize"><?php echo $this->_tpl_vars['package']['pkg_name']; ?>
 </span></span> 
 					<?php endif; ?>
 					<?php endforeach; endif; unset($_from); ?>	
@@ -388,9 +371,34 @@ edit-users/<?php echo $this->_tpl_vars['data']['id']; ?>
 
 	</div><!-- #content -->
 </div>
-<div class="print branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+<?php echo '
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#field").change(function(){
+			
+			if( $("#field").val()== \'created_on\')
+			{
+				
+				$("#q").datepicker({
+					dateFormat : "yy-mm-dd",
+					changeMonth: true,
+				});
+				$("#q").datepicker("show");
+			}	
+			else
+			{
+				$("#q").datepicker("destroy");
+			}
+		});	
+
+		$(\'#collapseProfile\').collapse({
+			toggle: true
+		})
+	});
+</script>
+'; ?>

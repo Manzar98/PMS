@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 16:12:20
+<?php /* Smarty version 2.6.31, created on 2018-12-13 23:24:01
          compiled from instructions/instructions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 103, false),array('function', 'cycle', 'instructions/instructions.tpl', 121, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 113, false),array('function', 'cycle', 'instructions/instructions.tpl', 131, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -33,6 +33,17 @@ instructions/">Instructions</a>
 				<?php endif; ?>
 			</ol>
 		</div>
+		<?php if (( isset ( $_SESSION['flashAlert'] ) )): ?>
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION['flashAlert']; ?>
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		<?php endif; ?>
 		<?php if (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
 		<h2><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?> Instruction</h2>
 		<?php if (isset ( $this->_tpl_vars['errors'] )): ?>
@@ -105,9 +116,9 @@ instructions/" method="get" enctype="multipart/form-data">
 "<?php endif; ?> maxlength="20" class="form-control" />
 						</div>
 					</div>
-					<div class="col-sm-1">
+					<div class="col-sm-3">
 						<div class="form-group">
-							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control" />
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
 						</div>
 					</div>
 				</div>
@@ -199,7 +210,11 @@ _templates/img/bin.png" alt="Delete" /></a>
 		<?php endif; ?>		
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <script type="text/javascript">
 	$(document).ready(function()
@@ -214,10 +229,3 @@ _templates/img/bin.png" alt="Delete" /></a>
 	});
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>

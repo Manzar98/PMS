@@ -1,13 +1,14 @@
-<?php /* Smarty version 2.6.31, created on 2018-11-22 13:02:18
+<?php /* Smarty version 2.6.31, created on 2018-12-12 16:41:04
          compiled from appointments/search_history.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/search_history.tpl', 18, false),array('modifier', 'default', 'appointments/search_history.tpl', 21, false),array('modifier', 'date_format', 'appointments/search_history.tpl', 22, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/search_history.tpl', 19, false),array('modifier', 'default', 'appointments/search_history.tpl', 22, false),array('modifier', 'date_format', 'appointments/search_history.tpl', 23, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<div id="content" class="publicWrap">
+<div id="" class="clientWrap content-wrapper">
+<div class="container-fluid">
 	<?php if (isset ( $this->_tpl_vars['record'] )): ?>
 
 	<table class="table table-striped table-bordered" >
@@ -219,8 +220,12 @@ _templates/img/eye.png" alt="View" /></a>
 	<?php endif; ?>
 	<div style="margin-top: 30px;"></div>
 </div><!-- #content -->
-
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+</div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <style type="text/css">
 	 .docWrap{
@@ -258,10 +263,4 @@ _templates/img/eye.png" alt="View" /></a>
 
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
+

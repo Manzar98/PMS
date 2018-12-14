@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 18:13:39
+<?php /* Smarty version 2.6.31, created on 2018-12-10 22:14:41
          compiled from users/edit_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -180,29 +180,27 @@ users/">Doctors</a>
 						</div>
 					</div>
 				</div>
-
 				<input type="hidden" name="profile_img" id="profile_img">
-
-			</form>
-			
-			<form>
 				<div class="row">
-					<div class="col-md-6">
-						<div class="file-field input-field" style="margin-top: 25px;">
+					<div class="col-md-6 my-2">
+						<div class="form-group">
+						<div class="file-field input-field">
 							<div class="btn btn-primary" id="pro-file-upload"> <span>Profile photo</span>
 								<input type="file" id="upload">	
 							</div>
 						</div>
+						</div>
 					</div>
-					<div class="col-md-6 mt-3">
+					<div class="col-md-6 text-center my-4">
 						<img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 <?php echo $this->_tpl_vars['data']['profile_img']; ?>
 " id="preveiw_image" width="" alt="">
-						<div id="upload-demo" style="width:300px">
+						<div id="upload-demo">
 						</div>
-						<button id="upload-demo-btn"  class="btn upload-result" type="button">Crop Image</button>
 						<div id="upload-demo-i">	
 						</div>
+						<button id="upload-demo-btn"  class="btn upload-result" type="button">Crop Image</button>
+						
 					</div>
 				</div>
 			</form>
@@ -214,7 +212,11 @@ users/">Doctors</a>
 		</fieldset>
 	</div>
 </div><!-- #content -->
-
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <style type="text/css">
 span.select2.select2-container.select2-container--default {
@@ -286,24 +288,23 @@ span.select2.select2-container.select2-container--default {
 
   $(\'#upload\').on(\'change\', function () { 
 
-  	debugger
+  	// debugger
   	$(\'#upload-demo\').show();
   	$(\'#upload-demo-btn\').show();
   	var reader = new FileReader();
   	reader.onload = function (e) {
-  		debugger
+
   		$uploadCrop.croppie(\'bind\', {
   			url: e.target.result
   		}).then(function(){
-  			console.log(e.target.result);
-  			debugger;
+  			//console.log(e.target.result);
+
   			$(\'#preveiw_image\').remove();
   			console.log(\'jQuery bind complete\');
   		});
 
   	}
   	reader.readAsDataURL(this.files[0]);
-  	debugger;
   });
 
   $(\'.upload-result\').on(\'click\', function (ev) {
@@ -337,15 +338,11 @@ edit-users?img=y<?php echo '",
   	});
   });
 
+  		$(\'#collapseProfile\').collapse({
+			toggle: true
+		})
+
 });
-
-
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
+

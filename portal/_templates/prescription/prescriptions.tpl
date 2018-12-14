@@ -1,60 +1,6 @@
 {include file="header.tpl"}
-
-{literal}
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		
-		$("#header-footer").checked = false;		
-		$("#field").change(function(){
-			
-			if( $("#field").val()== 'created_on')
-			{
-				
-				$("#q").datepicker({
-					dateFormat : "yy-mm-dd",
-					changeMonth: true,
-				});
-				$("#q").datepicker("show");
-			}	
-			else
-			{
-				$("#q").datepicker("destroy");
-			}
-		});
-		
-		$("#print_fee").click(function()
-		{
-			//debugger;
-			if($("#print_fee").prop("checked") == true)
-			{
-				$("#fee").removeClass("noprint");
-			}
-			else
-			{
-				$("#fee").addClass("noprint");
-			}
-		});
-
-		$("#printPrescription").click(function(){
-			
-			window.print();
-		});
-
-		
-	});
-</script>
-
-{/literal}
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
-		{if (isset($errors) && $errors)}
-		<div class="fail noprint">
-			{foreach from=$errors item=error}
-			{$error}
-			{/foreach}
-		</div>
-		{/if}
 		<!-- Breadcrumbs-->
 		<div class="noprint">
 			<ol class="breadcrumb">
@@ -76,6 +22,24 @@
 				{/if}
 			</ol>
 		</div>
+		{if (isset($errors) && $errors)}
+		<div class="fail noprint">
+			{foreach from=$errors item=error}
+			{$error}
+			{/foreach}
+		</div>
+		{/if}
+		<!-- {$smarty.session|print_r} -->
+		{if (isset($smarty.session.flashAlert))}
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{$smarty.session.flashAlert}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="{php} unset($_SESSION['flashAlert']); {/php}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		{/if}
 		{if $id=="0"}
 		<h2 class="noprint py-2">{if (isset($smarty.get.q) && $smarty.get.q neq '')} Search Result For "<b>{$smarty.get.q}</b>" {else}Prescription List{/if}</h2>
 		<p class="noprint">
@@ -86,14 +50,13 @@
 			<fieldset>
 				<legend>Search for Prescriptions</legend>
 				<div class="row">
-					<!-- {$search|print_r} -->
+					<!-- {$grouped_prescriptions|print_r}	 				 -->
 					<div class="col-md-3 col-sm-12">
 						<div class="form-group">
 							<select name="field" id="field" class="form-control">
 								<option value="id" {if (isset($search) && $search.field=='id')} selected="selected" {/if}>Prescription ID</option>
 								<option value="patient_id" {if (isset($search) && $search.field=='patient_id')} selected="selected" {/if}>Patient ID</option>
 								<option value="patient_name" {if (isset($search) && $search.field=='patient_name')} selected="selected" {/if}>Patient Name</option>
-								<option value="created_on" {if (isset($search) && $search.field=='created_on')} selected="selected" {/if}>Date</option>
 								<option value="complain" {if (isset($search) && $search.field=='complain')} selected="selected" {/if}>Complain</option>
 							</select>
 						</div>
@@ -103,8 +66,8 @@
 							<input type="text" class="form-control" name="q" id="q" {if isset($search) && $search.q}value="{$search.q}"{/if} maxlength="20" />
 						</div>
 					</div>
-					<div class="col-sm-1">
-						<input class="btn btn-primary form-control" type="submit" value="Search" name="submit" id="submit" />
+					<div class="col-sm-2">
+						<input class="btn btn-primary" type="submit" value="Search" name="submit" id="submit" />
 					</div>
 				</div>
 			</fieldset>
@@ -114,7 +77,6 @@
 		
 		<div class="pull-right grp_btn">
 			<span style="margin-bottom: 5px;">Group By :&nbsp;</span> 
-			<a {if ( isset($group_by) && $group_by=='date')} class="current_page" {/if} href="{$BASE_URL_ADMIN}prescriptions/?group_by=date&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Date</a>
 			<a {if ( isset($group_by) && $group_by=='patient_id')} class="current_page" {/if} href="{$BASE_URL_ADMIN}prescriptions/?group_by=patient_id&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Patient ID</a>
 			<a {if ( isset($group_by) && $group_by=='patient_name')} class="current_page" {/if} href="{$BASE_URL_ADMIN}prescriptions/?group_by=patient_name&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Name</a>
 			<a {if ( isset($group_by) && $group_by=='complain')} class="current_page" {/if} href="{$BASE_URL_ADMIN}prescriptions/?group_by=complain&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Complain</a>
@@ -168,6 +130,7 @@
 	</table>
 	{/foreach}
 	{/if}
+	<!-- {$grouped_prescriptions} -->
 	<div class="pagination">
 		{$pages}
 	</div>
@@ -288,10 +251,51 @@
 	{/if}
 </div>
 
-</div>
-
-
-<!-- #content -->
-
-<div class="print branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+</div><!-- #content -->
 {include file="footer.tpl"}
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#header-footer").checked = false;		
+		$("#field").change(function(){
+			
+			if( $("#field").val()== 'created_on')
+			{
+				
+				$("#q").datepicker({
+					dateFormat : "yy-mm-dd",
+					changeMonth: true,
+				});
+				$("#q").datepicker("show");
+			}	
+			else
+			{
+				$("#q").datepicker("destroy");
+			}
+		});
+		
+		$("#print_fee").click(function()
+		{
+			//debugger;
+			if($("#print_fee").prop("checked") == true)
+			{
+				$("#fee").removeClass("noprint");
+			}
+			else
+			{
+				$("#fee").addClass("noprint");
+			}
+		});
+
+		$("#printPrescription").click(function(){
+			
+			window.print();
+		});
+		$('#collapsePrescription').collapse({
+			toggle: true
+		})
+	});
+</script>
+
+{/literal}

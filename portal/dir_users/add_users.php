@@ -69,10 +69,12 @@ else if($_POST)
 	{
 		if($users->AddUser($data))
 		{
-			//redirect_to(BASE_URL.'users/');
-			echo "Inserted";
+			
+			//echo "Inserted";
 			$emailArray=array('email'=>$data['email'],'username'=>$data['name'],"user_id"=>$db->insert_id,"password"=>$data['password']);
 			//$users->sendPasswordInEmail($emailArray);
+			$_SESSION['flashAlert']="Doctor is Successfully Created!";
+			redirect_to(BASE_URL.'users/');
 		}
 	}
 	else {

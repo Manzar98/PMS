@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 11:45:15
+<?php /* Smarty version 2.6.31, created on 2018-12-13 23:22:06
          compiled from tests/test_options.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'tests/test_options.tpl', 83, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'tests/test_options.tpl', 93, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -36,6 +36,17 @@ tests/">Tests</a>
 				<?php endif; ?>
 			</ol>
 		</div>
+		<?php if (( isset ( $_SESSION['flashAlert'] ) )): ?>
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION['flashAlert']; ?>
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		<?php endif; ?>
 		<?php if (isset ( $this->_tpl_vars['edit'] ) || isset ( $this->_tpl_vars['add'] )): ?>
 		<h2 class="pt-2"><?php if (isset ( $this->_tpl_vars['edit'] )): ?> Edit<?php else: ?> Add <?php endif; ?> Test Option</h2>
 		
@@ -140,7 +151,11 @@ _templates/img/bin.png" alt="Delete" /></a>
 		<?php endif; ?>		
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <script type="text/javascript">
 	$(document).ready(function()
@@ -155,10 +170,3 @@ _templates/img/bin.png" alt="Delete" /></a>
 	});
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>

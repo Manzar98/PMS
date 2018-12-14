@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-03 17:56:54
+<?php /* Smarty version 2.6.31, created on 2018-12-14 14:18:39
          compiled from index.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -22,7 +22,7 @@ unset($_smarty_tpl_vars);
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 prescriptions/" class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'prescriptions'): ?> selected <?php endif; ?>" >
 					<div class="db-back-shadow">
-						<i class="fa fa-file-text-o text-primary" aria-hidden="true"></i><br>
+						<i class="fa fa-file-text-o" aria-hidden="true" style="color: #F75176;"></i><br>
 						<span>Prescriptions</span><br>
 						<div class="div-P">
 							<p style="">Add/Edit/View <br>Prescriptions</p>
@@ -98,7 +98,7 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 reports/<?php echo $_SESSION['AdminId']; ?>
 /">
 					<div class="db-back-shadow">
-						<i class="fa fa-bars text-dark" aria-hidden="true"></i><br>
+						<i class="fa fa-bar-chart" aria-hidden="true" style="color: #571845;"></i><br>
 						<span style="">Reports</span><br>
 						<div class="div-P">
 							<p style="">Manage<br> Reports</p>
@@ -149,7 +149,7 @@ own-package/">
 				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'password'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 password/">
 					<div class="db-back-shadow">
-						<i class="fa fa-key text-primary" aria-hidden="true"></i><br>
+						<i class="fa fa-key" aria-hidden="true" style="color: #ae7c7c"></i><br>
 						<span style="">Password</span><br>
 						<div class="div-P">
 							<p style="">Change your<br> password</p>
@@ -157,18 +157,6 @@ password/">
 					</div>
 				</a>
 			</div>
-<!-- 			<div class="col-xl-3 col-sm-6 mb-5 text-center">
-				<a class="clearfix <?php if ($this->_tpl_vars['CURRENT_PAGE'] == 'logout'): ?> selected <?php endif; ?>" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-logout/">
-					<div class="db-back-shadow">
-						<i class="fa fa-power-off text-warning" aria-hidden="true"></i><br>
-						<span style="">Logout</span><br>
-						<div class="div-P" style="">
-							<p style="">Logout from<br> system</p>
-						</div>
-					</div>
-				</a>
-			</div> -->
 		</div>
 		<?php else: ?>
 		<div class="row mt-5">
@@ -226,7 +214,7 @@ logout/">
 		<?php endif; ?>
 	</div>
 </div><!-- #content -->
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;

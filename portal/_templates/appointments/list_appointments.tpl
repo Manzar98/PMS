@@ -20,13 +20,13 @@
 		{if isset($appoint) && isset($pat) && isset($doc)}
 		<!-- {$pat} -->
 		<div class="appoint_Wrap"> 
-           <div class="row">
-			<div class="col-sm-11 text-center" style="margin-bottom: 40px;">
-				<h4 class="py-3"><b>APPOINTMENT CONFIRMATION</b></h4>
-			</div>
-			<div class="col-sm-1 noprint btnW pt-1">
-				<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
-			</div>
+			<div class="row">
+				<div class="col-sm-11 text-center" style="margin-bottom: 40px;">
+					<h4 class="py-3"><b>APPOINTMENT CONFIRMATION</b></h4>
+				</div>
+				<div class="col-sm-1 noprint btnW pt-1">
+					<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
+				</div>
 			</div>
 			<div class="row common-bottom">
 				<div class="col-sm-10">
@@ -101,12 +101,10 @@
 			<div class="col-sm-10">
 				<h2 class="py-4">List Of Appointments</h2>
 			</div>
-			<div class="col-sm-2 py-3" >
-				<a href="{$BASE_URL_ADMIN}doc-appointments/?doc_id={$doc.id}&doc_name={$doc.F_name} {$doc.L_name} &doc_adr={$doc.c_address}&doc_phne={$doc.phone}&img={$doc.profile_img}&speciallist={$doc.specialist}&exprience={$doc.exprience}&fee={$doc.c_fee}&exist=patient" class="btn btn-primary form-control">Get Appointment</a>
+			<div class="col py-3" >
+				<a href="{$BASE_URL_ADMIN}doc-appointments/?doc_id={$doc.id}&doc_name={$doc.F_name} {$doc.L_name} &doc_adr={$doc.c_address}&doc_phne={$doc.phone}&img={$doc.profile_img}&speciallist={$doc.specialist}&exprience={$doc.exprience}&fee={$doc.c_fee}&exist=patient" class="btn btn-primary">Add Appointment</a>
 			</div>
 		</div>
-
-
 		<table class="table table-striped table-bordered" >
 			<thead class="">
 				<tr>
@@ -155,7 +153,7 @@
 		<div style="margin-top: 30px;"></div>
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+{include file="footer.tpl"}
 {literal}
 <script type="text/javascript">
 	
@@ -171,4 +169,3 @@
 </script>
 {/literal}
 
-{include file="footer.tpl"}

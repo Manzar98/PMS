@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-05 18:26:39
+<?php /* Smarty version 2.6.31, created on 2018-12-06 18:42:47
          compiled from patients/patient_info.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patient_info.tpl', 66, false),)), $this); ?>

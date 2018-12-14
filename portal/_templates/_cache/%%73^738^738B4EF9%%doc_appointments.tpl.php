@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 22:41:33
+<?php /* Smarty version 2.6.31, created on 2018-12-10 17:27:12
          compiled from appointments/doc_appointments.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -240,7 +240,7 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 					<legend>Get Appointment</legend>
 
 					<div class="row">
-						<div class="col-sm-4 mx-auto">
+						<div class="col-sm-6 mx-auto">
 							<div class="form-group">
 								<input type="hidden" name="doc_id" id="doc_id" class="doc_id form-control" value="<?php echo $_GET['doc_id']; ?>
 "/>
@@ -252,11 +252,11 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 						</div>
 					</div>
 					<div class="form-row my-3">
-						<div class="col-sm-4"></div>
-						<div class="col-sm-1">
+						<div class="col-sm-3"></div>
+						<div class="col">
 							<input type="submit" class="btn btn-primary form-control" value="Search" />
 						</div>
-						<div class="col-sm-3">
+						<div class="col">
 							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 doc-appointments/<?php echo $_GET['doc_id']; ?>
 ?doc_name=<?php echo $_GET['doc_name']; ?>
@@ -266,8 +266,9 @@ doc-appointments/<?php echo $_GET['doc_id']; ?>
 &speciallist=<?php echo $_GET['speciallist']; ?>
 &exprience=<?php echo $_GET['exprience']; ?>
 &fee=<?php echo $_GET['fee']; ?>
-" class="btn btn-primary form-control">New Patient</a>
+" class="btn btn-primary form-control" role="button">New Patient</a>
 						</div>
+						<div class="col-sm-3"></div>
 					</div>
 				</fieldset>
 			</form>
@@ -440,7 +441,11 @@ doc-appointments/<?php echo $_GET['doc_id']; ?>
 					<?php endif; ?> 
 				</div><!-- #content -->
 			</div>
-			<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+			<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 			<?php echo '
 			<style type="text/css">
 			.datetimeHeading{
@@ -798,10 +803,4 @@ function generateRandomNumber(){
 
 </script>
 '; ?>
-
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
+

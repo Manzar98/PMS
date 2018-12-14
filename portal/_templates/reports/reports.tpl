@@ -23,7 +23,7 @@
 				<h3>Comparison Reports</h3>
 			</div>
 			<div class="col-sm-2 pt-4">
-				<a href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}/" class="btn btn-primary form-control">Reports</a>
+				<a href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}/" class="btn btn-primary">Reports</a>
 			</div>
 		</div>
 		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="POST" enctype="multipart/form-data" id="comparisonForm">
@@ -78,18 +78,18 @@
 					{$pieChart}
 				</div>
 				<div id="chart-container-pie"></div>
-				<table class="table table-striped table-bordered reportGenTblPie mt-4 bg-dark">
+				<table class="table table-striped table-bordered reportGenTblPie mt-4 bg-dark text-white">
 					<thead>
-						<th class="text-center text-white" >Total {$data.parameter_Comp}</th>
-						<th class="text-center text-white">{$data.totalCount}</th>
+						<th class="text-center" >Total {$data.parameter_Comp}</th>
+						<th class="text-center">{$data.totalCount}</th>
 					</thead>
 					<!-- {$data.thName|print_r} -->
 				</table>
-				<table class="table table-striped table-bordered extendedTablePie  bg-dark">
+				<table class="table table-striped table-bordered  extendedTablePie text-dark">
 					<thead>
 						<tr>
-							<th class="text-center text-white">Parameter</th>
-							<th class="text-center text-white">Name (id)</th>
+							<th class="text-center">Parameter</th>
+							<th class="text-center">Name (id)</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -97,12 +97,12 @@
 						{assign var=val value=$v|@count}
 						{assign var=val value=$val+1}
 						<tr class="">
-							<th class="text-center multiRowColumn text-white" rowspan="{$val}" style="vertical-align : middle;text-align:center;">
+							<th class="text-center multiRowColumn" rowspan="{$val}" style="vertical-align : middle;text-align:center;">
 							{$k} ({$v|@count})</th>
 						</tr>
 						{foreach from=$v item=name key=k}
 						<tr>
-							<td class="text-center text-white">{$name}</td>
+							<td class="text-center">{$name}</td>
 						</tr>
 						{/foreach}
 						{/foreach}
@@ -118,11 +118,11 @@
 		</form>
 		{else} <!--=======Reports Else Condition Start====== -->
 		<div class="row">
-			<div class="col-sm-10 pt-4">
+			<div class="col-sm-9 pt-4">
 				<h3>Reports</h3>
 			</div>
-			<div class="col-sm-2  pt-4">
-				<a href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}?type=comparison" class="btn btn-primary form-control">Comparison Reports</a>
+			<div class="col pt-4 text-right">
+				<a href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}?type=comparison" class="btn btn-primary" role="button">Comparison Reports</a>
 			</div>
 		</div>
 		<form class="box style" action="{$smarty.server.REQUEST_URI}" method="POST" enctype="multipart/form-data" id="reportForm">
@@ -226,7 +226,7 @@
 
 					{if isset($data) && ($data.parameter=="Free checkups" || $data.parameter=="Total fee collected")  }
 
-					<table class="table table-striped table-bordered text-white bg-dark">
+					<table class="table table-striped table-bordered text-dark">
 						<thead>
 							<tr>
 								<th class="text-center">{if $data.filter=="years"}Year{else}Month{/if}</th>
@@ -249,7 +249,7 @@
 					<div id="charts" hidden="">
 						{$charts}
 					</div>
-					<table class="table table-striped table-bordered text-white bg-dark">
+					<table class="table table-striped table-bordered text-dark">
 						<thead>
 							<tr>
 								<th class="text-center">{if $data.filter=="years"}Year{else}Month{/if}</th>
@@ -280,7 +280,7 @@
 							<div id="charts" hidden="">
 								{$charts}
 							</div>
-							<table class="table table-striped table-bordered text-white bg-dark">
+							<table class="table table-striped table-bordered text-dark">
 								<thead>
 									<tr>
 										<th class="text-center">Date</th>
@@ -301,7 +301,7 @@
 							<div id="charts" hidden="">
 								{$charts}
 							</div>
-							<table class="table table-striped table-bordered text-white bg-dark">
+							<table class="table table-striped table-bordered text-dark">
 								<thead>
 									<tr>
 										{section name=th loop=$data.thName}
@@ -331,8 +331,7 @@
 				{/if}<!--=======Reports Else Condition End======= -->
 			</div>
 		</div><!-- #content -->
-
-		<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+		{include file="footer.tpl"}
 		{literal}
 		<style type="text/css">
 		.raphael-group-23-creditgroup,.raphael-group-24-creditgroup{
@@ -346,8 +345,6 @@
 			width: 100% !important;
 		}
 	</style>
-	{/literal}
-	{literal}
 	<script type="text/javascript">
 
 		$('#mediWrap').hide();
@@ -628,10 +625,6 @@ FusionCharts.ready(function() {
 		}
 		// debugger
 	}
-
-
-
 </script>
 {/literal}
 
-{include file="footer.tpl"}

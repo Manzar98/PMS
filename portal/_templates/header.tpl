@@ -18,9 +18,9 @@
 	<link href="{$BASE_URL_ADMIN}_templates/css/custom.css" rel="stylesheet">
 	<!-- Main styles -->
 	<link href="{$BASE_URL_ADMIN}_templates/css/admin.css" rel="stylesheet">
-<!-- 	 <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/screen.css" type="text/css" media="screen" /> -->
+	<!-- 	 <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/screen.css" type="text/css" media="screen" /> -->
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery.fancybox.css" type="text/css" media="screen" /> -->
-	 <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery-ui.css">
+	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery-ui.css">
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/fonts/kreon.css"> -->
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/fonts/droidsans.css" /> -->
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/bootstrap.css" /> -->
@@ -30,58 +30,12 @@
 	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/croppie.css" />
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery.timepicker.css" /> -->
 	<link href=" "rel="stylesheet" />
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.js" type="text/javascript"></script> 
-	<!-- Doctor Template Scripting Start  -->
-<!-- 	<script src="{$BASE_URL_ADMIN}_templates/js/admin.js" type="text/javascript"></script> 
-	<script src="{$BASE_URL_ADMIN}_templates/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery-easing/jquery.easing.min.js" type="text/javascript"></script> --> 
-	<!-- Doctor Template Scripting End  -->
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.bgiframe.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.validate.min.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/functions.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/main.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/categories.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/hoverIntent.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/links.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/select2.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/messages.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/overlay.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/types.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.fancybox.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.easing.1.3.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery.timepicker.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/jquery-ui.min.js"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/core.js"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/widget.js"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/datepicker.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/accordion.js"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/croppie.js"></script>
-	{if isset($editor)}
-	<script src="{$BASE_URL_ADMIN}_templates/js/tiny_mce/tiny_mce.js" type="text/javascript"></script>
-	<script src="{$BASE_URL_ADMIN}_templates/js/editor.js" type="text/javascript"></script>
-
-
-	<script type="text/javascript">
-		{literal}
-		tinyMCE.init({
-			plugins : 'style,layer,table,save,advhr,advimage,advlink,media,searchreplace,contextmenu,paste,directionality,nonbreaking,xhtmlxtras',
-			themes : 'advanced',
-			languages : 'en',
-			disk_cache : true,
-			relative_urls : false, 
-			debug : false
-		});
-
-		{/literal}
-	</script>
-	{/if} 
-	<script type="text/javascript">
-		SIK.I18n = {$translationsJson};
-	</script>
+	<!-- <script src="{$BASE_URL_ADMIN}_templates/js/jquery.js" type="text/javascript"></script>  -->
 </head>
 <body class="fixed-nav sticky-footer" id="page-top">
+	
 	<div id="wrap" class="">
+		
 		{if $isAuthenticated == 1}
 		{if isset($smarty.session.status)}
 		<div class="noprint" id="status">
@@ -166,8 +120,14 @@
 							</li>
 							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
 								<a class="nav-link {if $CURRENT_PAGE == 'reports'}selected{/if}" href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}/">
-									<i class="fa fa-fw fa-bars"></i>
+									<i class="fa fa-fw fa-bar-chart"></i>
 									<span class="nav-link-text">Reports</span>
+								</a>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+								<a class="nav-link {if $CURRENT_PAGE == 'list-appointments'}selected{/if}" href="{$BASE_URL_ADMIN}list-appointments/{$smarty.session.AdminId}/">
+									<i class="fa fa-fw fa-calendar"></i>
+									<span class="nav-link-text">Appointments</span>
 								</a>
 							</li>
 							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
@@ -245,7 +205,7 @@
 						</ul>
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="modal" href="{$BASE_URL_ADMIN}logout/">
+								<a class="nav-link" href="{$BASE_URL_ADMIN}logout/">
 									<i class="fa fa-fw fa-sign-out"></i>Logout</a>
 								</li>
 							</ul>
@@ -255,5 +215,5 @@
 				</div>
 			</header>
 			{/if}
-			
-			
+
+

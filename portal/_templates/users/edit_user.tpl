@@ -147,27 +147,25 @@
 						</div>
 					</div>
 				</div>
-
 				<input type="hidden" name="profile_img" id="profile_img">
-
-			</form>
-			
-			<form>
 				<div class="row">
-					<div class="col-md-6">
-						<div class="file-field input-field" style="margin-top: 25px;">
+					<div class="col-md-6 my-2">
+						<div class="form-group">
+						<div class="file-field input-field">
 							<div class="btn btn-primary" id="pro-file-upload"> <span>Profile photo</span>
 								<input type="file" id="upload">	
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 mt-3">
-						<img src="{$BASE_URL_ADMIN}{$data.profile_img}" id="preveiw_image" width="" alt="">
-						<div id="upload-demo" style="width:300px">
 						</div>
-						<button id="upload-demo-btn"  class="btn upload-result" type="button">Crop Image</button>
+					</div>
+					<div class="col-md-6 text-center my-4">
+						<img src="{$BASE_URL_ADMIN}{$data.profile_img}" id="preveiw_image" width="" alt="">
+						<div id="upload-demo">
+						</div>
 						<div id="upload-demo-i">	
 						</div>
+						<button id="upload-demo-btn"  class="btn upload-result" type="button">Crop Image</button>
+						
 					</div>
 				</div>
 			</form>
@@ -179,7 +177,7 @@
 		</fieldset>
 	</div>
 </div><!-- #content -->
-
+{include file="footer.tpl"}
 {literal}
 <style type="text/css">
 span.select2.select2-container.select2-container--default {
@@ -251,24 +249,23 @@ span.select2.select2-container.select2-container--default {
 
   $('#upload').on('change', function () { 
 
-  	debugger
+  	// debugger
   	$('#upload-demo').show();
   	$('#upload-demo-btn').show();
   	var reader = new FileReader();
   	reader.onload = function (e) {
-  		debugger
+
   		$uploadCrop.croppie('bind', {
   			url: e.target.result
   		}).then(function(){
-  			console.log(e.target.result);
-  			debugger;
+  			//console.log(e.target.result);
+
   			$('#preveiw_image').remove();
   			console.log('jQuery bind complete');
   		});
 
   	}
   	reader.readAsDataURL(this.files[0]);
-  	debugger;
   });
 
   $('.upload-result').on('click', function (ev) {
@@ -300,10 +297,10 @@ span.select2.select2-container.select2-container--default {
   	});
   });
 
+  		$('#collapseProfile').collapse({
+			toggle: true
+		})
+
 });
-
-
 </script>
 {/literal}
-
-{include file="footer.tpl"}

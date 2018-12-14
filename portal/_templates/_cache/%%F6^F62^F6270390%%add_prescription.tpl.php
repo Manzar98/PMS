@@ -1,14 +1,415 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-05 18:46:45
+<?php /* Smarty version 2.6.31, created on 2018-12-13 19:36:21
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+<div id="" class="content-wrapper">
+	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<div class="noprint">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+">Dashboard</a>
+				</li>
+				<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == '0'): ?>
+				<li class="breadcrumb-item active">Prescriptions</li>
+				<?php else: ?>
+				<li class="breadcrumb-item">
+					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+prescriptions/">Prescriptions</a>
+				</li>
+				<li class="breadcrumb-item active">Add</li>
+				<?php endif; ?>
+			</ol>
+		</div>
+		<h2  class="py-3">Add Prescription</h2>
+		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
+		<div class="fail">
+			<?php $_from = $this->_tpl_vars['errors']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['error']):
+?>
+			<?php echo $this->_tpl_vars['error']; ?>
 
+			<?php endforeach; endif; unset($_from); ?>
+		</div>
+		<?php endif; ?>
+
+		<input type="hidden" name="" id="prescriptionFull" value="<?php echo $this->_tpl_vars['prescriptionFull']; ?>
+">
+		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="get" enctype="multipart/form-data">
+
+			<fieldset >
+				
+				<legend>Search Patient</legend>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<select name="field" class="form-control" id="field" onchange="PatientLookUp(document.getElementById('q').value)">
+								<option value="id" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'id' )): ?> selected="selected" <?php endif; ?>>Patient ID</option>
+								<option value="name" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'name' )): ?> selected="selected" <?php endif; ?>>Patient Name</option>
+								<option value="mobile" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'mobile' )): ?> selected="selected" <?php endif; ?>>Mobile No</option>
+								<option value="phone" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'phone' )): ?> selected="selected" <?php endif; ?>>Phone No</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<input type="text" class="form-control" name="q" id="q" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['q'] )): ?>value="<?php echo $this->_tpl_vars['data']['q']; ?>
+"<?php endif; ?>  maxlength="20" onkeyup="PatientLookUp(this.value)" />
+						</div>
+					</div>
+					<!-- <div class="col-md-2 col-sm-12 search-top">
+						<input class="btn btn-primary" type="submit" value="Search" id="submit" />
+					</div> -->
+
+				</div>
+			</fieldset>
+		</form>	
+		<div id="suggestion">
+
+		</div>	
+		<form id="add_prescription" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
+" method="post">
+			<fieldset>
+				<legend>Patient Information</legend>
+				
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="patient_name">Patient Name</label>
+							<input type="text" class="form-control input-field" name="patient_name" id="patient_name" readonly="readonly" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['patient_name'] )): ?>value="<?php echo $this->_tpl_vars['data']['name']; ?>
+"<?php endif; ?> />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="patient_id">Patient Id</label>
+							<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['patient_id'] )): ?>value="<?php echo $this->_tpl_vars['data']['patient_id']; ?>
+"<?php endif; ?> />
+						</div>
+					</div>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_patient" class="btn btn-primary" href="javascript:void(0)">Add New Patient</a>
+					</div>
+				</div>
+				
+				<div id="add_new_patient" style="display: none; clear:both;">
+					<div class="row">
+						<input type="hidden" name="security_key" id="security_key">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="input-field form-control empty-inpt" id="name" name="name" onclick="generateRandomNumber()"/>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="mobile_number">Phone</label>
+								<input type="text" class="form-control empty-inpt" name="mobile_number" id="mobile_number" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="city">City</label>
+								<select name="city" id="city" class="form-control empty-inpt">
+									<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+									<option <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['city_id'] == $this->_tpl_vars['city']['id'] )): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['city']['id']; ?>
+"><?php echo $this->_tpl_vars['city']['name']; ?>
+</option>
+									<?php endforeach; endif; unset($_from); ?>						
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<label for="email">Email Address</label>
+								<input type="email" name="email"
+								id="email" class="form-control empty-inpt">
+							</div>
+						</div>
+						<div class="col-sm-1 addUp_btn">
+							<input type="button"  class="btn btn-primary" id="submit_patient" value="Add" />
+						</div>				
+					</div>
+				</div>
+			</fieldset>			
+
+			<fieldset id="medicines">
+
+				<legend>Medicine Instructions</legend> 
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group"> 
+							<label>Medicine</label>
+							<select id="medicine" onchange="GetMedicineInstruction(this)" class="form-control">
+								<option value="" disabled="" selected="">Select Medicine First</option>
+								<?php $_from = $this->_tpl_vars['medicines']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['m']):
+?>
+								<option value="<?php echo $this->_tpl_vars['m']['id']; ?>
+"><?php echo $this->_tpl_vars['m']['name']; ?>
+ (<?php echo $this->_tpl_vars['m']['dose']; ?>
+)</option>
+								<?php endforeach; endif; unset($_from); ?>	
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group"> 
+							<label>Instruction</label>
+							<select class="medicine_instruction form-control" >
+
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 common-top">
+						<div class="form-group"> 
+							<label>Custom Instruction</label>
+							<input type="text" id="custom_instruction" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-1 addUp_btn">
+						<input type="button" name="add_instruction" id="add_instruction" value="Add" class="btn btn-primary" />
+					</div>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_new_medicine" class="btn btn-primary pull-right">Add New Medicine</a>
+					</div>
+				</div>
+				
+				<div id="add_medicine_wrap" style="display: none; clear:both;">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_name">Medicine Name</label>
+								<input type="text" name="name" class="form-control empty-inpt" id="m_name"/>
+							</div>	
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_formula">Medicine Formula</label>
+								<input type="text" name="formula" id="m_formula" class="form-control empty-inpt"/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_type">Type</label>
+								<select name="type" id="m_type" class="form-control empty-inpt">
+									<option value="" disabled="" selected="">Select</option>
+									<option value="Tablet">Tablet</option>
+									<option value="Capsule">Capsule</option>
+									<option value="Syrup">Syrup</option>
+									<option value="Injection">Injection</option>
+									<option value="Cream">Cream</option>
+									<option value="Drops">Drops</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_dose">Dose</label>
+								<input type="text" class="form-control empty-inpt" name="dose" id="m_dose"/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_company">Company</label>
+								<input type="text" name="company" id="m_company" class="form-control empty-inpt"/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="m_instruction">Instruction</label>
+								<textarea  name="instruction" id="m_instruction" class="form-control empty-inpt textarea-height"></textarea>
+							</div>
+						</div>
+						<div class="col-md-3 addUp_btn">
+							<input type="button" id="submit_medicine" value="Add" class="btn btn-primary"/>
+						</div>
+					</div>
+				</div>
+				<table style="clear:both;display: none;" id="instructions" class="zebra">
+					<caption>Medicine Instructions</caption>
+					<thead>
+						<tr>
+							<th>Medicine Name</th>
+							<th>Instruction</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+
+			</fieldset>
+			<fieldset id="tests">
+				<legend>Tests</legend>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Test Name</label>
+							<select id="test_name" onchange="GetTestOptions(this)" class="form-control">
+								<option value="" disabled="" selected="">Select Test</option>
+								<?php $_from = $this->_tpl_vars['test_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['t']):
+?>
+								<option value="<?php echo $this->_tpl_vars['t']['id']; ?>
+"><?php echo $this->_tpl_vars['t']['name']; ?>
+</option>
+								<?php endforeach; endif; unset($_from); ?>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Test Options</label>
+							<select class="test_options form-control">
+
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label> Test Result</label>
+							<input type="text" class="form-control" id="test_result" />	
+						</div>
+					</div>
+					<div class="col-sm-1 addUp_btn">
+						<input type="button" id="add_test" class="btn btn-primary" value="Add" />
+					</div>
+					<div class="col-sm-2 addNewBtn mb-3">
+						<a id="add_new_test" class="pull-right btn btn-primary">Add New Test</a>
+					</div>
+				</div>
+				<div  id="add_test_wrap" style="display: none;clear: both;">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="t_name">Test Name</label>
+								<input type="text" name="name" id="t_name" maxlength="100" class="form-control empty-inpt" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="t_option">Option Name</label>
+								<input type="text" name="name" id="t_option" maxlength="100" class="form-control empty-inpt" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="measurement">Measurment</label>
+								<input type="text" name="measurement" id="measurement" maxlength="100" class="form-control empty-inpt" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="normal_range">Normal Range</label>
+								<input type="text" name="normal_range" id="normal_range" class="form-control empty-inpt" />
+							</div>
+						</div>
+						<div class="col-sm-2 addUp_btn">
+							<input type="button" id="submit_test" value="Add" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>
+				<table style="clear:both;display: none;" id="test_table" class="zebra">
+					<caption>Tests</caption>
+					<thead>
+						<tr>
+							<th>Test Name</th>
+							<th>Test Field</th>
+							<th>Result</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</fieldset>
+
+
+
+
+			<fieldset id="prescription">
+				<legend> Prescription Info</legend>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="description">Description</label>
+							<textarea name="description" id="description" tabindex="21" class="form-control textarea-height"></textarea>
+						</div>	
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="next_date">Next Date</label>
+							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" />
+						</div>	
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="complain">Complain</label>
+							<input type="text" name="complain" tabindex="24"  class="form-control" />	
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="next_plan">Next Plan</label>
+							<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control textarea-height"></textarea>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="complain_detail">Complain Detail</label>
+							<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control textarea-height"></textarea>	
+						</div>
+					</div>
+
+				</div>
+
+			</fieldset>
+			<fieldset>
+				<legend>Fee</legend>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="fee_received">Fee Received</label>
+							<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="<?php echo $_SESSION['c_fee']; ?>
+" />
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 mx-auto" >
+					<label></label>
+					<input type="submit" class="btn btn-primary form-control" name="submit" id="submit" />
+				</div>
+			</fieldset>	
+
+		</form>
+	</div><!-- #content -->
+</div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
-
 <script>
+	$(document).ready(function()
+	{
+		$(\'#name\').focus();
+		$(\'#add_prescription\').validate({
+			rules: {
+				patient_id: { required: true }
+			}
+		});
+	});
 	$(function() {
 		var today = new Date();
 		$( "#next_date" ).datepicker({
@@ -453,6 +854,9 @@ add-prescription/add-patient/<?php echo '",
 			$(\'#prescriptionFull\').val(\'\')
 		}
 
+		$(\'#collapsePrescription\').collapse({
+			toggle: true
+		})
 	});
 function generateRandomNumber(){
 
@@ -465,414 +869,3 @@ function generateRandomNumber(){
 // debugger
 </script>
 '; ?>
-
-<div id="content" class="content-wrapper">
-	<div class="container-fluid">
-		<!-- Breadcrumbs-->
-		<div class="noprint">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-">Dashboard</a>
-				</li>
-				<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == '0'): ?>
-				<li class="breadcrumb-item active">Prescriptions</li>
-				<?php else: ?>
-				<li class="breadcrumb-item">
-					<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-prescriptions/">Prescriptions</a>
-				</li>
-				<li class="breadcrumb-item active">Add</li>
-				<?php endif; ?>
-			</ol>
-		</div>
-		<h2  class="py-3">Add Prescription</h2>
-		<?php if (( isset ( $this->_tpl_vars['errors'] ) && $this->_tpl_vars['errors'] )): ?>
-		<div class="fail">
-			<?php $_from = $this->_tpl_vars['errors']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['error']):
-?>
-			<?php echo $this->_tpl_vars['error']; ?>
-
-			<?php endforeach; endif; unset($_from); ?>
-		</div>
-		<?php endif; ?>
-
-		<input type="hidden" name="" id="prescriptionFull" value="<?php echo $this->_tpl_vars['prescriptionFull']; ?>
-">
-		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
-" method="get" enctype="multipart/form-data">
-
-			<fieldset >
-				
-				<legend>Search Patient</legend>
-				<div class="row">
-					<div class="col-md-3">
-						<div class="form-group">
-							<select name="field" class="form-control" id="field" onchange="PatientLookUp(document.getElementById('q').value)">
-								<option value="id" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'id' )): ?> selected="selected" <?php endif; ?>>Patient ID</option>
-								<option value="name" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'name' )): ?> selected="selected" <?php endif; ?>>Patient Name</option>
-								<option value="mobile" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'mobile' )): ?> selected="selected" <?php endif; ?>>Mobile No</option>
-								<option value="phone" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['field'] == 'phone' )): ?> selected="selected" <?php endif; ?>>Phone No</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<input type="text" class="form-control" name="q" id="q" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['q'] )): ?>value="<?php echo $this->_tpl_vars['data']['q']; ?>
-"<?php endif; ?>  maxlength="20" onkeyup="PatientLookUp(this.value)" />
-						</div>
-					</div>
-					<!-- <div class="col-md-2 col-sm-12 search-top">
-						<input class="btn btn-primary" type="submit" value="Search" id="submit" />
-					</div> -->
-
-				</div>
-			</fieldset>
-		</form>	
-		<div id="suggestion">
-
-		</div>	
-		<form id="add_prescription" class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
-" method="post">
-			<fieldset>
-				<legend>Patient Information</legend>
-				
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="patient_name">Patient Name</label>
-							<input type="text" class="form-control input-field" name="patient_name" id="patient_name" readonly="readonly" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['patient_name'] )): ?>value="<?php echo $this->_tpl_vars['data']['name']; ?>
-"<?php endif; ?> />
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="patient_id">Patient Id</label>
-							<input type="text" class="form-control input-field" name="patient_id" id="patient_id" readonly="readonly" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['patient_id'] )): ?>value="<?php echo $this->_tpl_vars['data']['patient_id']; ?>
-"<?php endif; ?> />
-						</div>
-					</div>
-					<div class="col-sm-2 addNewBtn mb-3">
-						<a id="add_patient" class="btn btn-primary" href="javascript:void(0)">Add New Patient</a>
-					</div>
-				</div>
-				
-				<div id="add_new_patient" style="display: none; clear:both;">
-					<div class="row">
-						<input type="hidden" name="security_key" id="security_key">
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="name">Name</label>
-								<input type="text" class="input-field form-control empty-inpt" id="name" name="name" onclick="generateRandomNumber()"/>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="mobile_number">Phone</label>
-								<input type="text" class="form-control empty-inpt" name="mobile_number" id="mobile_number" />
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="city">City</label>
-								<select name="city" id="city" class="form-control empty-inpt">
-									<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['city']):
-?>
-									<option <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['city_id'] == $this->_tpl_vars['city']['id'] )): ?> selected="selected" <?php endif; ?> value="<?php echo $this->_tpl_vars['city']['id']; ?>
-"><?php echo $this->_tpl_vars['city']['name']; ?>
-</option>
-									<?php endforeach; endif; unset($_from); ?>						
-								</select>
-							</div>
-						</div>
-						<div class="col-sm-2">
-							<div class="form-group">
-								<label for="email">Email Address</label>
-								<input type="email" name="email"
-								id="email" class="form-control empty-inpt">
-							</div>
-						</div>
-						<div class="col-sm-1 addUp_btn">
-							<input type="button"  class="btn btn-primary" id="submit_patient" value="Add" />
-						</div>				
-					</div>
-				</div>
-			</fieldset>			
-
-			<fieldset id="medicines">
-
-				<legend>Medicine Instructions</legend> 
-				<div class="row">
-					<div class="col-md-3">
-						<div class="form-group"> 
-							<label>Medicine</label>
-							<select id="medicine" onchange="GetMedicineInstruction(this)" class="form-control">
-								<option value="" disabled="" selected="">Select Medicine First</option>
-								<?php $_from = $this->_tpl_vars['medicines']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['m']):
-?>
-								<option value="<?php echo $this->_tpl_vars['m']['id']; ?>
-"><?php echo $this->_tpl_vars['m']['name']; ?>
- (<?php echo $this->_tpl_vars['m']['dose']; ?>
-)</option>
-								<?php endforeach; endif; unset($_from); ?>	
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group"> 
-							<label>Instruction</label>
-							<select class="medicine_instruction form-control" >
-
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3 common-top">
-						<div class="form-group"> 
-							<label>Custom Instruction</label>
-							<input type="text" id="custom_instruction" class="form-control" />
-						</div>
-					</div>
-					<div class="col-sm-1 addUp_btn">
-						<input type="button" name="add_instruction" id="add_instruction" value="Add" class="btn btn-primary" />
-					</div>
-					<div class="col-sm-2 addNewBtn mb-3">
-						<a id="add_new_medicine" class="btn btn-primary pull-right">Add New Medicine</a>
-					</div>
-				</div>
-				
-				<div id="add_medicine_wrap" style="display: none; clear:both;">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_name">Medicine Name</label>
-								<input type="text" name="name" class="form-control empty-inpt" id="m_name"/>
-							</div>	
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_formula">Medicine Formula</label>
-								<input type="text" name="formula" id="m_formula" class="form-control empty-inpt"/>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_type">Type</label>
-								<select name="type" id="m_type" class="form-control empty-inpt">
-									<option value="" disabled="" selected="">Select</option>
-									<option value="Tablet">Tablet</option>
-									<option value="Capsule">Capsule</option>
-									<option value="Syrup">Syrup</option>
-									<option value="Injection">Injection</option>
-									<option value="Cream">Cream</option>
-									<option value="Drops">Drops</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_dose">Dose</label>
-								<input type="text" class="form-control empty-inpt" name="dose" id="m_dose"/>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_company">Company</label>
-								<input type="text" name="company" id="m_company" class="form-control empty-inpt"/>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="m_instruction">Instruction</label>
-								<textarea  name="instruction" id="m_instruction" class="form-control empty-inpt textarea-height"></textarea>
-							</div>
-						</div>
-						<div class="col-md-3 addUp_btn">
-							<input type="button" id="submit_medicine" value="Add" class="btn btn-primary"/>
-						</div>
-					</div>
-				</div>
-				<table style="clear:both;display: none;" id="instructions" class="zebra">
-					<caption>Medicine Instructions</caption>
-					<thead>
-						<tr>
-							<th>Medicine Name</th>
-							<th>Instruction</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-
-					</tbody>
-				</table>
-
-			</fieldset>
-			<fieldset id="tests">
-				<legend>Tests</legend>
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label>Test Name</label>
-							<select id="test_name" onchange="GetTestOptions(this)" class="form-control">
-								<option value="" disabled="" selected="">Select Test</option>
-								<?php $_from = $this->_tpl_vars['test_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['t']):
-?>
-								<option value="<?php echo $this->_tpl_vars['t']['id']; ?>
-"><?php echo $this->_tpl_vars['t']['name']; ?>
-</option>
-								<?php endforeach; endif; unset($_from); ?>
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label>Test Options</label>
-							<select class="test_options form-control">
-
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label> Test Result</label>
-							<input type="text" class="form-control" id="test_result" />	
-						</div>
-					</div>
-					<div class="col-sm-1 addUp_btn">
-						<input type="button" id="add_test" class="btn btn-primary" value="Add" />
-					</div>
-					<div class="col-sm-2 addNewBtn mb-3">
-						<a id="add_new_test" class="pull-right btn btn-primary">Add New Test</a>
-					</div>
-				</div>
-				<div  id="add_test_wrap" style="display: none;clear: both;">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="t_name">Test Name</label>
-								<input type="text" name="name" id="t_name" maxlength="100" class="form-control empty-inpt" />
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="t_option">Option Name</label>
-								<input type="text" name="name" id="t_option" maxlength="100" class="form-control empty-inpt" />
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="measurement">Measurment</label>
-								<input type="text" name="measurement" id="measurement" maxlength="100" class="form-control empty-inpt" />
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="normal_range">Normal Range</label>
-								<input type="text" name="normal_range" id="normal_range" class="form-control empty-inpt" />
-							</div>
-						</div>
-						<div class="col-sm-2 addUp_btn">
-							<input type="button" id="submit_test" value="Add" class="btn btn-primary" />
-						</div>
-					</div>
-				</div>
-				<table style="clear:both;display: none;" id="test_table" class="zebra">
-					<caption>Tests</caption>
-					<thead>
-						<tr>
-							<th>Test Name</th>
-							<th>Test Field</th>
-							<th>Result</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-
-					</tbody>
-				</table>
-			</fieldset>
-
-
-
-
-			<fieldset id="prescription">
-				<legend> Prescription Info</legend>
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="description">Description</label>
-							<textarea name="description" id="description" tabindex="21" class="form-control textarea-height"></textarea>
-						</div>	
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="next_date">Next Date</label>
-							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" />
-						</div>	
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="complain">Complain</label>
-							<input type="text" name="complain" tabindex="24"  class="form-control" />	
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="next_plan">Next Plan</label>
-							<textarea name="next_plan" id="next_plan" tabindex="23" class="form-control textarea-height"></textarea>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="complain_detail">Complain Detail</label>
-							<textarea name="complain_detail" id="complain_detail" tabindex="25" class="form-control textarea-height"></textarea>	
-						</div>
-					</div>
-
-				</div>
-
-			</fieldset>
-			<fieldset>
-				<legend>Fee</legend>
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="fee_received">Fee Received</label>
-							<input type="text" name="fee_received" id="fee_received" tabindex="26" class="form-control" value="<?php echo $_SESSION['c_fee']; ?>
-" />
-						</div>
-					</div>
-					</div>
-					<div class="col-sm-3 mx-auto" >
-						<label></label>
-						<input type="submit" class="btn btn-primary form-control" name="submit" id="submit" />
-					</div>
-			</fieldset>	
-
-		</form>
-	</div><!-- #content -->
-</div>
-<?php echo '
-
-<script type="text/javascript">
-	$(document).ready(function()
-	{
-		$(\'#name\').focus();
-		$(\'#add_prescription\').validate({
-			rules: {
-				patient_id: { required: true }
-			}
-		});
-	});
-</script>
-'; ?>
-
-<div class="print branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>

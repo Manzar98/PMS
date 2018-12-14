@@ -12,6 +12,7 @@ if($id==="delete")
 
 		if ($patient->DeletePatient($extra)) {
 
+			$_SESSION['flashAlert']="Prescription is Successfully Deleted!";
 			redirect_to(BASE_URL.'patients/');
 		}	
 	}
@@ -112,7 +113,9 @@ else if($_POST)
 					{
 						$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
 						$patient->sendPasswordInEmail($emailArray);
-						redirect_to(BASE_URL.'patients/add');
+
+						$_SESSION['flashAlert']="Patient is Successfully Created!";
+						redirect_to(BASE_URL.'patients');
 					}
 					else {
 						$errors["error"] = "Some error occurred, Please Try again";
@@ -131,7 +134,8 @@ else if($_POST)
 				{
 					$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$db->insert_id);
 					$patient->sendPasswordInEmail($emailArray);
-					redirect_to(BASE_URL.'patients/add');
+					$_SESSION['flashAlert']="Patient is Successfully Created!";
+					redirect_to(BASE_URL.'patients');
 				}
 				else {
 					$errors["error"] = "Some error occurred, Please Try again";
@@ -145,6 +149,7 @@ else if($_POST)
 			$data["id"] = $extra;
 			if($patient->UpdatePatient($data))
 			{
+				$_SESSION['flashAlert']="Patient is Successfully Updated!";
 				redirect_to(BASE_URL.'patients/');
 			}
 			else {

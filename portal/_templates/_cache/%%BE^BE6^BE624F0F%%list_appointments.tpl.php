@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 18:52:26
+<?php /* Smarty version 2.6.31, created on 2018-12-14 10:15:41
          compiled from appointments/list_appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/list_appointments.tpl', 125, false),)), $this); ?>
@@ -32,13 +32,13 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 		<!-- <?php echo $this->_tpl_vars['pat']; ?>
  -->
 		<div class="appoint_Wrap"> 
-           <div class="row">
-			<div class="col-sm-11 text-center" style="margin-bottom: 40px;">
-				<h4 class="py-3"><b>APPOINTMENT CONFIRMATION</b></h4>
-			</div>
-			<div class="col-sm-1 noprint btnW pt-1">
-				<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
-			</div>
+			<div class="row">
+				<div class="col-sm-11 text-center" style="margin-bottom: 40px;">
+					<h4 class="py-3"><b>APPOINTMENT CONFIRMATION</b></h4>
+				</div>
+				<div class="col-sm-1 noprint btnW pt-1">
+					<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
+				</div>
 			</div>
 			<div class="row common-bottom">
 				<div class="col-sm-10">
@@ -129,7 +129,7 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 			<div class="col-sm-10">
 				<h2 class="py-4">List Of Appointments</h2>
 			</div>
-			<div class="col-sm-2 py-3" >
+			<div class="col py-3" >
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 doc-appointments/?doc_id=<?php echo $this->_tpl_vars['doc']['id']; ?>
 &doc_name=<?php echo $this->_tpl_vars['doc']['F_name']; ?>
@@ -140,7 +140,7 @@ doc-appointments/?doc_id=<?php echo $this->_tpl_vars['doc']['id']; ?>
 &speciallist=<?php echo $this->_tpl_vars['doc']['specialist']; ?>
 &exprience=<?php echo $this->_tpl_vars['doc']['exprience']; ?>
 &fee=<?php echo $this->_tpl_vars['doc']['c_fee']; ?>
-&exist=patient" class="btn btn-primary form-control">Get Appointment</a>
+&exist=patient" class="btn btn-primary">Add Appointment</a>
 			</div>
 		</div>
 
@@ -207,7 +207,11 @@ _templates/img/eye.png" alt="View" /></a>
 		<div style="margin-top: 30px;"></div>
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php echo '
 <script type="text/javascript">
 	
@@ -223,9 +227,4 @@ _templates/img/eye.png" alt="View" /></a>
 </script>
 '; ?>
 
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
+

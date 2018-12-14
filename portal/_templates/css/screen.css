@@ -1500,12 +1500,7 @@ ul.check > li {
 ul.patients_info.list-inline li{
 	padding: 0 30px;
 }
-.branding{
-	text-align: center;
-	background: #323232;
-	color: #FFF;
-	font-size: 12px;
-}
+
 .search-top{
 	padding-top: 5px;
 }

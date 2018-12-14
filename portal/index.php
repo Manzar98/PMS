@@ -61,45 +61,29 @@ switch($page)
 		redirect_to(BASE_URL);
 		exit;
 	}
-    require_once 'dir_appointments/doc_appointments.php';
-    $flag = 1;
-    break;
+	require_once 'dir_appointments/doc_appointments.php';
+	$flag = 1;
+	break;
 
-    case 'list-appointments':
+	case 'list-appointments':
 	if(!isset($_SESSION['AdminId']))
 	{
 		redirect_to(BASE_URL);
 		exit;
 	}
-    require_once 'dir_appointments/list_appointments.php';
-    $flag = 1;
-    break;
-    
-    case 'appointments':
-    require_once 'dir_appointments/appointments.php';
-    $flag = 1;
-    break;
-
-    case 'add-appointment':
-    require_once 'dir_appointments/add_appointment.php';
-    $flag = 1;
-    break;
-
-    case 'reports':
+	require_once 'dir_appointments/list_appointments.php';
+	$flag = 1;
+	break;
+	
+	case 'reports':
 	if(!isset($_SESSION['AdminId']))
 	{
 		redirect_to(BASE_URL);
 		exit;
 	}
-    require_once 'dir_reports/reports.php';
-    $flag = 1;
-    break;
-
-
-    case 'history':
-    require_once 'dir_appointments/search_history.php';
-    $flag = 1;
-    break;
+	require_once 'dir_reports/reports.php';
+	$flag = 1;
+	break;
 
 	case 'patients':
 	if(!isset($_SESSION['AdminId']))
@@ -290,11 +274,11 @@ switch($page)
 		redirect_to(BASE_URL);
 		exit;
 	}
-    require_once 'dir_packages/packages.php';
-    $flag = 1;
-    break;
+	require_once 'dir_packages/packages.php';
+	$flag = 1;
+	break;
 
-    case 'add-package':
+	case 'add-package':
 	if(!isset($_SESSION['AdminId']))
 	{
 		redirect_to(BASE_URL);
@@ -303,20 +287,20 @@ switch($page)
 		redirect_to(BASE_URL);
 		exit;
 	}
-    require_once 'dir_packages/add_package.php';
-    $flag = 1;
-    break;
-   
-    case 'own-package':
+	require_once 'dir_packages/add_package.php';
+	$flag = 1;
+	break;
+	
+	case 'own-package':
 	if(!isset($_SESSION['AdminId']))
 	{
 		redirect_to(BASE_URL);
 		exit;
 	}
-    require_once 'own_package.php';
-    $flag = 1;
-    break;
-    
+	require_once 'own_package.php';
+	$flag = 1;
+	break;
+	
 	case 'links':
 	if(!isset($_SESSION['AdminId']))
 	{
@@ -374,7 +358,7 @@ if ($flag == 0)
 		//redirect_to(BASE_URL . 'page-unavailable/');
 }
 
-	// create a JSON string from the translations array, but only for the "js" section
+// create a JSON string from the translations array, but only for the "js" section
 $smarty->assign('translationsJson', iniSectionsToJSON(array("js" => $translations['js'])));
 
 	// get job categories and cities

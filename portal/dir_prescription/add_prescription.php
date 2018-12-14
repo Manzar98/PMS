@@ -138,7 +138,7 @@ elseif($id==="add-patient")
 			exit;
 		}else{
 
-       $users->addColumnCount($data["userId"],"patient_count",'1');
+			$users->addColumnCount($data["userId"],"patient_count",'1');
 			if($patient->AddPatientBasic($data))
 			{
 				echo $db->insert_id;
@@ -194,9 +194,11 @@ if($_POST)
 
 					if($prescription->AddPrescriptionInstructions($data) || $prescription->AddPrescriptionTests($data))
 					{
+						$_SESSION['flashAlert']="Prescription is Successfully Created!";
 						redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
 					}else{
 
+						$_SESSION['flashAlert']="Prescription is Successfully Created!";
 						redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
 					}
 
@@ -219,9 +221,11 @@ if($_POST)
 
 				if($prescription->AddPrescriptionInstructions($data) || $prescription->AddPrescriptionTests($data))
 				{
+					$_SESSION['flashAlert']="Prescription is Successfully Created!";
 					redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
 				}else{
-
+					
+					$_SESSION['flashAlert']="Prescription is Successfully Created!";
 					redirect_to(BASE_URL.'prescriptions/view/'.$data['prescription_id'].'/');
 				}
 

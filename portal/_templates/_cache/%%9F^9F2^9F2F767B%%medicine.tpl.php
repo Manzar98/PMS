@@ -1,40 +1,12 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 16:10:46
+<?php /* Smarty version 2.6.31, created on 2018-12-13 23:18:53
          compiled from medicine.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 155, false),array('function', 'cycle', 'medicine.tpl', 175, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 138, false),array('function', 'cycle', 'medicine.tpl', 158, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<?php echo '
-<script type="text/javascript">
-
-	$(document).ready(function() {
-		var max_fields      = 5;
-		var wrapper    = $(".input_fields_wrap");
-		var x = 1; 
-		$(\'#m_does\').click(function(e){
-			e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-            x++; //text box increment
-            $(wrapper).append(\'<div class="col-sm-4 common-bottom"><label for="dose\'+x+\'">Dose</label><input type="text" name="dose[]" id="dose\'+x+\'" class="form-control"/><a href="#" class="remove_field">Remove</a></div>\'); //add input box
-        }
-    })
-
-	 $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-	 	e.preventDefault(); $(this).parent(\'div\').remove(); x--;
-	 })
-
-	 if ($(\'#medicineFull\').val()) {
-	 	alert($(\'#medicineFull\').val());
-	 }else{
-	 	$(\'#medicineFull\').val(\'\');
-	 }
-	})
-</script>
-'; ?>
-
 <div id=""  class="content-wrapper">
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
@@ -62,6 +34,17 @@ medicine/">Medicines</a>
 				<?php endif; ?>
 			</ol>
 		</div>
+		<?php if (( isset ( $_SESSION['flashAlert'] ) )): ?>
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION['flashAlert']; ?>
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		<?php endif; ?>
 		<?php if (isset ( $this->_tpl_vars['add'] )): ?>
 		<h2 class="text-capitalize"><?php echo $this->_tpl_vars['id']; ?>
  Medicine</h2>
@@ -159,8 +142,8 @@ medicine/" method="get" enctype="multipart/form-data">
 " maxlength="20" class="form-control" />
 							</div>
 						</div>
-						<div class="col-sm-1">
-							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control" />
+						<div class="col-sm-3">
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
 						</div>
 					</div>
 				</fieldset>
@@ -271,9 +254,41 @@ _templates/img/bin.png" alt="Delete" /></a>
 
 		</div><!-- #content -->
 	</div>
-	<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 	<?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+	
+	<?php echo '
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			var max_fields      = 5;
+			var wrapper    = $(".input_fields_wrap");
+			var x = 1; 
+			$(\'#m_does\').click(function(e){
+				e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append(\'<div class="col-sm-4 common-bottom"><label for="dose\'+x+\'">Dose</label><input type="text" name="dose[]" id="dose\'+x+\'" class="form-control"/><a href="#" class="remove_field">Remove</a></div>\'); //add input box
+        }
+    })
+
+	 $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+	 	e.preventDefault(); $(this).parent(\'div\').remove(); x--;
+	 })
+
+	 if ($(\'#medicineFull\').val()) {
+	 	alert($(\'#medicineFull\').val());
+	 }else{
+	 	$(\'#medicineFull\').val(\'\');
+	 }
+	 
+	 $(\'#collapseMedicine\').collapse({
+	 	toggle: true
+	 })
+
+	})
+</script>
+'; ?>

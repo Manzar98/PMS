@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-05 23:10:21
+<?php /* Smarty version 2.6.31, created on 2018-12-13 23:15:05
          compiled from login.tpl */ ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,9 +36,9 @@ css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
 
 <body>
 
-<!-- 	<div id="preloader" class="Fixed">
+<div id="preloader" class="Fixed">
 		<div data-loader="circle-side"></div>
-	</div> -->
+	</div> 
 	<!-- /Preload-->
 	
 	<div id="page">		

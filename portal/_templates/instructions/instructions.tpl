@@ -22,6 +22,16 @@
 				{/if}
 			</ol>
 		</div>
+		{if (isset($smarty.session.flashAlert))}
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{$smarty.session.flashAlert}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="{php} unset($_SESSION['flashAlert']); {/php}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		{/if}
 		{if isset($edit) || isset($add)}
 		<h2>{if isset($edit)} Edit{else} Add {/if} Instruction</h2>
 		{if isset($errors)}
@@ -81,9 +91,9 @@
 							<input type="text" name="q" id="q" {if isset($data.q)}value="{$data.q}"{/if} maxlength="20" class="form-control" />
 						</div>
 					</div>
-					<div class="col-sm-1">
+					<div class="col-sm-3">
 						<div class="form-group">
-							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control" />
+							<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary" />
 						</div>
 					</div>
 				</div>
@@ -148,7 +158,7 @@
 		{/if}		
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+{include file="footer.tpl"}
 {literal}
 <script type="text/javascript">
 	$(document).ready(function()
@@ -163,5 +173,3 @@
 	});
 </script>
 {/literal}
-
-{include file="footer.tpl"}

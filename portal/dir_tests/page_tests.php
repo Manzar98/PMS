@@ -3,6 +3,7 @@
 $test = new Test;
 $users = new User;
 $package = new Package;
+$grouped_test="";
 // echo $_SESSION['selectedPkgId'];
 if($id==='edit')
 {
@@ -12,6 +13,7 @@ elseif($id==="delete")
 {
 	if($test->DeleteTest($extra))
 	{
+		$_SESSION['flashAlert']="Test is Successfully Deleted!";
 		redirect_to(BASE_URL.'tests/');
 	}
 }
@@ -100,10 +102,12 @@ elseif($_POST)
 
 				if($id==='add' && $test->AddTest($data))
 				{
+					$_SESSION['flashAlert']="Test is Successfully Created!";
 					redirect_to(BASE_URL.'test-options/'.$db->insert_id);
 				}
 				elseif($id==="edit" && $test->UpdateTest($data,$extra))
 				{
+					$_SESSION['flashAlert']="Test is Successfully Updated!";
 					redirect_to(BASE_URL.'tests/');
 				}
 
@@ -118,13 +122,14 @@ elseif($_POST)
 			$users->addColumnCount($data["userId"],"test_count",'1');
 			if($id==='add' && $test->AddTest($data))
 			{
+				$_SESSION['flashAlert']="Test is Successfully Created!";
 				redirect_to(BASE_URL.'test-options/'.$db->insert_id);
 			}
-			elseif($id==="edit" && $test->UpdateTest($data,$extra))
-			{
-				redirect_to(BASE_URL.'tests/');
-			}
-
+		}
+		if($id==="edit" && $test->UpdateTest($data,$extra))
+		{
+			$_SESSION['flashAlert']="Test is Successfully Updated!";
+			redirect_to(BASE_URL.'tests/');
 		}
 
 
@@ -136,18 +141,67 @@ elseif($_POST)
 
 }
 else {
-	$paginatorLink = BASE_URL.'tests/';
-	$count = $test->CountTests();
-	$paginator = new Paginator($count, PAGINATION, @$_REQUEST['p']);
-	$paginator->setLink($paginatorLink);
-	$paginator->paginate();
 
-	$firstLimit = $paginator->getFirstLimit();
-	$lastLimit = $paginator->getLastLimit();
+	$_GET = @escape($_GET);
+	$q = $_GET['q'];
+	$field = $_GET['field'];
+	$group_by='';
+	if (isset($_GET['group_by'])) {
+		$group_by = $_GET['group_by'];
+	}
 
-	$test_list = $test->GetTestsBasic($firstLimit,PAGINATION);
+
+	if($group_by=='')
+	{
+		$group_by = 'id';
+	}
+	$paginatorLink = BASE_URL . 'tests/?q='.$q.'&field='.$field.'&group_by='.$group_by.'&' ;
+
+	if($q!='')			
+	{
+
+		$total_searched_tests = $test->CountSearchedTest($q,$field);
+		$paginator = new Paginator($total_searched_tests, PAGINATION, @$_REQUEST['p']);
+		$paginator->setLink($paginatorLink);
+		$paginator->paginate();
+
+		$firstLimit = $paginator->getFirstLimit();
+		$lastLimit = $paginator->getLastLimit();
+
+		$test_list = $test->GetTestBySearch($q,$field,$firstLimit,PAGINATION);
+		
+		$search["q"] = $q;
+		$search["field"] = $field;
+		$smarty->assign('search',$search);
+	}		
+	else {
+
+
+		$count = $test->CountTests();
+		$paginator = new Paginator($count, PAGINATION, @$_REQUEST['p']);
+		$paginator->setLink($paginatorLink);
+		$paginator->paginate();
+
+		$firstLimit = $paginator->getFirstLimit();
+		$lastLimit = $paginator->getLastLimit();
+
+		$test_list = $test->GetTestsBasic($firstLimit,PAGINATION);
+		
+	}
+
+	$grouped_test = array();
+
+	$grouped_test = group_by($test_list, $group_by);
+     // print_r($grouped_test);
+	$smarty->assign('group_by',$group_by);		
 	$smarty->assign('pages',$paginator->pages_link);
-	$smarty->assign('tests',$test_list);
+	$smarty->assign('tests',$grouped_test);
+	$smarty->assign('errors',@$errors);
+
+	
+
+
+
 }
 
 

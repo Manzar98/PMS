@@ -23,6 +23,16 @@
 				{/if}
 			</ol>
 		</div>
+		{if (isset($smarty.session.flashAlert))}
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{$smarty.session.flashAlert}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="{php} unset($_SESSION['flashAlert']); {/php}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		{/if}
 		{if isset($edit) || isset($add)}
 		<h2 class="pt-2">{if isset($edit)} Edit{else} Add {/if} Test Option</h2>
 		
@@ -105,7 +115,7 @@
 		{/if}		
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+{include file="footer.tpl"}
 {literal}
 <script type="text/javascript">
 	$(document).ready(function()
@@ -120,5 +130,3 @@
 	});
 </script>
 {/literal}
-
-{include file="footer.tpl"}

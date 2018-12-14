@@ -124,10 +124,11 @@ Class User
 			WHERE id='.$data['id'];
 		}
 		
-        // echo $sql;
+       // echo $sql;
 			return $db->Execute($sql);
 	}
-		function updateOwnProfile($data)
+	
+   function updateOwnProfile($data)
 	{
 		global $db;
 

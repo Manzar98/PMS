@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 13:02:37
+<?php /* Smarty version 2.6.31, created on 2018-12-10 17:27:42
          compiled from reports/reports.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'reports/reports.tpl', 66, false),array('modifier', 'print_r', 'reports/reports.tpl', 86, false),array('modifier', 'count', 'reports/reports.tpl', 97, false),)), $this); ?>
@@ -38,7 +38,7 @@ _templates/js/fusioncharts.theme.zune.js" type="text/javascript"></script>
 			<div class="col-sm-2 pt-4">
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 reports/<?php echo $_SESSION['AdminId']; ?>
-/" class="btn btn-primary form-control">Reports</a>
+/" class="btn btn-primary">Reports</a>
 			</div>
 		</div>
 		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
@@ -99,21 +99,21 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 
 				</div>
 				<div id="chart-container-pie"></div>
-				<table class="table table-striped table-bordered reportGenTblPie mt-4 bg-dark">
+				<table class="table table-striped table-bordered reportGenTblPie mt-4 bg-dark text-white">
 					<thead>
-						<th class="text-center text-white" >Total <?php echo $this->_tpl_vars['data']['parameter_Comp']; ?>
+						<th class="text-center" >Total <?php echo $this->_tpl_vars['data']['parameter_Comp']; ?>
 </th>
-						<th class="text-center text-white"><?php echo $this->_tpl_vars['data']['totalCount']; ?>
+						<th class="text-center"><?php echo $this->_tpl_vars['data']['totalCount']; ?>
 </th>
 					</thead>
 					<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['data']['thName'])) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
  -->
 				</table>
-				<table class="table table-striped table-bordered extendedTablePie  bg-dark">
+				<table class="table table-striped table-bordered  extendedTablePie text-dark">
 					<thead>
 						<tr>
-							<th class="text-center text-white">Parameter</th>
-							<th class="text-center text-white">Name (id)</th>
+							<th class="text-center">Parameter</th>
+							<th class="text-center">Name (id)</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -123,7 +123,7 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 						<?php $this->assign('val', count($this->_tpl_vars['v'])); ?>
 						<?php $this->assign('val', $this->_tpl_vars['val']+1); ?>
 						<tr class="">
-							<th class="text-center multiRowColumn text-white" rowspan="<?php echo $this->_tpl_vars['val']; ?>
+							<th class="text-center multiRowColumn" rowspan="<?php echo $this->_tpl_vars['val']; ?>
 " style="vertical-align : middle;text-align:center;">
 							<?php echo $this->_tpl_vars['k']; ?>
  (<?php echo count($this->_tpl_vars['v']); ?>
@@ -133,7 +133,7 @@ reports/<?php echo $_SESSION['AdminId']; ?>
     foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['name']):
 ?>
 						<tr>
-							<td class="text-center text-white"><?php echo $this->_tpl_vars['name']; ?>
+							<td class="text-center"><?php echo $this->_tpl_vars['name']; ?>
 </td>
 						</tr>
 						<?php endforeach; endif; unset($_from); ?>
@@ -151,13 +151,13 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 		</form>
 		<?php else: ?> <!--=======Reports Else Condition Start====== -->
 		<div class="row">
-			<div class="col-sm-10 pt-4">
+			<div class="col-sm-9 pt-4">
 				<h3>Reports</h3>
 			</div>
-			<div class="col-sm-2  pt-4">
+			<div class="col pt-4 text-right">
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 reports/<?php echo $_SESSION['AdminId']; ?>
-?type=comparison" class="btn btn-primary form-control">Comparison Reports</a>
+?type=comparison" class="btn btn-primary" role="button">Comparison Reports</a>
 			</div>
 		</div>
 		<form class="box style" action="<?php echo $_SERVER['REQUEST_URI']; ?>
@@ -269,7 +269,7 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 
 					<?php if (isset ( $this->_tpl_vars['data'] ) && ( $this->_tpl_vars['data']['parameter'] == 'Free checkups' || $this->_tpl_vars['data']['parameter'] == 'Total fee collected' )): ?>
 
-					<table class="table table-striped table-bordered text-white bg-dark">
+					<table class="table table-striped table-bordered text-dark">
 						<thead>
 							<tr>
 								<th class="text-center"><?php if ($this->_tpl_vars['data']['filter'] == 'years'): ?>Year<?php else: ?>Month<?php endif; ?></th>
@@ -298,7 +298,7 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 						<?php echo $this->_tpl_vars['charts']; ?>
 
 					</div>
-					<table class="table table-striped table-bordered text-white bg-dark">
+					<table class="table table-striped table-bordered text-dark">
 						<thead>
 							<tr>
 								<th class="text-center"><?php if ($this->_tpl_vars['data']['filter'] == 'years'): ?>Year<?php else: ?>Month<?php endif; ?></th>
@@ -338,7 +338,7 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 								<?php echo $this->_tpl_vars['charts']; ?>
 
 							</div>
-							<table class="table table-striped table-bordered text-white bg-dark">
+							<table class="table table-striped table-bordered text-dark">
 								<thead>
 									<tr>
 										<th class="text-center">Date</th>
@@ -364,7 +364,7 @@ reports/<?php echo $_SESSION['AdminId']; ?>
 								<?php echo $this->_tpl_vars['charts']; ?>
 
 							</div>
-							<table class="table table-striped table-bordered text-white bg-dark">
+							<table class="table table-striped table-bordered text-dark">
 								<thead>
 									<tr>
 										<?php unset($this->_sections['th']);
@@ -424,8 +424,11 @@ $this->_sections['th']['last']       = ($this->_sections['th']['iteration'] == $
 				<?php endif; ?><!--=======Reports Else Condition End======= -->
 			</div>
 		</div><!-- #content -->
-
-		<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+		<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 		<?php echo '
 		<style type="text/css">
 		.raphael-group-23-creditgroup,.raphael-group-24-creditgroup{
@@ -439,9 +442,6 @@ $this->_sections['th']['last']       = ($this->_sections['th']['iteration'] == $
 			width: 100% !important;
 		}
 	</style>
-	'; ?>
-
-	<?php echo '
 	<script type="text/javascript">
 
 		$(\'#mediWrap\').hide();
@@ -726,15 +726,7 @@ reports/add?testajax=y<?php echo '",
 		}
 		// debugger
 	}
-
-
-
 </script>
 '; ?>
 
-
-<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
+

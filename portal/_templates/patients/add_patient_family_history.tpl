@@ -1,12 +1,4 @@
 {include file="header.tpl"}
-{literal}
-<style>
-.form textarea 
-{
-	/*height: 100px;*/
-}
-</style>
-{/literal}
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
@@ -85,7 +77,7 @@
 		<div class="" style="margin-bottom: 20px;"></div>
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+{include file="footer.tpl"}
 {literal}
 <script type="text/javascript">
 	$(document).ready(function()
@@ -95,4 +87,3 @@
 </script>
 {/literal}
 
-{include file="footer.tpl"}

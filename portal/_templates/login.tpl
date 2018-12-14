@@ -29,9 +29,9 @@
 
 <body>
 
-<!-- 	<div id="preloader" class="Fixed">
+<div id="preloader" class="Fixed">
 		<div data-loader="circle-side"></div>
-	</div> -->
+	</div> 
 	<!-- /Preload-->
 	
 	<div id="page">		

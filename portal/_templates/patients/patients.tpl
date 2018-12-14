@@ -17,6 +17,16 @@
 				{/if}
 			</ol>
 		</div>
+		{if (isset($smarty.session.flashAlert))}
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{$smarty.session.flashAlert}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="{php} unset($_SESSION['flashAlert']); {/php}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		{/if}
 		<h2 class="py-2">{if $smarty.get.q neq ''} Search Result For "<b>{$smarty.get.q}</b>" {else}Patient List{/if}</h2>
 		<p>
 			<a href="{$BASE_URL_ADMIN}patients/add/" title="Add a new patient"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
@@ -24,31 +34,30 @@
 		<form class="box style" action="{$BASE_URL_ADMIN}patients/" method="get" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Search for Patients</legend>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="form-group">
-					<select name="field" id="field" class="form-control">
-						<option value="id" {if $data.field=='id'} selected="selected" {/if}>Patient ID</option>
-						<option value="name" {if $data.field=='name'} selected="selected" {/if}>Patient Name</option>
-						<option value="mobile" {if $data.field=='mobile'} selected="selected" {/if}>Mobile No</option>
-						<option value="phone" {if $data.field=='phone'} selected="selected" {/if}>Phone No</option>
-					</select>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<select name="field" id="field" class="form-control">
+								<option value="id" {if $data.field=='id'} selected="selected" {/if}>Patient ID</option>
+								<option value="name" {if $data.field=='name'} selected="selected" {/if}>Patient Name</option>
+								<option value="mobile" {if $data.field=='mobile'} selected="selected" {/if}>Mobile No</option>
+								<option value="phone" {if $data.field=='phone'} selected="selected" {/if}>Phone No</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<input type="text" name="q" id="q" value="{$data.q}" maxlength="20" class="form-control"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary"/>
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<div class="form-group">
-					<input type="text" name="q" id="q" value="{$data.q}" maxlength="20" class="form-control"/>
-				</div>
-			</div>
-				<div class="col-sm-1">
-					<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control"/>
-				</div>
-			</div>
-		</fieldset>
+			</fieldset>
 		</form>		
 		<div class="pull-right grp_btn">
 			Group By : &nbsp;
-			<a {if $group_by=='date'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=date&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Date</a>
 			<a {if $group_by=='blood_group'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=blood_group&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Blood Group</a>
 			<a {if $group_by=='patient_name'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=patient_name&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Name</a>
 			<a {if $group_by=='city'} class="current_page" {/if} href="{$BASE_URL_ADMIN}patients/?group_by=city_name&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">City</a>
@@ -122,5 +131,14 @@
 		<div class="pagination">{$pages}</div>
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 {include file="footer.tpl"}
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#collapsePatient').collapse({
+			toggle: true
+		})
+	})
+</script>
+{/literal}

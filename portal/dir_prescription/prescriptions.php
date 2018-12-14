@@ -8,10 +8,13 @@ if($id==="view" && $extra>0)
 	$prescription_details = $prescription->GetPrescriptionInfo($extra);
 	$prescription_details['patient'] = $patient->GetPatientDetails($prescription_details['patient_id']);
 	  //printr($prescription_details);
-	$smarty->assign('data',@$prescription_details);	  
+	$smarty->assign('data',@$prescription_details);
+
 }elseif ($id==="delete" && $extra>0) 
 {
 	$prescription->deletePrescription($extra);
+
+	$_SESSION['flashAlert']="Prescription is Successfully Deleted!";
 	redirect_to(BASE_URL.'prescriptions/');
 }
 else {
@@ -26,7 +29,7 @@ else {
 	
 	if($group_by=='')
 	{
-		$group_by = 'date';
+		$group_by = 'patient_id';
 	}
 	$paginatorLink = BASE_URL . 'prescriptions/?q='.$q.'&field='.$field.'&group_by='.$group_by.'&' ;		
 	
@@ -67,7 +70,7 @@ else {
 			$all_prescriptions = $prescription->ListOfPrescriptionsForSinglePatient($firstLimit,PAGINATION,$id);
 		}else{
 
-			 $all_prescriptions = $prescription->GetAllPrescriptions($firstLimit,PAGINATION,$_SESSION['AdminId']);
+			$all_prescriptions = $prescription->GetAllPrescriptions($firstLimit,PAGINATION,$_SESSION['AdminId']);
 		}
 		
 		
@@ -82,6 +85,8 @@ else {
 	$smarty->assign("pages", $paginator->pages_link);
 	$smarty->assign('grouped_prescriptions',$grouped_prescriptions);
 	//var_dump($all_prescriptions);
+
+	// print_r($grouped_prescriptions);
 }
 
 

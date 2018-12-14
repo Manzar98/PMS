@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-04 18:03:48
+<?php /* Smarty version 2.6.31, created on 2018-12-14 10:13:10
          compiled from packages/packages.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 36, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 46, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -9,7 +9,7 @@ unset($_smarty_tpl_vars);
  ?>
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
-				<!-- Breadcrumbs-->
+		<!-- Breadcrumbs-->
 		<div class="noprint">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
@@ -27,8 +27,19 @@ packages/">Packages</a>
 				<?php endif; ?>
 			</ol>
 		</div>
-       <?php if (isset ( $this->_tpl_vars['record'] ) && $this->_tpl_vars['record']): ?>  
-       <h2>Packages List</h2>
+		<?php if (( isset ( $_SESSION['flashAlert'] ) )): ?>
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION['flashAlert']; ?>
+<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == 'edit'): ?> <strong> Updated!</strong><?php else: ?> <strong> Created!</strong><?php endif; ?>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		<?php endif; ?>
+		<?php if (isset ( $this->_tpl_vars['record'] ) && $this->_tpl_vars['record']): ?>  
+		<h2>Packages List</h2>
 		<p class="common-top">
 			<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 /add-package/" title="Add a new"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
@@ -56,19 +67,19 @@ packages/">Packages</a>
 </td>
 					<td width="">
 						<div class="icons">				
-						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 packages/view/<?php echo $this->_tpl_vars['rec']['id']; ?>
 /" title="View this package"><img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/img/eye.png" alt="View" /></a>
-						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 add-package/edit/<?php echo $this->_tpl_vars['rec']['id']; ?>
 /" title="Edit this package"><img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/img/pencil.png" alt="Edit" /></a>
-						<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+							<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 packages/delete/<?php echo $this->_tpl_vars['rec']['id']; ?>
 /" title="Delete this package" onclick="if(!confirm('Are you sure you want to delete this?'))return false;"><img src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/img/bin.png" alt="Delete" /></a>
-					</div>
+						</div>
 					</td>
 				</tr>
 				<?php endforeach; endif; unset($_from); ?>
@@ -77,71 +88,71 @@ _templates/img/bin.png" alt="Delete" /></a>
 		<?php elseif (isset ( $this->_tpl_vars['singleRecord'] )): ?>
 		<div class="row">
 			<div class="col-sm-10 pt-3">
-        <h2 style="margin-bottom: 60px;"><?php echo $this->_tpl_vars['singleRecord']['pkg_name']; ?>
+				<h2 style="margin-bottom: 60px;"><?php echo $this->_tpl_vars['singleRecord']['pkg_name']; ?>
  Package Detail's</h2>
-        </div>
-        <div class="col-sm-2  pt-3">
-        	<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			</div>
+			<div class="col-sm-2  pt-3">
+				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 add-package/edit/<?php echo $this->_tpl_vars['singleRecord']['id']; ?>
 /" class="btn btn-primary form-control">Edit Package</a>
-        </div>
-        </div>
+			</div>
+		</div>
 		<div class="row mt-5">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-4">
-			<div class="form-group">
-			<span><b>Package Name : </b><span><?php echo $this->_tpl_vars['singleRecord']['pkg_name']; ?>
+			<div class="col-sm-3"></div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<span><b>Package Name : </b><span><?php echo $this->_tpl_vars['singleRecord']['pkg_name']; ?>
 </span></span>
-		</div>		
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-			<span><b>Package Price : </b><span><?php echo $this->_tpl_vars['singleRecord']['pkg_price']; ?>
+				</div>		
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<span><b>Package Price : </b><span><?php echo $this->_tpl_vars['singleRecord']['pkg_price']; ?>
 </span></span>
+				</div>
+			</div>
 		</div>
-	</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-4">
-			<div class="form-group">
-			<span><b>No Of Patients : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_patients']; ?>
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<span><b>No Of Patients : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_patients']; ?>
 </span></span>
-		</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-			<span><b>No Of Prescriptions : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_prescriptions']; ?>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<span><b>No Of Prescriptions : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_prescriptions']; ?>
 </span></span>
+				</div>
+			</div>
 		</div>
-	</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-4">
-			<div class="form-group">
-			<span><b>No Of Medicines : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_medicines']; ?>
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<span><b>No Of Medicines : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_medicines']; ?>
 </span></span>
-		</div>
-	</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-			<span><b>No Of Tests : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_tests']; ?>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<span><b>No Of Tests : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_tests']; ?>
 </span></span>
+				</div>
+			</div>
 		</div>
-	</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-4">
-			<div class="form-group">
-			<span><b>No Of Online Appointments : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_online_appointments']; ?>
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<span><b>No Of Online Appointments : </b><span><?php echo $this->_tpl_vars['singleRecord']['no_of_online_appointments']; ?>
 </span></span>
+				</div>
+			</div>
 		</div>
-	</div>
-	</div>
-	<?php else: ?>
-      <h2>Packages List</h2>
+		<?php else: ?>
+		<h2>Packages List</h2>
 		<p class="common-top">
 			<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 /add-package/" title="Add a new"><i class="fa fa-plus-square sqicon" aria-hidden="true"></i></a>
@@ -149,11 +160,11 @@ add-package/edit/<?php echo $this->_tpl_vars['singleRecord']['id']; ?>
 		<div class="row">
 			<p>No Packages Created</p>
 		</div>
-	<?php endif; ?>	
+		<?php endif; ?>	
 
 	</div>
 </div><!-- #content -->
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;

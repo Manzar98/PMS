@@ -11,6 +11,7 @@ if($id==="delete")
 {
 	if($medicine->Delete($extra))
 	{
+		$_SESSION['flashAlert']="Medicine is Successfully Deleted!";
 		redirect_to(BASE_URL.'medicine/');
 	}
 }
@@ -123,6 +124,7 @@ elseif($_POST)
 				{
 					if($medicine->AddMedicine($data))
 					{
+						$_SESSION['flashAlert']="Medicine is Successfully Created!";
 						redirect_to(BASE_URL.'medicine/');
 					}
 				}
@@ -139,6 +141,7 @@ elseif($_POST)
 			{
 				if($medicine->AddMedicine($data))
 				{
+					$_SESSION['flashAlert']="Medicine is Successfully Created!";
 					redirect_to(BASE_URL.'medicine/');
 				}
 			}
@@ -148,6 +151,7 @@ elseif($_POST)
 		{
 			if($medicine->UpdateMedicine($data))
 			{
+				$_SESSION['flashAlert']="Medicine is Successfully Updated!";
 				redirect_to(BASE_URL.'medicine/');
 			}
 		}

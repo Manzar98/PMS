@@ -12,6 +12,7 @@ elseif($id==="delete")
 {
 	if($instruction->DeleteInstructions($extra))
 	{
+		$_SESSION['flashAlert']="Instruction is Successfully Deleted!";
 		redirect_to(BASE_URL.'instructions/');
 	}
 }
@@ -54,10 +55,12 @@ elseif($_POST)
 	{
 		if($id==='add' && $instruction->AddInstruction($data))
 		{
+			$_SESSION['flashAlert']="Instruction is Successfully Created!";
 			redirect_to(BASE_URL.'instructions/');
 		}
 		elseif($id==="edit" && $instruction->UpdateInstruction($data,$extra))
 		{
+			$_SESSION['flashAlert']="Instruction is Successfully Updated!";
 			redirect_to(BASE_URL.'instructions/');
 		}
 

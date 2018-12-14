@@ -76,6 +76,8 @@
 		</form>
 	</div><!-- #content -->
 </div>
+
+{include file="footer.tpl"}
 {literal}
 <script type="text/javascript">
 	$('#add_package').validate({
@@ -93,5 +95,3 @@
 	});
 </script>
 {/literal}
-
-{include file="footer.tpl"}

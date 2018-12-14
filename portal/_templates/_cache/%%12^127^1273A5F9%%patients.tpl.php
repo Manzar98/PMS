@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-05 18:27:30
+<?php /* Smarty version 2.6.31, created on 2018-12-13 23:06:22
          compiled from patients/patients.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 63, false),array('modifier', 'default', 'patients/patients.tpl', 67, false),array('function', 'cycle', 'patients/patients.tpl', 81, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 72, false),array('modifier', 'default', 'patients/patients.tpl', 76, false),array('function', 'cycle', 'patients/patients.tpl', 90, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -27,6 +27,17 @@ patients">Patients</a>
 				<?php endif; ?>
 			</ol>
 		</div>
+		<?php if (( isset ( $_SESSION['flashAlert'] ) )): ?>
+		<div class="fail text-center ">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION['flashAlert']; ?>
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+		</div>
+		<?php endif; ?>
 		<h2 class="py-2"><?php if ($_GET['q'] != ''): ?> Search Result For "<b><?php echo $_GET['q']; ?>
 </b>" <?php else: ?>Patient List<?php endif; ?></h2>
 		<p>
@@ -37,36 +48,31 @@ patients/add/" title="Add a new patient"><i class="fa fa-plus-square sqicon" ari
 patients/" method="get" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Search for Patients</legend>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="form-group">
-					<select name="field" id="field" class="form-control">
-						<option value="id" <?php if ($this->_tpl_vars['data']['field'] == 'id'): ?> selected="selected" <?php endif; ?>>Patient ID</option>
-						<option value="name" <?php if ($this->_tpl_vars['data']['field'] == 'name'): ?> selected="selected" <?php endif; ?>>Patient Name</option>
-						<option value="mobile" <?php if ($this->_tpl_vars['data']['field'] == 'mobile'): ?> selected="selected" <?php endif; ?>>Mobile No</option>
-						<option value="phone" <?php if ($this->_tpl_vars['data']['field'] == 'phone'): ?> selected="selected" <?php endif; ?>>Phone No</option>
-					</select>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<select name="field" id="field" class="form-control">
+								<option value="id" <?php if ($this->_tpl_vars['data']['field'] == 'id'): ?> selected="selected" <?php endif; ?>>Patient ID</option>
+								<option value="name" <?php if ($this->_tpl_vars['data']['field'] == 'name'): ?> selected="selected" <?php endif; ?>>Patient Name</option>
+								<option value="mobile" <?php if ($this->_tpl_vars['data']['field'] == 'mobile'): ?> selected="selected" <?php endif; ?>>Mobile No</option>
+								<option value="phone" <?php if ($this->_tpl_vars['data']['field'] == 'phone'): ?> selected="selected" <?php endif; ?>>Phone No</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<input type="text" name="q" id="q" value="<?php echo $this->_tpl_vars['data']['q']; ?>
+" maxlength="20" class="form-control"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary"/>
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<div class="form-group">
-					<input type="text" name="q" id="q" value="<?php echo $this->_tpl_vars['data']['q']; ?>
-" maxlength="20" class="form-control"/>
-				</div>
-			</div>
-				<div class="col-sm-1">
-					<input type="submit" value="Search" name="submit" id="submit" class="btn btn-primary form-control"/>
-				</div>
-			</div>
-		</fieldset>
+			</fieldset>
 		</form>		
 		<div class="pull-right grp_btn">
 			Group By : &nbsp;
-			<a <?php if ($this->_tpl_vars['group_by'] == 'date'): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-patients/?group_by=date&q=<?php echo $_GET['q']; ?>
-&field=<?php echo $_GET['field']; ?>
-&p=<?php echo $_GET['p']; ?>
-">Date</a>
 			<a <?php if ($this->_tpl_vars['group_by'] == 'blood_group'): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 patients/?group_by=blood_group&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
@@ -197,9 +203,18 @@ _templates/img/bin.png" alt="Delete" /></a>
 </div>
 	</div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+<?php echo '
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$(\'#collapsePatient\').collapse({
+			toggle: true
+		})
+	})
+</script>
+'; ?>

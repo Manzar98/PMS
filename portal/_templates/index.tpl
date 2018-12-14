@@ -15,7 +15,7 @@
 			<div class="col-xl-3 col-sm-6 mb-5 text-center">
 				<a href="{$BASE_URL_ADMIN}prescriptions/" class="clearfix {if $CURRENT_PAGE == 'prescriptions'} selected {/if}" >
 					<div class="db-back-shadow">
-						<i class="fa fa-file-text-o text-primary" aria-hidden="true"></i><br>
+						<i class="fa fa-file-text-o" aria-hidden="true" style="color: #F75176;"></i><br>
 						<span>Prescriptions</span><br>
 						<div class="div-P">
 							<p style="">Add/Edit/View <br>Prescriptions</p>
@@ -83,7 +83,7 @@
 			<div class="col-xl-3 col-sm-6 mb-5 text-center">
 				<a class="clearfix {if $CURRENT_PAGE == 'reports'} selected {/if}" href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}/">
 					<div class="db-back-shadow">
-						<i class="fa fa-bars text-dark" aria-hidden="true"></i><br>
+						<i class="fa fa-bar-chart" aria-hidden="true" style="color: #571845;"></i><br>
 						<span style="">Reports</span><br>
 						<div class="div-P">
 							<p style="">Manage<br> Reports</p>
@@ -129,7 +129,7 @@
 			<div class="col-xl-3 col-sm-6 mb-5 text-center">
 				<a class="clearfix {if $CURRENT_PAGE == 'password'} selected {/if}" href="{$BASE_URL_ADMIN}password/">
 					<div class="db-back-shadow">
-						<i class="fa fa-key text-primary" aria-hidden="true"></i><br>
+						<i class="fa fa-key" aria-hidden="true" style="color: #ae7c7c"></i><br>
 						<span style="">Password</span><br>
 						<div class="div-P">
 							<p style="">Change your<br> password</p>
@@ -137,17 +137,6 @@
 					</div>
 				</a>
 			</div>
-<!-- 			<div class="col-xl-3 col-sm-6 mb-5 text-center">
-				<a class="clearfix {if $CURRENT_PAGE == 'logout'} selected {/if}" href="{$BASE_URL_ADMIN}logout/">
-					<div class="db-back-shadow">
-						<i class="fa fa-power-off text-warning" aria-hidden="true"></i><br>
-						<span style="">Logout</span><br>
-						<div class="div-P" style="">
-							<p style="">Logout from<br> system</p>
-						</div>
-					</div>
-				</a>
-			</div> -->
 		</div>
 		{else}
 		<div class="row mt-5">
@@ -201,5 +190,5 @@
 		{/if}
 	</div>
 </div><!-- #content -->
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
+
 {include file="footer.tpl"}	
