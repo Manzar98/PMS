@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-14 10:15:41
+<?php /* Smarty version 2.6.31, created on 2018-12-18 17:55:19
          compiled from appointments/list_appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/list_appointments.tpl', 125, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/list_appointments.tpl', 123, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -143,8 +143,6 @@ doc-appointments/?doc_id=<?php echo $this->_tpl_vars['doc']['id']; ?>
 &exist=patient" class="btn btn-primary">Add Appointment</a>
 			</div>
 		</div>
-
-
 		<table class="table table-striped table-bordered" >
 			<thead class="">
 				<tr>

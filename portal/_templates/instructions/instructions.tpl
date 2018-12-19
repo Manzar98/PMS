@@ -22,13 +22,15 @@
 				{/if}
 			</ol>
 		</div>
+		
 		{if (isset($smarty.session.flashAlert))}
 		<div class="fail text-center ">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				{$smarty.session.flashAlert}
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="{php} unset($_SESSION['flashAlert']); {/php}">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="">
 					<span aria-hidden="true">&times;</span>
 				</button>
+				{php} unset($_SESSION['flashAlert']); {/php}
 			</div>		
 		</div>
 		{/if}

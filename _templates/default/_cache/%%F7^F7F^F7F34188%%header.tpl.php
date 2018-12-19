@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-10 22:43:48
+<?php /* Smarty version 2.6.31, created on 2018-12-17 15:37:51
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +62,7 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 	<!-- /Preload-->
 	
 	<div id="page">		
-	<header class="header_sticky">	
+	<header class="static">	
 		<a href="#menu" class="btn_mobile">
 			<div class="hamburger hamburger--spin" id="hamburger">
 				<div class="hamburger-box">

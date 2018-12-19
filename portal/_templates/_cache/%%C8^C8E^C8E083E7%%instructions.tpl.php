@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-13 23:24:01
+<?php /* Smarty version 2.6.31, created on 2018-12-14 18:35:23
          compiled from instructions/instructions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'instructions/instructions.tpl', 113, false),array('function', 'cycle', 'instructions/instructions.tpl', 131, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'instructions/instructions.tpl', 25, false),array('modifier', 'date_format', 'instructions/instructions.tpl', 115, false),array('function', 'cycle', 'instructions/instructions.tpl', 133, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -33,14 +33,17 @@ instructions/">Instructions</a>
 				<?php endif; ?>
 			</ol>
 		</div>
+		<?php echo ((is_array($_tmp=$_SESSION)) ? $this->_run_mod_handler('print_r', true, $_tmp) : print_r($_tmp)); ?>
+
 		<?php if (( isset ( $_SESSION['flashAlert'] ) )): ?>
 		<div class="fail text-center ">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<?php echo $_SESSION['flashAlert']; ?>
 
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="">
 					<span aria-hidden="true">&times;</span>
 				</button>
+				<?php  unset($_SESSION['flashAlert']);  ?>
 			</div>		
 		</div>
 		<?php endif; ?>

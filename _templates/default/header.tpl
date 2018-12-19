@@ -38,7 +38,7 @@
 	<!-- /Preload-->
 	
 	<div id="page">		
-	<header class="header_sticky">	
+	<header class="static">	
 		<a href="#menu" class="btn_mobile">
 			<div class="hamburger hamburger--spin" id="hamburger">
 				<div class="hamburger-box">

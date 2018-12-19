@@ -136,6 +136,12 @@ Class Patient
 		return $db->QueryItem($sql);
 	}
 
+	function getPatientsCount($user_id){
+		global $db;
+		$sql='SELECT count(*) From'.DB_PREFIX.' patient WHERE user_id='.$user_id;
+		return $db->QueryItem($sql);
+	}
+
 	function GetPatientDetails($id)
 	{
 		global $db;
@@ -149,47 +155,47 @@ Class Patient
 		global $db;
 
 		if (!empty($data['profile_img'])) {
-		$sql = 'UPDATE '.DB_PREFIX.'patient SET
-		name = "'.$data["name"].'",
-		gender = "'.$data["gender"].'",
-		dob = "'.$data["dob"].'",
-		marital_status = "'.$data["marital_status"].'",
-		blood_group = "'.$data["blood_group"].'",
-		occupation = "'.$data["occupation"].'",
-		mobile = "'.$data["mobile"].'",
-		phone = "'.$data["phone"].'",
-		city_id = "'.$data["city_id"].'",
-		address = "'.$data["address"].'",
-		field1 = "'.$data["field1"].'",
-		value1 = "'.$data["value1"].'",
-		field2 = "'.$data["field2"].'",
-		value2 = "'.$data["value2"].'",
-		p_image= "'.$data['profile_img'].'",
-		updated_on = NOW()
-		WHERE  id="'.$data["id"].'" LIMIT 1 ';
+			$sql = 'UPDATE '.DB_PREFIX.'patient SET
+			name = "'.$data["name"].'",
+			gender = "'.$data["gender"].'",
+			dob = "'.$data["dob"].'",
+			marital_status = "'.$data["marital_status"].'",
+			blood_group = "'.$data["blood_group"].'",
+			occupation = "'.$data["occupation"].'",
+			mobile = "'.$data["mobile"].'",
+			phone = "'.$data["phone"].'",
+			city_id = "'.$data["city_id"].'",
+			address = "'.$data["address"].'",
+			field1 = "'.$data["field1"].'",
+			value1 = "'.$data["value1"].'",
+			field2 = "'.$data["field2"].'",
+			value2 = "'.$data["value2"].'",
+			p_image= "'.$data['profile_img'].'",
+			updated_on = NOW()
+			WHERE  id="'.$data["id"].'" LIMIT 1 ';
 
-	}else{
-		
-$sql = 'UPDATE '.DB_PREFIX.'patient SET
-		name = "'.$data["name"].'",
-		gender = "'.$data["gender"].'",
-		dob = "'.$data["dob"].'",
-		marital_status = "'.$data["marital_status"].'",
-		blood_group = "'.$data["blood_group"].'",
-		occupation = "'.$data["occupation"].'",
-		mobile = "'.$data["mobile"].'",
-		phone = "'.$data["phone"].'",
-		city_id = "'.$data["city_id"].'",
-		address = "'.$data["address"].'",
-		field1 = "'.$data["field1"].'",
-		value1 = "'.$data["value1"].'",
-		field2 = "'.$data["field2"].'",
-		value2 = "'.$data["value2"].'",
-		updated_on = NOW()
-		WHERE  id="'.$data["id"].'" LIMIT 1 ';
+		}else{
+
+			$sql = 'UPDATE '.DB_PREFIX.'patient SET
+			name = "'.$data["name"].'",
+			gender = "'.$data["gender"].'",
+			dob = "'.$data["dob"].'",
+			marital_status = "'.$data["marital_status"].'",
+			blood_group = "'.$data["blood_group"].'",
+			occupation = "'.$data["occupation"].'",
+			mobile = "'.$data["mobile"].'",
+			phone = "'.$data["phone"].'",
+			city_id = "'.$data["city_id"].'",
+			address = "'.$data["address"].'",
+			field1 = "'.$data["field1"].'",
+			value1 = "'.$data["value1"].'",
+			field2 = "'.$data["field2"].'",
+			value2 = "'.$data["value2"].'",
+			updated_on = NOW()
+			WHERE  id="'.$data["id"].'" LIMIT 1 ';
 
 
-	}
+		}
 			   //echo $sql;
 		return $db->Execute($sql);
 	}
@@ -410,7 +416,7 @@ function isPatientExist($p_id,$key)
 function checkPatient($data)
 {
 	global $db;
-	$sql = 'SELECT * FROM '.DB_PREFIX.'patient WHERE id='.$data['p_id'].' AND user_id="'.$data['doc_id'].'"';
+	$sql = 'SELECT * FROM '.DB_PREFIX.'patient WHERE id='.$data['p_id'].' AND user_id="'.$data['doc_id'].'"AND security_key='.$data['sec_key'];
 		  // echo $sql;
 	return $db->QueryRow($sql);
 }
@@ -442,18 +448,18 @@ function sendPasswordInEmail($arrayObj){
   $message = '
   <html>
   <head>
-    <title>New Patient Security Key</title>
+  <title>New Patient Security Key</title>
   </head>
   <body>
-    <p>Here are your secure key information!</p>
-    <table>
-      <tr>
-        <th>Email</th><th>Security Key</th><th>Patient Id</th>
-      </tr>
-      <tr>
-        <td>'.$arrayObj['email'].'</td> <td>'.$arrayObj['security_key'].'</td> <td>'.$arrayObj['patient_id'].'</td>
-      </tr>
-    </table>
+  <p>Here are your secure key information!</p>
+  <table>
+  <tr>
+  <th>Email</th><th>Security Key</th><th>Patient Id</th>
+  </tr>
+  <tr>
+  <td>'.$arrayObj['email'].'</td> <td>'.$arrayObj['security_key'].'</td> <td>'.$arrayObj['patient_id'].'</td>
+  </tr>
+  </table>
   </body>
   </html>
   ';
@@ -469,7 +475,7 @@ function sendPasswordInEmail($arrayObj){
 //$headers[] = 'Bcc: birthdaycheck@example.com';
 
 // Mail it
- mail($to, $subject, $message, implode("\r\n", $headers));
+  mail($to, $subject, $message, implode("\r\n", $headers));
 }
 
 
