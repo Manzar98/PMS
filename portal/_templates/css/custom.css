@@ -572,3 +572,6 @@ margin-top: 5rem!important;
 		width: 40%;
 		margin: 0 auto;
 	}
+	.qMarkPurpose{
+		cursor: pointer;
+	}

@@ -43,7 +43,6 @@ else if($_POST)
 	$data['profile_img'] = $_POST['profile_img'];
 	$data['package_id']=$_POST['package_id'];
 	$data['c_fee']=$_POST['c_fee'];
-	$data['c_name']=$_POST['c_name'];
 
 	if($data['name']=='')
 	{

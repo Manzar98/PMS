@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-14 10:01:00
+<?php /* Smarty version 2.6.31, created on 2018-12-26 12:54:11
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 89, false),array('modifier', 'date_format', 'users/users.tpl', 94, false),array('function', 'cycle', 'users/users.tpl', 113, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 89, false),array('modifier', 'date_format', 'users/users.tpl', 94, false),array('modifier', 'explode', 'users/users.tpl', 267, false),array('function', 'cycle', 'users/users.tpl', 113, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -329,7 +329,7 @@ edit-users/<?php echo $this->_tpl_vars['data']['id']; ?>
 			<div class="col-sm-3"></div>
 			<div class="col-sm-4">
 				<div class="form-group">
-					<span><b>Specialist : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['specialist']; ?>
+					<span><b>Clinic Fee : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['c_fee']; ?>
 </span></span>
 				</div>
 			</div>
@@ -349,16 +349,23 @@ edit-users/<?php echo $this->_tpl_vars['data']['id']; ?>
 		<div class="row">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-4">
+
 				<div class="form-group">
-					<span><b>Clinic Fee : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['c_fee']; ?>
-</span></span>
+					<span><b>Specializations : </b><span class="capitalize">
+						<?php $this->assign('foo', ((is_array($_tmp=",")) ? $this->_run_mod_handler('explode', true, $_tmp, $this->_tpl_vars['data']['specialist']) : explode($_tmp, $this->_tpl_vars['data']['specialist']))); ?>
+						<ul class="bullets mt-2">
+							<?php $_from = $this->_tpl_vars['foo']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['v']):
+?>
+							<li><?php echo $this->_tpl_vars['v']; ?>
+</li>
+							<?php endforeach; endif; unset($_from); ?>
+						</ul>
+						<!-- <?php echo $this->_tpl_vars['data']['specialist']; ?>
+ -->
+					</span></span>
 				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="form-group">
-					<span><b>Clinic Name : </b><span class="capitalize"><?php echo $this->_tpl_vars['data']['c_name']; ?>
-</span></span>
-				</div>
+				
 			</div>
 		</div>
 		<div style="margin-bottom: 30px;"></div>

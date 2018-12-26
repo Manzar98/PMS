@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-14 10:03:04
+<?php /* Smarty version 2.6.31, created on 2018-12-26 12:37:56
          compiled from users/add_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -127,8 +127,8 @@ users/">Doctors</a>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="form-group"> 
-							<label for="specialist">Specialist</label>
-							<input type="text" name="specialist" id="specialist"class="form-control"/>
+							<label for="specialist">Specializations</label><i class="fa fa-question-circle pull-right pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations"></i>
+							<textarea name="specialist" id="specialist" class="form-control"></textarea>
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -203,6 +203,7 @@ span.select2.select2-container.select2-container--default {
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		$(\'[data-toggle="tooltip"]\').tooltip();
 		$("#city").select2({
                    // placeholder: "Select a State",
                    allowClear: true

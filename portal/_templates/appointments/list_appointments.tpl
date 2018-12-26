@@ -102,7 +102,7 @@
 				<h2 class="py-4">List Of Appointments</h2>
 			</div>
 			<div class="col py-3" >
-				<a href="{$BASE_URL_ADMIN}doc-appointments/?doc_id={$doc.id}&doc_name={$doc.F_name} {$doc.L_name} &doc_adr={$doc.c_address}&doc_phne={$doc.phone}&img={$doc.profile_img}&speciallist={$doc.specialist}&exprience={$doc.exprience}&fee={$doc.c_fee}&exist=patient" class="btn btn-primary">Add Appointment</a>
+				<a href="{$BASE_URL_ADMIN}doc-appointments/view/{$smarty.session.AdminId}/" class="btn btn-primary">Add Appointment</a>
 			</div>
 		</div>
 		<table class="table table-striped table-bordered" >

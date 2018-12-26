@@ -631,7 +631,6 @@
 					selected_Date=$('.dt').val();
 					$('.dateInput').val(selected_Date);
 					var dayOfWeek = weekday[date.getUTCDay()];
-					//debugger
   // dayOfWeek is then a string containing the day of the week
   $.ajax({
   	type: "POST",

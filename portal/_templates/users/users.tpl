@@ -245,7 +245,7 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-4">
 				<div class="form-group">
-					<span><b>Specialist : </b><span class="capitalize">{$data.specialist}</span></span>
+					<span><b>Clinic Fee : </b><span class="capitalize">{$data.c_fee}</span></span>
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -261,14 +261,19 @@
 		<div class="row">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-4">
+
 				<div class="form-group">
-					<span><b>Clinic Fee : </b><span class="capitalize">{$data.c_fee}</span></span>
+					<span><b>Specializations : </b><span class="capitalize">
+						{assign var=foo value=","|explode:$data.specialist}
+						<ul class="bullets mt-2">
+							{foreach from=$foo item=v}
+							<li>{$v}</li>
+							{/foreach}
+						</ul>
+						<!-- {$data.specialist} -->
+					</span></span>
 				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="form-group">
-					<span><b>Clinic Name : </b><span class="capitalize">{$data.c_name}</span></span>
-				</div>
+				
 			</div>
 		</div>
 		<div style="margin-bottom: 30px;"></div>

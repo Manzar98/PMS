@@ -67,7 +67,11 @@
 	</div>
 </div>
 <!-- /breadcrumb -->
+<div id="DoctorNotAvailable" style="width: 40%;" class="mx-auto pt-4">
+
+</div>
 <div class="container margin_60">
+	
 	<div class="row">
 		<div class="col-xl-8 col-lg-8">
 			<nav id="secondary_nav">
@@ -153,8 +157,11 @@
 							<h6>Specializations</h6>
 							<div class="row">
 								<div class="col-lg-6">
-									<ul class="bullets">
-										<li>{$data.specialist}</li>
+									{assign var=foo value=","|explode:$data.specialist}
+									<ul class="bullets mt-2">
+										{foreach from=$foo item=v}
+										<li>{$v}</li>
+										{/foreach}
 									</ul>
 								</div>
 							</div>
@@ -300,6 +307,12 @@
 							<h3>Make an Appointment</h3>
 							<small>Monday to Friday 09.00am-06.00pm</small>
 						</div>
+						<input type="hidden" name="" value="{$unavail}" id="unavail">
+						<input type="hidden" name="" value="{$from}" id="from"> 
+						<input type="hidden" name="" value="{$to}" id="to">
+						<input type="hidden" name="ap_number" id="ap_number"> 
+
+
 						<input type="hidden" name="doc_name" value="{$data.F_name} {$data.L_name}" id="doc_name">
 						<input type="hidden" name="doc_adr" value="{$data.c_address}" id="doc_adr">
 						<input type="hidden" name="doc_phne" value="{$data.phone}" id="doc_phne">
@@ -311,12 +324,15 @@
 						<div class="row">
 							<div class="col-6">
 								<div class="form-group">
-									<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="10/17/2017,11/18/2017" name="dt">
+									<div id="dateRendering">
+										
+									</div>
+									<!-- <input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="12/26/2018,12/27/2018" name="dt" > -->
 								</div>
 							</div>
 							<div class="col-6">
 								<div class="form-group">
-									<input class="form-control" type="text" id="booking_time" value="9:00 am" name="hour">
+									<input class="form-control" type="text" id="booking_time" value="9:00 am" name="hour" >
 								</div>
 							</div>
 						</div>
@@ -462,6 +478,11 @@
 	$(document).ready(function()
 	{
 
+		$("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+
 		$('#existSearch').click(function(){
 			var pat_id = $('#p_id').val();
 			var doc_name = $('#doc_name').val();
@@ -516,7 +537,6 @@
 			if ($('.e_name').val()=="") {
 				$("#add_new_patient").toggle();
 			}
-
 			$('.AddDisSelect').removeClass('disabledSelect')
 			$('#p_id').val('');
 			$('#patient_id').val('');
@@ -530,20 +550,79 @@
 			$('.e_address').prop('readonly',false);
 			$('.e_email').prop('readonly',false);
 		});
-		$("#city").select2({
-                    // placeholder: "Select a State",
-                    allowClear: true
-                });
+		
+		var unavail=  $('#unavail').val().split(',');
+		var fromDate=  $('#from').val().split(',');
+		var toDate=  $('#to').val().split(',');
+		var today = new Date();
+		var doc_id= $('#id').val();
+		//debugger
+		var selected_Date="";
+		var count="";
+			// var check_in = [[fromDate[7], toDate[7]]];
+			var start = new Date(fromDate[7]),
+			end = new Date(toDate[7]),
+			currentDate = new Date(start.getTime()),
+			between = []
+			while (currentDate <= end) {
+				between.push((currentDate.getMonth()+1)+"/"+currentDate.getDate()+"/"+currentDate.getFullYear());
+				currentDate.setDate(currentDate.getDate() + 1);
+				
+			}
+			$('#booking_date').attr( 'data-disabled-days',between.toString())
+			$("#dateRendering").html('<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="'+between.toString()+'" name="dt" >');
+			$('#booking_date').dateDropper();
 
-	});
-	function generateRandomNumber(){
+			var weekday=new Array(7);
+			weekday[0]="mon_on";
+			weekday[1]="Tue_on";
+			weekday[2]="Wed_on";
+			weekday[3]="Thu_on";
+			weekday[4]="Fri_on";
+			weekday[5]="Sat_on";
+			weekday[6]="Sun_on";
 
-		var d=new Date();
-		var n=d.getTime();
-		n = n.toString()
-		m=n.substring(9,14)
-		$('#security_key').val(m);
-	}
+			$('#booking_date').on("change",function(){
+
+				var date = new Date($(this).val());
+				var disabledDate= $(this).val();
+				var dayOfWeek = weekday[date.getUTCDay()];
+				//debugger;
+				  // dayOfWeek is then a string containing the day of the week
+				  $.ajax({
+				  	type: "POST",
+				  	url: "{/literal}{$BASE_URL}appointments?ejax=y{literal}",
+				  	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
+				  	success: function(msg) 
+				  	{
+				  		var time_st="";
+				  		var time_end="";
+				  		if (msg!="") {
+				  			var res=JSON.parse(msg);
+				  			time_st=res.start;
+				  			time_end=res.end;
+				  			count=res.count;
+				  		}else{ 
+
+				  			$('#DoctorNotAvailable').html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Not Available!</strong> Doctor is not available on the selected date..<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+				  			setTimeout(function() {
+				  				$(".alert").alert('close');
+				  			}, 2000);
+				  			$('#booking_date').val('');
+				  		}
+				  	}
+				  });
+				})
+
+		});
+function generateRandomNumber(){
+
+	var d=new Date();
+	var n=d.getTime();
+	n = n.toString()
+	m=n.substring(9,14)
+	$('#security_key').val(m);
+}
 </script>
 <noscript>
 	<style type="text/css">

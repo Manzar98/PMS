@@ -111,8 +111,8 @@
 				<div class="row">
 					<div class="col-md-3">
 						<div class="form-group"> 
-							<label for="specialist">Specialist</label>
-							<input type="text" name="specialist" id="specialist"class="form-control"/>
+							<label for="specialist">Specializations</label><i class="fa fa-question-circle pull-right pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations"></i>
+							<textarea name="specialist" id="specialist" class="form-control"></textarea>
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -130,12 +130,6 @@
 						<div class="form-group"> 
 							<label for="c_fee">Clinic Fee</label>
 							<input type="text" name="c_fee" id="c_fee"class="form-control"/>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group"> 
-							<label for="c_name">Clinic Name</label>
-							<input type="text" name="c_name" id="c_name"class="form-control"/>
 						</div>
 					</div>
 				</div>
@@ -179,6 +173,7 @@ span.select2.select2-container.select2-container--default {
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		$('[data-toggle="tooltip"]').tooltip();
 		$("#city").select2({
                    // placeholder: "Select a State",
                    allowClear: true

@@ -6,7 +6,7 @@ Class User
   {
   	global $db;
 	   $sql = 'INSERT INTO '.DB_PREFIX.'admin 
-	   		  (username,email,expire,F_name,L_name,city,c_address,quali,exprience,mobile,phone,profile_img,d_join,password,specialist,package_id,c_fee,c_name) VALUES (
+	   		  (username,email,expire,F_name,L_name,city,c_address,quali,exprience,mobile,phone,profile_img,d_join,password,specialist,package_id,c_fee) VALUES (
 			   "'.$data["name"].'",
 			   "'.$data["email"].'",
 			   "'.$data["expire"].'",
@@ -23,8 +23,7 @@ Class User
 			   "'.md5($data["password"]).'",
 			   "'.$data["specialist"].'",
 			   "'.$data['package_id'].'",
-			   "'.$data['c_fee'].'" ,
-			   "'.$data['c_name'].'" )';
+			   "'.$data['c_fee'].'")';
 			 // echo $sql;
 	   return $db->Execute($sql);
   }
@@ -101,7 +100,6 @@ Class User
 			specialist="'.$data['specialist'].'",
 			package_id="'.$data['package_id'].'",
 			c_fee="'.$data['c_fee'].'",
-			c_name="'.$data['c_name'].'",
 			expire="'.$data['expire'].'"
 			WHERE id='.$data['id'];
 		}else{
@@ -119,7 +117,6 @@ Class User
 			specialist="'.$data['specialist'].'",
 			package_id="'.$data['package_id'].'",
 			c_fee="'.$data['c_fee'].'",
-			c_name="'.$data['c_name'].'",
 			expire="'.$data['expire'].'"
 			WHERE id='.$data['id'];
 		}
@@ -147,7 +144,6 @@ Class User
 			profile_img="'.$data['profile_img'].'",
 			specialist="'.$data['specialist'].'",
 			expire="'.$data['expire'].'",
-			c_name="'.$data['c_name'].'",
 			c_fee="'.$data['c_fee'].'"
 			WHERE id='.$data['id'];
 		}else{
@@ -164,7 +160,6 @@ Class User
 			phone="'.$data["phone"].'",
 			specialist="'.$data['specialist'].'",
 			expire="'.$data['expire'].'",
-			c_name="'.$data['c_name'].'",
 			c_fee="'.$data['c_fee'].'"
 			WHERE id='.$data['id'];
 		}

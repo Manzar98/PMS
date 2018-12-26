@@ -5,7 +5,16 @@ $Work_days= new Work_days;
 $patient = new Patient;
 $users = new User;
 $package = new Package;
-if ($_POST && isset($_GET['ajax'])) {
+if($id==="view" && $extra>0 && !$_POST)
+{
+  $user_detail = $users->GetuserInfo($extra);
+
+    // print_r($user_detail);
+  $smarty->assign('noOfPatients',$patient->getPatientsCount($extra)); 
+  $smarty->assign('cities', get_cities());
+  $smarty->assign('data',@$user_detail); 
+
+}elseif ($_POST && isset($_GET['ajax'])) {
 
   $result=$Work_days->getTime($_POST['d_Str'],$_POST['doc_id']);
   if ($result['dt_from'] && $result['dt_to']) {

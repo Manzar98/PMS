@@ -439,26 +439,9 @@
        	$('.days_lbl').css('color','black');
        	$('.unavailHideInput').val('unavail_on');
        	$('.unavail_Div_Input input').prop('required',true);
-       	$('.mon_Div_Input').hide();
-       	$('.tue_Div_Input').hide();
-       	$('.wed_Div_Input').hide();
-       	$('.thu_Div_Input').hide();
-       	$('.fri_Div_Input').hide();
-       	$('.sat_Div_Input').hide();
-       	$('.sun_Div_Input').hide();
-       	$('.daysWrap').find('input[type="checkbox"]').prop('checked',false);
-       	$('.daysWrap').find('input[type="checkbox"]').prop('disabled',true);
-       	$('.mon_Div_Input input').val('');
-       	$('.tue_Div_Input input').val('');
-       	$('.wed_Div_Input input').val('');
-       	$('.thu_Div_Input input').val('');
-       	$('.fri_Div_Input input').val('');
-       	$('.sat_Div_Input input').val('');
-       	$('.sun_Div_Input input').val('');
        	
        }else{
        	$('.un_lbl').css('color','black');
-
        	$('.unavail_Div_Input').hide();
        	$('.unavailHideInput').val('unavail_off');
        	$('.unavail_Div_Input input').prop('required',false);
@@ -587,8 +570,6 @@
 				$('.unavailHideInput').val('unavail_on');
 				$('.from8').val(froms[i]);
 				$('.to8').val(tos[i]);
-				$('.daysWrap').find('input[type="checkbox"]').prop('checked',false);
-				$('.daysWrap').find('input[type="checkbox"]').prop('disabled',true);
 			}
 		}
 

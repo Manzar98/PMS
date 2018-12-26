@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-10 22:14:41
+<?php /* Smarty version 2.6.31, created on 2018-12-26 12:40:55
          compiled from users/edit_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -137,10 +137,10 @@ users/">Doctors</a>
 						</div>
 					</div>
 					<div class="col-md-3">
-						<div class="form-group">
-							<label for="specialist">Specialist</label>
-							<input type="text" name="specialist" id="specialist"class="form-control" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['specialist'] )): ?>value="<?php echo $this->_tpl_vars['data']['specialist']; ?>
-"<?php endif; ?> />
+						<div class="form-group"> 
+							<label for="specialist">Specializations</label><i class="fa fa-question-circle pull-right pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations"></i>
+							<textarea name="specialist" id="specialist" class="form-control"><?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['specialist'] )): ?><?php echo $this->_tpl_vars['data']['specialist']; ?>
+<?php endif; ?></textarea>
 						</div>
 					</div>
 				</div>

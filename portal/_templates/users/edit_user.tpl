@@ -111,9 +111,9 @@
 						</div>
 					</div>
 					<div class="col-md-3">
-						<div class="form-group">
-							<label for="specialist">Specialist</label>
-							<input type="text" name="specialist" id="specialist"class="form-control" {if (isset($data) && $data.specialist)}value="{$data.specialist}"{/if} />
+						<div class="form-group"> 
+							<label for="specialist">Specializations</label><i class="fa fa-question-circle pull-right pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations"></i>
+							<textarea name="specialist" id="specialist" class="form-control">{if (isset($data) && $data.specialist)}{$data.specialist}{/if}</textarea>
 						</div>
 					</div>
 				</div>
@@ -138,12 +138,6 @@
 						<div class="form-group">
 							<label for="c_fee">Clinic Fee</label>
 							<input type="text" name="c_fee" id="c_fee"class="form-control" {if (isset($data) && $data.c_fee)}value="{$data.c_fee}"{/if}/>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="c_name">Clinic Name</label>
-							<input type="text" name="c_name" id="c_name"class="form-control" {if (isset($data) && $data.c_name)}value="{$data.c_name}"{/if}/>
 						</div>
 					</div>
 				</div>

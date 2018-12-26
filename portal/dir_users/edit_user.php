@@ -36,7 +36,6 @@ else if($_POST)
 	$data['phone'] = $_POST['phone'];
 	$data['specialist'] = $_POST['specialist'];
 	$data['c_fee']=$_POST['c_fee'];
-	$data['c_name']=$_POST['c_name'];
 
 	if (isset($_POST['package_id'])) {
 

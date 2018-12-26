@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-14 09:58:38
+<?php /* Smarty version 2.6.31, created on 2018-12-24 23:24:46
          compiled from work_settings.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -458,26 +458,9 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
        	$(\'.days_lbl\').css(\'color\',\'black\');
        	$(\'.unavailHideInput\').val(\'unavail_on\');
        	$(\'.unavail_Div_Input input\').prop(\'required\',true);
-       	$(\'.mon_Div_Input\').hide();
-       	$(\'.tue_Div_Input\').hide();
-       	$(\'.wed_Div_Input\').hide();
-       	$(\'.thu_Div_Input\').hide();
-       	$(\'.fri_Div_Input\').hide();
-       	$(\'.sat_Div_Input\').hide();
-       	$(\'.sun_Div_Input\').hide();
-       	$(\'.daysWrap\').find(\'input[type="checkbox"]\').prop(\'checked\',false);
-       	$(\'.daysWrap\').find(\'input[type="checkbox"]\').prop(\'disabled\',true);
-       	$(\'.mon_Div_Input input\').val(\'\');
-       	$(\'.tue_Div_Input input\').val(\'\');
-       	$(\'.wed_Div_Input input\').val(\'\');
-       	$(\'.thu_Div_Input input\').val(\'\');
-       	$(\'.fri_Div_Input input\').val(\'\');
-       	$(\'.sat_Div_Input input\').val(\'\');
-       	$(\'.sun_Div_Input input\').val(\'\');
        	
        }else{
        	$(\'.un_lbl\').css(\'color\',\'black\');
-
        	$(\'.unavail_Div_Input\').hide();
        	$(\'.unavailHideInput\').val(\'unavail_off\');
        	$(\'.unavail_Div_Input input\').prop(\'required\',false);
@@ -606,8 +589,6 @@ _templates/js/clockpicker.js" type="text/javascript"></script>
 				$(\'.unavailHideInput\').val(\'unavail_on\');
 				$(\'.from8\').val(froms[i]);
 				$(\'.to8\').val(tos[i]);
-				$(\'.daysWrap\').find(\'input[type="checkbox"]\').prop(\'checked\',false);
-				$(\'.daysWrap\').find(\'input[type="checkbox"]\').prop(\'disabled\',true);
 			}
 		}
 

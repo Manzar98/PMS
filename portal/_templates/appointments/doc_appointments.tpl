@@ -1,9 +1,226 @@
-{include file="header.tpl"} 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{$SITE_NAME} Administration</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="{$meta_description}" />
+	<meta name="keywords" content="{$meta_keywords}" />
+	<!-- <link rel="shortcut icon" href="{$BASE_URL}favicon.ico" type="image/x-icon" /> -->
+	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/print.css" type="text/css" media="print" />
+	<!-- Bootstrap core CSS-->
+	<link href="{$BASE_URL_ADMIN}_templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Icon fonts-->
+	<link href="{$BASE_URL_ADMIN}_templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- Plugin styles -->
+	<link href="{$BASE_URL_ADMIN}_templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+	<!-- Main styles -->
+	<link href="{$BASE_URL_ADMIN}_templates/css/custom.css" rel="stylesheet">
+	<!-- Main styles -->
+	<link href="{$BASE_URL_ADMIN}_templates/css/admin.css" rel="stylesheet">
+	<!-- 	 <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/screen.css" type="text/css" media="screen" /> -->
+	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery.fancybox.css" type="text/css" media="screen" /> -->
+	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery-ui.css">
+	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/fonts/kreon.css"> -->
+	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/fonts/droidsans.css" /> -->
+	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/bootstrap.css" /> -->
+	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/bootstrap-theme.css" /> -->
+	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/fonts/fontawesome.css" /> -->
+	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/select2.css" />
+	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/croppie.css" />
+	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery.timepicker.css" /> -->
+	<link href=" "rel="stylesheet" />
+	<!-- <script src="{$BASE_URL_ADMIN}_templates/js/jquery.js" type="text/javascript"></script>  -->
+</head>
+<body class="fixed-nav sticky-footer" id="page-top">
+	
+	<div id="page" class="">
+		
+		{if $isAuthenticated == 1}
+		{if isset($smarty.session.status)}
+		<div class="noprint" id="status">
+			{$smarty.session.status}
+		</div><!-- #status -->
+		{/if}
+		{/if}
 
-<div id="" class="clientWrap content-wrapper">
-	<div class="container-fluid">
-		<!-- Breadcrumbs-->
-		<div class="noprint">
+		{if $isAuthenticated == 1}
+		<header class="static">
+			<div class="docWrap">
+				<!-- Navigation-->
+				<nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
+					<a class="navbar-brand" href="index.html"><img src="img/logo.png" data-retina="true" alt="" width="163" height="36"></a>
+					<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+							<li class="nav-item {if $CURRENT_PAGE == ''}selected{/if}" data-toggle="tooltip" data-placement="right" title="Dashboard">
+								<a class="nav-link" href="{$BASE_URL_ADMIN}">
+									<i class="fa fa-fw fa-dashboard"></i>
+									<span class="nav-link-text">Dashboard</span>
+								</a>
+							</li>
+							{if isset($smarty.session.UserType) && $smarty.session.UserType!="S_admin"}
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Prescriptions">
+								<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePrescription" data-parent="#exampleAccordion">
+									<i class="fa fa-fw fa-file-text-o"></i>
+									<span class="nav-link-text">Prescriptions</span>
+								</a>
+								<ul class="sidenav-second-level collapse" id="collapsePrescription">
+									<li>
+										<a href="{$BASE_URL_ADMIN}prescriptions/">View All</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}add-prescription/">Add New</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Prescriptions">
+								<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePatient" data-parent="#exampleAccordion">
+									<i class="fa fa-fw fa-users"></i>
+									<span class="nav-link-text">Patients</span>
+								</a>
+								<ul class="sidenav-second-level collapse" id="collapsePatient">
+									<li>
+										<a href="{$BASE_URL_ADMIN}patients/">View All</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}patients/add/">Add New</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Prescriptions">
+								<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMedicine" data-parent="#exampleAccordion">
+									<i class="fa fa-fw fa-archive"></i>
+									<span class="nav-link-text">Medicines</span>
+								</a>
+								<ul class="sidenav-second-level collapse" id="collapseMedicine">
+									<li>
+										<a href="{$BASE_URL_ADMIN}medicine/">View All</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}medicine/add/">Add New</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Prescriptions">
+								<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTest" data-parent="#exampleAccordion">
+									<i class="fa fa-fw fa-plus-square"></i>
+									<span class="nav-link-text">Tests</span>
+								</a>
+								<ul class="sidenav-second-level collapse" id="collapseTest">
+									<li>
+										<a href="{$BASE_URL_ADMIN}tests/">View All</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}tests/add/">Add New</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+								<a class="nav-link {if $CURRENT_PAGE == 'reports'}selected{/if}" href="{$BASE_URL_ADMIN}reports/{$smarty.session.AdminId}/">
+									<i class="fa fa-fw fa-bar-chart"></i>
+									<span class="nav-link-text">Reports</span>
+								</a>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+								<a class="nav-link {if $CURRENT_PAGE == 'list-appointments'}selected{/if}" href="{$BASE_URL_ADMIN}list-appointments/{$smarty.session.AdminId}/">
+									<i class="fa fa-fw fa-calendar"></i>
+									<span class="nav-link-text">Appointments</span>
+								</a>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+								<a class="nav-link {if $CURRENT_PAGE == 'instructions'}selected{/if}" href="{$BASE_URL_ADMIN}instructions/">
+									<i class="fa fa-fw fa-list-ul"></i>
+									<span class="nav-link-text">Instructions</span>
+								</a>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+								<a class="nav-link {if $CURRENT_PAGE == 'work-settings'}selected{/if}" href="{$BASE_URL_ADMIN}work-settings/">
+									<i class="fa fa-fw fa-clock-o"></i>
+									<span class="nav-link-text">Time & Date</span>
+								</a>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="My profile">
+								<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProfile" data-parent="#exampleAccordion">
+									<i class="fa fa-fw fa-user"></i>
+									<span class="nav-link-text">My profile</span>
+								</a>
+								<ul class="sidenav-second-level collapse" id="collapseProfile">
+									<li>
+										<a href="{$BASE_URL_ADMIN}edit-users/{$smarty.session.AdminId}/">Edit Profile</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}users/view/{$smarty.session.AdminId}/">View Profile</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}password/">Change Password</a>
+									</li>
+								</ul>
+							</li>
+							{else isset($smarty.session.UserType) && $smarty.session.UserType=="S_admin"}
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Prescriptions">
+								<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDoctor" data-parent="#exampleAccordion">
+									<i class="fa fa-fw fa-user-md"></i>
+									<span class="nav-link-text">Doctors</span>
+								</a>
+								<ul class="sidenav-second-level collapse" id="collapseDoctor">
+									<li>
+										<a href="{$BASE_URL_ADMIN}users/">View All</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}add-users/">Add New</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Prescriptions">
+								<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePackage" data-parent="#exampleAccordion">
+									<i class="fa fa-fw fa-list-alt"></i>
+									<span class="nav-link-text">Packages</span>
+								</a>
+								<ul class="sidenav-second-level collapse" id="collapsePackage">
+									<li>
+										<a href="{$BASE_URL_ADMIN}packages/">View All</a>
+									</li>
+									<li>
+										<a href="{$BASE_URL_ADMIN}add-package/">Add New</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+								<a class="nav-link {if $CURRENT_PAGE == 'password'}selected{/if}" href="{$BASE_URL_ADMIN}password/">
+									<i class="fa fa-fw fa-clock-o"></i>
+									<span class="nav-link-text">Change password</span>
+								</a>
+							</li>
+							{/if}
+						</ul>
+						<ul class="navbar-nav sidenav-toggler">
+							<li class="nav-item">
+								<a class="nav-link text-center" id="sidenavToggler">
+									<i class="fa fa-fw fa-angle-left"></i>
+								</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="{$BASE_URL_ADMIN}logout/">
+									<i class="fa fa-fw fa-sign-out"></i>Logout</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<!-- /Navigation-->
+				</div>
+			</header>
+			{/if}
+<div id="preloader" class="Fixed">
+	<div data-loader="circle-side"></div>
+</div>
+<!-- /Preload-->
+{if isset($data) && $data}
+<div class="noprint">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
 					<a href="{$BASE_URL_ADMIN}">Dashboard</a>
@@ -15,695 +232,492 @@
 				
 			</ol>
 		</div>
-
-		<input type="hidden" name="" value="{$exist_appoint}" id="exist_appoint">
-		<input type="hidden" name="" value="{$appointmentFull}" id="appointmentFull">
-		{if isset($printslip) && $printslip}
-		<div class="appoint_Wrap"> 
-
-			<div class="common-bottom text-center" style="margin-bottom: 40px;">
-				<h4><b>APPOINTMENT CONFIRMATION</b></h4>
-			</div>
-			<div class="noprint btnW">
-				<input type="button"class="btn btn-primary printBtn pull-right" value="Print" id="printPrescription">
-			</div>
-			<div class="row common-bottom">
-				<div class="col-sm-10">
-					<div class="ac">
-						<span><b>Patient Name : </b><span>{$printslip.name}</span></span>
-					</div>
-					<div class="ac">
-
-						<span><b>Patient Id : </b><span>{$printslip.pat_id}</span></span>
-
-					</div>
-					<div class="ac">
-						{foreach from=$cities item=city}
-						{if $printslip.city_id==$city.id}
-						<span><b>City : </b><span>{$city.name}</span></span>
-						{/if}
-						{/foreach}
-					</div> 
-					<div class="ac">
-						<span><b>Address : </b><span>{$printslip.address}</span></span>
-					</div>
-					<div class="ac">
-						<span><b>Mobile No : </b><span>{$printslip.mobile}</span></span>
-					</div>
-					<div class="ac">
-						<span><b>Gender : </b><span>{$printslip.gender}</span></span>
-					</div>
-					<div class="ac"><span><b>Email : </b><span>{$printslip.email}</span></span></div>
+<!-- /breadcrumb -->
+<div class="container margin_60">
+	<div class="row">
+		<div class="col-xl-8 col-lg-8">
+			<nav id="secondary_nav">
+				<div class="container">
+					<ul class="clearfix">
+						<li><a href="#section_1" class="active">General info</a></li>
+						<li><a href="#section_2">Reviews</a></li>
+						<li><a href="#sidebar">Booking</a></li>
+					</ul>
 				</div>
-				<div class="col-sm-2">
-					<div width="100" height="100" style="border: 1px solid;"></div>
+			</nav>
+			<div id="section_1">
+				<input type="hidden" name="" id="doc_name" value="{$data.F_name} {$data.L_name}">
+				<input type="hidden" name="" id="doc_id" value="{$data.id}">
+				<div class="box_general_3">
+					<div class="profile">
+						<div class="row">
+							<div class="col-lg-5 col-md-4">
+								<figure>
+									<img src="{$BASE_URL}portal/{$data.profile_img}" alt="" class="img-fluid">
+								</figure>
+							</div>
+							<div class="col-lg-7 col-md-8">
+								<!-- <small>Primary care - Internist</small> -->
+								<h1>DR. {$data.F_name} {$data.L_name}</h1>
+								<span class="rating">
+									<i class="icon_star voted"></i>
+									<i class="icon_star voted"></i>
+									<i class="icon_star voted"></i>
+									<i class="icon_star voted"></i>
+									<i class="icon_star"></i>
+									<small>(145)</small>
+									<a href="badges.html" data-toggle="tooltip" data-placement="top" data-original-title="Badge Level" class="badge_list_1"><img src="img/badges/badge_1.svg" width="15" height="15" alt=""></a>
+								</span>
+								<ul class="statistic">
+									<li>854 Views</li>
+									<li>{$noOfPatients} Patients</li>
+								</ul>
+								<ul class="contacts">
+									<li>
+										<h6>Fee</h6>
+										Rs. {$data.c_fee} 
+									</li>
+									<li>
+										<h6>Address</h6>
+										{$data.c_address}
+									</li>
+									<li>
+										<h6>Phone</h6> <a href="tel://{$data.phone}">{$data.phone}</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<hr>
+
+						<!-- /profile -->
+						<div class="indent_title_in">
+							<i class="pe-7s-user"></i>
+							<h3>Info</h3>
+						</div>
+						<div class="wrapper_indent">
+							<div class="row pb-3">
+								<div class="col-lg-6">
+									<div class="pb-3">
+										<span><b>Email Address : </b><span>{$data.email}</span></span>
+									</div>
+									<div class="pb-3">								{foreach from=$cities item=city}
+										{if $data.city==$city.id}	
+										<span><b>City : </b><span class="capitalize">{$city.name}</span></span>
+										{/if}
+										{/foreach}
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="pb-3">
+										<span><b>Experience : </b><span>{$data.exprience} Years</span></span>
+									</div>
+									<div class="pb-3">
+										<span><b>Qualification : </b><span class="capitalize">{$data.quali}</span></span>
+									</div>
+								</div>
+							</div>
+							<h6>Specializations</h6>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="bullets">
+										<li>{$data.specialist}</li>
+									</ul>
+								</div>
+							</div>
+							<!-- /row-->
+						</div>
+						<!-- /wrapper indent -->
+					</div>
+					<!-- /section_1 -->
 				</div>
-			</div>
-			<div class="row common-bottom bor">
-				<div class="col-sm-8">
-					<div class="common-bottom common-top">
-						<span class="common-bottom"><b>Appointment No : </b><span>{$printslip.ap_number}</span></span>
-					</div>
-					<div class="common-bottom">
-						<span class="common-bottom"><b>Appointment Date : </b><span>{$printslip.ap_date}</span></span>
-					</div>
-					<div class="common-bottom">
-						<span class="common-bottom"><b>Appointment Time : </b><span>{$printslip.ap_time}</span></span>
+				<!-- /box_general -->
+				<div id="section_2">
+					<div class="box_general_3">
+						<div class="reviews-container">
+							<div class="row">
+								<div class="col-lg-3">
+									<div id="review_summary">
+										<strong>4.7</strong>
+										<div class="rating">
+											<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+										</div>
+										<small>Based on 4 reviews</small>
+									</div>
+								</div>
+								<div class="col-lg-9">
+									<div class="row">
+										<div class="col-lg-10 col-9">
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-lg-2 col-3"><small><strong>5 stars</strong></small></div>
+									</div>
+									<!-- /row -->
+									<div class="row">
+										<div class="col-lg-10 col-9">
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-lg-2 col-3"><small><strong>4 stars</strong></small></div>
+									</div>
+									<!-- /row -->
+									<div class="row">
+										<div class="col-lg-10 col-9">
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-lg-2 col-3"><small><strong>3 stars</strong></small></div>
+									</div>
+									<!-- /row -->
+									<div class="row">
+										<div class="col-lg-10 col-9">
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-lg-2 col-3"><small><strong>2 stars</strong></small></div>
+									</div>
+									<!-- /row -->
+									<div class="row">
+										<div class="col-lg-10 col-9">
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-lg-2 col-3"><small><strong>1 stars</strong></small></div>
+									</div>
+									<!-- /row -->
+								</div>
+							</div>
+							<!-- /row -->
+
+							<hr>
+
+							<div class="review-box clearfix">
+								<figure class="rev-thumb"><img src="img/avatar1.jpg" alt="">
+								</figure>
+								<div class="rev-content">
+									<div class="rating">
+										<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+									</div>
+									<div class="rev-info">
+										Admin – April 03, 2016:
+									</div>
+									<div class="rev-text">
+										<p>
+											Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
+										</p>
+									</div>
+								</div>
+							</div>
+							<!-- End review-box -->
+
+							<div class="review-box clearfix">
+								<figure class="rev-thumb"><img src="img/avatar2.jpg" alt="">
+								</figure>
+								<div class="rev-content">
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+									</div>
+									<div class="rev-info">
+										Ahsan – April 01, 2016
+									</div>
+									<div class="rev-text">
+										<p>
+											Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
+										</p>
+									</div>
+								</div>
+							</div>
+							<!-- End review-box -->
+
+							<div class="review-box clearfix">
+								<figure class="rev-thumb"><img src="img/avatar3.jpg" alt="">
+								</figure>
+								<div class="rev-content">
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+									</div>
+									<div class="rev-info">
+										Sara – March 31, 2016
+									</div>
+									<div class="rev-text">
+										<p>
+											Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
+										</p>
+									</div>
+								</div>
+							</div>
+							<!-- End review-box -->
+						</div>
+						<!-- End review-container -->
 					</div>
 				</div>
-				<div class="col-sm-4 ">
-					<div class="docInfo">
-						<div class="common-bottom">
-							<span class="doci"><b>Doctor's Name : </b><span>{$printslip.doc_name}</span></span>
-						</div>
-						<div class="common-bottom">
-							<span class="doci"><b>Clinic Phone Number: </b><span>{$printslip.doc_phne}</span></span> 
-						</div>
-						<div class="common-bottom">
-							<span class="doci" ><b>Clinic Address : </b><span>{$printslip.doc_adr}</span></span>
-						</div>
-					</div> 
-				</div>
+				<!-- /section_2 -->
 			</div>
-			<div class="note" style=" " >
-				<p class="text-center common-bottom not_p">
-					Note: Please reach the clinic on time otherwise your appointment would be cancelled.
-				</p>
-				<p class="text-center doci">idoctor.pk</p>
+			<!-- /col -->
+			<aside class="col-xl-4 col-lg-4" id="sidebar">
+				<div class="box_general_3 booking">
+					<form  id="add_user" class="" action="{$smarty.server.REQUEST_URI}" method="post">
+						<div class="title">
+							<h3>Make an Appointment</h3>
+							<small>Monday to Friday 09.00am-06.00pm</small>
+						</div>
+						<input type="hidden" name="doc_name" value="{$data.F_name} {$data.L_name}" id="doc_name">
+						<input type="hidden" name="doc_adr" value="{$data.c_address}" id="doc_adr">
+						<input type="hidden" name="doc_phne" value="{$data.phone}" id="doc_phne">
+						<input type="hidden" name="u_id" value="{$data.id}" id="id">
+						<input type="hidden" name="package_id" id="package_id" class="package_id" value="{$data.package_id}"/>
+						<input type="hidden" name="online_manual" id="online_manual" value="online">
+						<input type="hidden" name="pat_id" id="patient_id">
+						<input type="hidden" name="security_key" id="security_key">
+						<div class="row">
+							<div class="col-6">
+								<div class="form-group">
+									<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="10/17/2017,11/18/2017" name="dt">
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="form-group">
+									<input class="form-control" type="text" id="booking_time" value="9:00 am" name="hour">
+								</div>
+							</div>
+						</div>
+						<!-- /row -->
+						<div class="row" style="border-top: 1px dotted #ddd;
+						border-bottom: none;">
+						<div class="col-6 pt-3">
+							<label for="dt" class="">Patient Id</label>
+							<input type="text" name="p_id" id="p_id" class="p_id form-control" />
+						</div>
+						<div class="col-6 pt-3">
+							<label for="dt" class="">Security Key</label>
+							<input type="text" name="security_key" id="sec_key" class="form-control" />
+						</div>
+						
+					</div>
+					
+					<div class="row text-center my-3" style="border-top: 1px dotted #ddd;border-bottom: none;">
+						<div class="col-6  pt-3">
+							<input type="button" class="btn btn-primary" id="existSearch" name="" value="Search">
+						</div>
+						<div class="col-6 pt-3">
+							<a href="javascript:void(0)" class="btn btn-primary" id="add_patient">New Patient</a>
+						</div>
+					</div>
+					<div id="add_new_patient" style="display: none; clear:both; border-top: 1px dotted #ddd;border-bottom: none;" class="pt-3">
+						<div class="row">
+							<div class="col-6">
+								<div class="form-group">
+									<label for="name">Patient Name</label>
+									<input type="text" name="name" id="name" maxlength="50" class="form-control e_name" onclick="generateRandomNumber()"/>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="form-group disWrap">
+									<div class="AddDisSelect"></div>
+									<label for="gender">Gender</label>
+									<select name="gender" id="gender" class="form-control e_gender">
+										<option value="male" {if $data.gender =='male'} selected="selected" {/if}>Male</option>
+										<option value="female" {if $data.gender =='female'} selected="selected" {/if}>Female</option>
+										<option value="other" {if $data.gender =='other'} selected="selected" {/if}>Other</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<div class="form-group">
+									<label for="dob">Date of Birth</label>
+									<input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off" class="form-control e_dob"/>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="form-group disWrap">
+									<div class="AddDisSelect"></div>
+									<label for="marital_status">Marital Status</label>
+									<select name="marital_status" id="marital_status" class="form-control e_marital_status">
+										<option value="married">Married</option>
+										<option value="unmarried" >Unmarried</option>
+										<option value="widow">Widow</option>
+										<option value="divorced">Divorced</option>
+										<option value="seperated">Seperated</option>
+									</select> 
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<div class="form-group">
+									<label for="mobile">Mobile</label>
+									<input type="text" name="mobile" id="mobile"maxlength="50" class="form-control e_mobile"/>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="form-group">
+									<label for="address">Address</label>
+									<textarea  name="address" id="address" class="form-control e_address" style="height: 40px;"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<div class="form-group disWrap">
+									<div class="AddDisSelect"></div>
+									<label for="city">City</label>
+									<select name="city" id="city" class="form-control e_city">
+										<option value="">Select City</option>
+										{foreach from=$cities item=city}
+										<option {if $data.city==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
+										{/foreach}						
+									</select>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="form-group">
+									<label for="email">Email Address</label>
+									<input type="email" name="email"
+									id="email" class="form-control e_email">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+					<hr>
+					<input type="submit" name="" class="btn_1 full-width" value="Book Now">
+				</form>
 			</div>
-		</div>
-		{elseif isset($record) && record}
-
-		<div class="alertWrap" title="Errors"></div>
-		<form id="add_user" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
-			<fieldset>
-				<legend>Appointments</legend>
-				<div class="container doctorStyleCard mb-5">
-					<div class="row" style="padding: 10px;    padding-top: 20px;">
-						<div class="col-sm-2"> 
-							<img src="{$BASE_URL_ADMIN}{$smarty.get.img}" alt=""  class="img-responsive">
-						</div>
-						<div class="col-sm-6 pt-3" style="margin-left: 20px;">
-							<h4 style="margin-bottom: 30px;">Dr. {$smarty.get.doc_name}</h4>
-							<div style="margin-bottom: 12px;">
-								<span class="text-center">{$smarty.get.speciallist}</span>
-							</div>
-							<span>{$smarty.get.doc_adr}</span>
-						</div>
-						<div class="col-sm-3 pull-right expri-div">
-							<div style="margin-bottom: 12px;">
-								<span class="text-center"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;{$smarty.get.exprience} Years of Exprience</span></div>
-								<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Rs. {$smarty.get.fee}</span>
-							</div>
-						</div>
-					</div>	
-					<div>
-						<input type="hidden" name="doc_name" value="{$smarty.get.doc_name}" id="doc_name">
-						<input type="hidden" name="doc_adr" value="{$smarty.get.doc_adr}" id="doc_adr">
-						<input type="hidden" name="doc_phne" value="{$smarty.get.doc_phne}" id="doc_phne">
-						<input type="hidden" name="u_id" value="{$smarty.get.doc_id}" id="id"> 
-						<input type="hidden" name="" value="{$unavail}" id="unavail"> 
-						<input type="hidden" name="p_id" value="" id="" placeholder="For Condition true(input for condition only)"> 
-						<input type="hidden" name="" value="{$from}" id="from"> 
-						<input type="hidden" name="" value="{$to}" id="to">
-						<input type="hidden" name="ap_number" id="ap_number"> 
-						<input type="hidden" name="security_key" id="security_key" value="{$record.security_key}">
-						<input type="hidden" name="" id="res_error" value="{$res_error}">
-						<input type="hidden" name="name" id="" value="{$record.name}">
-						<input type="hidden" name="patient_Id" id="" value="{$record.id}">
-						<input type="hidden" name="address" id="" value="{$record.address}">
-						<input type="hidden" name="mobile" id="" value="{$record.mobile}">
-						<input type="hidden" name="gender" id="" value="{$record.gender}">
-						<input type="hidden" name="email" id="" value="{$record.email}">
-						<input type="hidden" name="online_manual" id="online_manual" value="manual">
-						{foreach from=$cities item=city}
-						{if $record.city_id==$city.id}
-						<input type="hidden" name="city" id="" value="{$city.id}">
-						{/if}
-						{/foreach}
-
-					</div>
-					<div class="row">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-4">	
-							<div class="calendar_block">
-								<input type="hidden" name="dt" id="" class="dateInput" />
-								<div class="text-center datetimeHeading"> 
-									<span>Select Date</span>
-								</div>
-								<div class="dt">
-
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4 common-bottom ">
-							<div class="hideHr">
-
-								<div class="timeWrap">
-									<div class="text-center timeHeading">
-										<span>Select Hour</span>
-									</div>
-								</div>
-								<input type="text" name="hour"  class="form-control" id="hour"/>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-8">
-							<div style="margin-top: 24px;">
-								<input type="submit" name="submit" id="submit" value="Book Appointment" class="btn btn-primary form-control" />
-							</div>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-			{elseif isset($smarty.get.exist)}
-
-			<input type="hidden" name="" value="{$erorMsg}" id="errorId">
-			<form id="check_patient" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
-				<fieldset>
-					<legend>Get Appointment</legend>
-
-					<div class="row">
-						<div class="col-sm-6 mx-auto">
-							<div class="form-group">
-								<input type="hidden" name="doc_id" id="doc_id" class="doc_id form-control" value="{$smarty.get.doc_id}"/>
-								<input type="hidden" name="doc_name" id="doc_name" class="doc_name form-control" value="{$smarty.get.doc_name}" />
-								<label for="dt" class="">Patient Id</label>
-								<input type="number" name="p_id" id="p_id" class="p_id form-control"/>
-							</div>
-						</div>
-					</div>
-					<div class="form-row my-3">
-						<div class="col-sm-3"></div>
-						<div class="col">
-							<input type="submit" class="btn btn-primary form-control" value="Search" />
-						</div>
-						<div class="col">
-							<a href="{$BASE_URL_ADMIN}doc-appointments/{$smarty.get.doc_id}?doc_name={$smarty.get.doc_name}&doc_adr={$smarty.get.doc_adr}&doc_phne={$smarty.get.doc_phne}&img={$smarty.get.img}&speciallist={$smarty.get.speciallist}&exprience={$smarty.get.exprience}&fee={$smarty.get.fee}" class="btn btn-primary form-control" role="button">New Patient</a>
-						</div>
-						<div class="col-sm-3"></div>
-					</div>
-				</fieldset>
-			</form>
-			{else}
-			<div class="alertWrap" title="Errors"></div>
-			<form id="add_user" class="box style" action="{$smarty.server.REQUEST_URI}" method="post">
-				<fieldset>
-					<legend>Appointments</legend>
-					<div class="container doctorStyleCard  mb-5">
-						<div class="row" style="padding: 10px;    padding-top: 20px;">
-							<div class="col-sm-2"> 
-								<img src="{$BASE_URL_ADMIN}{$smarty.get.img}" alt=""  class="img-responsive">
-							</div>
-							<div class="col-sm-6  pt-3" style="margin-left: 20px;">
-								<h4 style="margin-bottom: 30px;">Dr. {$smarty.get.doc_name}</h4>
-								<div style="margin-bottom: 12px;">
-									<span class="text-center">{$smarty.get.speciallist}</span></div>
-									<span>{$smarty.get.doc_adr}</span>
-								</div>
-								<div class="col-sm-3 pull-right expri-div">
-									<div style="margin-bottom: 12px;">
-										<span class="text-center"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;{$smarty.get.exprience} Years of Exprience</span></div>
-										<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Rs. {$smarty.get.fee}</span>
-									</div>
-								</div>
-							</div>		
-							<input type="hidden" name="doc_name" value="{$smarty.get.doc_name}" id="doc_name">
-							<input type="hidden" name="doc_adr" value="{$smarty.get.doc_adr}" id="doc_adr">
-							<input type="hidden" name="doc_phne" value="{$smarty.get.doc_phne}" id="doc_phne">
-							<input type="hidden" name="u_id" value="{$id}" id="id"> 
-							<input type="hidden" name="" value="{$unavail}" id="unavail"> 
-							<input type="hidden" name="" value="{$from}" id="from"> 
-							<input type="hidden" name="" value="{$to}" id="to">
-							<input type="hidden" name="ap_number" id="ap_number"> 
-							<input type="hidden" name="security_key" id="security_key">
-							<input type="hidden" name="" id="res_error" value="{$res_error}">
-							<input type="hidden" name="online_manual" id="online_manual" value="manual">
-							<div class="row" style="margin-top: 40px; margin-bottom: 20px;">
-								<div class="col-sm-2"></div>
-								<div class="col-sm-4">	
-									<div class="calendar_block">
-										<input type="hidden" name="dt" id="" class="dateInput" />
-										<div class="text-center datetimeHeading"> 
-											<span>Select Date</span>
-										</div>
-										<div class="dt">	
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4 common-bottom ">
-									<div class="hideHr">
-										<div class="text-center timeHeading">
-											<span>Select Hour</span>
-										</div>
-										<div class="timeWrap">
-											<input type="text" name="hour"  class="form-control" id="hour"/>
-										</div>
-
-									</div>
-								</div>
-							</div>
-							<div class="row mt-5">
-								<div class="col-sm-2"></div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="name">Patient Name</label>
-										<input type="text" name="name" id="name" maxlength="50" class="form-control" onclick="generateRandomNumber()"/>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="gender">Gender</label>
-										<select name="gender" id="gender" class="form-control">
-											<option value="male" {if $data.gender =='male'} selected="selected" {/if}>Male</option>
-											<option value="female" {if $data.gender =='female'} selected="selected" {/if}>Female</option>
-											<option value="other" {if $data.gender =='other'} selected="selected" {/if}>Other</option>
-										</select>
-									</div>
-								</div> 
-							</div>
-							<div class="row">
-								<div class="col-sm-2"></div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="dob">Date of Birth</label>
-										<input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off" class="form-control"/>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="marital_status">Marital Status</label>
-										<select name="marital_status" id="marital_status" class="form-control">
-											<option value="married">Married</option>
-											<option value="unmarried" >Unmarried</option>
-											<option value="widow">Widow</option>
-											<option value="divorced">Divorced</option>
-											<option value="seperated">Seperated</option>
-										</select> 
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2"></div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="mobile">Mobile</label>
-										<input type="text" name="mobile" id="mobile" value="{$data.mobile}" maxlength="50" class="form-control"/>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="city">City</label>
-										<select name="city" id="city" class="form-control">
-											<option value="">Select City</option>
-											{foreach from=$cities item=city}
-											<option {if $data.city==$city.id} selected="selected" {/if} value="{$city.id}">{$city.name}</option>
-											{/foreach}						
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2"></div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="address">Address</label>
-										<textarea  name="address" id="address" class="form-control textarea-height">{$data.address}</textarea>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="email">Email Address</label>
-										<input type="email" name="email"
-										id="email" class="form-control">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-8 mx-auto py-2">
-									<div >
-										<input type="submit" name="submit" id="submit" value="Book Appointment" class="btn btn-primary form-control" />
-									</div>
-								</div>
-							</div>
-						</fieldset>
-					</form>
-					{/if} 
-				</div><!-- #content -->
-			</div>
-			{include file="footer.tpl"}
-			{literal}
-			<style type="text/css">
-			.datetimeHeading{
-				margin-bottom: 10px;
-				border: 1px solid #e0e0e0;
-				padding: 6px;
-				background-color: #e0e0e0;
-				color: #FFF;
-			}
-			.container.doctorStyleCard{
-				margin:0 auto;
-				box-shadow: 0 0 5px 5px #dcdcdc;
-				border-radius: 5px;
-				width: 100%;
-				min-height: 150px;
-
-			}
-			.doctorStyleCard div span{
-				font-size: 14px;
-			}
-			.calendar_block {
-				box-shadow: 0 0 5px 5px #dcdcdc;
-				background-color:#f9f8f8;
-				border-radius: 5px;
-				/*float: left;*/
-			}
-
-			.dt {
-				padding:20px;
-			}
-
-			.dt .ui-widget-header {
-				border:none;
-				background:none;
-			}
-
-			.dt .ui-datepicker {
-				border: 3px solid #FF8800;
-				/*padding:10px 10px 10px;*/
-			}
-
-			.dt .ui-corner-all {
-				border-radius:10px;
-			}
-
-			.dt .ui-widget-content {
-				background: none;
-			}
-
-			.dt .ui-datepicker-calendar {
-				color: #FF8800;
-			}
-			.ui-icon{
-				background-color: #FF8800;
-				border-radius: 9px;
-			}
-			.dt .ui-state-hover {
-				background-color: #FF8800 !important;
-				color: #FFF !important;
-				/*// border-radius: 15px;*/
-
-			}
-			.ui-timepicker-list .ui-timepicker-selected{
-				background-color: #FF8800 !important;
-				color: #FFF !important;
-
-			}
-			.ui-timepicker-list .disabledFullhr{
-
-				background: #6B6565 !important;
-				color: #FFF !important;
-				/*cursor: not-allowed;*/
-
-			}
-			.ui-timepicker-list .disabledFullhr:hover{
-
-				background: #6B6565 !important;
-				color: #FFF !important;
-				cursor: not-allowed;
-
-			}
-
-/*.ui-datepicker-next-hover{
-   background-color:#FFF !important;
-	border: none !important;
-	color: #f9f8f8 !important;
-	}*/
-	.dt .ui-datepicker-month, .ui-datepicker-year{
-		background-color:#fff !important;
-		border: none !important;
-		color: #FF8800 !important;
-	}
-
-	.dt .ui-state-default {
-		text-align:center;
-		background: none;
-		color: #FF8800;
-		width:35px !important;
-		padding:10px 0 10px 0;
-		/*border: none !important;*/
-
-	}
-	.timeWrap.ShowTimingBlock div {
-		display: block !important;
-		position: relative !important;
-		top: -7 !important;
-		left: 0 !important;
-		right: 0 !important;
-		bottom: 0 !important;
-
-	}
-	.timeHeading{
-
-		box-shadow: 0px 0 5px 5px #dcdcdc;
-		border-radius: 5px;
-		border: 1px solid #e0e0e0;
-		padding: 6px;
-		background-color: #e0e0e0;
-		color: #FFF;
-		width: 338px;
-	}
-	span.select2.select2-container.select2-container--default {
-		width: 340px !important;
-	}
-	.fa-money, .fa-star-o{
-		font-size: 20px;
-		color: #FF8800;
-	}
-	.expri-div{
-
-		margin-top: 73px;
-	}
-
+			<!-- /box_general -->
+		</aside>
+		<!-- /asdide -->
+	</div>
+	<!-- /row -->
+</div>
+<!-- /container -->
+<div class="row" style="margin-top: 10px;">
+	<div class="col-sm-8"></div>
+	<div class="col-sm-2 common-bottom" >
+		<a href="{$BASE_URL}add-appointment/?doc_id={$data.id}&doc_name={$data.F_name} {$data.L_name} &doc_adr={$data.c_address}&doc_phne={$data.phone}&img={$data.profile_img}&speciallist={$data.specialist}&pkgId={$data.package_id}&exprience={$data.exprience}&fee={$data.c_fee}&exist=patient" class="btn btn-primary">Get Appointment</a>
+	</div>
+	<div class="col-sm-1"  >
+		<a href="{$BASE_URL}history/" class="btn btn-primary">Veiw History</a>
+	</div>
+</div>
+{/if}
+{include file="footer.tpl"}
+<script src="{$BASE_URL}_templates/{$THEME}/js/select2.js"></script>
+{literal}
+<style type="text/css">
+.diswrap{
+	position: relative;
+}
+.disabledSelect{
+	width: 81%;
+	height: 40px;
+	background-color: #DDD;
+	opacity: 0.5;
+	position: absolute;
+	top: 27px;
+	border-radius: 3px;
+}
 </style>
 <script type="text/javascript">
-	$('.hideHr').hide();
 	$(document).ready(function()
 	{
+
+		$('#existSearch').click(function(){
+			var pat_id = $('#p_id').val();
+			var doc_name = $('#doc_name').val();
+			var doc_id = $('#doc_id').val();
+			var sec_key = $('#sec_key').val();
+
+			if (pat_id!="" && sec_key!="") {
+				$.ajax({
+					type: 'POST',
+					url:'{/literal}{$BASE_URL}appointments?ajax=y{literal}',
+					data: 'p_id='+pat_id+'&doc_id='+doc_id+'&doc_name='+doc_name+'&sec_key='+sec_key,
+					success:function(msg){
+						debugger;
+						var res =JSON.parse(msg);
+						debugger
+						if (res.status==true) {
+							$("#add_new_patient").show();
+							$('.e_name').val(res.msg.name);
+							$('.e_name').prop('readonly',true);
+							$('.e_gender').val(res.msg.gender);
+							$('.e_gender').prop('readonly',true);
+							$('.e_dob').val(res.msg.dob);
+							$('.e_dob').prop('readonly',true);
+							$('.e_marital_status').val(res.msg.marital_status);
+							$('.e_marital_status').prop('readonly',true);
+							$('.e_mobile').val(res.msg.mobile);
+							$('.e_mobile').prop('readonly',true);
+							$('.e_address').val(res.msg.address);
+							$('.e_address').prop('readonly',true);
+							$('.e_email').val(res.msg.email);
+							$('.e_email').prop('readonly',true);
+							$('#patient_id').val(res.msg.id)
+							$('#security_key').val(res.msg.security_key);
+							$('.e_city option[value="'+res.msg.city_id+'"]').prop("selected",true);
+							$('.AddDisSelect').addClass('disabledSelect');
+							$('.e_city').select2().trigger('change');
+						}else{
+
+							$('#p_id').val('');
+							$('#sec_key').val('');
+							alert(res.msg);
+							// $('#existPatientError').val(msg);
+						}
+					}
+
+				})
+			}
+		})
+
+		$("#add_patient").click(function(){
+			
+			if ($('.e_name').val()=="") {
+				$("#add_new_patient").toggle();
+			}
+
+			$('.AddDisSelect').removeClass('disabledSelect')
+			$('#p_id').val('');
+			$('#patient_id').val('');
+			$('#security_key').val('');
+			$('#add_new_patient input').val('');
+			$('.e_name').prop('readonly',false);
+			$('.e_gender').prop('readonly',false);
+			$('.e_marital_status').prop('readonly',false);
+			$('.e_dob').prop('readonly',false);
+			$('.e_mobile').prop('readonly',false);
+			$('.e_address').prop('readonly',false);
+			$('.e_email').prop('readonly',false);
+		});
 		$("#city").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
-		$(document).on('click', '.ui-datepicker-next', function () {
-			$(".ui-datepicker-title>span").hide().show(300);
-			$(".ui-datepicker-calendar").hide('slide', { direction: 'right' }, 300).show('slide', { direction: 'left' }, 300)
-		})
-
-		$(document).on('click', '.ui-datepicker-prev', function () {
-			$(".ui-datepicker-title>span").hide().show(300);
-			$(".ui-datepicker-calendar").hide('slide', { direction: 'left' }, 300).show('slide', { direction: 'right' }, 300)
-		})
-
-		$("#check_patient").validate({
-			rules:{
-				p_id:{required: true},
-			}
-		});
-		if ($('#errorId').val()) {
-			alert($('#errorId').val());
-		}
-
-		if ($('#exist_appoint').val()) {
-
-			alert($('#exist_appoint').val());
-			$('#exist_appoint').val('');
-		}else{
-			
-			$('#exist_appoint').val('');
-		}
-
-		if ($('#appointmentFull').val()) {
-			if(!alert($('#appointmentFull').val())){window.history.go(-1);}
-			// alert();
-			// location.reload();
-		}else{
-			
-			$('#appointmentFull').val('');
-		}
-
-
-		$("#printPrescription").click(function(){
-			
-			window.print();
-		});
-
-		$("#dt").attr("readonly","readonly");
-
-		if ($('#res_error').val()) {
-			debugger
-			var responseArray = "";
-			$.each($('#res_error').val().split(','),function(k,val){
-				debugger
-				responseArray += "<li style='color:red;'><i class='fa fa-times errordialog_x' aria-hidden='true' style='padding-right:10px;'></i>"+val+"</li>";
-			})
-			$('.alertWrap').html("<ul class='responseDialog' style='list-style: none;padding: 0px;font-size: 14px;'>"+responseArray+"</ul>") ;    
-			$('.alertWrap').dialog();
-
-			$('.alertWrap').on('dialogclose', function(event) {
-				history.go(-1); 
-			});
-		}
-		$("#add_user").validate({
-			rules: {
-				hour: { required: true },
-				dt: { required: true },
-			}
-		});
-		// $('.docWrap').remove();
-		var unavail=  $('#unavail').val().split(',');
-		var fromDate=  $('#from').val().split(',');
-		var toDate=  $('#to').val().split(',');
-		var today = new Date();
-		var doc_id= $('#id').val();
-		debugger
-		var selected_Date="";
-		var count="";
-		$('#dt').trigger('click');
-
-
-		if (unavail[7]==="on") {
-
-			var check_in = [[fromDate[7], toDate[7]]];
-			$('.dt').datepicker({
-				dateFormat: 'yy-mm-dd',
-				changeMonth: true,
-				changeYear: true,
-				minDate: today,
-				beforeShowDay: function(date) {
-					var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-					for (var i = 0; i < check_in.length; i++) {
-						if (Array.isArray(check_in[i])) {
-							var from = new Date(check_in[i][0]);
-							var to = new Date(check_in[i][1]);
-							var current = new Date(string);
-							if (current >= from && current <= to) return false;
-						}
-					}
-					return [check_in.indexOf(string) == -1]
-				}
-			});
-
-		}else{
-
-			var weekday=new Array(7);
-			weekday[0]="mon_on";
-			weekday[1]="Tue_on";
-			weekday[2]="Wed_on";
-			weekday[3]="Thu_on";
-			weekday[4]="Fri_on";
-			weekday[5]="Sat_on";
-			weekday[6]="Sun_on";
-			
-			$( ".dt" ).datepicker({
-				dateFormat : "yy-mm-dd",
-				changeMonth: true,
-				changeYear: true,
-				minDate: today,
-				onSelect: function(dateText, inst) {
-					var date = $(this).datepicker('getDate');
-					selected_Date=$('.dt').val();
-					$('.dateInput').val(selected_Date);
-					var dayOfWeek = weekday[date.getUTCDay()];
-  // dayOfWeek is then a string containing the day of the week
-  $.ajax({
-  	type: "POST",
-  	url: "{/literal}{$BASE_URL_ADMIN}doc-appointments/add?ajax=y{literal}",
-  	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
-  	success: function(msg) 
-  	{
-  		//debugger
-  		$('#hour').timepicker('remove');
-  		$('#hour').hide();
-  		var timDiv= $('.timeWrap').addClass('ShowTimingBlock');
-  		var time_st="";
-  		var time_end="";
-  		if (msg!="") {
-  			$('.hideHr').show();
-  			var res=JSON.parse(msg);
-  			time_st=res.start;
-  			time_end=res.end;
-  			count=res.count;
-  			$("#hour").timepicker({
-  				
-  				step: 60,
-  				timeFormat: 'h:i A',
-  				dynamic: false,
-  				dropdown: true,
-  				scrollbar: true,
-  				disableTextInput: true,
-  				minTime: time_st,
-  				maxTime:  time_end,
-  				appendTo: timDiv
-  			});
-  			$('#hour').trigger('click');
-  		}else{   
-  			$('.hideHr').hide();
-  			alert("Doctor is not available on the selected date.");
-  			$('#dt').val('');
-  		}
-  	}
-  });
-}
-});		
-
-		}
-
-		$('#hour').on("change",function(e,ui){
-			var hr = $('#hour').val();
-			debugger;
-			$.ajax({ 
-				type: "POST",
-				url: "{/literal}{$BASE_URL_ADMIN}doc-appointments/add?appoint=y{literal}",
-				data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
-				success: function(msg) 
-				{
-                  		//debugger
-                  		$('#ap_number').val(+msg + +1);
-
-                  		if (parseInt(count) == parseInt(msg)) {
-
-                  			$('#hour').val('');
-                  			$('.ui-timepicker-selected').addClass('disabledFullhr');
-                  			//$('#hour').timepicker('hide');
-                  			alert("The selected hour's slot is full, please choose another time.");
-
-                  		}
-                  	}
-                  });
-
-		});
-
-		$( "#dob" ).datepicker({
-			yearRange: "-100:+0",
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-			changeYear: true
-		});
-
 
 	});
+	function generateRandomNumber(){
 
-function generateRandomNumber(){
-
-	var d=new Date();
-	var n=d.getTime();
-	n = n.toString()
-	m=n.substring(9,14)
-	$('#security_key').val(m);
-}
-
-
+		var d=new Date();
+		var n=d.getTime();
+		n = n.toString()
+		m=n.substring(9,14)
+		$('#security_key').val(m);
+	}
 </script>
+<noscript>
+	<style type="text/css">
+	.pagecontainer {display:none;}
+</style>
+<div class="noscriptmsg">
+	You don't have javascript enabled.  Good luck with that.
+</div>
+</noscript>
 {/literal}
+

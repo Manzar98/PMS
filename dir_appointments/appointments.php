@@ -9,12 +9,39 @@ $package = new Package;
 $smarty->assign('cities', get_cities());
 if($id==="view" && $extra>0 && !$_POST)
 {
-	$user_detail = $users->GetuserInfo($extra);
+	
+	$data =$Work_days->GetDoctorTime($extra);
+	$days= implode(',', array_column($data, 'days'));
+	$from= implode(',', array_column($data, 'dt_from'));
+	$to= implode(',', array_column($data, 'dt_to'));
+	$unavail = implode(',', array_column($data, 'unavailable'));
+    // $count = implode(',', array_column($data, 'hr_count'));
+	$smarty->assign("id",@$id);
+	$smarty->assign("days",@$days);
+	$smarty->assign("from",@$from);
+	$smarty->assign("to",@$to);
+	$smarty->assign("unavail",@$unavail);
+    // $smarty->assign("count",@$count);
 
+	$user_detail = $users->GetuserInfo($extra);
     // print_r($user_detail);
 	$smarty->assign('noOfPatients',$patient->getPatientsCount($extra)); 
 	$smarty->assign('cities', get_cities());
 	$smarty->assign('data',@$user_detail); 
+
+}elseif ($_POST && isset($_GET['ejax'])) {
+
+
+
+	$result=$Work_days->getTime($_POST['d_Str'],$_POST['doc_id']);
+	if ($result['dt_from'] && $result['dt_to']) {
+		$res= array(
+			"start"=>$result['dt_from'],
+			"end"=>  $result['dt_to'],
+			"count"=>$result['hr_count']
+		);
+		echo json_encode($res) ;
+	}
 
 }elseif ($_POST && isset($_GET['ajax'])) {
 
@@ -263,7 +290,7 @@ if($id==="view" && $extra>0 && !$_POST)
 //echo 'Manzar';
 }
 
-if (!isset($_GET['ajax'])) {
+if (!isset($_GET['ajax']) && !isset($_GET['ejax'])) {
 
 	$template = 'appointments/appointments.tpl';
 }

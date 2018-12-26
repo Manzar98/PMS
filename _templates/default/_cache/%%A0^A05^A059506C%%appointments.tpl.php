@@ -1,5 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-19 20:13:16
+<?php /* Smarty version 2.6.31, created on 2018-12-26 12:54:55
          compiled from appointments/appointments.tpl */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'explode', 'appointments/appointments.tpl', 160, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -88,7 +90,11 @@ appointments/">Doctors</a></li>
 	</div>
 </div>
 <!-- /breadcrumb -->
+<div id="DoctorNotAvailable" style="width: 40%;" class="mx-auto pt-4">
+
+</div>
 <div class="container margin_60">
+	
 	<div class="row">
 		<div class="col-xl-8 col-lg-8">
 			<nav id="secondary_nav">
@@ -192,9 +198,14 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 							<h6>Specializations</h6>
 							<div class="row">
 								<div class="col-lg-6">
-									<ul class="bullets">
-										<li><?php echo $this->_tpl_vars['data']['specialist']; ?>
+									<?php $this->assign('foo', ((is_array($_tmp=",")) ? $this->_run_mod_handler('explode', true, $_tmp, $this->_tpl_vars['data']['specialist']) : explode($_tmp, $this->_tpl_vars['data']['specialist']))); ?>
+									<ul class="bullets mt-2">
+										<?php $_from = $this->_tpl_vars['foo']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['v']):
+?>
+										<li><?php echo $this->_tpl_vars['v']; ?>
 </li>
+										<?php endforeach; endif; unset($_from); ?>
 									</ul>
 								</div>
 							</div>
@@ -341,6 +352,15 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 							<h3>Make an Appointment</h3>
 							<small>Monday to Friday 09.00am-06.00pm</small>
 						</div>
+						<input type="hidden" name="" value="<?php echo $this->_tpl_vars['unavail']; ?>
+" id="unavail">
+						<input type="hidden" name="" value="<?php echo $this->_tpl_vars['from']; ?>
+" id="from"> 
+						<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
+" id="to">
+						<input type="hidden" name="ap_number" id="ap_number"> 
+
+
 						<input type="hidden" name="doc_name" value="<?php echo $this->_tpl_vars['data']['F_name']; ?>
  <?php echo $this->_tpl_vars['data']['L_name']; ?>
 " id="doc_name">
@@ -358,12 +378,15 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 						<div class="row">
 							<div class="col-6">
 								<div class="form-group">
-									<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="10/17/2017,11/18/2017" name="dt">
+									<div id="dateRendering">
+										
+									</div>
+									<!-- <input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="12/26/2018,12/27/2018" name="dt" > -->
 								</div>
 							</div>
 							<div class="col-6">
 								<div class="form-group">
-									<input class="form-control" type="text" id="booking_time" value="9:00 am" name="hour">
+									<input class="form-control" type="text" id="booking_time" value="9:00 am" name="hour" >
 								</div>
 							</div>
 						</div>
@@ -532,6 +555,11 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 	$(document).ready(function()
 	{
 
+		$("#city").select2({
+                    // placeholder: "Select a State",
+                    allowClear: true
+                });
+
 		$(\'#existSearch\').click(function(){
 			var pat_id = $(\'#p_id\').val();
 			var doc_name = $(\'#doc_name\').val();
@@ -588,7 +616,6 @@ appointments?ajax=y<?php echo '\',
 			if ($(\'.e_name\').val()=="") {
 				$("#add_new_patient").toggle();
 			}
-
 			$(\'.AddDisSelect\').removeClass(\'disabledSelect\')
 			$(\'#p_id\').val(\'\');
 			$(\'#patient_id\').val(\'\');
@@ -602,20 +629,81 @@ appointments?ajax=y<?php echo '\',
 			$(\'.e_address\').prop(\'readonly\',false);
 			$(\'.e_email\').prop(\'readonly\',false);
 		});
-		$("#city").select2({
-                    // placeholder: "Select a State",
-                    allowClear: true
-                });
+		
+		var unavail=  $(\'#unavail\').val().split(\',\');
+		var fromDate=  $(\'#from\').val().split(\',\');
+		var toDate=  $(\'#to\').val().split(\',\');
+		var today = new Date();
+		var doc_id= $(\'#id\').val();
+		//debugger
+		var selected_Date="";
+		var count="";
+			// var check_in = [[fromDate[7], toDate[7]]];
+			var start = new Date(fromDate[7]),
+			end = new Date(toDate[7]),
+			currentDate = new Date(start.getTime()),
+			between = []
+			while (currentDate <= end) {
+				between.push((currentDate.getMonth()+1)+"/"+currentDate.getDate()+"/"+currentDate.getFullYear());
+				currentDate.setDate(currentDate.getDate() + 1);
+				
+			}
+			$(\'#booking_date\').attr( \'data-disabled-days\',between.toString())
+			$("#dateRendering").html(\'<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="\'+between.toString()+\'" name="dt" >\');
+			$(\'#booking_date\').dateDropper();
 
-	});
-	function generateRandomNumber(){
+			var weekday=new Array(7);
+			weekday[0]="mon_on";
+			weekday[1]="Tue_on";
+			weekday[2]="Wed_on";
+			weekday[3]="Thu_on";
+			weekday[4]="Fri_on";
+			weekday[5]="Sat_on";
+			weekday[6]="Sun_on";
 
-		var d=new Date();
-		var n=d.getTime();
-		n = n.toString()
-		m=n.substring(9,14)
-		$(\'#security_key\').val(m);
-	}
+			$(\'#booking_date\').on("change",function(){
+
+				var date = new Date($(this).val());
+				var disabledDate= $(this).val();
+				var dayOfWeek = weekday[date.getUTCDay()];
+				//debugger;
+				  // dayOfWeek is then a string containing the day of the week
+				  $.ajax({
+				  	type: "POST",
+				  	url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL']; ?>
+appointments?ejax=y<?php echo '",
+				  	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
+				  	success: function(msg) 
+				  	{
+				  		var time_st="";
+				  		var time_end="";
+				  		if (msg!="") {
+				  			var res=JSON.parse(msg);
+				  			time_st=res.start;
+				  			time_end=res.end;
+				  			count=res.count;
+				  		}else{ 
+
+				  			$(\'#DoctorNotAvailable\').html(\'<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Not Available!</strong> Doctor is not available on the selected date..<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>\')
+				  			setTimeout(function() {
+				  				$(".alert").alert(\'close\');
+				  			}, 2000);
+				  			$(\'#booking_date\').val(\'\');
+				  		}
+				  	}
+				  });
+				})
+
+		});
+function generateRandomNumber(){
+
+	var d=new Date();
+	var n=d.getTime();
+	n = n.toString()
+	m=n.substring(9,14)
+	$(\'#security_key\').val(m);
+}
 </script>
 <noscript>
 	<style type="text/css">

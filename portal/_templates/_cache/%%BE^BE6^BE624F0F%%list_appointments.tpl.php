@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-18 17:55:19
+<?php /* Smarty version 2.6.31, created on 2018-12-21 17:55:05
          compiled from appointments/list_appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/list_appointments.tpl', 123, false),)), $this); ?>
@@ -131,16 +131,8 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 			</div>
 			<div class="col py-3" >
 				<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-doc-appointments/?doc_id=<?php echo $this->_tpl_vars['doc']['id']; ?>
-&doc_name=<?php echo $this->_tpl_vars['doc']['F_name']; ?>
- <?php echo $this->_tpl_vars['doc']['L_name']; ?>
- &doc_adr=<?php echo $this->_tpl_vars['doc']['c_address']; ?>
-&doc_phne=<?php echo $this->_tpl_vars['doc']['phone']; ?>
-&img=<?php echo $this->_tpl_vars['doc']['profile_img']; ?>
-&speciallist=<?php echo $this->_tpl_vars['doc']['specialist']; ?>
-&exprience=<?php echo $this->_tpl_vars['doc']['exprience']; ?>
-&fee=<?php echo $this->_tpl_vars['doc']['c_fee']; ?>
-&exist=patient" class="btn btn-primary">Add Appointment</a>
+doc-appointments/view/<?php echo $_SESSION['AdminId']; ?>
+/" class="btn btn-primary">Add Appointment</a>
 			</div>
 		</div>
 		<table class="table table-striped table-bordered" >
