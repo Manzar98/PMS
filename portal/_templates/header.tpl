@@ -29,6 +29,7 @@
 	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/select2.css" />
 	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/croppie.css" />
 	<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/jquery.timepicker.css" /> -->
+	<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/datedropper.css">
 	<link href=" "rel="stylesheet" />
 	<!-- <script src="{$BASE_URL_ADMIN}_templates/js/jquery.js" type="text/javascript"></script>  -->
 </head>

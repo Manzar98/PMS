@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-26 12:54:11
+<?php /* Smarty version 2.6.31, created on 2018-12-26 14:36:57
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 89, false),array('modifier', 'date_format', 'users/users.tpl', 94, false),array('modifier', 'explode', 'users/users.tpl', 267, false),array('function', 'cycle', 'users/users.tpl', 113, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 89, false),array('modifier', 'date_format', 'users/users.tpl', 94, false),array('modifier', 'explode', 'users/users.tpl', 266, false),array('function', 'cycle', 'users/users.tpl', 113, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -348,23 +348,20 @@ edit-users/<?php echo $this->_tpl_vars['data']['id']; ?>
 		</div>
 		<div class="row">
 			<div class="col-sm-3"></div>
-			<div class="col-sm-4">
-
-				<div class="form-group">
-					<span><b>Specializations : </b><span class="capitalize">
-						<?php $this->assign('foo', ((is_array($_tmp=",")) ? $this->_run_mod_handler('explode', true, $_tmp, $this->_tpl_vars['data']['specialist']) : explode($_tmp, $this->_tpl_vars['data']['specialist']))); ?>
-						<ul class="bullets mt-2">
-							<?php $_from = $this->_tpl_vars['foo']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+			<div class="col-sm-6">
+				<!-- <div class="form-group"> -->
+					<span><b>Specializations : </b></span>
+					<?php $this->assign('foo', ((is_array($_tmp=",")) ? $this->_run_mod_handler('explode', true, $_tmp, $this->_tpl_vars['data']['specialist']) : explode($_tmp, $this->_tpl_vars['data']['specialist']))); ?>
+					<ul class="bullets mt-2 specializationWrap">
+						<?php $_from = $this->_tpl_vars['foo']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['v']):
 ?>
-							<li><?php echo $this->_tpl_vars['v']; ?>
+						<li><i class="fa fa-dot-circle-o" aria-hidden="true" style="margin-right:5px; "></i><?php echo $this->_tpl_vars['v']; ?>
 </li>
-							<?php endforeach; endif; unset($_from); ?>
-						</ul>
-						<!-- <?php echo $this->_tpl_vars['data']['specialist']; ?>
- -->
-					</span></span>
-				</div>
+						<?php endforeach; endif; unset($_from); ?>
+					</ul>
+					
+				<!-- </div> -->
 				
 			</div>
 		</div>
@@ -384,6 +381,13 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 <?php echo '
+<style type="text/css">
+.specializationWrap li{
+	display: inline-block;
+	width: 49%;
+	margin-bottom: 5px;
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#field").change(function(){

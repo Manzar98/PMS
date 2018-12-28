@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-26 12:40:55
+<?php /* Smarty version 2.6.31, created on 2018-12-26 14:22:34
          compiled from users/edit_user.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -169,13 +169,6 @@ users/">Doctors</a>
 						<div class="form-group">
 							<label for="c_fee">Clinic Fee</label>
 							<input type="text" name="c_fee" id="c_fee"class="form-control" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['c_fee'] )): ?>value="<?php echo $this->_tpl_vars['data']['c_fee']; ?>
-"<?php endif; ?>/>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="c_name">Clinic Name</label>
-							<input type="text" name="c_name" id="c_name"class="form-control" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['c_name'] )): ?>value="<?php echo $this->_tpl_vars['data']['c_name']; ?>
 "<?php endif; ?>/>
 						</div>
 					</div>

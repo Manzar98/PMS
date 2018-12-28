@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-17 15:37:51
+<?php /* Smarty version 2.6.31, created on 2018-12-28 15:55:30
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,16 +46,12 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 	<link href="<?php echo $this->_tpl_vars['BASE_URL']; ?>
 _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 /css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
-    
-	<!-- YOUR CUSTOM CSS -->
+    <!-- YOUR CUSTOM CSS -->
 	<link href="<?php echo $this->_tpl_vars['BASE_URL']; ?>
 _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 /css/custom.css" rel="stylesheet">
-
 </head>
-
 <body>
-
 <!-- 	<div id="preloader" class="Fixed">
 		<div data-loader="circle-side"></div>
 	</div>  --> 

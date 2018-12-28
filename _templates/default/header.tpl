@@ -24,14 +24,10 @@
 	<link href="{$BASE_URL}_templates/{$THEME}/css/menu.css" rel="stylesheet">
 	<link href="{$BASE_URL}_templates/{$THEME}/css/vendors.css" rel="stylesheet">
 	<link href="{$BASE_URL}_templates/{$THEME}/css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
-    
-	<!-- YOUR CUSTOM CSS -->
+    <!-- YOUR CUSTOM CSS -->
 	<link href="{$BASE_URL}_templates/{$THEME}/css/custom.css" rel="stylesheet">
-
 </head>
-
 <body>
-
 <!-- 	<div id="preloader" class="Fixed">
 		<div data-loader="circle-side"></div>
 	</div>  --> 

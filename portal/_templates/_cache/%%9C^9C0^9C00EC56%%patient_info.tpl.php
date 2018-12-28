@@ -1,34 +1,12 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-06 18:42:47
+<?php /* Smarty version 2.6.31, created on 2018-12-27 18:26:15
          compiled from patients/patient_info.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patient_info.tpl', 66, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patient_info.tpl', 45, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<?php echo '
-<script>
-	$(document).ready(function(){
-    $(\'#tabs div\').hide();
-    $(\'#tabs div:first\').show();
-    $(\'#tabs ul li:first a\').addClass(\'active\');
-
-    $(\'#tabs ul li a\').click(function(){
-     $(\'#tabs ul li a\').removeClass(\'active\');
-     $(this).parent().addClass(\'active\');
-     var currentTab = $(this).attr(\'href\');
-     $(\'#tabs div\').hide();
-     $(currentTab).show();
-     $(currentTab).find(\'.addBtnCls\').show();
-     return false;
-   });
-  });
-
-</script>
-
-'; ?>
-
 <div id="" class="content-wrapper">
  <div class="container-fluid">
   <!-- Breadcrumbs-->
@@ -334,9 +312,29 @@ patient-other-history/add/<?php echo $this->_tpl_vars['info']['patient_id']; ?>
 
 </div><!-- #content -->
 </div>
-<div class="branding">Software Developed by GoWirelss - www.ugowireless.biz - 03008117700</div>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+<?php echo '
+<script>
+  $(document).ready(function(){
+    $(\'#tabs div\').hide();
+    $(\'#tabs div:first\').show();
+    $(\'#tabs ul li:first a\').addClass(\'active\');
+
+    $(\'#tabs ul li a\').click(function(){
+     $(\'#tabs ul li a\').removeClass(\'active\');
+     $(this).parent().addClass(\'active\');
+     var currentTab = $(this).attr(\'href\');
+     $(\'#tabs div\').hide();
+     $(currentTab).show();
+     $(currentTab).find(\'.addBtnCls\').show();
+     return false;
+   });
+  });
+
+</script>
+
+'; ?>

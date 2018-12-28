@@ -5,6 +5,12 @@
 	<div data-loader="circle-side"></div>
 </div>
 <!-- /Preload-->
+{if isset($appointmentFull)}
+<div class="alert alert-success alert-dismissible fade show mx-auto my-3" role="alert" style="width: 50%">
+	<strong>{$appointmentFull}</strong>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+{/if}
 {if isset($doctors)}
 <div id="results">
 	<div class="container">
@@ -67,11 +73,10 @@
 	</div>
 </div>
 <!-- /breadcrumb -->
-<div id="DoctorNotAvailable" style="width: 40%;" class="mx-auto pt-4">
-
-</div>
+<!-- The actual snackbar -->
+<div id="snackbar"></div>
 <div class="container margin_60">
-	
+
 	<div class="row">
 		<div class="col-xl-8 col-lg-8">
 			<nav id="secondary_nav">
@@ -156,9 +161,9 @@
 							</div>
 							<h6>Specializations</h6>
 							<div class="row">
-								<div class="col-lg-6">
+								<div class="col-lg-8">
 									{assign var=foo value=","|explode:$data.specialist}
-									<ul class="bullets mt-2">
+									<ul class="bullets mt-2 specializationWrap">
 										{foreach from=$foo item=v}
 										<li>{$v}</li>
 										{/foreach}
@@ -302,7 +307,7 @@
 			<!-- /col -->
 			<aside class="col-xl-4 col-lg-4" id="sidebar">
 				<div class="box_general_3 booking">
-					<form  id="add_user" class="" action="{$smarty.server.REQUEST_URI}" method="post">
+					<form  id="add_user" class="" action="{$smarty.server.REQUEST_URI}" method="POST">
 						<div class="title">
 							<h3>Make an Appointment</h3>
 							<small>Monday to Friday 09.00am-06.00pm</small>
@@ -311,7 +316,6 @@
 						<input type="hidden" name="" value="{$from}" id="from"> 
 						<input type="hidden" name="" value="{$to}" id="to">
 						<input type="hidden" name="ap_number" id="ap_number"> 
-
 
 						<input type="hidden" name="doc_name" value="{$data.F_name} {$data.L_name}" id="doc_name">
 						<input type="hidden" name="doc_adr" value="{$data.c_address}" id="doc_adr">
@@ -325,7 +329,7 @@
 							<div class="col-6">
 								<div class="form-group">
 									<div id="dateRendering">
-										
+
 									</div>
 									<!-- <input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="12/26/2018,12/27/2018" name="dt" > -->
 								</div>
@@ -346,10 +350,11 @@
 						<div class="col-6 pt-3">
 							<label for="dt" class="">Security Key</label>
 							<input type="text" name="security_key" id="sec_key" class="form-control" />
+							<a  href="#" data-toggle="modal" data-target="#forgetModal" class="pt-1 ftSecKey" style="font-size: 11px;">Forget Security Key?</a>
 						</div>
-						
+
 					</div>
-					
+
 					<div class="row text-center my-3" style="border-top: 1px dotted #ddd;border-bottom: none;">
 						<div class="col-6  pt-3">
 							<input type="button" class="btn btn-primary" id="existSearch" name="" value="Search">
@@ -382,7 +387,7 @@
 							<div class="col-6">
 								<div class="form-group">
 									<label for="dob">Date of Birth</label>
-									<input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off" class="form-control e_dob"/>
+									<input type="text" name="dob" id="dob" class="form-control e_dob"/>
 								</div>
 							</div>
 							<div class="col-6">
@@ -445,6 +450,47 @@
 		<!-- /asdide -->
 	</div>
 	<!-- /row -->
+	<!-- Modal -->
+	<div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-center" id="exampleModalLongTitle">Forget Security Key</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="sec_key_response" class="mx-auto py-2">
+
+					</div>
+					<form>
+						<div class="row">
+							<div class="col-12">
+								<div class="form-group">
+									<label for="dt" class="">Patient Id</label>
+									<input type="text" name="p_id" id="sendPatId" class="p_id form-control" />
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="form-group">
+									<label for="email">Email Address</label>
+									<input type="email" name="email"
+									id="sendEmail" class="form-control e_email" onclick="generateRandomNumber()"> 
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<button type="button" class="btn btn-primary mx-auto" id="sendSecKey">Send</button>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+				</div> 
+			</div>
+		</div>
+	</div>
 </div>
 <!-- /container -->
 <div class="row" style="margin-top: 10px;">
@@ -473,6 +519,11 @@
 	top: 27px;
 	border-radius: 3px;
 }
+.specializationWrap li{
+	display: inline-block;
+	width: 49%;
+	margin-bottom: 5px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function()
@@ -495,9 +546,7 @@
 					url:'{/literal}{$BASE_URL}appointments?ajax=y{literal}',
 					data: 'p_id='+pat_id+'&doc_id='+doc_id+'&doc_name='+doc_name+'&sec_key='+sec_key,
 					success:function(msg){
-						debugger;
 						var res =JSON.parse(msg);
-						debugger
 						if (res.status==true) {
 							$("#add_new_patient").show();
 							$('.e_name').val(res.msg.name);
@@ -523,12 +572,17 @@
 
 							$('#p_id').val('');
 							$('#sec_key').val('');
-							alert(res.msg);
-							// $('#existPatientError').val(msg);
-						}
-					}
 
-				})
+							$('#snackbar').text(res.msg);
+							var x = $("#snackbar");
+							x.addClass('show');
+                            // After 3 seconds, remove the show class from DIV
+                            setTimeout(function(){ x.removeClass('show'); }, 3000);
+
+                        }
+                    }
+
+                })
 			}
 		})
 
@@ -587,7 +641,7 @@
 				var date = new Date($(this).val());
 				var disabledDate= $(this).val();
 				var dayOfWeek = weekday[date.getUTCDay()];
-				//debugger;
+				debugger;
 				  // dayOfWeek is then a string containing the day of the week
 				  $.ajax({
 				  	type: "POST",
@@ -595,6 +649,7 @@
 				  	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
 				  	success: function(msg) 
 				  	{
+				  		debugger
 				  		var time_st="";
 				  		var time_end="";
 				  		if (msg!="") {
@@ -603,17 +658,53 @@
 				  			time_end=res.end;
 				  			count=res.count;
 				  		}else{ 
-
-				  			$('#DoctorNotAvailable').html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Not Available!</strong> Doctor is not available on the selected date..<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
-				  			setTimeout(function() {
-				  				$(".alert").alert('close');
-				  			}, 2000);
 				  			$('#booking_date').val('');
-				  		}
-				  	}
-				  });
+
+				  			$('#snackbar').text('Doctor is not available on the selected date.');
+				  			var x = $("#snackbar");
+				  			x.addClass('show');
+                            // After 3 seconds, remove the show class from DIV
+                            setTimeout(function(){ x.removeClass('show'); }, 3000);
+                        }
+                    }
+                });
 				})
 
+			$('#sendSecKey').click(function(){
+				var id =$('#sendPatId').val();
+				var email =$('#sendEmail').val();
+				var secKey =$('#security_key').val();
+				var doc_id = $('#doc_id').val();
+				var doc_name = $('#doc_name').val();
+				if (id!="" && email!="") {
+					$.ajax({
+						type: "POST",
+						url:"{{/literal}{$BASE_URL}appointments?yjax=x{literal}}",
+						data:"pat_id=" + id +"&doc_id="+doc_id+"&email="+email+"&sec_key="+secKey+"&doc_name="+doc_name,
+						success:function(msg){
+
+							var res= JSON.parse(msg);
+
+							if (res.status==true) {
+
+								$('#sec_key_response').html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>'+res.msg+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+								setTimeout(function() {
+									$(".alert").alert('close');
+								}, 2000);
+							}else{
+
+								$('#sec_key_response').html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>'+res.msg+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+								setTimeout(function() {
+									$(".alert").alert('close');
+								}, 2000);
+								$('#sendPatId').val('');
+								$('#sendEmail').val('');
+								$('#security_key').val('');
+							}
+						}
+					})
+				}
+			});
 		});
 function generateRandomNumber(){
 

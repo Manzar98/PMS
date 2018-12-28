@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-14 14:18:39
+<?php /* Smarty version 2.6.31, created on 2018-12-26 18:31:59
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -52,6 +52,8 @@ _templates/css/select2.css" />
 _templates/css/croppie.css" />
 	<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/jquery.timepicker.css" /> -->
+	<link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+_templates/css/datedropper.css">
 	<link href=" "rel="stylesheet" />
 	<!-- <script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/jquery.js" type="text/javascript"></script>  -->

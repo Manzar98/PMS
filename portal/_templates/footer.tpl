@@ -29,6 +29,7 @@
 	    <script src="{$BASE_URL_ADMIN}_templates/vendor/jquery.magnific-popup.min.js"></script>
 	    <!-- Custom scripts for all pages-->
 	    <script src="{$BASE_URL_ADMIN}_templates/js/admin.js"></script>
+	    <script src="{$BASE_URL_ADMIN}_templates/js/datedropper.js"></script>
 	    <!-- Custom scripts for this page-->
 	    <!-- <script src="js/admin-charts.js"></script>  -->
 

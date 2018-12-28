@@ -478,6 +478,23 @@ function sendPasswordInEmail($arrayObj){
   mail($to, $subject, $message, implode("\r\n", $headers));
 }
 
+function checkSecKeyPatient($data)
+{
+	global $db;
+	$sql = 'SELECT * FROM '.DB_PREFIX.'patient WHERE id='.$data['p_id'].' AND user_id="'.$data['doc_id'].'"AND email="'.$data['email'].'"';
+		  //echo $sql;
+	 return $db->QueryRow($sql);
+
+}
+
+function updateSeckey($data){
+
+global $db;
+	$sql = 'UPDATE '.DB_PREFIX.'patient SET
+	security_key = "'.$data["sec_key"].'"			
+	WHERE id='.$data["p_id"].' LIMIT 1';
+	return $db->Execute($sql);
+}
 
 }
 ?>

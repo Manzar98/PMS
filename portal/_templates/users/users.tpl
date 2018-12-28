@@ -260,19 +260,17 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-3"></div>
-			<div class="col-sm-4">
-
-				<div class="form-group">
-					<span><b>Specializations : </b><span class="capitalize">
-						{assign var=foo value=","|explode:$data.specialist}
-						<ul class="bullets mt-2">
-							{foreach from=$foo item=v}
-							<li>{$v}</li>
-							{/foreach}
-						</ul>
-						<!-- {$data.specialist} -->
-					</span></span>
-				</div>
+			<div class="col-sm-6">
+				<!-- <div class="form-group"> -->
+					<span><b>Specializations : </b></span>
+					{assign var=foo value=","|explode:$data.specialist}
+					<ul class="bullets mt-2 specializationWrap">
+						{foreach from=$foo item=v}
+						<li><i class="fa fa-dot-circle-o" aria-hidden="true" style="margin-right:5px; "></i>{$v}</li>
+						{/foreach}
+					</ul>
+					
+				<!-- </div> -->
 				
 			</div>
 		</div>
@@ -287,6 +285,13 @@
 </div>
 {include file="footer.tpl"}
 {literal}
+<style type="text/css">
+.specializationWrap li{
+	display: inline-block;
+	width: 49%;
+	margin-bottom: 5px;
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#field").change(function(){

@@ -204,7 +204,7 @@
 				e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class="col-sm-4 common-bottom"><label for="dose'+x+'">Dose</label><input type="text" name="dose[]" id="dose'+x+'" class="form-control"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+            $(wrapper).append('<div class="col-sm-4 common-bottom"><label for="dose'+x+'">Dose</label><a href="#" class="remove_field pull-right"><i class="fa fa-times" aria-hidden="true"></i></a><input type="text" name="dose[]" id="dose'+x+'" class="form-control"/></div>'); //add input box
         }
     })
 

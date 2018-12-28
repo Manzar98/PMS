@@ -1,5 +1,6 @@
 {include file="header.tpl"}
-<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/clockpicker.css" /> 
+<!-- <link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/clockpicker.css" /> -->
+<link rel="stylesheet" href="{$BASE_URL_ADMIN}_templates/css/timedropper.css" /> 
 <div id="" class="content-wrapper">
 	<div class="container-fluid checkboxWrap">
 		<!-- Breadcrumbs-->
@@ -257,34 +258,38 @@
 					<div class="col-sm-3">
 						<div class="unavail_Div_Input form-group">
 							<label>From</label>
-							<input type="text" name="dt_from[]" class="form-control input-field dateFrom from8">
+							<input type="text" name="dt_from[]" class="form-control input-field dateFrom from8 datedropper" data-large-mode="true"  data-lang="en" data-min-year="2018" data-max-year="2020">
 						</div>
 					</div>
 					<div class="col-sm-3">
 						<div class="unavail_Div_Input form-group">
 							<label>To</label>
-							<input type="text" name="dt_to[]" class="form-control input-field dateTo to8">
+							<input type="text" name="dt_to[]" class="form-control input-field dateTo to8 datedropper" data-lang="en" data-min-year="2018" data-max-year="2020" data-large-mode="true">
 						</div>
 					</div>
 					<div class="col-sm-1">
-					<!-- <div class="unavail_Div_Input">
-					<label>Count</label>
-					<input type="number" name="hr_count[]" class="form-control input-field">
-				</div> -->
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 mx-auto">
-				<input type="submit" name="" value="Submit" class="form-control btn btn-primary">
-			</div>
-		</div>
-	</fieldset>
-</form>
-<div style="margin-bottom: 50px;"></div>
-</div>
+						<div class="unavail_Div_Input form-group">
+							<i class="fa fa-plus-square text-primary" aria-hidden="true" id="m_does"></i>
+						</div>
+					</div>
+				</div>
+				<div class="fieldsRenderingWrap">
+					
+
+				</div>
+				<div class="row">
+					<div class="col-sm-6 mx-auto">
+						<input type="submit" name="" value="Submit" class="form-control btn btn-primary">
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<div style="margin-bottom: 50px;"></div>
+	</div>
 </div>
 {include file="footer.tpl"}	
-<script src="{$BASE_URL_ADMIN}_templates/js/clockpicker.js" type="text/javascript"></script> 
+<!-- <script src="{$BASE_URL_ADMIN}_templates/js/clockpicker.js" type="text/javascript"></script>  -->
+<script src="{$BASE_URL_ADMIN}_templates/js/timedropper.js" type="text/javascript"></script> 
 {literal}
 <script type="text/javascript">
 	
@@ -450,36 +455,10 @@
        }
    })
 
-		$('.dt_from').clockpicker({
-			donetext: 'Done',
-			placement: 'top',
-			autoclose: 'true',
-			twelvehour: 'true'
-		});
-
-		$('.dt_to').clockpicker({
-			donetext: 'Done',
-			placement: 'top',
-			autoclose: 'true',
-			twelvehour: 'true'
-		});
-		var today = new Date();
-		$('.dateTo').datepicker({
-			minDate: today,
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-			changeYear: true,
-			readOnly: true
-
-		});
-		$('.dateFrom').datepicker({
-			minDate: today,
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-			changeYear: true,
-			readOnly: true
-
-		});
+		$('.dt_from').timeDropper({meridians:'true'});
+		$('.dt_to').timeDropper({meridians:'true'});
+		$('.dateTo').dateDropper();
+		$('.dateFrom').dateDropper();
 
 		var days=$('#daysList').val().split(',');
 		var froms=$('#fromList').val().split(',');
@@ -572,10 +551,42 @@
 				$('.to8').val(tos[i]);
 			}
 		}
+		var max_fields      = 5;
+		var wrapper    = $(".fieldsRenderingWrap");
+		var x = 1; 
+		$('#m_does').click(function(e){
+			e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append(`<div class="row mx-auto clear-fix mainWrap"><div class="col-sm-3"></div><div class="col-sm-3">
+            	<div class="unavail_Div_Input form-group">
+            	<label>From</label>
+            	<input type="text" name="dt_from[]" class="form-control input-field dateFrom from8">
+            	</div>
+            	</div>
+            	<div class="col-sm-3">
+            	<div class="unavail_Div_Input form-group">
+            	<label>To</label><i class="fa fa-times remove_field pull-right" aria-hidden="true"></i>
+            	<input type="text" name="dt_to[]" class="form-control input-field dateTo to8">
+            	</div>
+					</div><div class="col-sm-1"></div></div>`); //add input box
 
+            $('.remove_field').on("click",function(e){
+            	e.preventDefault(); 
+            	$(this).parents('.mainWrap').remove(); x--;
+            })
+            $('.dateTo').dateDropper();
+            $('.dateFrom').dateDropper();
 
+        }  
+    })
+		
 
-	});
+ // $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+
+	//  })
+
+});
 </script>
 <style type="text/css">
 
@@ -591,6 +602,14 @@ input[type="checkbox"]{
 	position: relative;
 	top: 40px;
 	left: -86px;
+}
+#m_does{
+	font-size: 30px;
+	margin-top: 35px;
+	cursor: pointer;
+}
+.remove_field{
+	cursor: pointer;
 }
 </style>
 {/literal}

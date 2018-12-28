@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-13 23:18:53
+<?php /* Smarty version 2.6.31, created on 2018-12-26 14:43:51
          compiled from medicine.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 138, false),array('function', 'cycle', 'medicine.tpl', 158, false),)), $this); ?>
@@ -271,7 +271,7 @@ unset($_smarty_tpl_vars);
 				e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append(\'<div class="col-sm-4 common-bottom"><label for="dose\'+x+\'">Dose</label><input type="text" name="dose[]" id="dose\'+x+\'" class="form-control"/><a href="#" class="remove_field">Remove</a></div>\'); //add input box
+            $(wrapper).append(\'<div class="col-sm-4 common-bottom"><label for="dose\'+x+\'">Dose</label><a href="#" class="remove_field pull-right"><i class="fa fa-times" aria-hidden="true"></i></a><input type="text" name="dose[]" id="dose\'+x+\'" class="form-control"/></div>\'); //add input box
         }
     })
 

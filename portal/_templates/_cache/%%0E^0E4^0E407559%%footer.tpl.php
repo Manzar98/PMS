@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-10 18:48:02
+<?php /* Smarty version 2.6.31, created on 2018-12-26 18:31:59
          compiled from footer.tpl */ ?>
 	
 	</div><!-- #wrap -->
@@ -41,6 +41,8 @@ _templates/vendor/jquery.magnific-popup.min.js"></script>
 	    <!-- Custom scripts for all pages-->
 	    <script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/admin.js"></script>
+	    <script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+_templates/js/datedropper.js"></script>
 	    <!-- Custom scripts for this page-->
 	    <!-- <script src="js/admin-charts.js"></script>  -->
 
