@@ -29,6 +29,12 @@ if($id==="view" && $extra>0 && !$_POST)
 	$smarty->assign('cities', get_cities());
 	$smarty->assign('data',@$user_detail); 
 
+}else if($_POST && isset($_GET['appoint'])){
+         
+  $count= $appointment->checkAppoint($_POST['ap_time'],$_POST['ap_date'],$_POST['doc_id']);
+
+  echo count($count);
+
 }elseif ($_POST && isset($_GET['yjax'])) {
 
 	$data['doc_id']=$_POST['doc_id'];
@@ -93,11 +99,15 @@ if($id==="view" && $extra>0 && !$_POST)
 		echo json_encode($response);
 	}
 }elseif ($_POST) {
- //print_r($_POST);
-	//echo 'Manzar';
+
+	if (isset($_POST['dt'])) {
+		$data['ap_date'] = date("Y-m-d", strtotime($_POST['dt']));
+		//echo $data['ap_date'];
+	}
+
 	$data["marital_status"]= $_POST["marital_status"];
 	$data["address"] = $_POST["address"];
-	$data["ap_number"]       = "1";
+	$data["ap_number"]       = $_POST['ap_number'];
 	$data["security_key"]       = $_POST['security_key'];
 	$data['doc_name']= $_POST['doc_name'];
 	$data['doc_adr']= $_POST['doc_adr'];
@@ -141,33 +151,36 @@ if($id==="view" && $extra>0 && !$_POST)
 		$data["mobile"] = $_POST["mobile"];
 	}
 
-	//if (empty($_POST["dt"])) {
-		//$is_check=false;
-		//array_push($responseArray,"Appointment date is required");
-	//}elseif (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$_POST["dt"])) {
+	if (empty($_POST["dt"])) {
 
-	//	$is_check=false;
-		//array_push($responseArray,"Appointment date is invalid");
-	//}
-	//else{
-	$data["ap_date"] = $_POST['dt'];
+		$is_check=false;
+		array_push($responseArray,"Appointment date is required");
+
+	}elseif (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$data["ap_date"])) {
+
+		$is_check=false;
+		array_push($responseArray,"Appointment date is invalid");
+	}
+	else{
+
+		$data["ap_date"] = $data["ap_date"];
 		// echo "here";
-	//}
+	}
 
-	//if (empty($_POST["hour"])) {
+	if (empty($_POST["hour"])) {
 
-	//	$is_check=false;
-	//	array_push($responseArray,"Appointment time is required");
-//
-	//} elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$/",$_POST["hour"])) {
+		$is_check=false;
+		array_push($responseArray,"Appointment time is required");
 
-	//	$is_check=false;
-		//array_push($responseArray,"Appointment time is invalid");
-	//}else{
+	} elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$/",$_POST["hour"])) {
 
-	$data["ap_time"] = $_POST['hour'];
+		$is_check=false;
+		array_push($responseArray,"Appointment time is invalid");
+	}else{
 
-	//}
+		$data["ap_time"] = $_POST['hour'];
+
+	}
 
 	if ($_POST["u_id"]<1) {
 		$is_check=false;
@@ -190,13 +203,14 @@ if($id==="view" && $extra>0 && !$_POST)
 	}
 
 	$errorMsgs=implode(",",$responseArray);
+
 	//echo $is_check;
 	//echo "manzr444";
     //print_r($data);
 	if ($is_check==true) {
 		//echo "";
 		if (isset($_POST['pat_id']) && !empty($_POST['pat_id'])) {
-		
+
 			if (!$appointment->existAppointment($data)) {
 				if($isExist = $users->checkDoctorConsumptionExist($data["id"])){
 
@@ -234,11 +248,9 @@ if($id==="view" && $extra>0 && !$_POST)
 			}else{
 
 				$exist_appoint="Appointment is already exists against this patient";
-				$smarty->assign("exist_appoint",@$exist_appoint);
+				$smarty->assign("existAppointment",@$exist_appoint);
 			}
 		}else{
-
-			echo "new";
 
 			if($isExist = $users->checkDoctorConsumptionExist($data["id"])){
 
@@ -251,9 +263,9 @@ if($id==="view" && $extra>0 && !$_POST)
 
 				$pkgOnlineCount= $onlineCount['no_of_online_appointments'];
 				$pkgPatientCount= $patientCount['no_of_patients'];
+
 				if ($consumptionOnlineCount < $pkgOnlineCount && $consumptionPatientCount < $pkgPatientCount) {
 
-    // echo "reached";
 					$users->updateColumnCount($data["id"],"online_appointment_count",$consumptionOnlineCount+1);
 					$users->updateColumnCount($data["id"],"patient_count",$consumptionPatientCount+1);
 					if ($patient->AddPatBasic($data)) {
@@ -297,25 +309,23 @@ if($id==="view" && $extra>0 && !$_POST)
 
 					$smarty->assign("printslip",@$data);
 					$smarty->assign('cities', get_cities());
-
 				}
-
 			}
 		}
 
-
 	}else{
-		$smarty->assign("res_error",@$errorMsgs);
 
+		$smarty->assign("res_error",@$errorMsgs);
 	}
-	# code...
+
+
 }else{
 
 	$smarty->assign("doctors",@$appointment->GetAllDoctors());
 //echo 'Manzar';
 }
 
-if (!isset($_GET['ajax']) && !isset($_GET['ejax']) && !isset($_GET['yjax'])) {
+if (!isset($_GET['ajax']) && !isset($_GET['ejax']) && !isset($_GET['yjax']) && !isset($_GET['appoint'])) {
 
 	$template = 'appointments/appointments.tpl';
 }

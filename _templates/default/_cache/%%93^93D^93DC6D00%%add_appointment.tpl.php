@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-13 10:50:19
+<?php /* Smarty version 2.6.31, created on 2018-12-31 19:29:39
          compiled from appointments/add_appointment.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -773,7 +773,6 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 					selected_Date=$(\'.dt\').val();
 					$(\'.dateInput\').val(selected_Date);
 					var dayOfWeek = weekday[date.getUTCDay()];
-					//debugger
   // dayOfWeek is then a string containing the day of the week
   $.ajax({
   	type: "POST",

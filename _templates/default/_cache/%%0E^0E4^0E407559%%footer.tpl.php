@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-10 19:57:11
+<?php /* Smarty version 2.6.31, created on 2019-01-01 17:15:31
          compiled from footer.tpl */ ?>
 
 	<footer>
@@ -80,6 +80,9 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 	<script src="<?php echo $this->_tpl_vars['BASE_URL']; ?>
 _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 /js/functions.js"></script>
+	<script src="<?php echo $this->_tpl_vars['BASE_URL']; ?>
+_templates/<?php echo $this->_tpl_vars['THEME']; ?>
+/js/jquery.validate.min.js"></script>
 
 </body>
 

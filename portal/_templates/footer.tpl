@@ -54,7 +54,7 @@
 		<script src="{$BASE_URL_ADMIN}_templates/js/jquery.easing.1.3.js" type="text/javascript"></script>
 		<script src="{$BASE_URL_ADMIN}_templates/js/jquery.timepicker.js" type="text/javascript"></script>
 		<script src="{$BASE_URL_ADMIN}_templates/js/jquery-ui.min.js"></script>
-		<script src="{$BASE_URL_ADMIN}_templates/js/core.js"></script>
+		<!-- <script src="{$BASE_URL_ADMIN}_templates/js/core.js"></script> -->
 		<script src="{$BASE_URL_ADMIN}_templates/js/widget.js"></script>
 		<script src="{$BASE_URL_ADMIN}_templates/js/datepicker.js" type="text/javascript"></script>
 		<script src="{$BASE_URL_ADMIN}_templates/js/accordion.js"></script>

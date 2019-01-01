@@ -96,6 +96,11 @@ if($id==="view" && $extra>0 && !$_POST)
 
 }else if($_POST){
 
+  if (isset($_POST['dt'])) {
+    $data['ap_date'] = date("Y-m-d", strtotime($_POST['dt']));
+    //echo $data['ap_date'];
+  }
+
   if (isset($_POST['p_id'])) {
 
     $data['p_id']=$_POST['p_id'];
@@ -103,6 +108,7 @@ if($id==="view" && $extra>0 && !$_POST)
 
       $data['doc_id']=$_POST['doc_id'];
     }
+    $data["marital_status"]= $_POST["marital_status"];
     $data["address"] = $_POST["address"];
     $data["ap_number"]       = $_POST['ap_number'];
     $data["security_key"]       = $_POST['security_key'];
@@ -143,32 +149,36 @@ if($id==="view" && $extra>0 && !$_POST)
 
   $data["mobile"] = $_POST["mobile"];
 }
-// if (empty($_POST["dt"])) {
-//  $is_check=false;
-//  array_push($responseArray,"Appointment date is required");
-// }elseif (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$_POST["dt"])) {
+if (empty($_POST["dt"])) {
 
-//   $is_check=false;
-//   array_push($responseArray,"Appointment date is invalid");
-// }
-// else{
-$data["ap_date"] = $_POST['dt'];
-// }
+  $is_check=false;
+  array_push($responseArray,"Appointment date is required");
 
-// if (empty($_POST["hour"])) {
+}elseif (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$data["ap_date"])) {
 
-//  $is_check=false;
-//  array_push($responseArray,"Appointment time is required");
+  $is_check=false;
+  array_push($responseArray,"Appointment date is invalid");
+}
+else{
 
-// } elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$/",$_POST["hour"])) {
+  $data["ap_date"] = $data["ap_date"];
+    // echo "here";
+}
 
-//   $is_check=false;
-//   array_push($responseArray,"Appointment time is invalid");
-// }else{
+if (empty($_POST["hour"])) {
 
-$data["ap_time"] = $_POST['hour'];
+  $is_check=false;
+  array_push($responseArray,"Appointment time is required");
 
-// }
+} elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$/",$_POST["hour"])) {
+
+  $is_check=false;
+  array_push($responseArray,"Appointment time is invalid");
+}else{
+
+  $data["ap_time"] = $_POST['hour'];
+
+}
 
 if ($_POST["u_id"]<1) {
  $is_check=false;
@@ -209,9 +219,8 @@ if ($is_check==true) {
    }else{
 
      $exist_appoint="Appointment for this patient already exists on this date.";
-     $smarty->assign("exist_appoint",@$exist_appoint);
+     $smarty->assign("existAppointment",@$exist_appoint);
    // echo "manzar23141";
-
    }
 
  }else{

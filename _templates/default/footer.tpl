@@ -72,6 +72,7 @@
 	<script src="{$BASE_URL}_templates/{$THEME}/js/jquery-2.2.4.min.js"></script>
 	<script src="{$BASE_URL}_templates/{$THEME}/js/common_scripts.min.js"></script>
 	<script src="{$BASE_URL}_templates/{$THEME}/js/functions.js"></script>
+	<script src="{$BASE_URL}_templates/{$THEME}/js/jquery.validate.min.js"></script>
 
 </body>
 

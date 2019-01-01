@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-28 19:50:20
+<?php /* Smarty version 2.6.31, created on 2019-01-01 18:47:52
          compiled from appointments/appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'explode', 'appointments/appointments.tpl', 165, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'explode', 'appointments/appointments.tpl', 54, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -11,13 +11,22 @@ unset($_smarty_tpl_vars);
 portal/_templates/css/select2.css" />
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL']; ?>
 portal/_templates/css/croppie.css" />
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL']; ?>
+portal/_templates/css/jquery.timepicker.css" />
 <div id="preloader" class="Fixed">
 	<div data-loader="circle-side"></div>
 </div>
 <!-- /Preload-->
 <?php if (isset ( $this->_tpl_vars['appointmentFull'] )): ?>
-<div class="alert alert-success alert-dismissible fade show mx-auto my-3" role="alert" style="width: 50%">
+<div class="alert alert-success alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
 	<strong><?php echo $this->_tpl_vars['appointmentFull']; ?>
+</strong>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<?php endif; ?>
+<?php if (isset ( $this->_tpl_vars['existAppointment'] )): ?>
+<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
+	<strong><?php echo $this->_tpl_vars['existAppointment']; ?>
 </strong>
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 </div>
@@ -61,8 +70,19 @@ portal/<?php echo $this->_tpl_vars['doctors']['profile_img']; ?>
 							</a>
 						</figure>
 						<div class="wrapper">
-							<small><?php echo $this->_tpl_vars['doctors']['specialist']; ?>
+							<?php $this->assign('foo', ((is_array($_tmp=",")) ? $this->_run_mod_handler('explode', true, $_tmp, $this->_tpl_vars['doctors']['specialist']) : explode($_tmp, $this->_tpl_vars['doctors']['specialist']))); ?>
+							<small><i class="icon_circle-slelected" style="margin-right: 3px;"></i><?php echo $this->_tpl_vars['foo'][0]; ?>
 </small>
+							<?php if (isset ( $this->_tpl_vars['foo'][1] )): ?>
+							<small><i class="icon_circle-slelected" style="margin-right: 3px;"></i><?php echo $this->_tpl_vars['foo'][1]; ?>
+</small>
+							<?php endif; ?>
+							<small class="arrow_carrot-2right moreSpecialization" title="<?php $_from = $this->_tpl_vars['foo']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['v']):
+?><?php echo $this->_tpl_vars['v']; ?>
+<?php endforeach; endif; unset($_from); ?>" data-toggle="tooltip" data-placement="top"></small>
+							
+
 							<h3 class="text-capitalize">Dr.<?php echo $this->_tpl_vars['doctors']['F_name']; ?>
  <?php echo $this->_tpl_vars['doctors']['L_name']; ?>
 </h3>
@@ -100,7 +120,6 @@ appointments/">Doctors</a></li>
 <!-- The actual snackbar -->
 <div id="snackbar"></div>
 <div class="container margin_60">
-
 	<div class="row">
 		<div class="col-xl-8 col-lg-8">
 			<nav id="secondary_nav">
@@ -391,7 +410,7 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 							</div>
 							<div class="col-6">
 								<div class="form-group">
-									<input class="form-control" type="text" id="booking_time" value="9:00 am" name="hour" >
+									<input class="form-control" type="text" id="bookingTime" name="hour">
 								</div>
 							</div>
 						</div>
@@ -442,7 +461,7 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 							<div class="col-6">
 								<div class="form-group">
 									<label for="dob">Date of Birth</label>
-									<input type="text" name="dob" id="dob" class="form-control e_dob"/>
+									<input type="text" name="dob" id="dob" class="form-control e_dob" data-large-mode="true"/>
 								</div>
 							</div>
 							<div class="col-6">
@@ -501,7 +520,7 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 					</div>
 					<!-- /row -->
 					<hr>
-					<input type="submit" name="" class="btn_1 full-width" value="Book Now">
+					<input type="button" name="" class="btn_1 full-width" value="Book Now" id="submitAppointment">
 				</form>
 			</div>
 			<!-- /box_general -->
@@ -550,6 +569,25 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 			</div>
 		</div>
 	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header title-header-div">
+					<h5 class="modal-title" id="exampleModalLongTitle">Select Hour</h5>
+				</div>
+				<div class="modal-body">
+					<div class="hideHr">
+						<div class="timeWrap">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+				</div> 
+			</div>
+		</div>
+	</div>
 </div>
 <!-- /container -->
 <div class="row" style="margin-top: 10px;">
@@ -582,6 +620,9 @@ unset($_smarty_tpl_vars);
 <script src="<?php echo $this->_tpl_vars['BASE_URL']; ?>
 _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 /js/select2.js"></script>
+<script src="<?php echo $this->_tpl_vars['BASE_URL']; ?>
+_templates/<?php echo $this->_tpl_vars['THEME']; ?>
+/js/jquery.timepicker.js" type="text/javascript"></script>
 <?php echo '
 <style type="text/css">
 .diswrap{
@@ -601,60 +642,196 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 	width: 49%;
 	margin-bottom: 5px;
 }
+.moreSpecialization{
+	cursor: pointer;
+}
+.timeWrap .ui-timepicker-wrapper{
+	display: block !important;
+	position: relative !important;
+	top: 0px !important;
+	left: 0px !important;
+}
+.timeWrap .ui-timepicker-wrapper ul li:hover{
+	background-color: #e74e84;
+	color: #fff;
+}
+.timeWrap .ui-timepicker-wrapper ul li{
+	display: inline;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+	padding: 8px 10px 6px;
+	line-height: 1;
+	min-width: 100px;
+	margin: 5px;
+	text-align: center;
+	cursor: pointer;
+
+}
+.title-header-div{
+	background-color: #3f4079;
+	/*-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;*/
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 30px;
+}
+.ui-timepicker-list{
+
+	text-align: center !important;
+}
+.title-header-div h5{
+	font-size: 16px;
+	font-size: 1rem;
+	color: #fff;
+	text-align: center;
+	margin-top: 5px !important;
+	margin-bottom: 3px !important;
+	margin: 0 auto;
+}
+.ui-timepicker-list .ui-timepicker-selected{
+	background-color: #333 !important;
+	color: #FFF !important;
+
+}
+.ui-timepicker-list .disabledFullhr{
+	
+	background: #6B6565 !important;
+	color: #FFF !important;
+	/*cursor: not-allowed;*/
+
+}
+.ui-timepicker-list .disabledFullhr:hover{
+	
+	background: #6B6565 !important;
+	color: #FFF !important;
+	cursor: not-allowed;
+
+}
+label.error{
+	font-size: 11px;
+	color: red;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+/*==============
+=========================
+Start Submitting Form
+=========================
+==============*/
+$(\'#submitAppointment\').click(function(){
 
-		$("#city").select2({
+	var validator=$("#add_user").validate({
+		rules: {
+			dt: { required: true },
+			hour: { required: true },
+		},
+		errorElement : \'label\',
+		errorPlacement: function(error, element) {
+
+			//console.log(element);
+			var placement = $(element).data(\'error\');
+			//console.log(placement);
+			//console.log(error);
+			if (placement) {
+				$(placement).append(error)
+			} else {
+				error.insertAfter(element);
+			}
+		}
+	});
+	validator.form();
+
+	if (validator.form()==false) {
+		var body = $("html, body");
+		$.each($(\'#add_user\').find(".error"),function(key,value)
+		{
+
+			if($(value).css(\'display\')!="none")
+			{
+				body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, \'swing\', function() { });
+				return false; 
+			}
+		});
+	}else{
+
+		$("#add_user").submit();
+	}
+})
+/*===================End Submitting Form====================*/
+
+
+$(\'#bookingTime\').focus(function(){
+    //open bootsrap modal
+    $(\'#timeModal\').modal({
+    	show: true
+    });
+});//TimePicker for Hour selection 
+
+$(\'#dob\').dateDropper();//dateDropper for Date of Birth
+
+$("#city").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
 
-		$(\'#existSearch\').click(function(){
-			var pat_id = $(\'#p_id\').val();
-			var doc_name = $(\'#doc_name\').val();
-			var doc_id = $(\'#doc_id\').val();
-			var sec_key = $(\'#sec_key\').val();
+/*================
+==========================
+To Check Pateint is Exist or Not
+==========================
+==================*/
+$(\'#existSearch\').click(function(){
+	var pat_id = $(\'#p_id\').val();
+	var doc_name = $(\'#doc_name\').val();
+	var doc_id = $(\'#doc_id\').val();
+	var sec_key = $(\'#sec_key\').val();
 
-			if (pat_id!="" && sec_key!="") {
-				$.ajax({
-					type: \'POST\',
-					url:\''; ?>
+	if (pat_id!="" && sec_key!="") {
+		$.ajax({
+			type: \'POST\',
+			url:\''; ?>
 <?php echo $this->_tpl_vars['BASE_URL']; ?>
 appointments?ajax=y<?php echo '\',
-					data: \'p_id=\'+pat_id+\'&doc_id=\'+doc_id+\'&doc_name=\'+doc_name+\'&sec_key=\'+sec_key,
-					success:function(msg){
-						var res =JSON.parse(msg);
-						if (res.status==true) {
-							$("#add_new_patient").show();
-							$(\'.e_name\').val(res.msg.name);
-							$(\'.e_name\').prop(\'readonly\',true);
-							$(\'.e_gender\').val(res.msg.gender);
-							$(\'.e_gender\').prop(\'readonly\',true);
-							$(\'.e_dob\').val(res.msg.dob);
-							$(\'.e_dob\').prop(\'readonly\',true);
-							$(\'.e_marital_status\').val(res.msg.marital_status);
-							$(\'.e_marital_status\').prop(\'readonly\',true);
-							$(\'.e_mobile\').val(res.msg.mobile);
-							$(\'.e_mobile\').prop(\'readonly\',true);
-							$(\'.e_address\').val(res.msg.address);
-							$(\'.e_address\').prop(\'readonly\',true);
-							$(\'.e_email\').val(res.msg.email);
-							$(\'.e_email\').prop(\'readonly\',true);
-							$(\'#patient_id\').val(res.msg.id)
-							$(\'#security_key\').val(res.msg.security_key);
-							$(\'.e_city option[value="\'+res.msg.city_id+\'"]\').prop("selected",true);
-							$(\'.AddDisSelect\').addClass(\'disabledSelect\');
-							$(\'.e_city\').select2().trigger(\'change\');
-						}else{
+			data: \'p_id=\'+pat_id+\'&doc_id=\'+doc_id+\'&doc_name=\'+doc_name+\'&sec_key=\'+sec_key,
+			success:function(msg){
+				var res =JSON.parse(msg);
+				if (res.status==true) {
+					$("#add_new_patient").show();
+					$(\'.e_name\').val(res.msg.name);
+					$(\'.e_name\').prop(\'readonly\',true);
+					$(\'.e_gender\').val(res.msg.gender);
+					$(\'.e_gender\').prop(\'readonly\',true);
+					$(\'.e_dob\').val(res.msg.dob);
+					$(\'.e_dob\').prop(\'readonly\',true);
+					$(\'.e_marital_status\').val(res.msg.marital_status);
+					$(\'.e_marital_status\').prop(\'readonly\',true);
+					$(\'.e_mobile\').val(res.msg.mobile);
+					$(\'.e_mobile\').prop(\'readonly\',true);
+					$(\'.e_address\').val(res.msg.address);
+					$(\'.e_address\').prop(\'readonly\',true);
+					$(\'.e_email\').val(res.msg.email);
+					$(\'.e_email\').prop(\'readonly\',true);
+					$(\'#patient_id\').val(res.msg.id)
+					$(\'#security_key\').val(res.msg.security_key);
+					$(\'.e_city option[value="\'+res.msg.city_id+\'"]\').prop("selected",true);
+					$(\'.AddDisSelect\').addClass(\'disabledSelect\');
+					$(\'.e_city\').select2().trigger(\'change\');
+				}else{
 
-							$(\'#p_id\').val(\'\');
-							$(\'#sec_key\').val(\'\');
+					$(\'#p_id\').val(\'\');
+					$(\'#sec_key\').val(\'\');
 
-							$(\'#snackbar\').text(res.msg);
-							var x = $("#snackbar");
-							x.addClass(\'show\');
+					$(\'#snackbar\').text(res.msg);
+					var x = $("#snackbar");
+					x.addClass(\'show\');
                             // After 3 seconds, remove the show class from DIV
                             setTimeout(function(){ x.removeClass(\'show\'); }, 3000);
 
@@ -662,35 +839,46 @@ appointments?ajax=y<?php echo '\',
                     }
 
                 })
-			}
-		})
+	}
+})
+/*===================End Pateint is Exist or Not====================*/
 
-		$("#add_patient").click(function(){
-			
-			if ($(\'.e_name\').val()=="") {
-				$("#add_new_patient").toggle();
-			}
-			$(\'.AddDisSelect\').removeClass(\'disabledSelect\')
-			$(\'#p_id\').val(\'\');
-			$(\'#patient_id\').val(\'\');
-			$(\'#security_key\').val(\'\');
-			$(\'#add_new_patient input\').val(\'\');
-			$(\'.e_name\').prop(\'readonly\',false);
-			$(\'.e_gender\').prop(\'readonly\',false);
-			$(\'.e_marital_status\').prop(\'readonly\',false);
-			$(\'.e_dob\').prop(\'readonly\',false);
-			$(\'.e_mobile\').prop(\'readonly\',false);
-			$(\'.e_address\').prop(\'readonly\',false);
-			$(\'.e_email\').prop(\'readonly\',false);
-		});
-		
-		var unavail=  $(\'#unavail\').val().split(\',\');
-		var fromDate=  $(\'#from\').val().split(\',\');
-		var toDate=  $(\'#to\').val().split(\',\');
-		var today = new Date();
-		var doc_id= $(\'#id\').val();
+/*=============
+=====================
+To Add a New Patient
+=====================
+=============*/
+$("#add_patient").click(function(){
+
+	if ($(\'.e_name\').val()=="") {
+		$("#add_new_patient").toggle();
+	}
+	$(\'.AddDisSelect\').removeClass(\'disabledSelect\')
+	$(\'#p_id\').val(\'\');
+	$(\'#patient_id\').val(\'\');
+	$(\'#security_key\').val(\'\');
+	$(\'#add_new_patient input\').val(\'\');
+	$(\'.e_name\').prop(\'readonly\',false);
+	$(\'.e_gender\').prop(\'readonly\',false);
+	$(\'.e_marital_status\').prop(\'readonly\',false);
+	$(\'.e_dob\').prop(\'readonly\',false);
+	$(\'.e_mobile\').prop(\'readonly\',false);
+	$(\'.e_address\').prop(\'readonly\',false);
+	$(\'.e_email\').prop(\'readonly\',false);
+});
+/*================End New Patient===================*/
+
+/*================
+=========================================================
+TO Check Which days is available and Which dates is not available
+=========================================================
+===================*/
+var unavail=  $(\'#unavail\').val().split(\',\');
+var fromDate=  $(\'#from\').val().split(\',\');
+var toDate=  $(\'#to\').val().split(\',\');
+var today = new Date();
+var doc_id= $(\'#id\').val();
 		//debugger
-		var selected_Date="";
 		var count="";
 			// var check_in = [[fromDate[7], toDate[7]]];
 			var start = new Date(fromDate[7]),
@@ -718,7 +906,7 @@ appointments?ajax=y<?php echo '\',
 			$(\'#booking_date\').on("change",function(){
 
 				var date = new Date($(this).val());
-				var disabledDate= $(this).val();
+				//var disabledDate= $(this).val();
 				var dayOfWeek = weekday[date.getUTCDay()];
 				debugger;
 				  // dayOfWeek is then a string containing the day of the week
@@ -730,6 +918,8 @@ appointments?ejax=y<?php echo '",
 				  	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
 				  	success: function(msg) 
 				  	{
+				  		$(\'#bookingTime\').timepicker(\'remove\');
+				  		var timDiv= $(\'.timeWrap\');
 				  		debugger
 				  		var time_st="";
 				  		var time_end="";
@@ -738,7 +928,20 @@ appointments?ejax=y<?php echo '",
 				  			time_st=res.start;
 				  			time_end=res.end;
 				  			count=res.count;
+				  			$("#bookingTime").timepicker({
+				  				step: 60,
+				  				timeFormat: \'h:i A\',
+				  				dynamic: false,
+				  				dropdown: true,
+				  				scrollbar: true,
+				  				disableTextInput: true,
+				  				minTime: time_st,
+				  				maxTime:  time_end,
+				  				appendTo: timDiv
+				  			});
+
 				  		}else{ 
+
 				  			$(\'#booking_date\').val(\'\');
 
 				  			$(\'#snackbar\').text(\'Doctor is not available on the selected date.\');
@@ -750,46 +953,92 @@ appointments?ejax=y<?php echo '",
                     }
                 });
 				})
+			/*==================End Days & Dates checking===============*/
 
-			$(\'#sendSecKey\').click(function(){
-				var id =$(\'#sendPatId\').val();
-				var email =$(\'#sendEmail\').val();
-				var secKey =$(\'#security_key\').val();
-				var doc_id = $(\'#doc_id\').val();
-				var doc_name = $(\'#doc_name\').val();
-				if (id!="" && email!="") {
-					$.ajax({
-						type: "POST",
-						url:"{'; ?>
+/*=================
+==========================
+To Check Hour Slot is available
+==========================
+===================*/
+
+$(\'#bookingTime\').on("change",function(e,ui){
+	var hr = $(\'#bookingTime\').val();
+	var currentSelectedDate= $(\'#booking_date\').val();
+	var datearray = currentSelectedDate.split("/");
+	var selected_Date = datearray[2] + \'-\' + datearray[0] + \'-\' + datearray[1];
+				//debugger;
+				$.ajax({ 
+					type: "POST",
+					url: "'; ?>
+<?php echo $this->_tpl_vars['BASE_URL']; ?>
+appointments?appoint=y<?php echo '",
+					data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
+					success: function(msg) 
+					{
+                  		//debugger
+                  		$(\'#ap_number\').val(+msg + +1);
+                  		///console.log(count);
+                  		debugger
+                  		if (parseInt(count) == parseInt(msg)) {
+
+                  			$(\'#bookingTime\').val(\'\');
+                  			$(\'.ui-timepicker-selected\').addClass(\'disabledFullhr\');
+                  			$(\'#snackbar\').text("The selected hour\'s slot is full, please choose another time.");
+                  			var x = $("#snackbar");
+                  			x.addClass(\'show\');
+                            // After 3 seconds, remove the show class from DIV
+                            setTimeout(function(){ x.removeClass(\'show\'); }, 3000);
+                        }
+                    }
+                });
+			});
+		/*================End Check Hour script=================*/
+
+/*=================
+=========================
+Send Security key if forgoton
+=============================
+==================*/
+$(\'#sendSecKey\').click(function(){
+	var id =$(\'#sendPatId\').val();
+	var email =$(\'#sendEmail\').val();
+	var secKey =$(\'#security_key\').val();
+	var doc_id = $(\'#doc_id\').val();
+	var doc_name = $(\'#doc_name\').val();
+	if (id!="" && email!="") {
+		$.ajax({
+			type: "POST",
+			url:"{'; ?>
 <?php echo $this->_tpl_vars['BASE_URL']; ?>
 appointments?yjax=x<?php echo '}",
-						data:"pat_id=" + id +"&doc_id="+doc_id+"&email="+email+"&sec_key="+secKey+"&doc_name="+doc_name,
-						success:function(msg){
+			data:"pat_id=" + id +"&doc_id="+doc_id+"&email="+email+"&sec_key="+secKey+"&doc_name="+doc_name,
+			success:function(msg){
 
-							var res= JSON.parse(msg);
+				var res= JSON.parse(msg);
 
-							if (res.status==true) {
+				if (res.status==true) {
 
-								$(\'#sec_key_response\').html(\'<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>\'+res.msg+\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>\')
-								setTimeout(function() {
-									$(".alert").alert(\'close\');
-								}, 2000);
-							}else{
+					$(\'#sec_key_response\').html(\'<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>\'+res.msg+\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>\')
+					setTimeout(function() {
+						$(".alert").alert(\'close\');
+					}, 2000);
+				}else{
 
-								$(\'#sec_key_response\').html(\'<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>\'+res.msg+\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>\')
-								setTimeout(function() {
-									$(".alert").alert(\'close\');
-								}, 2000);
-								$(\'#sendPatId\').val(\'\');
-								$(\'#sendEmail\').val(\'\');
-								$(\'#security_key\').val(\'\');
-							}
-						}
-					})
+					$(\'#sec_key_response\').html(\'<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>\'+res.msg+\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>\')
+					setTimeout(function() {
+						$(".alert").alert(\'close\');
+					}, 2000);
+					$(\'#sendPatId\').val(\'\');
+					$(\'#sendEmail\').val(\'\');
+					$(\'#security_key\').val(\'\');
 				}
-			});
-		});
-function generateRandomNumber(){
+			}
+		})
+	}
+});
+/*======================End Send Security key======================*/
+});
+function generateRandomNumber(){//Security key generator
 
 	var d=new Date();
 	var n=d.getTime();

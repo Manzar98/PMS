@@ -7,8 +7,14 @@
 		</div>
 		<!-- /Preload-->
 		{if isset($appointmentFull)}
-		<div class="alert alert-success alert-dismissible fade show mx-auto my-3" role="alert" style="width: 50%">
+		<div class="alert alert-success alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
 			<strong>{$appointmentFull}</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		</div>
+		{/if}
+		{if isset($existAppointment)}
+		<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
+			<strong>{$existAppointment}</strong>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		</div>
 		{/if}
@@ -280,12 +286,14 @@
 								<div class="row">
 									<div class="col-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="10/17/2017,11/18/2017" name="dt">
+											<div id="dateRendering">
+
+											</div>
 										</div>
 									</div>
 									<div class="col-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="booking_time" value="9:00 am" name="hour">
+											<input class="form-control" type="text" id="bookingTime" name="hour">
 										</div>
 									</div>
 								</div>
@@ -336,7 +344,7 @@
 									<div class="col-6">
 										<div class="form-group">
 											<label for="dob">Date of Birth</label>
-											<input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off" class="form-control e_dob"/>
+											<input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off"  class="form-control e_dob" data-large-mode="true"/>
 										</div>
 									</div>
 									<div class="col-6">
@@ -391,7 +399,7 @@
 							</div>
 							<!-- /row -->
 							<hr>
-							<input type="submit" name="" class="btn_1 full-width" value="Book Now">
+							<input type="button" name="" class="btn_1 full-width" value="Book Now" id="submitAppointment">
 						</form>
 					</div>
 					<!-- /box_general -->
@@ -436,6 +444,25 @@
 						</div>
 						<div class="modal-footer">
 							<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+						</div> 
+					</div>
+				</div>
+			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header title-header-div">
+							<h5 class="modal-title" id="exampleModalLongTitle">Select Hour</h5>
+						</div>
+						<div class="modal-body">
+							<div class="hideHr">
+								<div class="timeWrap">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
 						</div> 
 					</div>
 				</div>
@@ -731,35 +758,161 @@ strong{
 .ftSecKey{
 	color: #e74e84;
 }
+.timeWrap .ui-timepicker-wrapper{
+	display: block !important;
+	position: relative !important;
+	top: 0px !important;
+	left: 0px !important;
+}
+.timeWrap .ui-timepicker-wrapper ul li:hover{
+	background-color: #e74e84;
+	color: #fff;
+}
+.timeWrap .ui-timepicker-wrapper ul li{
+	display: inline;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+	padding: 8px 10px 6px;
+	line-height: 1;
+	min-width: 100px;
+	margin: 5px;
+	text-align: center;
+	cursor: pointer;
+
+}
+.title-header-div{
+	background-color: #3f4079;
+	/*-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;*/
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 30px;
+}
+.ui-timepicker-list{
+
+	text-align: center !important;
+}
+.title-header-div h5{
+	font-size: 16px;
+	font-size: 1rem;
+	color: #fff;
+	text-align: center;
+	margin-top: 5px !important;
+	margin-bottom: 3px !important;
+	margin: 0 auto;
+}
+.ui-timepicker-list .ui-timepicker-selected{
+	background-color: #333 !important;
+	color: #FFF !important;
+
+}
+.ui-timepicker-list .disabledFullhr{
+	
+	background: #6B6565 !important;
+	color: #FFF !important;
+	/*cursor: not-allowed;*/
+
+}
+.ui-timepicker-list .disabledFullhr:hover{
+	
+	background: #6B6565 !important;
+	color: #FFF !important;
+	cursor: not-allowed;
+
+}
+label.error{
+	font-size: 11px;
+	color: red;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
-		$('#booking_date').dateDropper();
-		$('#booking_time').timeDropper();
-		
-		// 	$('#forgetModal').modal({
-		// 		backdrop: false
+		/*==============
+=========================
+Start Submitting Form
+=========================
+==============*/
+$('#submitAppointment').click(function(){
 
-		// })
-		$("#city").select2({
+	var validator=$("#add_user").validate({
+		rules: {
+			dt: { required: true },
+			hour: { required: true },
+		},
+		errorElement : 'label',
+		errorPlacement: function(error, element) {
+
+			//console.log(element);
+			var placement = $(element).data('error');
+			//console.log(placement);
+			//console.log(error);
+			if (placement) {
+				$(placement).append(error)
+			} else {
+				error.insertAfter(element);
+			}
+		}
+	});
+	validator.form();
+
+	if (validator.form()==false) {
+		var body = $("html, body");
+		$.each($('#add_user').find(".error"),function(key,value)
+		{
+
+			if($(value).css('display')!="none")
+			{
+				body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+				return false; 
+			}
+		});
+	}else{
+
+		$("#add_user").submit();
+	}
+})
+/*===================End Submitting Form====================*/
+
+$('#bookingTime').focus(function(){
+    //open bootsrap modal
+    $('#timeModal').modal({
+    	show: true
+    });
+});//TimePicker for Hour selection 
+
+$('#dob').dateDropper();//dateDropper for Date of Birth
+
+$("#city").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
 
-		$('#existSearch').click(function(){
-			debugger
-			var pat_id = $('#p_id').val();
-			var doc_name = $('#doc_name').val();
-			var doc_id = $('#doc_id').val();
-			var sec_key = $('#sec_key').val();
+/*================
+==========================
+To Check Pateint is Exist or Not
+==========================
+==================*/
+$('#existSearch').click(function(){
+	debugger
+	var pat_id = $('#p_id').val();
+	var doc_name = $('#doc_name').val();
+	var doc_id = $('#doc_id').val();
+	var sec_key = $('#sec_key').val();
 
-			if (pat_id!="" && sec_key!="") {
-				$.ajax({
-					type: 'POST',
-					url:'{/literal}{$BASE_URL_ADMIN}doc-appointments?ajax=y{literal}',
-					data: 'p_id='+pat_id+'&doc_id='+doc_id+'&doc_name='+doc_name+'&sec_key='+sec_key,
-					success:function(msg){
+	if (pat_id!="" && sec_key!="") {
+		$.ajax({
+			type: 'POST',
+			url:'{/literal}{$BASE_URL_ADMIN}doc-appointments?ajax=y{literal}',
+			data: 'p_id='+pat_id+'&doc_id='+doc_id+'&doc_name='+doc_name+'&sec_key='+sec_key,
+			success:function(msg){
 						// debugger;
 						var res =JSON.parse(msg);
 						// debugger
@@ -797,36 +950,49 @@ strong{
                         }
                     }
                 })
-			}
-		})
+	}
+})
+/*===================End Pateint is Exist or Not====================*/
 
-		$("#add_patient").click(function(){
-			
-			if ($('.e_name').val()=="") {
-				$("#add_new_patient").toggle();
-			}
-			$('.AddDisSelect').removeClass('disabledSelect')
-			$('#p_id').val('');
-			$('#patient_id').val('');
-			$('#security_key').val('');
-			$('#add_new_patient input').val('');
-			$('.e_name').prop('readonly',false);
-			$('.e_gender').prop('readonly',false);
-			$('.e_marital_status').prop('readonly',false);
-			$('.e_dob').prop('readonly',false);
-			$('.e_mobile').prop('readonly',false);
-			$('.e_address').prop('readonly',false);
-			$('.e_email').prop('readonly',false);
-		});
-		
-		var unavail=  $('#unavail').val().split(',');
-		var fromDate=  $('#from').val().split(',');
-		var toDate=  $('#to').val().split(',');
-		var today = new Date();
-		var doc_id= $('#id').val();
-		debugger
-		var selected_Date="";
-		var count="";
+/*=============
+=====================
+To Add a New Patient
+=====================
+=============*/
+$("#add_patient").click(function(){
+
+	if ($('.e_name').val()=="") {
+		$("#add_new_patient").toggle();
+	}
+	$('.AddDisSelect').removeClass('disabledSelect')
+	$('#p_id').val('');
+	$('#patient_id').val('');
+	$('#security_key').val('');
+	$('#add_new_patient input').val('');
+	$('.e_name').prop('readonly',false);
+	$('.e_gender').prop('readonly',false);
+	$('.e_marital_status').prop('readonly',false);
+	$('.e_dob').prop('readonly',false);
+	$('.e_mobile').prop('readonly',false);
+	$('.e_address').prop('readonly',false);
+	$('.e_email').prop('readonly',false);
+});
+/*================End New Patient===================*/
+
+/*================
+=========================================================
+TO Check Which days is available and Which dates is not available
+=========================================================
+===================*/
+$('#bookingTime').css('visibility', 'hidden');
+var unavail=  $('#unavail').val().split(',');
+var fromDate=  $('#from').val().split(',');
+var toDate=  $('#to').val().split(',');
+var today = new Date();
+var doc_id= $('#id').val();
+debugger
+var selected_Date="";
+var count="";
 		// 	// var check_in = [[fromDate[7], toDate[7]]];
 		var start = new Date(fromDate[7]),
 		end = new Date(toDate[7]),
@@ -853,7 +1019,6 @@ strong{
 		$('#booking_date').on("change",function(){
 			debugger;
 			var date = new Date($(this).val());
-			var disabledDate= $(this).val();
 			var dayOfWeek = weekday[date.getUTCDay()];
 				//debugger;
 				  // dayOfWeek is then a string containing the day of the week
@@ -863,14 +1028,32 @@ strong{
 				  	data: "d_Str=" + dayOfWeek +"&doc_id="+doc_id ,
 				  	success: function(msg) 
 				  	{
+
+				  		
+				  		$('#bookingTime').timepicker('remove');
+				  		var timDiv= $('.timeWrap');
+				  		debugger
 				  		var time_st="";
 				  		var time_end="";
 				  		if (msg!="") {
+				  			$('#bookingTime').css('visibility', 'visible');
 				  			var res=JSON.parse(msg);
 				  			time_st=res.start;
 				  			time_end=res.end;
 				  			count=res.count;
+				  			$("#bookingTime").timepicker({
+				  				step: 60,
+				  				timeFormat: 'h:i A',
+				  				dynamic: false,
+				  				dropdown: true,
+				  				scrollbar: true,
+				  				disableTextInput: true,
+				  				minTime: time_st,
+				  				maxTime:  time_end,
+				  				appendTo: timDiv
+				  			});
 				  		}else{ 
+				  			$('#bookingTime').css('visibility', 'hidden');
 				  			$('#booking_date').val('');
 				  			
 				  			$('#snackbar').text('Doctor is not available on the selected date.');
@@ -883,46 +1066,90 @@ strong{
                     }
                 });
 				})
+		/*==================End Days & Dates checking===============*/
 
-		$('#sendSecKey').click(function(){
-			var id =$('#sendPatId').val();
-			var email =$('#sendEmail').val();
-			var secKey =$('#security_key').val();
-			var doc_id = $('#doc_id').val();
-			var doc_name = $('#doc_name').val();
-			debugger
-			if (id!="" && email!="") {
-				$.ajax({
-					type: "POST",
-					url:"{{/literal}{$BASE_URL_ADMIN}doc-appointments?yjax=x{literal}}",
-					data:"pat_id=" + id +"&doc_id="+doc_id+"&email="+email+"&sec_key="+secKey+"&doc_name="+doc_name,
-					success:function(msg){
+/*=================
+==========================
+To Check Hour Slot is available
+==========================
+===================*/
+$('#bookingTime').on("change",function(e,ui){
+	var hr = $('#bookingTime').val();
+	var currentSelectedDate= $('#booking_date').val();
+	var datearray = currentSelectedDate.split("/");
+	var selected_Date = datearray[2] + '-' + datearray[0] + '-' + datearray[1];
+	debugger;
+	$.ajax({ 
+		type: "POST",
+		url: "{/literal}{$BASE_URL_ADMIN}doc-appointments?appoint=y{literal}{literal}",
+		data: "ap_time=" + hr +"&ap_date="+selected_Date+"&doc_id="+doc_id ,
+		success: function(msg) 
+		{
+                  		//debugger
+                  		$('#ap_number').val(+msg + +1);
+                  		///console.log(count);
+                  		debugger
+                  		if (parseInt(count) == parseInt(msg)) {
 
-						var res= JSON.parse(msg);
+                  			$('#bookingTime').val('');
+                  			$('.ui-timepicker-selected').addClass('disabledFullhr');
+                  			$('#snackbar').text("The selected hour's slot is full, please choose another time.");
+                  			var x = $("#snackbar");
+                  			x.addClass('show');
+                            // After 3 seconds, remove the show class from DIV
+                            setTimeout(function(){ x.removeClass('show'); }, 3000);
+                        }
+                    }
+                });
+});
+/*================End Check Hour script=================*/
 
-						if (res.status==true) {
+/*=================
+=========================
+Send Security key if forgoton
+=============================
+==================*/
 
-							$('#sec_key_response').html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>'+res.msg+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
-							setTimeout(function() {
-								$(".alert").alert('close');
-							}, 2000);
-						}else{
+$('#sendSecKey').click(function(){
+	var id =$('#sendPatId').val();
+	var email =$('#sendEmail').val();
+	var secKey =$('#security_key').val();
+	var doc_id = $('#doc_id').val();
+	var doc_name = $('#doc_name').val();
+	debugger
+	if (id!="" && email!="") {
+		$.ajax({
+			type: "POST",
+			url:"{{/literal}{$BASE_URL_ADMIN}doc-appointments?yjax=x{literal}}",
+			data:"pat_id=" + id +"&doc_id="+doc_id+"&email="+email+"&sec_key="+secKey+"&doc_name="+doc_name,
+			success:function(msg){
 
-							$('#sec_key_response').html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>'+res.msg+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
-							setTimeout(function() {
-								$(".alert").alert('close');
-							}, 2000);
-							$('#sendPatId').val('');
-							$('#sendEmail').val('');
-							$('#security_key').val('');
-						}
-					}
-				})
+				var res= JSON.parse(msg);
+
+				if (res.status==true) {
+
+					$('#sec_key_response').html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>'+res.msg+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+					setTimeout(function() {
+						$(".alert").alert('close');
+					}, 2000);
+				}else{
+
+					$('#sec_key_response').html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>'+res.msg+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+					setTimeout(function() {
+						$(".alert").alert('close');
+					}, 2000);
+					$('#sendPatId').val('');
+					$('#sendEmail').val('');
+					$('#security_key').val('');
+				}
 			}
-		});
+		})
+	}
+});
 
-	});
-function generateRandomNumber(){
+});
+/*======================End Send Security key======================*/
+function generateRandomNumber(){//Security key generator
 
 	var d=new Date();
 	var n=d.getTime();

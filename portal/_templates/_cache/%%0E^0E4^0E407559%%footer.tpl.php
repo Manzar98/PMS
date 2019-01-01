@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-26 18:31:59
+<?php /* Smarty version 2.6.31, created on 2019-01-01 19:05:08
          compiled from footer.tpl */ ?>
 	
 	</div><!-- #wrap -->
@@ -83,8 +83,8 @@ _templates/js/jquery.easing.1.3.js" type="text/javascript"></script>
 _templates/js/jquery.timepicker.js" type="text/javascript"></script>
 		<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/jquery-ui.min.js"></script>
-		<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
-_templates/js/core.js"></script>
+		<!-- <script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+_templates/js/core.js"></script> -->
 		<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/widget.js"></script>
 		<script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
