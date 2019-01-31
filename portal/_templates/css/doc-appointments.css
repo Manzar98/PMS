@@ -1,0 +1,385 @@
+.diswrap{
+	position: relative;
+}
+.disabledSelect{
+	width: 81%;
+	height: 45px;
+	background-color: #DDD;
+	opacity: 0.5;
+	position: absolute;
+	top: 29px;
+	border-radius: 3px;
+}
+.specializationWrap li{
+	display: inline-block;
+	width: 49%;
+	margin-bottom: 5px;
+}
+#secondary_nav {
+	background-color: #3f4079;
+	position: relative;
+	bottom: -3px;
+	border-bottom: none;
+	-webkit-border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-ms-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+	padding: 15px;
+}
+#secondary_nav ul {
+	margin: 0;
+}
+#secondary_nav ul li {
+	display: inline-block;
+	font-weight: 500;
+	font-size: 16px;
+	font-size: 1rem;
+	margin-right: 25px;
+}
+#secondary_nav ul li a.active, #secondary_nav ul li a:hover {
+	color: #fff;
+}
+#secondary_nav ul li a {
+	color: #74d1c6;
+}
+.box_general_3 {
+	background-color: #fff;
+	padding: 30px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	border: 1px solid #e1e8ed;
+}
+
+.booking .title{
+	background-color:#3f4079;
+	color:#fff;
+	margin:-30px -30px 30px;
+	padding:20px 30px;
+	border-radius:5px 5px 0 0
+}
+.booking .title h3{
+	font-size:28px;
+	font-size:1.75rem;
+	margin:0;
+	color:#fff !important;
+}
+.booking .title small{
+	font-size:13px;
+	font-size:.8125rem
+}
+.booking hr{
+	margin-top:15px!important
+}
+.booking ul.treatments{
+	margin:15px 0 0
+}
+.booking ul.treatments li{
+	border-top:1px dotted #ddd;
+	border-bottom:none;
+	width:100%;
+	margin:0;
+	padding:12px 0 5px
+}
+#secondary_nav ul li:last-child {
+	display: none;
+	margin-right: 0;
+}
+.profile h1 {
+	font-size: 24px;
+	font-size: 1.5rem;
+}
+.profile .rating {
+	margin-bottom: 15px;
+	display: inline-block;
+}
+.profile small {
+	color: #999;
+	font-weight: 600;
+}
+.profile ul.statistic {
+	padding-bottom: 5px;
+	margin-bottom: 15px;
+	padding-left: 0;
+}
+.profile ul.statistic li {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	border-radius: 3px;
+	line-height: 1;
+	color: #fff;
+	padding: 8px 10px 5px;
+	font-size: 12px;
+	font-size: .75rem;
+	text-align: center;
+}
+.box_profile ul.statistic li, .profile ul.statistic li {
+	background-color: #74d1c6;
+	font-weight: 600;
+	min-width: 95px;
+	display: inline-block;
+}
+.profile ul.contacts {
+	margin: 25px 0 0;
+	padding-left: 0px;
+}
+.profile ul.contacts li {
+	margin-bottom: 15px;
+}
+.profile ul.contacts li h6 {
+	font-size: 14px;
+	font-size: .875rem;
+	margin-bottom: 3px;
+}
+.profile ul.contacts li:last-child {
+	margin-bottom: 0;
+}
+.sbOptions, ol, ul, ul#cat_nav {
+	list-style: none;
+}
+.profile {
+	padding-top: 20px;
+}
+.box_general_3 hr {
+	margin: 30px -30px;
+}
+.indent_title_in {
+	position: relative;
+	padding-left: 60px;
+	margin-bottom: 20px;
+}
+.indent_title_in i {
+	font-size: 40px;
+	position: absolute;
+	left: 0;
+	color: #3f4079;
+	top: 0;
+}
+.indent_title_in h3 {
+	margin-bottom: 0;
+	margin-top: 0;
+	font-size: 21px;
+}
+.wrapper_indent {
+	padding-left: 60px;
+}
+ul.bullets {
+	line-height: 1.8;
+	margin-bottom: 0;
+}
+ul.bullets li {
+	position: relative;
+	padding-left: 20px;
+}
+.btn_1:hover, a.btn_1:hover {
+	background: #74d1c6;
+}
+.btn_1.full-width, a.btn_1.full-width {
+	display: block;
+	text-align: center;
+	padding: 12px 45px;
+	font-size: 16px;
+	font-size: 1rem;
+	width: 100%;
+}
+.btn_1, a.btn_1 {
+	border: none;
+	color: #fff;
+	background: #e74e84;
+	cursor: pointer;
+	padding: 7px 20px;
+	display: inline-block;
+	outline: 0;
+	font-size: 14px;
+	font-size: .875rem;
+	transition: all .3s ease-in-out;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	-ms-border-radius: 25px;
+	border-radius: 25px;
+	font-weight: 500;
+}
+.btn_1, a.btn_1, header.header_sticky {
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+}
+.rating i.voted {
+	color: #FFC107;
+}
+#review_summary {
+	text-align: center;
+	background-color: #3f4079;
+	color: #fff;
+	padding: 20px 10px;
+	border-radius: 5px;
+}
+#review_summary, .strip_list {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+}
+#review_summary strong {
+	font-size: 3rem;
+	line-height: 1;
+}
+strong{
+
+	font-weight: 600;
+}
+.reviews-container .progress {
+	margin-bottom: 10px;
+}
+.progress {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	height: 1rem;
+	overflow: hidden;
+	font-size: .75rem;
+	background-color: #e9ecef;
+	border-radius: .25rem;
+}
+.reviews-container .progress-bar {
+	background-color: #74d1c6;
+}
+.progress-bar {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	color: #fff;
+	text-align: center;
+	background-color: #007bff;
+	transition: width .6s ease;
+}
+.reviews-container .rev-info {
+	font-size: .75rem;
+	font-style: italic;
+	color: #777;
+	margin-bottom: 10px;
+}
+.ftSecKey{
+	color: #e74e84;
+}
+.timeWrap .ui-timepicker-wrapper{
+	display: block !important;
+	position: relative !important;
+	top: 0px !important;
+	left: 0px !important;
+}
+.timeWrap .ui-timepicker-wrapper ul li:hover{
+	background-color: #e74e84;
+	color: #fff;
+}
+.timeWrap .ui-timepicker-wrapper ul li{
+	display: inline-block;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+	padding: 8px 10px 6px;
+	line-height: 1;
+	min-width: 100px;
+	margin: 5px;
+	text-align: center;
+	cursor: pointer;
+
+}
+.title-header-div{
+	background-color: #3f4079;
+	/*-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;*/
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 30px;
+}
+.header-forget-div{
+
+	background-color: #3f4079;
+	text-align: center;
+}
+.header-forget-div h5{
+
+	color: #fff !important;
+	margin: 0 auto;
+	font-size: 16px;
+}
+/*.ui-timepicker-list{
+	text-align: center !important;
+	}*/
+	.title-header-div h5{
+		font-size: 16px;
+		font-size: 1rem;
+		color: #fff !important;
+		text-align: center;
+		margin-top: 5px !important;
+		margin-bottom: 3px !important;
+		margin: 0 auto;
+	}
+	.ui-timepicker-list .ui-timepicker-selected{
+		background-color: #333 !important;
+		color: #FFF !important;
+
+	}
+	.ui-timepicker-list .disabledFullhr{
+
+		background: #6B6565 !important;
+		color: #FFF !important;
+		/*cursor: not-allowed;*/
+
+	}
+	.ui-timepicker-list .disabledFullhr:hover{
+
+		background: #6B6565 !important;
+		color: #FFF !important;
+		cursor: not-allowed;
+
+	}
+	label.error{
+		font-size: 11px;
+		color: red;
+	}
+	/*Styling for select2 field*/
+	span.select2.select2-container.select2-container--default{
+
+		width: 100% !important;
+	}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 25px !important;
+}
+
+	@media (min-width: 768px) and (max-width: 991.98px) {
+
+		.disabledSelect{
+			width: 91% !important;
+		}
+
+	}
+
+	/*Small devices (landscape phones, 576px and up)*/
+	@media (min-width: 576px) and (max-width: 767.98px) {
+		.disabledSelect{
+			width: 87% !important;
+		}
+
+	}
+
+	@media (max-width: 575.98px) {
+		.disabledSelect{
+			width: 85% !important;
+		}
+	}

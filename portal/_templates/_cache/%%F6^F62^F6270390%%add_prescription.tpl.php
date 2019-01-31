@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-26 15:00:25
+<?php /* Smarty version 2.6.31, created on 2019-01-07 17:37:12
          compiled from prescription/add_prescription.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -349,7 +349,7 @@ prescriptions/">Prescriptions</a>
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="next_date">Next Date</label>
-							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" />
+							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" data-large-mode="true"/>
 						</div>	
 					</div>
 					<div class="col-sm-3">
@@ -400,6 +400,16 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 <?php echo '
+<style type="text/css">
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+span.select2.select2-container.select2-container--default{
+	width: 100% !important;
+}
+}
+
+</style>
 <script>
 	$(document).ready(function()
 	{
@@ -412,12 +422,7 @@ unset($_smarty_tpl_vars);
 	});
 	$(function() {
 		var today = new Date();
-		$( "#next_date" ).datepicker({
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-			changeYear: true,
-			minDate: today,
-		});
+		$( "#next_date" ).dateDropper();
 	});
 
 
@@ -868,4 +873,5 @@ function generateRandomNumber(){
 }
 // debugger
 </script>
+
 '; ?>

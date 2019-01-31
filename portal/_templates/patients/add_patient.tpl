@@ -48,7 +48,7 @@
      <div class="col-sm-4">
       <div class="form-group">
         <label for="dob">Date of Birth</label>
-        <input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off" class="form-control"/>
+        <input type="text" name="dob" id="dob" value="{$data.dob}" autocomplete="off" class="form-control" data-large-mode="true"/>
       </div>
     </div>
   </div>
@@ -213,12 +213,7 @@
       toggle: true
     })
      
-     $( "#dob" ).datepicker({
-       yearRange: "-100:+0",
-       dateFormat : "yy-mm-dd",
-       changeMonth: true,
-       changeYear: true
-     });
+     $( "#dob" ).dateDropper();
 
 
      $('#startWebcam').click(function(){

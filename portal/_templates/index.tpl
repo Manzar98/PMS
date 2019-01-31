@@ -1,5 +1,4 @@
 {include file="header.tpl"}
-
 <div id="" class="content-wrapper">
 	<div class="container-fluid homeWrap db-icons">
 		<!-- Breadcrumbs-->

@@ -1,5 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-26 14:22:34
+<?php /* Smarty version 2.6.31, created on 2019-01-07 17:42:46
          compiled from users/edit_user.tpl */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'users/edit_user.tpl', 79, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -94,8 +96,8 @@ users/">Doctors</a>
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="expire">Expiration</label>
-							<input type="text" name="expire" id="expire"class="form-control" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['expire'] )): ?>value="<?php echo $this->_tpl_vars['data']['expire']; ?>
-"<?php endif; ?>/>
+							<input type="text" name="expire" id="expire"class="form-control" data-large-mode="true" <?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['expire'] )): ?>data-default-date="<?php echo ((is_array($_tmp=$this->_tpl_vars['data']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, '%m-%d-%Y') : smarty_modifier_date_format($_tmp, '%m-%d-%Y')); ?>
+"<?php endif; ?> data-max-year="2030"/>
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -138,7 +140,7 @@ users/">Doctors</a>
 					</div>
 					<div class="col-md-3">
 						<div class="form-group"> 
-							<label for="specialist">Specializations</label><i class="fa fa-question-circle pull-right pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations"></i>
+							<label for="specialist">Specializations</label><i class="fa fa-question-circle pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations" style="padding-left: 2px;"></i>
 							<textarea name="specialist" id="specialist" class="form-control"><?php if (( isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']['specialist'] )): ?><?php echo $this->_tpl_vars['data']['specialist']; ?>
 <?php endif; ?></textarea>
 						</div>
@@ -213,7 +215,7 @@ unset($_smarty_tpl_vars);
 <?php echo '
 <style type="text/css">
 span.select2.select2-container.select2-container--default {
-	width: 247px !important;
+    width: 100%;
 }
 </style>
 <script type="text/javascript">
@@ -241,24 +243,7 @@ span.select2.select2-container.select2-container--default {
 		});
 
 		var today = new Date();
-		$( "#expire" ).datepicker({
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-			minDate: today,
-		});
-		$(\'#work_hr\').timepicker({
-			// timeFormat: \'h:mm p\',
-			interval: 60,
-			minTime: \'10\',
-			maxTime: \'6:00pm\',
-			defaultTime: \'11\',
-			startTime: \'10:00\',
-			dynamic: false,
-			dropdown: true,
-			scrollbar: true
-		});
-
-
+		$( "#expire" ).dateDropper();
 /*=======================
   Profile image reader
   =========================*/  

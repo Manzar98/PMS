@@ -46,7 +46,7 @@
 						<div class="col-sm-3">
 							<div class="mon_Div_Input form-group">
 								<label>From</label>
-								<input type="text" name="dt_from[]" class="form-control input-field dt_from from1">
+								<input type="text" name="dt_from[]" class="form-control input-field dt_from from1" value="">
 							</div>
 						</div>
 						<div class="col-sm-3">
@@ -257,14 +257,16 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="unavail_Div_Input form-group">
+							<input type="text" name="dt_from[]" id="actualFrom">
 							<label>From</label>
-							<input type="text" name="dt_from[]" class="form-control input-field dateFrom from8 datedropper" data-large-mode="true"  data-lang="en" data-min-year="2018" data-max-year="2020">
+							<input type="text" name="" class="form-control input-field dateFrom from8 datedropper" data-large-mode="true"  data-lang="en" data-min-year="2018" data-max-year="2020"  data-format="Y-m-d">
 						</div>
 					</div>
 					<div class="col-sm-3">
 						<div class="unavail_Div_Input form-group">
+							<input type="text" name="dt_to[]" id="actualTo">
 							<label>To</label>
-							<input type="text" name="dt_to[]" class="form-control input-field dateTo to8 datedropper" data-lang="en" data-min-year="2018" data-max-year="2020" data-large-mode="true">
+							<input type="text" name="" class="form-control input-field dateTo to8 datedropper" data-lang="en" data-min-year="2018" data-max-year="2020" data-large-mode="true" data-format="Y-m-d">
 						</div>
 					</div>
 					<div class="col-sm-1">
@@ -455,10 +457,33 @@
        }
    })
 
-		$('.dt_from').timeDropper({meridians:'true'});
-		$('.dt_to').timeDropper({meridians:'true'});
+		$('.dt_from').timeDropper({meridians:true,
+	                               setCurrentTime:false});
+		$('.dt_to').timeDropper({meridians:true,
+	                               setCurrentTime:false});
 		$('.dateTo').dateDropper();
 		$('.dateFrom').dateDropper();
+
+		$('.dateFrom').on("change",function(){
+			var fromVals= []
+			$.each($('.dateFrom'),function(){
+                    // console.log(this.value)
+                    fromVals.push(this.value);
+                })
+            	//debugger
+            	$('#actualFrom').val(fromVals.toString())
+            	//console.log(fromVals.toString());
+            })
+		$('.dateTo').on("change",function(){
+			var toVals= [];
+			$.each($('.dateTo'),function(){
+                    // console.log(this.value)
+                    toVals.push(this.value);
+                })
+            	//debugger
+            	$('#actualTo').val(toVals.toString())
+            })
+
 
 		var days=$('#daysList').val().split(',');
 		var froms=$('#fromList').val().split(',');
@@ -561,13 +586,13 @@
             $(wrapper).append(`<div class="row mx-auto clear-fix mainWrap"><div class="col-sm-3"></div><div class="col-sm-3">
             	<div class="unavail_Div_Input form-group">
             	<label>From</label>
-            	<input type="text" name="dt_from[]" class="form-control input-field dateFrom from8">
+            	<input type="text" name="" class="form-control input-field dateFrom from8" data-format="Y-m-d">
             	</div>
             	</div>
             	<div class="col-sm-3">
             	<div class="unavail_Div_Input form-group">
             	<label>To</label><i class="fa fa-times remove_field pull-right" aria-hidden="true"></i>
-            	<input type="text" name="dt_to[]" class="form-control input-field dateTo to8">
+            	<input type="text" name="" class="form-control input-field dateTo to8" data-format="Y-m-d">
             	</div>
 					</div><div class="col-sm-1"></div></div>`); //add input box
 
@@ -578,7 +603,36 @@
             $('.dateTo').dateDropper();
             $('.dateFrom').dateDropper();
 
-        }  
+            $('.dateFrom').on("change",function(){
+            	var fromVals= []
+            	$.each($('.dateFrom'),function(){
+                    // console.log(this.value)
+                    fromVals.push(this.value);
+                })
+            	//debugger
+            	$('#actualFrom').val(fromVals.toString())
+            	//console.log(fromVals.toString());
+            })
+            $('.dateTo').on("change",function(){
+            	var toVals= [];
+            	$.each($('.dateTo'),function(){
+                    // console.log(this.value)
+                    toVals.push(this.value);
+                })
+            	//debugger
+            	$('#actualTo').val(toVals.toString())
+            })
+
+        } 
+
+
+        $('.dateTo').change(function(){
+
+        	debugger
+        })
+
+
+
     })
 		
 

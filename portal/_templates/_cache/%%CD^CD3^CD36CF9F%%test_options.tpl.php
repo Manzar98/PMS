@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-13 23:22:06
+<?php /* Smarty version 2.6.31, created on 2019-01-02 18:34:43
          compiled from tests/test_options.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'tests/test_options.tpl', 93, false),)), $this); ?>

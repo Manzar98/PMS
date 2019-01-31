@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-13 20:41:09
+<?php /* Smarty version 2.6.31, created on 2019-01-02 18:53:59
          compiled from prescription/edit_prescription.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 58, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 209, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/edit_prescription.tpl', 58, false),array('modifier', 'date_format', 'prescription/edit_prescription.tpl', 210, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -262,8 +262,9 @@ if ($this->_foreach['option']['total'] > 0):
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="next_date">Next Date</label>
-								<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['data']['next_date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%Y-%m-%d") : smarty_modifier_date_format($_tmp, "%Y-%m-%d")); ?>
-"/>	
+								<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control"
+								data-default-date="<?php echo ((is_array($_tmp=$this->_tpl_vars['data']['next_date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, '%m-%d-%Y') : smarty_modifier_date_format($_tmp, '%m-%d-%Y')); ?>
+"data-large-mode="true" data-max-year="2030"/>	
 							</div>
 						</div>
 						<div class="col-sm-3">
@@ -319,10 +320,7 @@ unset($_smarty_tpl_vars);
 	<script>
 
 		$(function() {
-			$( "#next_date" ).datepicker({
-				dateFormat : "yy-mm-dd",
-				changeMonth: true,
-			});
+			$( "#next_date" ).dateDropper();
 		});
 
 

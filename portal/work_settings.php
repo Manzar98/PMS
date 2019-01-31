@@ -6,24 +6,24 @@ $Work_days= new Work_days;
 if (isset($_POST['days'])) {
 
   $record= $Work_days->checkRecord($_SESSION['AdminId']);
-
+  
   if ($record>0) {
 
     $Work_days->deleteWork($_SESSION['AdminId']);
   }
 
-//print_r($_POST['days']);
+  print_r($_POST);
   if ( $_POST['days'][0]=='mon_on' || $_POST['days'][1]=='tue_on' || $_POST['days'][2]=='wed_on' || $_POST['days'][3]=='thu_on' || $_POST['days'][4]=='fri_on' || $_POST['days'][5]=='sat_on' || $_POST['days'][6]=='sun_on' || $_POST['days'][7]=='unavail_on') 
   {
 
-    for ($i=0; $i<count($_POST['days']); $i++) {
+   for ($i=0; $i<count($_POST['days']); $i++) {
 
-      $Work_days->addwork($_POST['days'][$i],$_POST['dt_from'][$i],$_POST['dt_to'][$i],$_POST['hr_count'][$i],$_SESSION['AdminId']);    
+     $Work_days->addwork($_POST['days'][$i],$_POST['dt_from'][$i],$_POST['dt_to'][$i],$_POST['hr_count'][$i],$_SESSION['AdminId']);    
 
-    }
-    $_SESSION['flashAlert']="Time & Date is Successfully Updated!";
-    redirect_to(BASE_URL.'work-settings/');
-  }
+   }
+   $_SESSION['flashAlert']="Time & Date is Successfully Updated!";
+   redirect_to(BASE_URL.'work-settings/');
+ }
 }
 else{
  // echo "Manzar";

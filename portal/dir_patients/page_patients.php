@@ -12,7 +12,7 @@ if($id==="delete")
 
 		if ($patient->DeletePatient($extra)) {
 
-			$_SESSION['flashAlert']="Prescription is Successfully Deleted!";
+			$_SESSION['flashAlert']="Patient is Successfully Deleted!";
 			redirect_to(BASE_URL.'patients/');
 		}	
 	}

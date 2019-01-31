@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-14 10:13:10
+<?php /* Smarty version 2.6.31, created on 2019-01-02 18:40:47
          compiled from packages/packages.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'packages/packages.tpl', 46, false),)), $this); ?>
@@ -31,7 +31,7 @@ packages/">Packages</a>
 		<div class="fail text-center ">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<?php echo $_SESSION['flashAlert']; ?>
-<?php if (isset ( $this->_tpl_vars['id'] ) && $this->_tpl_vars['id'] == 'edit'): ?> <strong> Updated!</strong><?php else: ?> <strong> Created!</strong><?php endif; ?>
+
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php  unset($_SESSION['flashAlert']);  ?>">
 					<span aria-hidden="true">&times;</span>
 				</button>

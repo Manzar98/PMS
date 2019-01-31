@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2019-01-01 18:47:52
+<?php /* Smarty version 2.6.31, created on 2019-01-07 19:43:53
          compiled from appointments/appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'explode', 'appointments/appointments.tpl', 54, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'explode', 'appointments/appointments.tpl', 42, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -17,20 +17,6 @@ portal/_templates/css/jquery.timepicker.css" />
 	<div data-loader="circle-side"></div>
 </div>
 <!-- /Preload-->
-<?php if (isset ( $this->_tpl_vars['appointmentFull'] )): ?>
-<div class="alert alert-success alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
-	<strong><?php echo $this->_tpl_vars['appointmentFull']; ?>
-</strong>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-</div>
-<?php endif; ?>
-<?php if (isset ( $this->_tpl_vars['existAppointment'] )): ?>
-<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
-	<strong><?php echo $this->_tpl_vars['existAppointment']; ?>
-</strong>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-</div>
-<?php endif; ?>
 <?php if (isset ( $this->_tpl_vars['doctors'] )): ?>
 <div id="results">
 	<div class="container">
@@ -79,9 +65,8 @@ portal/<?php echo $this->_tpl_vars['doctors']['profile_img']; ?>
 							<?php endif; ?>
 							<small class="arrow_carrot-2right moreSpecialization" title="<?php $_from = $this->_tpl_vars['foo']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['v']):
-?><?php echo $this->_tpl_vars['v']; ?>
-<?php endforeach; endif; unset($_from); ?>" data-toggle="tooltip" data-placement="top"></small>
-							
+?><i class='icon_circle-slelected' style='margin-right: 3px;font-size:11px; '></i><?php echo $this->_tpl_vars['v']; ?>
+</br><?php endforeach; endif; unset($_from); ?>" data-toggle="tooltip" data-placement="top" data-html="true"></small>
 
 							<h3 class="text-capitalize">Dr.<?php echo $this->_tpl_vars['doctors']['F_name']; ?>
  <?php echo $this->_tpl_vars['doctors']['L_name']; ?>
@@ -104,6 +89,101 @@ appointments/view/<?php echo $this->_tpl_vars['doctors']['id']; ?>
 		</div>
 	</div>
 </div>
+<?php elseif (isset ( $_SESSION['printslip'] )): ?>
+<?php $this->assign('printslip', $_SESSION['printslip']); ?>
+<div class="container margin_60_35" >
+	<div class="appoint_Wrap" style="border:1px solid #F6F6F6; padding: 15px;"> 
+		<div class="row">
+			<div class="col-sm-11 text-center" style="margin-bottom: 40px;">
+				<h4 class="py-3"><b>APPOINTMENT CONFIRMATION</b></h4>
+			</div>
+			<div class="col-sm-1 noprint btnW pt-1">
+				<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
+			</div>
+		</div>
+		<div class="row common-bottom">
+			<div class="col-sm-10">
+				<div class="ac form-group">
+
+					<span><b>Patient Name : </b><span><?php echo $this->_tpl_vars['printslip']['name']; ?>
+</span></span>
+				</div>
+				<div class="ac form-group">
+
+					<span><b>Patient Id : </b><span><?php echo $this->_tpl_vars['printslip']['pat_id']; ?>
+</span></span>
+
+				</div>
+				<div class="ac form-group">
+					<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+					<?php if ($this->_tpl_vars['printslip']['city_id'] == $this->_tpl_vars['city']['id']): ?>
+					<span><b>City : </b><span><?php echo $this->_tpl_vars['city']['name']; ?>
+</span></span>
+					<?php endif; ?>
+					<?php endforeach; endif; unset($_from); ?>
+				</div> 
+				<div class="ac form-group">
+					<span><b>Address : </b><span><?php echo $this->_tpl_vars['printslip']['address']; ?>
+</span></span>
+				</div>
+				<div class="ac form-group">
+					<span><b>Mobile No : </b><span><?php echo $this->_tpl_vars['printslip']['mobile']; ?>
+</span></span>
+				</div>
+				<div class="ac form-group">
+					<span><b>Gender : </b><span><?php echo $this->_tpl_vars['printslip']['gender']; ?>
+</span></span>
+				</div>
+				<div class="ac form-group"><span><b>Email : </b><span><?php echo $this->_tpl_vars['printslip']['email']; ?>
+</span></span></div>
+			</div>
+			<div class="col-sm-2">
+				<div width="100" height="100" style="border: 1px solid;"></div>
+			</div>
+		</div>
+		<div class="row mb-5 mt-5">
+			<div class="col-sm-8 mt-2">
+				<div class="pb-2">
+					<span class=""><b>Appointment No : </b><span><?php echo $this->_tpl_vars['printslip']['ap_number']; ?>
+</span></span>
+				</div>
+				<div class="pb-2">
+					<span class=""><b>Appointment Date : </b><span><?php echo $this->_tpl_vars['printslip']['ap_date']; ?>
+</span></span>
+				</div>
+				<div class="pb-2">
+					<span class=""><b>Appointment Time : </b><span><?php echo $this->_tpl_vars['printslip']['ap_time']; ?>
+</span></span>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="docInfo">
+					<div class="pb-2">
+						<span><b>Doctor's Name : </b><span><?php echo $this->_tpl_vars['printslip']['doc_name']; ?>
+</span></span>
+					</div>
+					<div class="pb-2">
+						<span><b>Clinic Phone Number: </b><span><?php echo $this->_tpl_vars['printslip']['doc_phne']; ?>
+</span></span> 
+					</div>
+					<div class="pb-2">
+						<span><b>Clinic Address : </b><span><?php echo $this->_tpl_vars['printslip']['doc_adr']; ?>
+</span></span>
+					</div>
+				</div> 
+			</div>
+		</div>
+		<div class="note" style=" " >
+			<p class="text-center common-bottom not_p">
+				<em class="text-danger">Note: &nbsp;</em> Please reach the clinic on time otherwise your appointment would be cancelled.
+			</p>
+			<p class="text-center doci">idoctor.pk</p>
+		</div>
+	</div>
+</div>
+<?php  unset($_SESSION['printslip']);  ?>
 <?php elseif (isset ( $this->_tpl_vars['data'] )): ?>
 <div id="breadcrumb">
 	<div class="container">
@@ -117,6 +197,20 @@ appointments/">Doctors</a></li>
 	</div>
 </div>
 <!-- /breadcrumb -->
+<?php if (isset ( $this->_tpl_vars['appointmentFull'] )): ?>
+<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
+	<strong><?php echo $this->_tpl_vars['appointmentFull']; ?>
+</strong>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<?php endif; ?>
+<?php if (isset ( $this->_tpl_vars['existAppointment'] )): ?>
+<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
+	<strong><?php echo $this->_tpl_vars['existAppointment']; ?>
+</strong>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<?php endif; ?>
 <!-- The actual snackbar -->
 <div id="snackbar"></div>
 <div class="container margin_60">
@@ -186,7 +280,6 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 							</div>
 						</div>
 						<hr>
-
 						<!-- /profile -->
 						<div class="indent_title_in">
 							<i class="pe-7s-user"></i>
@@ -398,14 +491,13 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 "/>
 						<input type="hidden" name="online_manual" id="online_manual" value="online">
 						<input type="hidden" name="pat_id" id="patient_id">
-						<input type="hidden" name="security_key" id="security_key">
+						<input type="hidden" name="sec_key" id="security_key">
 						<div class="row">
 							<div class="col-6">
 								<div class="form-group">
 									<div id="dateRendering">
 
 									</div>
-									<!-- <input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="12/26/2018,12/27/2018" name="dt" > -->
 								</div>
 							</div>
 							<div class="col-6">
@@ -460,6 +552,7 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 						<div class="row">
 							<div class="col-6">
 								<div class="form-group">
+									<div class="AddDisSelect"></div>
 									<label for="dob">Date of Birth</label>
 									<input type="text" name="dob" id="dob" class="form-control e_dob" data-large-mode="true"/>
 								</div>
@@ -496,7 +589,7 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 							<div class="col-6">
 								<div class="form-group disWrap">
 									<div class="AddDisSelect"></div>
-									<label for="city">City</label>
+									<label for="city">City</label></br>
 									<select name="city" id="city" class="form-control e_city">
 										<option value="">Select City</option>
 										<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
@@ -532,11 +625,11 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 	<div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header header-forget-div">
 					<h5 class="modal-title text-center" id="exampleModalLongTitle">Forget Security Key</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
-					</button>
+					</button> -->
 				</div>
 				<div class="modal-body">
 					<div id="sec_key_response" class="mx-auto py-2">
@@ -564,7 +657,7 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button> 
 				</div> 
 			</div>
 		</div>
@@ -583,14 +676,14 @@ portal/<?php echo $this->_tpl_vars['data']['profile_img']; ?>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button> 
 				</div> 
 			</div>
 		</div>
 	</div>
 </div>
 <!-- /container -->
-<div class="row" style="margin-top: 10px;">
+<!-- <div class="row" style="margin-top: 10px;">
 	<div class="col-sm-8"></div>
 	<div class="col-sm-2 common-bottom" >
 		<a href="<?php echo $this->_tpl_vars['BASE_URL']; ?>
@@ -610,7 +703,7 @@ add-appointment/?doc_id=<?php echo $this->_tpl_vars['data']['id']; ?>
 		<a href="<?php echo $this->_tpl_vars['BASE_URL']; ?>
 history/" class="btn btn-primary">Veiw History</a>
 	</div>
-</div>
+</div> -->
 <?php endif; ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
@@ -656,7 +749,7 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 	color: #fff;
 }
 .timeWrap .ui-timepicker-wrapper ul li{
-	display: inline;
+	display: inline-block;
 	-moz-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
@@ -712,16 +805,35 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 	background: #6B6565 !important;
 	color: #FFF !important;
 	cursor: not-allowed;
-
 }
 label.error{
 	font-size: 11px;
 	color: red;
 }
+.modal-backdrop {
+	position: relative;
+}
+.header-forget-div{
+
+	background-color: #3f4079;
+	text-align: center;
+}
+.header-forget-div h5{
+
+	color: #fff !important;
+	margin: 0 auto;
+	font-size: 16px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+
+
+		$("#printPrescription").click(function(){
+			
+			window.print();
+		});
 /*==============
 =========================
 Start Submitting Form
@@ -782,7 +894,7 @@ $("#city").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
-
+$(\'.select2-selection--single\').addClass(\'form-control\');
 /*================
 ==========================
 To Check Pateint is Exist or Not
@@ -824,11 +936,11 @@ appointments?ajax=y<?php echo '\',
 					$(\'.e_city option[value="\'+res.msg.city_id+\'"]\').prop("selected",true);
 					$(\'.AddDisSelect\').addClass(\'disabledSelect\');
 					$(\'.e_city\').select2().trigger(\'change\');
+
 				}else{
 
 					$(\'#p_id\').val(\'\');
 					$(\'#sec_key\').val(\'\');
-
 					$(\'#snackbar\').text(res.msg);
 					var x = $("#snackbar");
 					x.addClass(\'show\');
@@ -873,6 +985,7 @@ $("#add_patient").click(function(){
 TO Check Which days is available and Which dates is not available
 =========================================================
 ===================*/
+$(\'#bookingTime\').attr(\'disabled\', true);
 var unavail=  $(\'#unavail\').val().split(\',\');
 var fromDate=  $(\'#from\').val().split(\',\');
 var toDate=  $(\'#to\').val().split(\',\');
@@ -891,9 +1004,9 @@ var doc_id= $(\'#id\').val();
 				
 			}
 			$(\'#booking_date\').attr( \'data-disabled-days\',between.toString())
-			$("#dateRendering").html(\'<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="\'+between.toString()+\'" name="dt" >\');
+			$("#dateRendering").html(\'<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="\'+between.toString()+\'" name="dt" data-lock="from">\');
 			$(\'#booking_date\').dateDropper();
-
+			$(\'#booking_date\').val(\'\')
 			var weekday=new Array(7);
 			weekday[0]="mon_on";
 			weekday[1]="Tue_on";
@@ -924,6 +1037,7 @@ appointments?ejax=y<?php echo '",
 				  		var time_st="";
 				  		var time_end="";
 				  		if (msg!="") {
+				  			$(\'#bookingTime\').attr(\'disabled\', false);
 				  			var res=JSON.parse(msg);
 				  			time_st=res.start;
 				  			time_end=res.end;
@@ -941,7 +1055,7 @@ appointments?ejax=y<?php echo '",
 				  			});
 
 				  		}else{ 
-
+				  			$(\'#bookingTime\').attr(\'disabled\', true);
 				  			$(\'#booking_date\').val(\'\');
 
 				  			$(\'#snackbar\').text(\'Doctor is not available on the selected date.\');
@@ -962,6 +1076,10 @@ To Check Hour Slot is available
 ===================*/
 
 $(\'#bookingTime\').on("change",function(e,ui){
+
+
+	debugger
+	
 	var hr = $(\'#bookingTime\').val();
 	var currentSelectedDate= $(\'#booking_date\').val();
 	var datearray = currentSelectedDate.split("/");
@@ -982,17 +1100,31 @@ appointments?appoint=y<?php echo '",
                   		if (parseInt(count) == parseInt(msg)) {
 
                   			$(\'#bookingTime\').val(\'\');
+
                   			$(\'.ui-timepicker-selected\').addClass(\'disabledFullhr\');
                   			$(\'#snackbar\').text("The selected hour\'s slot is full, please choose another time.");
                   			var x = $("#snackbar");
                   			x.addClass(\'show\');
                             // After 3 seconds, remove the show class from DIV
                             setTimeout(function(){ x.removeClass(\'show\'); }, 3000);
-                        }
-                    }
-                });
+                            var foo=$(\'.ui-timepicker-selected\').clone()
+                            var key=null;
+                            $.each($(\'.ui-timepicker-list li\'),function(k,y){
+
+                            	if($(y).hasClass(\'ui-timepicker-selected\')){
+
+                            		key=k;
+                            	}
+                            })
+							//key;
+							$(\'.ui-timepicker-selected\').remove()
+							$(\'.ui-timepicker-list li:nth-child(\'+(key+1)+\')\').before(foo[0])
+						}
+
+					}
+				});
 			});
-		/*================End Check Hour script=================*/
+/*================End Check Hour script=================*/
 
 /*=================
 =========================

@@ -120,7 +120,7 @@
 			<tbody>
 
 				{foreach from=$pat_detials item=pat}
-				<tr class="{cycle values='odd,even'}">
+				<tr class="">
 					<td class="bold" width="35">{$pat.id}</td>
 					<td width="200">{$pat.name}</td>
 					{foreach from=$cities item=city}

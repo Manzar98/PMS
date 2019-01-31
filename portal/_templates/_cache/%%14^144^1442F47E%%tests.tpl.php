@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-13 23:21:20
+<?php /* Smarty version 2.6.31, created on 2019-01-02 19:13:43
          compiled from tests/tests.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'tests/tests.tpl', 102, false),array('function', 'cycle', 'tests/tests.tpl', 119, false),)), $this); ?>
@@ -190,8 +190,8 @@ _templates/img/bin.png" alt="Delete" /></a>
 		</table>
 		<?php endforeach; endif; unset($_from); ?>
 		<?php else: ?>
-		<p class="box-info text-center" style="margin-top: 7rem!important;">No Test against this <?php echo $_GET['field']; ?>
-</p>
+		<p class="box-info text-center" style="margin-top: 7rem!important;"><?php if (isset ( $_GET['field'] )): ?>No Test against this <?php echo $_GET['field']; ?>
+ <?php else: ?>No Tests on the list <?php endif; ?></p>
 		<?php endif; ?>
 		<?php endif; ?>	
 		<div class="pagination">

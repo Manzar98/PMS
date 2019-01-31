@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-18 10:58:12
+<?php /* Smarty version 2.6.31, created on 2019-01-03 17:11:11
          compiled from patients/patients.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'patients/patients.tpl', 72, false),array('modifier', 'default', 'patients/patients.tpl', 76, false),array('function', 'cycle', 'patients/patients.tpl', 90, false),)), $this); ?>
@@ -196,8 +196,9 @@ _templates/img/bin.png" alt="Delete" /></a>
 		</table>
 		<?php endforeach; endif; unset($_from); ?>
 		<?php else: ?>
-		<p class="box-info text-center" style="margin-top: 7rem!important;">No Patient against this <?php echo $_GET['field']; ?>
-</p>
+		<p class="box-info text-center" style="margin-top: 7rem!important;">
+		<?php if (isset ( $_GET['field'] )): ?> No Patient against this <?php echo $_GET['field']; ?>
+ <?php else: ?> No patients on the list<?php endif; ?></p>
 		<?php endif; ?>
 		<div class="pagination"><?php echo $this->_tpl_vars['pages']; ?>
 </div>

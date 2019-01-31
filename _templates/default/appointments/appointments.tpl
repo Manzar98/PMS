@@ -6,18 +6,6 @@
 	<div data-loader="circle-side"></div>
 </div>
 <!-- /Preload-->
-{if isset($appointmentFull)}
-<div class="alert alert-success alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
-	<strong>{$appointmentFull}</strong>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-</div>
-{/if}
-{if isset($existAppointment)}
-<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
-	<strong>{$existAppointment}</strong>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-</div>
-{/if}
 {if isset($doctors)}
 <div id="results">
 	<div class="container">
@@ -56,8 +44,7 @@
 							{if isset($foo[1])}
 							<small><i class="icon_circle-slelected" style="margin-right: 3px;"></i>{$foo[1]}</small>
 							{/if}
-							<small class="arrow_carrot-2right moreSpecialization" title="{foreach from=$foo item=v}{$v}{/foreach}" data-toggle="tooltip" data-placement="top"></small>
-							
+							<small class="arrow_carrot-2right moreSpecialization" title="{foreach from=$foo item=v}<i class='icon_circle-slelected' style='margin-right: 3px;font-size:11px; '></i>{$v}</br>{/foreach}" data-toggle="tooltip" data-placement="top" data-html="true"></small>
 
 							<h3 class="text-capitalize">Dr.{$doctors.F_name} {$doctors.L_name}</h3>
 
@@ -76,6 +63,86 @@
 		</div>
 	</div>
 </div>
+{elseif isset($smarty.session.printslip)}
+{assign var=printslip value=$smarty.session.printslip}
+<div class="container margin_60_35" >
+	<div class="appoint_Wrap" style="border:1px solid #F6F6F6; padding: 15px;"> 
+		<div class="row">
+			<div class="col-sm-11 text-center" style="margin-bottom: 40px;">
+				<h4 class="py-3"><b>APPOINTMENT CONFIRMATION</b></h4>
+			</div>
+			<div class="col-sm-1 noprint btnW pt-1">
+				<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
+			</div>
+		</div>
+		<div class="row common-bottom">
+			<div class="col-sm-10">
+				<div class="ac form-group">
+
+					<span><b>Patient Name : </b><span>{$printslip.name}</span></span>
+				</div>
+				<div class="ac form-group">
+
+					<span><b>Patient Id : </b><span>{$printslip.pat_id}</span></span>
+
+				</div>
+				<div class="ac form-group">
+					{foreach from=$cities item=city}
+					{if $printslip.city_id==$city.id}
+					<span><b>City : </b><span>{$city.name}</span></span>
+					{/if}
+					{/foreach}
+				</div> 
+				<div class="ac form-group">
+					<span><b>Address : </b><span>{$printslip.address}</span></span>
+				</div>
+				<div class="ac form-group">
+					<span><b>Mobile No : </b><span>{$printslip.mobile}</span></span>
+				</div>
+				<div class="ac form-group">
+					<span><b>Gender : </b><span>{$printslip.gender}</span></span>
+				</div>
+				<div class="ac form-group"><span><b>Email : </b><span>{$printslip.email}</span></span></div>
+			</div>
+			<div class="col-sm-2">
+				<div width="100" height="100" style="border: 1px solid;"></div>
+			</div>
+		</div>
+		<div class="row mb-5 mt-5">
+			<div class="col-sm-8 mt-2">
+				<div class="pb-2">
+					<span class=""><b>Appointment No : </b><span>{$printslip.ap_number}</span></span>
+				</div>
+				<div class="pb-2">
+					<span class=""><b>Appointment Date : </b><span>{$printslip.ap_date}</span></span>
+				</div>
+				<div class="pb-2">
+					<span class=""><b>Appointment Time : </b><span>{$printslip.ap_time}</span></span>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="docInfo">
+					<div class="pb-2">
+						<span><b>Doctor's Name : </b><span>{$printslip.doc_name}</span></span>
+					</div>
+					<div class="pb-2">
+						<span><b>Clinic Phone Number: </b><span>{$printslip.doc_phne}</span></span> 
+					</div>
+					<div class="pb-2">
+						<span><b>Clinic Address : </b><span>{$printslip.doc_adr}</span></span>
+					</div>
+				</div> 
+			</div>
+		</div>
+		<div class="note" style=" " >
+			<p class="text-center common-bottom not_p">
+				<em class="text-danger">Note: &nbsp;</em> Please reach the clinic on time otherwise your appointment would be cancelled.
+			</p>
+			<p class="text-center doci">idoctor.pk</p>
+		</div>
+	</div>
+</div>
+{php} unset($_SESSION['printslip']); {/php}
 {elseif isset($data)}
 <div id="breadcrumb">
 	<div class="container">
@@ -87,6 +154,18 @@
 	</div>
 </div>
 <!-- /breadcrumb -->
+{if isset($appointmentFull)}
+<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
+	<strong>{$appointmentFull}</strong>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+{/if}
+{if isset($existAppointment)}
+<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
+	<strong>{$existAppointment}</strong>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+{/if}
 <!-- The actual snackbar -->
 <div id="snackbar"></div>
 <div class="container margin_60">
@@ -144,7 +223,6 @@
 							</div>
 						</div>
 						<hr>
-
 						<!-- /profile -->
 						<div class="indent_title_in">
 							<i class="pe-7s-user"></i>
@@ -337,7 +415,7 @@
 						<input type="hidden" name="package_id" id="package_id" class="package_id" value="{$data.package_id}"/>
 						<input type="hidden" name="online_manual" id="online_manual" value="online">
 						<input type="hidden" name="pat_id" id="patient_id">
-						<input type="hidden" name="security_key" id="security_key">
+						<input type="hidden" name="sec_key" id="security_key">
 						<div class="row">
 							<div class="col-6">
 								<div class="form-group">
@@ -398,6 +476,7 @@
 						<div class="row">
 							<div class="col-6">
 								<div class="form-group">
+									<div class="AddDisSelect"></div>
 									<label for="dob">Date of Birth</label>
 									<input type="text" name="dob" id="dob" class="form-control e_dob" data-large-mode="true"/>
 								</div>
@@ -434,7 +513,7 @@
 							<div class="col-6">
 								<div class="form-group disWrap">
 									<div class="AddDisSelect"></div>
-									<label for="city">City</label>
+									<label for="city">City</label></br>
 									<select name="city" id="city" class="form-control e_city">
 										<option value="">Select City</option>
 										{foreach from=$cities item=city}
@@ -466,11 +545,11 @@
 	<div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header header-forget-div">
 					<h5 class="modal-title text-center" id="exampleModalLongTitle">Forget Security Key</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
-					</button>
+					</button> -->
 				</div>
 				<div class="modal-body">
 					<div id="sec_key_response" class="mx-auto py-2">
@@ -498,7 +577,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button> 
 				</div> 
 			</div>
 		</div>
@@ -517,14 +596,14 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button> 
 				</div> 
 			</div>
 		</div>
 	</div>
 </div>
 <!-- /container -->
-<div class="row" style="margin-top: 10px;">
+<!-- <div class="row" style="margin-top: 10px;">
 	<div class="col-sm-8"></div>
 	<div class="col-sm-2 common-bottom" >
 		<a href="{$BASE_URL}add-appointment/?doc_id={$data.id}&doc_name={$data.F_name} {$data.L_name} &doc_adr={$data.c_address}&doc_phne={$data.phone}&img={$data.profile_img}&speciallist={$data.specialist}&pkgId={$data.package_id}&exprience={$data.exprience}&fee={$data.c_fee}&exist=patient" class="btn btn-primary">Get Appointment</a>
@@ -532,7 +611,7 @@
 	<div class="col-sm-1"  >
 		<a href="{$BASE_URL}history/" class="btn btn-primary">Veiw History</a>
 	</div>
-</div>
+</div> -->
 {/if}
 {include file="footer.tpl"}
 <script src="{$BASE_URL}_templates/{$THEME}/js/select2.js"></script>
@@ -570,7 +649,7 @@
 	color: #fff;
 }
 .timeWrap .ui-timepicker-wrapper ul li{
-	display: inline;
+	display: inline-block;
 	-moz-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
@@ -626,16 +705,35 @@
 	background: #6B6565 !important;
 	color: #FFF !important;
 	cursor: not-allowed;
-
 }
 label.error{
 	font-size: 11px;
 	color: red;
 }
+.modal-backdrop {
+	position: relative;
+}
+.header-forget-div{
+
+	background-color: #3f4079;
+	text-align: center;
+}
+.header-forget-div h5{
+
+	color: #fff !important;
+	margin: 0 auto;
+	font-size: 16px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+
+
+		$("#printPrescription").click(function(){
+			
+			window.print();
+		});
 /*==============
 =========================
 Start Submitting Form
@@ -696,7 +794,7 @@ $("#city").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
-
+$('.select2-selection--single').addClass('form-control');
 /*================
 ==========================
 To Check Pateint is Exist or Not
@@ -736,11 +834,11 @@ $('#existSearch').click(function(){
 					$('.e_city option[value="'+res.msg.city_id+'"]').prop("selected",true);
 					$('.AddDisSelect').addClass('disabledSelect');
 					$('.e_city').select2().trigger('change');
+
 				}else{
 
 					$('#p_id').val('');
 					$('#sec_key').val('');
-
 					$('#snackbar').text(res.msg);
 					var x = $("#snackbar");
 					x.addClass('show');
@@ -785,7 +883,7 @@ $("#add_patient").click(function(){
 TO Check Which days is available and Which dates is not available
 =========================================================
 ===================*/
-$('#bookingTime').css('visibility', 'hidden');
+$('#bookingTime').attr('disabled', true);
 var unavail=  $('#unavail').val().split(',');
 var fromDate=  $('#from').val().split(',');
 var toDate=  $('#to').val().split(',');
@@ -804,9 +902,9 @@ var doc_id= $('#id').val();
 				
 			}
 			$('#booking_date').attr( 'data-disabled-days',between.toString())
-			$("#dateRendering").html('<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="'+between.toString()+'" name="dt" >');
+			$("#dateRendering").html('<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="'+between.toString()+'" name="dt" data-lock="from">');
 			$('#booking_date').dateDropper();
-
+			$('#booking_date').val('')
 			var weekday=new Array(7);
 			weekday[0]="mon_on";
 			weekday[1]="Tue_on";
@@ -835,7 +933,7 @@ var doc_id= $('#id').val();
 				  		var time_st="";
 				  		var time_end="";
 				  		if (msg!="") {
-				  			$('#bookingTime').css('visibility', 'visible');
+				  			$('#bookingTime').attr('disabled', false);
 				  			var res=JSON.parse(msg);
 				  			time_st=res.start;
 				  			time_end=res.end;
@@ -853,7 +951,7 @@ var doc_id= $('#id').val();
 				  			});
 
 				  		}else{ 
-				  			$('#bookingTime').css('visibility', 'hidden');
+				  			$('#bookingTime').attr('disabled', true);
 				  			$('#booking_date').val('');
 
 				  			$('#snackbar').text('Doctor is not available on the selected date.');
@@ -874,6 +972,10 @@ To Check Hour Slot is available
 ===================*/
 
 $('#bookingTime').on("change",function(e,ui){
+
+
+	debugger
+	
 	var hr = $('#bookingTime').val();
 	var currentSelectedDate= $('#booking_date').val();
 	var datearray = currentSelectedDate.split("/");
@@ -892,15 +994,29 @@ $('#bookingTime').on("change",function(e,ui){
                   		if (parseInt(count) == parseInt(msg)) {
 
                   			$('#bookingTime').val('');
+
                   			$('.ui-timepicker-selected').addClass('disabledFullhr');
                   			$('#snackbar').text("The selected hour's slot is full, please choose another time.");
                   			var x = $("#snackbar");
                   			x.addClass('show');
                             // After 3 seconds, remove the show class from DIV
                             setTimeout(function(){ x.removeClass('show'); }, 3000);
-                        }
-                    }
-                });
+                            var foo=$('.ui-timepicker-selected').clone()
+                            var key=null;
+                            $.each($('.ui-timepicker-list li'),function(k,y){
+
+                            	if($(y).hasClass('ui-timepicker-selected')){
+
+                            		key=k;
+                            	}
+                            })
+							//key;
+							$('.ui-timepicker-selected').remove()
+							$('.ui-timepicker-list li:nth-child('+(key+1)+')').before(foo[0])
+						}
+
+					}
+				});
 			});
 /*================End Check Hour script=================*/
 

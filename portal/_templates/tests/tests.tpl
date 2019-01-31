@@ -138,7 +138,7 @@
 		</table>
 		{/foreach}
 		{else}
-		<p class="box-info text-center" style="margin-top: 7rem!important;">No Test against this {$smarty.get.field}</p>
+		<p class="box-info text-center" style="margin-top: 7rem!important;">{if isset($smarty.get.field)}No Test against this {$smarty.get.field} {else}No Tests on the list {/if}</p>
 		{/if}
 		{/if}	
 		<div class="pagination">

@@ -61,7 +61,6 @@
 							<select name="field" id="field" class="form-control">
 								<option value="id" {if (isset($search) && $search.field=='id')} selected="selected" {/if}>User ID</option>
 								<option value="username" {if (isset($search) && $search.field=='username')} selected="selected" {/if}>User Name</option>
-								<option value="created_on" {if (isset($search) && $search.field=='created_on')} selected="selected" {/if}>Date</option>
 							</select>
 						</div>
 					</div>
@@ -81,7 +80,7 @@
 
 		<div class="pull-right grp_btn">
 			Group By : &nbsp;
-			<a {if ( isset($group_by) && $group_by=='expire')} class="current_page" {/if} href="{$BASE_URL_ADMIN}users/?group_by=expire&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Expiration</a>
+			<!-- <a {if ( isset($group_by) && $group_by=='expire')} class="current_page" {/if} href="{$BASE_URL_ADMIN}users/?group_by=expire&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">Expiration</a> -->
 			<a {if ( isset($group_by) && $group_by=='id')} class="current_page" {/if} href="{$BASE_URL_ADMIN}users/?group_by=id&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">User ID</a>
 			<a {if ( isset($group_by) && $group_by=='username')} class="current_page" {/if} href="{$BASE_URL_ADMIN}users/?group_by=username&q={$smarty.get.q}&field={$smarty.get.field}&p={$smarty.get.p}">User Name</a>
 		</div>
@@ -100,9 +99,9 @@
 
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>User Name</th>
-					<th>Expiration Date</th>
+					<th width="100">ID</th>
+					<th width="200">User Name</th>
+					<th width="500">Expiration Date</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -111,9 +110,9 @@
 
 				{if $usr.is_delete=="on"}
 				<tr class="{cycle values='odd,even'}" style="background: #f1d2d2;">
-					<td class="bold">{$usr.id}</td>
-					<td>{$usr.username}</td>
-					<td>{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
+					<td class="bold" width="100">{$usr.id}</td>
+					<td width="300">{$usr.username}</td>
+					<td width="500">{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
 					<td>
 						<div class="icons">				
 							<a href="{$BASE_URL_ADMIN}users/view/{$usr.id}/" title="View this user"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
@@ -124,9 +123,9 @@
 				</tr>
 				{else}
 				<tr class="{cycle values='odd,even'}" >
-					<td class="bold">{$usr.id}</td>
-					<td>{$usr.username}</td>
-					<td>{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
+					<td class="bold" width="100">{$usr.id}</td>
+					<td width="300">{$usr.username}</td>
+					<td width="500">{$usr.expire|date_format:"%A, %B %e, %Y"}</td>
 					<td>
 						<div class="icons">				
 							<a href="{$BASE_URL_ADMIN}users/view/{$usr.id}/" title="View this user"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
@@ -137,11 +136,11 @@
 				</tr>
 				{/if}
 				{foreachelse}
-				<tr style="color:red;">
+				<!-- <tr style="color:red;">
 					<td>
 						No User For this date
 					</td>
-				</tr>
+				</tr> -->
 				{/foreach}
 			</tbody>
 		</table>
@@ -277,7 +276,7 @@
 		<div style="margin-bottom: 30px;"></div>
 		{else}
 		<div class="row">
-			<p class="box-info  mx-auto mt-5">No User against this {if $smarty.get.field=="created_on"} Date {elseif $smarty.get.field=="username"} Name{else} {$smarty.get.field}{/if}</p>
+			<p class="box-info  mx-auto mt-5">No User against this {if $smarty.get.field=="username"} Name{else} {$smarty.get.field}{/if}</p>
 		</div>
 		{/if}
 

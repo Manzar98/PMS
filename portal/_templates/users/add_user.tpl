@@ -67,13 +67,13 @@
 					<div class="col-sm-3">
 						<div class="form-group"> 
 							<label for="expire">Expiration</label>
-							<input type="text" name="expire" id="expire"class="form-control"/>
+							<input type="text" name="expire" id="expire"class="form-control" data-large-mode="true"/>
 						</div>
 					</div>
 					<div class="col-sm-3">
 						<div class="form-group"> 
 							<label for="city">Clinic City</label>
-							<select name="city" id="city" class="form-control">
+							<select name="city" id="cityId" class="form-control">
 								<option value="">Select City</option>
 								{foreach from=$cities item=city}
 								<option value="{$city.id}">{$city.name}</option>
@@ -111,7 +111,7 @@
 				<div class="row">
 					<div class="col-md-3">
 						<div class="form-group"> 
-							<label for="specialist">Specializations</label><i class="fa fa-question-circle pull-right pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations"></i>
+							<label for="specialist">Specializations</label><i class="fa fa-question-circle pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations" style="padding-left: 2px;"></i>
 							<textarea name="specialist" id="specialist" class="form-control"></textarea>
 						</div>
 					</div>
@@ -165,16 +165,11 @@
 </div>
 {include file="footer.tpl"}
 {literal}
-<style type="text/css">
-span.select2.select2-container.select2-container--default {
-	width: 247px !important;
-}
-</style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
 		$('[data-toggle="tooltip"]').tooltip();
-		$("#city").select2({
+		$("#cityId").select2({
                    // placeholder: "Select a State",
                    allowClear: true
                });
@@ -197,12 +192,7 @@ span.select2.select2-container.select2-container--default {
 		});
 
 		var today = new Date();
-		$( "#expire" ).datepicker({
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-			changeYear: true,
-			minDate: today,
-		});
+		$( "#expire" ).dateDropper();
 /*=======================
   Profile image reader
   =========================*/  

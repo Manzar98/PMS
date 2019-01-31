@@ -6,6 +6,7 @@ $patient = new Patient;
 $users = new User;
 $package = new Package;
 
+
 $smarty->assign('cities', get_cities());
 if($id==="view" && $extra>0 && !$_POST)
 {
@@ -30,10 +31,10 @@ if($id==="view" && $extra>0 && !$_POST)
 	$smarty->assign('data',@$user_detail); 
 
 }else if($_POST && isset($_GET['appoint'])){
-         
-  $count= $appointment->checkAppoint($_POST['ap_time'],$_POST['ap_date'],$_POST['doc_id']);
 
-  echo count($count);
+	$count= $appointment->checkAppoint($_POST['ap_time'],$_POST['ap_date'],$_POST['doc_id']);
+
+	echo count($count);
 
 }elseif ($_POST && isset($_GET['yjax'])) {
 
@@ -99,16 +100,18 @@ if($id==="view" && $extra>0 && !$_POST)
 		echo json_encode($response);
 	}
 }elseif ($_POST) {
-
+ // print_r($_POST);
 	if (isset($_POST['dt'])) {
 		$data['ap_date'] = date("Y-m-d", strtotime($_POST['dt']));
 		//echo $data['ap_date'];
 	}
-
-	$data["marital_status"]= $_POST["marital_status"];
+	if (isset($_POST["marital_status"])) {
+		$data["marital_status"]= $_POST["marital_status"];
+	}
+	
 	$data["address"] = $_POST["address"];
 	$data["ap_number"]       = $_POST['ap_number'];
-	$data["security_key"]       = $_POST['security_key'];
+	$data["security_key"]       = $_POST['sec_key'];
 	$data['doc_name']= $_POST['doc_name'];
 	$data['doc_adr']= $_POST['doc_adr'];
 	$data['doc_phne']= $_POST['doc_phne'];
@@ -121,23 +124,18 @@ if($id==="view" && $extra>0 && !$_POST)
 	$is_check=true;
 	$responseArray=[];
 
+	
+
 	if (empty($_POST["name"])) {
 
 		$is_check=false;
 		array_push($responseArray,"Patient name is required");
-	}else{
 
-		$data["name"] = $_POST["name"];
-	}
-	if (empty($_POST["gender"])) {
+	}elseif (empty($_POST["gender"])) {
 
 		$is_check=false;
 		array_push($responseArray,"Gender is required");
-	}else{
-
-		$data["gender"] = $_POST["gender"];
-	}
-	if (empty($_POST["mobile"])) {
+	}elseif (empty($_POST["mobile"])) {
 
 		$is_check=false;
 		array_push($responseArray,"Mobile field is required");
@@ -146,12 +144,7 @@ if($id==="view" && $extra>0 && !$_POST)
 
 		$is_check=false;
 		array_push($responseArray,"Mobile field should only contain numbers.");
-	}else{
-
-		$data["mobile"] = $_POST["mobile"];
-	}
-
-	if (empty($_POST["dt"])) {
+	}elseif (empty($_POST["dt"])) {
 
 		$is_check=false;
 		array_push($responseArray,"Appointment date is required");
@@ -160,36 +153,19 @@ if($id==="view" && $extra>0 && !$_POST)
 
 		$is_check=false;
 		array_push($responseArray,"Appointment date is invalid");
-	}
-	else{
-
-		$data["ap_date"] = $data["ap_date"];
-		// echo "here";
-	}
-
-	if (empty($_POST["hour"])) {
+	}elseif (empty($_POST["hour"])) {
 
 		$is_check=false;
 		array_push($responseArray,"Appointment time is required");
 
-	} elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$/",$_POST["hour"])) {
+	}elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$/",$_POST["hour"])) {
 
 		$is_check=false;
 		array_push($responseArray,"Appointment time is invalid");
-	}else{
+	}elseif ($_POST["u_id"]<1) {
 
-		$data["ap_time"] = $_POST['hour'];
-
-	}
-
-	if ($_POST["u_id"]<1) {
 		$is_check=false;
-	}else{
-
-		$data["id"]       = $_POST['u_id'];
-	}
-
-	if (empty($_POST['email'])) {
+	}elseif (empty($_POST['email'])) {
 		$is_check=false;
 		array_push($responseArray,"Email address is required");
 
@@ -200,18 +176,21 @@ if($id==="view" && $extra>0 && !$_POST)
 	}else{
 
 		$data["email"]       = $_POST['email'];
+		$data["name"] = $_POST["name"];
+		$data["id"]       = $_POST['u_id'];
+		$data["ap_time"] = $_POST['hour'];
+		$data["ap_date"] = $data["ap_date"];
+		$data["mobile"] = $_POST["mobile"];
+		$data["gender"] = $_POST["gender"];
 	}
-
 	$errorMsgs=implode(",",$responseArray);
 
-	//echo $is_check;
-	//echo "manzr444";
-    //print_r($data);
 	if ($is_check==true) {
 		//echo "";
 		if (isset($_POST['pat_id']) && !empty($_POST['pat_id'])) {
 
 			if (!$appointment->existAppointment($data)) {
+
 				if($isExist = $users->checkDoctorConsumptionExist($data["id"])){
 
 					$existCount=$isExist['online_appointment_count'];
@@ -232,6 +211,7 @@ if($id==="view" && $extra>0 && !$_POST)
 					}else{
 
 						$smarty->assign('appointmentFull', "You Can't book the appointment. Because No of appointments is full against this Doctor.");
+						     viewDoctorData($data["id"],$Work_days,$users,$patient,$smarty);
 					}
 
 				}else{
@@ -245,14 +225,16 @@ if($id==="view" && $extra>0 && !$_POST)
 					$smarty->assign('cities', get_cities());
 					$smarty->assign("printslip",@$data);
 				}
+
 			}else{
 
-				$exist_appoint="Appointment is already exists against this patient";
+				$exist_appoint="Appointment already exists for this patient";
 				$smarty->assign("existAppointment",@$exist_appoint);
+				     viewDoctorData($data["id"],$Work_days,$users,$patient,$smarty);
 			}
 		}else{
 
-			if($isExist = $users->checkDoctorConsumptionExist($data["id"])){
+			if($isExist = $users->checkDoctorConsumptionExist($data["id"])){//check pkg consumption record exist against this doctor
 
 				$consumptionOnlineCount=$isExist['online_appointment_count'];
 
@@ -265,20 +247,20 @@ if($id==="view" && $extra>0 && !$_POST)
 				$pkgPatientCount= $patientCount['no_of_patients'];
 
 				if ($consumptionOnlineCount < $pkgOnlineCount && $consumptionPatientCount < $pkgPatientCount) {
-
+					//echo "manzar";
 					$users->updateColumnCount($data["id"],"online_appointment_count",$consumptionOnlineCount+1);
 					$users->updateColumnCount($data["id"],"patient_count",$consumptionPatientCount+1);
 					if ($patient->AddPatBasic($data)) {
 						$pat_id= $db->insert_id;
 						$appointment->getAppoint($data,$pat_id);
 						$data['pat_id'] = $pat_id;
-                // redirect_to(BASE_URL.'appointments/');
+     //            // 
 						$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
-          // $patient->sendPasswordInEmail($emailArray);
-
-						$smarty->assign("printslip",@$data);
-						$smarty->assign('cities', get_cities());
-
+         // $patient->sendPasswordInEmail($emailArray);
+							//$smarty->assign("printslip",@$data);
+							//$smarty->assign('cities', get_cities());
+						$_SESSION['printslip']=$data;
+						redirect_to(BASE_URL.'appointments/view/'.$data["id"].'/');
 					}
 
 				}else{
@@ -292,23 +274,25 @@ if($id==="view" && $extra>0 && !$_POST)
 					}else{
 
 						$smarty->assign('appointmentFull', "You Can't book the appointment. Because No of appointments is full against this Doctor.");
+
 					}
+					     viewDoctorData($data["id"],$Work_days,$users,$patient,$smarty);
 				}
 
-			}else{
-
+			}else{// No consumption record exist create a new one for a doctor 
+				
 				$users->addColumnCount($data["id"],"online_appointment_count",'1');
 				$users->updateColumnCount($data["id"],"patient_count",0+1);
 				if ($patient->AddPatBasic($data)) {
 					$pat_id= $db->insert_id;
 					$appointment->getAppoint($data,$pat_id);
 					$data['pat_id'] = $pat_id;
-               // redirect_to(BASE_URL.'appointments/');
+					
 					$emailArray=array('email'=>$data['email'],'security_key'=>$data["security_key"],"patient_id"=>$pat_id);
-          // $patient->sendPasswordInEmail($emailArray);
-
-					$smarty->assign("printslip",@$data);
-					$smarty->assign('cities', get_cities());
+           // $patient->sendPasswordInEmail($emailArray);
+					//$smarty->assign('cities', get_cities());
+					$_SESSION['printslip']=$data;
+					redirect_to(BASE_URL.'appointments/view/'.$data["id"].'/');
 				}
 			}
 		}
@@ -328,5 +312,27 @@ if($id==="view" && $extra>0 && !$_POST)
 if (!isset($_GET['ajax']) && !isset($_GET['ejax']) && !isset($_GET['yjax']) && !isset($_GET['appoint'])) {
 
 	$template = 'appointments/appointments.tpl';
+}
+
+function viewDoctorData($extra,$Work_days,$users,$patient,$smarty){
+
+  $data =$Work_days->GetDoctorTime($extra);
+  $days= implode(',', array_column($data, 'days'));
+  $from= implode(',', array_column($data, 'dt_from'));
+  $to= implode(',', array_column($data, 'dt_to'));
+  $unavail = implode(',', array_column($data, 'unavailable'));
+    // $count = implode(',', array_column($data, 'hr_count'));
+  $smarty->assign("id",@$id);
+  $smarty->assign("days",@$days);
+  $smarty->assign("from",@$from);
+  $smarty->assign("to",@$to);
+  $smarty->assign("unavail",@$unavail);
+    // $smarty->assign("count",@$count);
+
+  $user_detail = $users->GetuserInfo($extra);
+    // print_r($user_detail);
+  $smarty->assign('noOfPatients',$patient->getPatientsCount($extra)); 
+  $smarty->assign('cities', get_cities());
+  $smarty->assign('data',@$user_detail); 
 }
 ?>

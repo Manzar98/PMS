@@ -95,7 +95,7 @@
 			
 			<thead class="">
 				<tr>
-					<th>ID</th>
+					<th width="100">ID</th>
 					<th>Patient Name (ID)</th>
 					<th>Complain</th>
 					<th>Date</th>
@@ -106,10 +106,10 @@
 
 				{foreach from=$prescriptions item=prescription}
 				<tr class="{cycle values='odd,even'}">
-					<td class="bold">{$prescription.id}</td>
+					<td class="bold" width="100">{$prescription.id}</td>
 					<td>{$prescription.patient_name} ({$prescription.patient_id})</td>
 					<td>{$prescription.complain|default:'<span style="color:gray;font-style: italic;">Empty</span>'}</td>
-					<td>{$prescription.created_on|date_format:"%A, %B %e, %Y"}</td>
+					<td >{$prescription.created_on|date_format:"%A, %B %e, %Y"}</td>
 					<td>
 						<div class="icons">				
 							<a href="{$BASE_URL_ADMIN}prescriptions/view/{$prescription.id}/" title="View this Prescription"><img src="{$BASE_URL_ADMIN}_templates/img/eye.png" alt="View" /></a>
@@ -129,6 +129,8 @@
 		</tbody>
 	</table>
 	{/foreach}
+	{else}
+	<p class="text-center pt-4" >No prescriptions Added</p>
 	{/if}
 	<!-- {$grouped_prescriptions} -->
 	<div class="pagination">

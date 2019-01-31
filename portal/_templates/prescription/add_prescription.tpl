@@ -319,7 +319,7 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="next_date">Next Date</label>
-							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" />
+							<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" data-large-mode="true"/>
 						</div>	
 					</div>
 					<div class="col-sm-3">
@@ -377,12 +377,7 @@
 	});
 	$(function() {
 		var today = new Date();
-		$( "#next_date" ).datepicker({
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-			changeYear: true,
-			minDate: today,
-		});
+		$( "#next_date" ).dateDropper();
 	});
 
 
@@ -809,4 +804,5 @@ function generateRandomNumber(){
 }
 // debugger
 </script>
+
 {/literal}

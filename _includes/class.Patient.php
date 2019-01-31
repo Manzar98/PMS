@@ -82,7 +82,7 @@ Class Patient
 		"'.$data["email"].'",
 		NOW())	
 		';
-		// echo $sql;
+	 echo $sql;
 		return $db->Execute($sql);
 	}
 
@@ -483,7 +483,11 @@ function checkSecKeyPatient($data)
 	global $db;
 	$sql = 'SELECT * FROM '.DB_PREFIX.'patient WHERE id='.$data['p_id'].' AND user_id="'.$data['doc_id'].'"AND email="'.$data['email'].'"';
 		  //echo $sql;
-	 return $db->QueryRow($sql);
+   	
+	if ($db->QueryRow($sql)==0) {
+		
+	}
+	 return ;
 
 }
 

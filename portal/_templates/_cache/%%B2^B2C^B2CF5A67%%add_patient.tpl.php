@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-10 22:11:53
+<?php /* Smarty version 2.6.31, created on 2019-01-02 18:33:26
          compiled from patients/add_patient.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -63,7 +63,7 @@ patients/">Patients</a>
       <div class="form-group">
         <label for="dob">Date of Birth</label>
         <input type="text" name="dob" id="dob" value="<?php echo $this->_tpl_vars['data']['dob']; ?>
-" autocomplete="off" class="form-control"/>
+" autocomplete="off" class="form-control" data-large-mode="true"/>
       </div>
     </div>
   </div>
@@ -245,12 +245,7 @@ unset($_smarty_tpl_vars);
       toggle: true
     })
      
-     $( "#dob" ).datepicker({
-       yearRange: "-100:+0",
-       dateFormat : "yy-mm-dd",
-       changeMonth: true,
-       changeYear: true
-     });
+     $( "#dob" ).dateDropper();
 
 
      $(\'#startWebcam\').click(function(){

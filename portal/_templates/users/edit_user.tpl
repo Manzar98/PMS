@@ -76,7 +76,7 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="expire">Expiration</label>
-							<input type="text" name="expire" id="expire"class="form-control" {if (isset($data) && $data.expire)}value="{$data.expire}"{/if}/>
+							<input type="text" name="expire" id="expire"class="form-control" data-large-mode="true" {if (isset($data) && $data.expire)}data-default-date="{$data.expire|date_format:'%m-%d-%Y'}"{/if} data-max-year="2030"/>
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -112,7 +112,7 @@
 					</div>
 					<div class="col-md-3">
 						<div class="form-group"> 
-							<label for="specialist">Specializations</label><i class="fa fa-question-circle pull-right pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations"></i>
+							<label for="specialist">Specializations</label><i class="fa fa-question-circle pt-1 qMarkPurpose" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write comaseparated specializations" style="padding-left: 2px;"></i>
 							<textarea name="specialist" id="specialist" class="form-control">{if (isset($data) && $data.specialist)}{$data.specialist}{/if}</textarea>
 						</div>
 					</div>
@@ -173,11 +173,6 @@
 </div><!-- #content -->
 {include file="footer.tpl"}
 {literal}
-<style type="text/css">
-span.select2.select2-container.select2-container--default {
-	width: 247px !important;
-}
-</style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
@@ -203,24 +198,7 @@ span.select2.select2-container.select2-container--default {
 		});
 
 		var today = new Date();
-		$( "#expire" ).datepicker({
-			dateFormat : "yy-mm-dd",
-			changeMonth: true,
-			minDate: today,
-		});
-		$('#work_hr').timepicker({
-			// timeFormat: 'h:mm p',
-			interval: 60,
-			minTime: '10',
-			maxTime: '6:00pm',
-			defaultTime: '11',
-			startTime: '10:00',
-			dynamic: false,
-			dropdown: true,
-			scrollbar: true
-		});
-
-
+		$( "#expire" ).dateDropper();
 /*=======================
   Profile image reader
   =========================*/  

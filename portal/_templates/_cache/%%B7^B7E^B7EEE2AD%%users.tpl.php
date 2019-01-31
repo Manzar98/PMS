@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-26 14:36:57
+<?php /* Smarty version 2.6.31, created on 2019-01-02 21:44:32
          compiled from users/users.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 89, false),array('modifier', 'date_format', 'users/users.tpl', 94, false),array('modifier', 'explode', 'users/users.tpl', 266, false),array('function', 'cycle', 'users/users.tpl', 113, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'users/users.tpl', 88, false),array('modifier', 'date_format', 'users/users.tpl', 93, false),array('modifier', 'explode', 'users/users.tpl', 265, false),array('function', 'cycle', 'users/users.tpl', 112, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -79,7 +79,6 @@ users/" method="get" enctype="multipart/form-data">
 							<select name="field" id="field" class="form-control">
 								<option value="id" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'id' )): ?> selected="selected" <?php endif; ?>>User ID</option>
 								<option value="username" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'username' )): ?> selected="selected" <?php endif; ?>>User Name</option>
-								<option value="created_on" <?php if (( isset ( $this->_tpl_vars['search'] ) && $this->_tpl_vars['search']['field'] == 'created_on' )): ?> selected="selected" <?php endif; ?>>Date</option>
 							</select>
 						</div>
 					</div>
@@ -100,11 +99,11 @@ users/" method="get" enctype="multipart/form-data">
 
 		<div class="pull-right grp_btn">
 			Group By : &nbsp;
-			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'expire' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+			<!-- <a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'expire' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/?group_by=expire&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
 &p=<?php echo $_GET['p']; ?>
-">Expiration</a>
+">Expiration</a> -->
 			<a <?php if (( isset ( $this->_tpl_vars['group_by'] ) && $this->_tpl_vars['group_by'] == 'id' )): ?> class="current_page" <?php endif; ?> href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 users/?group_by=id&q=<?php echo $_GET['q']; ?>
 &field=<?php echo $_GET['field']; ?>
@@ -137,9 +136,9 @@ users/?group_by=username&q=<?php echo $_GET['q']; ?>
 
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>User Name</th>
-					<th>Expiration Date</th>
+					<th width="100">ID</th>
+					<th width="200">User Name</th>
+					<th width="500">Expiration Date</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -151,11 +150,11 @@ users/?group_by=username&q=<?php echo $_GET['q']; ?>
 				<?php if ($this->_tpl_vars['usr']['is_delete'] == 'on'): ?>
 				<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 " style="background: #f1d2d2;">
-					<td class="bold"><?php echo $this->_tpl_vars['usr']['id']; ?>
+					<td class="bold" width="100"><?php echo $this->_tpl_vars['usr']['id']; ?>
 </td>
-					<td><?php echo $this->_tpl_vars['usr']['username']; ?>
+					<td width="300"><?php echo $this->_tpl_vars['usr']['username']; ?>
 </td>
-					<td><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+					<td width="500"><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </td>
 					<td>
 						<div class="icons">				
@@ -177,11 +176,11 @@ _templates/img/bin.png" alt="Reactivate" /></a>
 				<?php else: ?>
 				<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 " >
-					<td class="bold"><?php echo $this->_tpl_vars['usr']['id']; ?>
+					<td class="bold" width="100"><?php echo $this->_tpl_vars['usr']['id']; ?>
 </td>
-					<td><?php echo $this->_tpl_vars['usr']['username']; ?>
+					<td width="300"><?php echo $this->_tpl_vars['usr']['username']; ?>
 </td>
-					<td><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+					<td width="500"><?php echo ((is_array($_tmp=$this->_tpl_vars['usr']['expire'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </td>
 					<td>
 						<div class="icons">				
@@ -202,11 +201,11 @@ _templates/img/bin.png" alt="Delete" /></a>
 				</tr>
 				<?php endif; ?>
 				<?php endforeach; else: ?>
-				<tr style="color:red;">
+				<!-- <tr style="color:red;">
 					<td>
 						No User For this date
 					</td>
-				</tr>
+				</tr> -->
 				<?php endif; unset($_from); ?>
 			</tbody>
 		</table>
@@ -368,7 +367,7 @@ edit-users/<?php echo $this->_tpl_vars['data']['id']; ?>
 		<div style="margin-bottom: 30px;"></div>
 		<?php else: ?>
 		<div class="row">
-			<p class="box-info  mx-auto mt-5">No User against this <?php if ($_GET['field'] == 'created_on'): ?> Date <?php elseif ($_GET['field'] == 'username'): ?> Name<?php else: ?> <?php echo $_GET['field']; ?>
+			<p class="box-info  mx-auto mt-5">No User against this <?php if ($_GET['field'] == 'username'): ?> Name<?php else: ?> <?php echo $_GET['field']; ?>
 <?php endif; ?></p>
 		</div>
 		<?php endif; ?>

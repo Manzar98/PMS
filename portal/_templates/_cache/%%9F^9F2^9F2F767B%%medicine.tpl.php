@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-26 14:43:51
+<?php /* Smarty version 2.6.31, created on 2019-01-02 19:12:22
          compiled from medicine.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'medicine.tpl', 138, false),array('function', 'cycle', 'medicine.tpl', 158, false),)), $this); ?>
@@ -233,7 +233,7 @@ _templates/img/bin.png" alt="Delete" /></a>
 					<?php endforeach; else: ?>
 					<tr style="color:red;">
 						<td>
-							No Medicine on the List
+							No Medicines on the List
 						</td>
 					</tr>
 					<?php endif; unset($_from); ?>
@@ -241,8 +241,8 @@ _templates/img/bin.png" alt="Delete" /></a>
 			</table>
 			<?php endforeach; endif; unset($_from); ?>
 			<?php else: ?>
-			<p class="box-info text-center" style="margin-top: 7rem!important;">No Medicine against this <?php echo $_GET['field']; ?>
-</p>
+			<p class="box-info text-center" style="margin-top: 7rem!important;"><?php if (isset ( $_GET['field'] )): ?>No Medicine against this <?php echo $_GET['field']; ?>
+ <?php else: ?>No medicines on the list <?php endif; ?></p>
 			<?php endif; ?>
 			<div class="pagination">
 				<?php echo $this->_tpl_vars['pages']; ?>

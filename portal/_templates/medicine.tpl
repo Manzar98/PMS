@@ -172,7 +172,7 @@
 					{foreachelse}
 					<tr style="color:red;">
 						<td>
-							No Medicine on the List
+							No Medicines on the List
 						</td>
 					</tr>
 					{/foreach}
@@ -180,7 +180,7 @@
 			</table>
 			{/foreach}
 			{else}
-			<p class="box-info text-center" style="margin-top: 7rem!important;">No Medicine against this {$smarty.get.field}</p>
+			<p class="box-info text-center" style="margin-top: 7rem!important;">{if isset($smarty.get.field)}No Medicine against this {$smarty.get.field} {else}No medicines on the list {/if}</p>
 			{/if}
 			<div class="pagination">
 				{$pages}

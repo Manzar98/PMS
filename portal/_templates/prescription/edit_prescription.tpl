@@ -206,7 +206,8 @@
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="next_date">Next Date</label>
-								<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control" value="{$data.next_date|date_format:"%Y-%m-%d"}"/>	
+								<input type="text" name="next_date" id="next_date" tabindex="22" class="form-control"
+								data-default-date="{$data.next_date|date_format:'%m-%d-%Y'}"data-large-mode="true" data-max-year="2030"/>	
 							</div>
 						</div>
 						<div class="col-sm-3">
@@ -254,10 +255,7 @@
 	<script>
 
 		$(function() {
-			$( "#next_date" ).datepicker({
-				dateFormat : "yy-mm-dd",
-				changeMonth: true,
-			});
+			$( "#next_date" ).dateDropper();
 		});
 
 

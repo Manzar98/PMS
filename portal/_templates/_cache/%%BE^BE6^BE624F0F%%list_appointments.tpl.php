@@ -1,7 +1,5 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-21 17:55:05
+<?php /* Smarty version 2.6.31, created on 2019-01-03 16:53:03
          compiled from appointments/list_appointments.tpl */ ?>
-<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'appointments/list_appointments.tpl', 123, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -152,8 +150,7 @@ doc-appointments/view/<?php echo $_SESSION['AdminId']; ?>
 				<?php $_from = $this->_tpl_vars['pat_detials']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['pat']):
 ?>
-				<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
-">
+				<tr class="">
 					<td class="bold" width="35"><?php echo $this->_tpl_vars['pat']['id']; ?>
 </td>
 					<td width="200"><?php echo $this->_tpl_vars['pat']['name']; ?>

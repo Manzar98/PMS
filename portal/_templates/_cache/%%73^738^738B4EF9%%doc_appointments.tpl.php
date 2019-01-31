@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2019-01-01 19:31:34
+<?php /* Smarty version 2.6.31, created on 2019-01-08 21:36:57
          compiled from appointments/doc_appointments.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'explode', 'appointments/doc_appointments.tpl', 122, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'explode', 'appointments/doc_appointments.tpl', 200, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -9,27 +9,107 @@ unset($_smarty_tpl_vars);
  ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/css/timedropper.css" /> 
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
+_templates/css/doc-appointments.css" /> 
 <div id="" class="content-wrapper">
 	<div class="container-fluid">
 		<div id="preloader" class="Fixed">
 			<div data-loader="circle-side"></div>
 		</div>
 		<!-- /Preload-->
-		<?php if (isset ( $this->_tpl_vars['appointmentFull'] )): ?>
-		<div class="alert alert-success alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
-			<strong><?php echo $this->_tpl_vars['appointmentFull']; ?>
-</strong>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<?php if (isset ( $_SESSION['printslip'] )): ?>
+		<?php $this->assign('printslip', $_SESSION['printslip']); ?>
+		<div class="appoint_Wrap"> 
+			<div class="row">
+				<div class="col-sm-11 text-center" style="margin-bottom: 40px;">
+					<h4 class="py-3"><b>APPOINTMENT CONFIRMATION</b></h4>
+				</div>
+				<div class="col-sm-1 noprint btnW pt-1">
+					<input type="button"class="btn btn-primary printBtn form-control" value="Print" id="printPrescription">
+				</div>
+			</div>
+			<div class="row common-bottom">
+				<div class="col-sm-10">
+					<div class="ac form-group">
+
+						<span><b>Patient Name : </b><span><?php echo $this->_tpl_vars['printslip']['name']; ?>
+</span></span>
+					</div>
+					<div class="ac form-group">
+
+						<span><b>Patient Id : </b><span><?php echo $this->_tpl_vars['printslip']['pat_id']; ?>
+</span></span>
+					</div>
+					<div class="ac form-group">
+						<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['city']):
+?>
+						<?php if ($this->_tpl_vars['printslip']['city_id'] == $this->_tpl_vars['city']['id']): ?>
+						<span><b>City : </b><span><?php echo $this->_tpl_vars['city']['name']; ?>
+</span></span>
+						<?php endif; ?>
+						<?php endforeach; endif; unset($_from); ?>
+					</div> 
+					<div class="ac form-group">
+						<span><b>Address : </b><span><?php echo $this->_tpl_vars['printslip']['address']; ?>
+</span></span>
+					</div>
+					<div class="ac form-group">
+						<span><b>Mobile No : </b><span><?php echo $this->_tpl_vars['printslip']['mobile']; ?>
+</span></span>
+					</div>
+					<div class="ac form-group">
+						<span><b>Gender : </b><span><?php echo $this->_tpl_vars['printslip']['gender']; ?>
+</span></span>
+					</div>
+					<div class="ac form-group"><span><b>Email : </b><span><?php echo $this->_tpl_vars['printslip']['email']; ?>
+</span></span></div>
+				</div>
+				<div class="col-sm-2">
+					<div width="100" height="100" style="border: 1px solid;"></div>
+				</div>
+			</div>
+			<div class="row mb-5 mt-5">
+				<div class="col-sm-8 mt-2">
+					<div class="pb-2">
+						<span class=""><b>Appointment No : </b><span><?php echo $this->_tpl_vars['printslip']['ap_number']; ?>
+</span></span>
+					</div>
+					<div class="pb-2">
+						<span class=""><b>Appointment Date : </b><span><?php echo $this->_tpl_vars['printslip']['ap_date']; ?>
+</span></span>
+					</div>
+					<div class="pb-2">
+						<span class=""><b>Appointment Time : </b><span><?php echo $this->_tpl_vars['printslip']['ap_time']; ?>
+</span></span>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="docInfo">
+						<div class="pb-2">
+							<span><b>Doctor's Name : </b><span><?php echo $this->_tpl_vars['printslip']['doc_name']; ?>
+</span></span>
+						</div>
+						<div class="pb-2">
+							<span><b>Clinic Phone Number: </b><span><?php echo $this->_tpl_vars['printslip']['doc_phne']; ?>
+</span></span> 
+						</div>
+						<div class="pb-2">
+							<span><b>Clinic Address : </b><span><?php echo $this->_tpl_vars['printslip']['doc_adr']; ?>
+</span></span>
+						</div>
+					</div> 
+				</div>
+			</div>
+			<div class="note" style=" " >
+				<p class="text-center common-bottom not_p">
+					<em class="text-danger">Note: &nbsp;</em> Please reach the clinic on time otherwise your appointment would be cancelled.
+				</p>
+				<p class="text-center doci">idoctor.pk</p>
+			</div>
 		</div>
-		<?php endif; ?>
-		<?php if (isset ( $this->_tpl_vars['existAppointment'] )): ?>
-		<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
-			<strong><?php echo $this->_tpl_vars['existAppointment']; ?>
-</strong>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		</div>
-		<?php endif; ?>
-		<?php if (isset ( $this->_tpl_vars['data'] ) && $this->_tpl_vars['data']): ?>
+		<?php  unset($_SESSION['printslip']);  ?>
+		<?php elseif (isset ( $this->_tpl_vars['data'] )): ?>
 		<div class="noprint">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
@@ -44,6 +124,20 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 				<li class="breadcrumb-item active">Get Appointment</li>
 			</ol>
 		</div>
+		<?php if (isset ( $this->_tpl_vars['appointmentFull'] )): ?>
+		<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
+			<strong><?php echo $this->_tpl_vars['appointmentFull']; ?>
+</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		</div>
+		<?php endif; ?>
+		<?php if (isset ( $this->_tpl_vars['existAppointment'] )): ?>
+		<div class="alert alert-danger alert-dismissible fade show mx-auto my-3 text-center" role="alert" style="width: 50%">
+			<strong><?php echo $this->_tpl_vars['existAppointment']; ?>
+</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		</div>
+		<?php endif; ?>
 		<!-- /breadcrumb -->
 		<!-- The actual snackbar -->
 		<div id="snackbar"></div>
@@ -312,7 +406,7 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 " id="from"> 
 								<input type="hidden" name="" value="<?php echo $this->_tpl_vars['to']; ?>
 " id="to">
-								<input type="hidden" name="ap_number" id="ap_number"> 
+								<input type="hidden" name="ap_number" id="ap_numb"> 
 
 								<input type="hidden" name="doc_name" value="<?php echo $this->_tpl_vars['data']['F_name']; ?>
  <?php echo $this->_tpl_vars['data']['L_name']; ?>
@@ -327,7 +421,7 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 "/>
 								<input type="hidden" name="online_manual" id="online_manual" value="manual">
 								<input type="hidden" name="pat_id" id="patient_id">
-								<input type="hidden" name="security_key" id="security_key">
+								<input type="hidden" name="sec_key" id="security_key">
 								<div class="row">
 									<div class="col-6">
 										<div class="form-group">
@@ -387,7 +481,8 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 								</div>
 								<div class="row">
 									<div class="col-6">
-										<div class="form-group">
+										<div class="form-group">	
+											<div class="AddDisSelect"></div>
 											<label for="dob">Date of Birth</label>
 											<input type="text" name="dob" id="dob" value="<?php echo $this->_tpl_vars['data']['dob']; ?>
 " autocomplete="off"  class="form-control e_dob" data-large-mode="true"/>
@@ -425,7 +520,7 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 									<div class="col-6">
 										<div class="form-group disWrap">
 											<div class="AddDisSelect"></div>
-											<label for="city">City</label>
+											<label for="city">City</label></br>
 											<select name="city" id="city" class="form-control e_city">
 												<option value="">Select City</option>
 												<?php $_from = $this->_tpl_vars['cities']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
@@ -458,18 +553,17 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 			</div>
 			<!-- /row -->
 			<!-- Modal -->
-			<div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="top: 165px;">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header header-forget-div">
 							<h5 class="modal-title text-center" id="exampleModalLongTitle">Forget Security Key</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
-							</button>
+							</button> -->
 						</div>
 						<div class="modal-body">
 							<div id="sec_key_response" class="mx-auto py-2">
-
 							</div>
 							<form>
 								<div class="row">
@@ -493,13 +587,13 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 							</form>
 						</div>
 						<div class="modal-footer">
-							<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
 						</div> 
 					</div>
 				</div>
 			</div>
 			<!-- Modal -->
-			<div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="top: 165px;">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header title-header-div">
@@ -512,7 +606,7 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button> 
 						</div> 
 					</div>
 				</div>
@@ -521,7 +615,7 @@ list-appointments/<?php echo $_SESSION['AdminId']; ?>
 	</div>
 </div>
 <!-- /container -->
-<div class="row" style="margin-top: 10px;">
+<!-- <div class="row" style="margin-top: 10px;">
 	<div class="col-sm-8"></div>
 	<div class="col-sm-2 common-bottom" >
 		<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
@@ -541,7 +635,7 @@ add-appointment/?doc_id=<?php echo $this->_tpl_vars['data']['id']; ?>
 		<a href="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 history/" class="btn btn-primary">Veiw History</a>
 	</div>
-</div>
+</div> -->
 <?php endif; ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
@@ -554,356 +648,13 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 <script src="<?php echo $this->_tpl_vars['BASE_URL_ADMIN']; ?>
 _templates/js/timedropper.js" type="text/javascript"></script> 
 <?php echo '
-<style type="text/css">
-.diswrap{
-	position: relative;
-}
-.disabledSelect{
-	width: 81%;
-	height: 40px;
-	background-color: #DDD;
-	opacity: 0.5;
-	position: absolute;
-	top: 27px;
-	border-radius: 3px;
-}
-.specializationWrap li{
-	display: inline-block;
-	width: 49%;
-	margin-bottom: 5px;
-}
-#secondary_nav {
-	background-color: #3f4079;
-	position: relative;
-	bottom: -3px;
-	border-bottom: none;
-	-webkit-border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0;
-	-ms-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
-	padding: 15px;
-}
-#secondary_nav ul {
-	margin: 0;
-}
-#secondary_nav ul li {
-	display: inline-block;
-	font-weight: 500;
-	font-size: 16px;
-	font-size: 1rem;
-	margin-right: 25px;
-}
-#secondary_nav ul li a.active, #secondary_nav ul li a:hover {
-	color: #fff;
-}
-#secondary_nav ul li a {
-	color: #74d1c6;
-}
-.box_general_3 {
-	background-color: #fff;
-	padding: 30px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	margin-bottom: 15px;
-	border: 1px solid #e1e8ed;
-}
-
-.booking .title{
-	background-color:#3f4079;
-	color:#fff;
-	margin:-30px -30px 30px;
-	padding:20px 30px;
-	border-radius:5px 5px 0 0
-}
-.booking .title h3{
-	font-size:28px;
-	font-size:1.75rem;
-	margin:0;
-	color:#fff !important;
-}
-.booking .title small{
-	font-size:13px;
-	font-size:.8125rem
-}
-.booking hr{
-	margin-top:15px!important
-}
-.booking ul.treatments{
-	margin:15px 0 0
-}
-.booking ul.treatments li{
-	border-top:1px dotted #ddd;
-	border-bottom:none;
-	width:100%;
-	margin:0;
-	padding:12px 0 5px
-}
-#secondary_nav ul li:last-child {
-	display: none;
-	margin-right: 0;
-}
-.profile h1 {
-	font-size: 24px;
-	font-size: 1.5rem;
-}
-.profile .rating {
-	margin-bottom: 15px;
-	display: inline-block;
-}
-.profile small {
-	color: #999;
-	font-weight: 600;
-}
-.profile ul.statistic {
-	padding-bottom: 5px;
-	margin-bottom: 15px;
-	padding-left: 0;
-}
-.profile ul.statistic li {
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-ms-border-radius: 3px;
-	border-radius: 3px;
-	line-height: 1;
-	color: #fff;
-	padding: 8px 10px 5px;
-	font-size: 12px;
-	font-size: .75rem;
-	text-align: center;
-}
-.box_profile ul.statistic li, .profile ul.statistic li {
-	background-color: #74d1c6;
-	font-weight: 600;
-	min-width: 95px;
-	display: inline-block;
-}
-.profile ul.contacts {
-	margin: 25px 0 0;
-	padding-left: 0px;
-}
-.profile ul.contacts li {
-	margin-bottom: 15px;
-}
-.profile ul.contacts li h6 {
-	font-size: 14px;
-	font-size: .875rem;
-	margin-bottom: 3px;
-}
-.profile ul.contacts li:last-child {
-	margin-bottom: 0;
-}
-.sbOptions, ol, ul, ul#cat_nav {
-	list-style: none;
-}
-.profile {
-	padding-top: 20px;
-}
-.box_general_3 hr {
-	margin: 30px -30px;
-}
-.indent_title_in {
-	position: relative;
-	padding-left: 60px;
-	margin-bottom: 20px;
-}
-.indent_title_in i {
-	font-size: 40px;
-	position: absolute;
-	left: 0;
-	color: #3f4079;
-	top: 0;
-}
-.indent_title_in h3 {
-	margin-bottom: 0;
-	margin-top: 0;
-	font-size: 21px;
-}
-.wrapper_indent {
-	padding-left: 60px;
-}
-ul.bullets {
-	line-height: 1.8;
-	margin-bottom: 0;
-}
-ul.bullets li {
-	position: relative;
-	padding-left: 20px;
-}
-.btn_1:hover, a.btn_1:hover {
-	background: #74d1c6;
-}
-.btn_1.full-width, a.btn_1.full-width {
-	display: block;
-	text-align: center;
-	padding: 12px 45px;
-	font-size: 16px;
-	font-size: 1rem;
-	width: 100%;
-}
-.btn_1, a.btn_1 {
-	border: none;
-	color: #fff;
-	background: #e74e84;
-	cursor: pointer;
-	padding: 7px 20px;
-	display: inline-block;
-	outline: 0;
-	font-size: 14px;
-	font-size: .875rem;
-	transition: all .3s ease-in-out;
-	-webkit-border-radius: 25px;
-	-moz-border-radius: 25px;
-	-ms-border-radius: 25px;
-	border-radius: 25px;
-	font-weight: 500;
-}
-.btn_1, a.btn_1, header.header_sticky {
-	-moz-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
-	-webkit-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-}
-.rating i.voted {
-	color: #FFC107;
-}
-#review_summary {
-	text-align: center;
-	background-color: #3f4079;
-	color: #fff;
-	padding: 20px 10px;
-	border-radius: 5px;
-}
-#review_summary, .strip_list {
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-ms-border-radius: 5px;
-}
-#review_summary strong {
-	font-size: 3rem;
-	line-height: 1;
-}
-strong{
-
-	font-weight: 600;
-}
-.reviews-container .progress {
-	margin-bottom: 10px;
-}
-.progress {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	height: 1rem;
-	overflow: hidden;
-	font-size: .75rem;
-	background-color: #e9ecef;
-	border-radius: .25rem;
-}
-.reviews-container .progress-bar {
-	background-color: #74d1c6;
-}
-.progress-bar {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	color: #fff;
-	text-align: center;
-	background-color: #007bff;
-	transition: width .6s ease;
-}
-.reviews-container .rev-info {
-	font-size: .75rem;
-	font-style: italic;
-	color: #777;
-	margin-bottom: 10px;
-}
-.ftSecKey{
-	color: #e74e84;
-}
-.timeWrap .ui-timepicker-wrapper{
-	display: block !important;
-	position: relative !important;
-	top: 0px !important;
-	left: 0px !important;
-}
-.timeWrap .ui-timepicker-wrapper ul li:hover{
-	background-color: #e74e84;
-	color: #fff;
-}
-.timeWrap .ui-timepicker-wrapper ul li{
-	display: inline;
-	-moz-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
-	-webkit-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
-	background-color: #f8f8f8;
-	border-radius: 3px;
-	padding: 8px 10px 6px;
-	line-height: 1;
-	min-width: 100px;
-	margin: 5px;
-	text-align: center;
-	cursor: pointer;
-
-}
-.title-header-div{
-	background-color: #3f4079;
-	/*-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-ms-border-radius: 5px;
-	border-radius: 5px;*/
-	text-align: center;
-	padding: 10px;
-	margin-bottom: 30px;
-}
-.ui-timepicker-list{
-
-	text-align: center !important;
-}
-.title-header-div h5{
-	font-size: 16px;
-	font-size: 1rem;
-	color: #fff;
-	text-align: center;
-	margin-top: 5px !important;
-	margin-bottom: 3px !important;
-	margin: 0 auto;
-}
-.ui-timepicker-list .ui-timepicker-selected{
-	background-color: #333 !important;
-	color: #FFF !important;
-
-}
-.ui-timepicker-list .disabledFullhr{
-	
-	background: #6B6565 !important;
-	color: #FFF !important;
-	/*cursor: not-allowed;*/
-
-}
-.ui-timepicker-list .disabledFullhr:hover{
-	
-	background: #6B6565 !important;
-	color: #FFF !important;
-	cursor: not-allowed;
-
-}
-label.error{
-	font-size: 11px;
-	color: red;
-}
-</style>
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		$("#printPrescription").click(function(){
+
+			window.print();
+		});
 		/*==============
 =========================
 Start Submitting Form
@@ -963,7 +714,7 @@ $("#city").select2({
                     // placeholder: "Select a State",
                     allowClear: true
                 });
-
+$(\'.select2-selection--single\').addClass(\'form-control\');
 /*================
 ==========================
 To Check Pateint is Exist or Not
@@ -1055,8 +806,9 @@ $("#add_patient").click(function(){
 TO Check Which days is available and Which dates is not available
 =========================================================
 ===================*/
-$(\'#bookingTime\').css(\'visibility\', \'hidden\');
+$(\'#bookingTime\').attr(\'disabled\', true);
 var unavail=  $(\'#unavail\').val().split(\',\');
+console.log($(\'#from\').val());
 var fromDate=  $(\'#from\').val().split(\',\');
 var toDate=  $(\'#to\').val().split(\',\');
 var today = new Date();
@@ -1065,18 +817,27 @@ debugger
 var selected_Date="";
 var count="";
 		// 	// var check_in = [[fromDate[7], toDate[7]]];
-		var start = new Date(fromDate[7]),
-		end = new Date(toDate[7]),
-		currentDate = new Date(start.getTime()),
-		between = []
-		while (currentDate <= end) {
-			between.push((currentDate.getMonth()+1)+"/"+currentDate.getDate()+"/"+currentDate.getFullYear());
-			currentDate.setDate(currentDate.getDate() + 1);
 
+		console.log(fromDate[7]);
+		var between = [];
+		var i;
+
+		for (i = 0; i < fromDate[7].length; i++) { 
+
+			var start = new Date(fromDate[i]),
+			end = new Date(toDate[i]),
+			currentDate = new Date(start.getTime());
+			debugger
+			while (currentDate <= end) {
+				between.push((currentDate.getMonth()+1)+"/"+currentDate.getDate()+"/"+currentDate.getFullYear());
+				currentDate.setDate(currentDate.getDate() + 1);
+
+			}
 		}
 		$(\'#booking_date\').attr( \'data-disabled-days\',between.toString())
-		$("#dateRendering").html(\'<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="\'+between.toString()+\'" name="dt" >\');
+		$("#dateRendering").html(\'<input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="\'+between.toString()+\'" name="dt" data-lock="from">\');
 		$(\'#booking_date\').dateDropper();
+		$(\'#booking_date\').val(\'\');
 
 		var weekday=new Array(7);
 		weekday[0]="mon_on";
@@ -1109,7 +870,7 @@ doc-appointments?ejax=y<?php echo '",
 				  		var time_st="";
 				  		var time_end="";
 				  		if (msg!="") {
-				  			$(\'#bookingTime\').css(\'visibility\', \'visible\');
+				  			$(\'#bookingTime\').attr(\'disabled\', false);
 				  			var res=JSON.parse(msg);
 				  			time_st=res.start;
 				  			time_end=res.end;
@@ -1126,7 +887,7 @@ doc-appointments?ejax=y<?php echo '",
 				  				appendTo: timDiv
 				  			});
 				  		}else{ 
-				  			$(\'#bookingTime\').css(\'visibility\', \'hidden\');
+				  			$(\'#bookingTime\').attr(\'disabled\', true);
 				  			$(\'#booking_date\').val(\'\');
 				  			
 				  			$(\'#snackbar\').text(\'Doctor is not available on the selected date.\');
@@ -1161,21 +922,34 @@ doc-appointments?appoint=y<?php echo '{literal}",
 		success: function(msg) 
 		{
                   		//debugger
-                  		$(\'#ap_number\').val(+msg + +1);
+                  		$(\'#ap_numb\').val(+msg + +1);
                   		///console.log(count);
                   		debugger
                   		if (parseInt(count) == parseInt(msg)) {
 
                   			$(\'#bookingTime\').val(\'\');
+                  			$(\'#ap_numb\').val(\'\');
                   			$(\'.ui-timepicker-selected\').addClass(\'disabledFullhr\');
                   			$(\'#snackbar\').text("The selected hour\'s slot is full, please choose another time.");
                   			var x = $("#snackbar");
                   			x.addClass(\'show\');
                             // After 3 seconds, remove the show class from DIV
                             setTimeout(function(){ x.removeClass(\'show\'); }, 3000);
-                        }
-                    }
-                });
+                            var foo=$(\'.ui-timepicker-selected\').clone()
+                            var key=null;
+                            $.each($(\'.ui-timepicker-list li\'),function(k,y){
+
+                            	if($(y).hasClass(\'ui-timepicker-selected\')){
+
+                            		key=k;
+                            	}
+                            })
+							//key;
+							$(\'.ui-timepicker-selected\').remove()
+							$(\'.ui-timepicker-list li:nth-child(\'+(key+1)+\')\').before(foo[0])
+						}
+					}
+				});
 });
 /*================End Check Hour script=================*/
 

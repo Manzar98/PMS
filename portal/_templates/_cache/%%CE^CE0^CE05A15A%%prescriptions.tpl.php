@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-12-14 14:34:50
+<?php /* Smarty version 2.6.31, created on 2019-01-02 19:13:59
          compiled from prescription/prescriptions.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'print_r', 'prescription/prescriptions.tpl', 32, false),array('modifier', 'date_format', 'prescription/prescriptions.tpl', 89, false),array('modifier', 'default', 'prescription/prescriptions.tpl', 111, false),array('function', 'cycle', 'prescription/prescriptions.tpl', 108, false),)), $this); ?>
@@ -133,7 +133,7 @@ prescriptions/?group_by=complain&q=<?php echo $_GET['q']; ?>
 			
 			<thead class="">
 				<tr>
-					<th>ID</th>
+					<th width="100">ID</th>
 					<th>Patient Name (ID)</th>
 					<th>Complain</th>
 					<th>Date</th>
@@ -147,14 +147,14 @@ prescriptions/?group_by=complain&q=<?php echo $_GET['q']; ?>
 ?>
 				<tr class="<?php echo smarty_function_cycle(array('values' => 'odd,even'), $this);?>
 ">
-					<td class="bold"><?php echo $this->_tpl_vars['prescription']['id']; ?>
+					<td class="bold" width="100"><?php echo $this->_tpl_vars['prescription']['id']; ?>
 </td>
 					<td><?php echo $this->_tpl_vars['prescription']['patient_name']; ?>
  (<?php echo $this->_tpl_vars['prescription']['patient_id']; ?>
 )</td>
 					<td><?php echo ((is_array($_tmp=@$this->_tpl_vars['prescription']['complain'])) ? $this->_run_mod_handler('default', true, $_tmp, '<span style="color:gray;font-style: italic;">Empty</span>') : smarty_modifier_default($_tmp, '<span style="color:gray;font-style: italic;">Empty</span>')); ?>
 </td>
-					<td><?php echo ((is_array($_tmp=$this->_tpl_vars['prescription']['created_on'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
+					<td ><?php echo ((is_array($_tmp=$this->_tpl_vars['prescription']['created_on'])) ? $this->_run_mod_handler('date_format', true, $_tmp, "%A, %B %e, %Y") : smarty_modifier_date_format($_tmp, "%A, %B %e, %Y")); ?>
 </td>
 					<td>
 						<div class="icons">				
@@ -184,6 +184,8 @@ _templates/img/bin.png" alt="Delete" /></a>
 		</tbody>
 	</table>
 	<?php endforeach; endif; unset($_from); ?>
+	<?php else: ?>
+	<p class="text-center pt-4" >No prescriptions Added</p>
 	<?php endif; ?>
 	<!-- <?php echo $this->_tpl_vars['grouped_prescriptions']; ?>
  -->

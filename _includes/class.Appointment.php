@@ -2,7 +2,6 @@
 
  class Appointment{
 
-
  	 function GetAllDoctors(){
 
   	global $db;
@@ -14,7 +13,7 @@
 
   	global $db;
 		$sql = 'SELECT * FROM '.DB_PREFIX.'appointments WHERE user_id='.$id.' AND ap_time="'.$time.'" AND ap_date="'.$date.'"';
-		  // echo $sql;
+		   //echo $sql;
 
 		return $db->QueryArray($sql);
   }
